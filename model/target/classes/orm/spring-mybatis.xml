@@ -76,7 +76,7 @@
               scope="prototype">
             <property name="patterns">
                 <list>
-                    <value>net.health.dao.*</value>
+                    <value>com.water.db.dao.*</value>
                 </list>
             </property>
         </bean>
@@ -99,7 +99,7 @@
 
         <!-- mapper自动注入 -->
         <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-            <property name="basePackage" value="com.water.*"/>
+            <property name="basePackage" value="com.water.db.dao"/>
             <property name="sqlSessionFactoryBeanName" value="businessSqlSessionFactory"/>
         </bean>
 

@@ -1,29 +1,33 @@
 package com.water.db.service.impl;
 
-import com.water.db.dao.IUserDao;
-import com.water.db.service.IUserService;
-import com.water.tools.lang.MWStringUtils;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.water.db.dao.UserMapper;
+import com.water.db.model.User;
+import com.water.db.model.UserCriteria;
+import com.water.db.service.interfaces.UserService;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
 
-/**
- * Created by mrwater on 16/6/4.
- */
-@Service(IUserService.SERVICE_NAME)
-public class UserServiceImpl implements IUserService {
-    @Resource(name = IUserDao.SERVICE_NAME)
-    private IUserDao userDao;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Service;
 
-    public Map<String, Object> findUserByNameAndPwd(String username, String pwd) {
-        MWStringUtils.isBlank(username,pwd);
+@Service("userService")
+public class UserServiceImpl implements UserService {
+    @Resource
+    private UserMapper userMapper;
 
-        String querySQL = "select * from mw_user u where u.account = ? and u.password = ?";
-        List<Map<String,Object>> results = userDao.queryForList(querySQL,new Object[]{username,pwd});
-        if (results != null && results.size() == 1) {
-            return results.get(0);
+    public User findUserByNameAndPwd(String login_username, String login_password) {
+        if (StringUtils.isAnyBlank(login_username, login_password)) {
+            throw new RuntimeException("参数不合法！");
+        }
+        UserCriteria userCriteria = new UserCriteria();
+        UserCriteria.Criteria criteria = userCriteria.createCriteria();
+        criteria.andAccountEqualTo(login_username);
+        criteria.andPasswordEqualTo(login_password);
+        List<User> userList = userMapper.selectByExample(userCriteria);
+        if (userList != null && userList.size() > 0) {
+            return userList.get(0);
         }
         return null;
     }

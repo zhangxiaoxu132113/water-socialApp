@@ -12,6 +12,7 @@ var setJsonBySubmit = function(formObj,iframeName,uploadSuccess_callBack) {
     formObj.submit();
     var resultJson ;
     setTimeout(function(){
+        debugger;
         var result = $(window.frames[iframeName].document).find("pre").html(); //这里写的比较死
         resultJson = JSON.parse(result);
         uploadSuccess_callBack.call(this,resultJson);

@@ -1,0 +1,20 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: mrwater
+  Date: 2017/2/1
+  Time: 下午5:02
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/mrwater.css">
+<!--字体图标样式 -->
+<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/font/englishFont/mw-font.css">
+
+
+<script src="<%=path%>/asset/js/jquery.js"></script>
+<script src="<%=path%>/asset/js/mrwater.js"></script>

@@ -58,9 +58,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span>关于</span>
-                        </a>
+                        <a href="#"><span>关于</span></a>
                     </li>
                 </ul>
             </div>
@@ -73,9 +71,7 @@
         <div class="login-wrap-container">
             <div class="login-wrap-left">
                 <div class="login-poster">
-                    <!--<h1>耐得住寂寞,才能守得住繁华!</h1>-->
                     <h1>欢迎!Mr Water。</h1>
-                    <!--<p>耐得住寂寞,才能守得住繁华!</p>-->
                     <p>
                         但凡成功之人，往往都要经历一段没人支持、没人帮助的黑暗岁月，
                         而这段时光，恰恰是沉淀自我的关键阶段。犹如黎明前的黑暗，捱过去，天也就亮了。
@@ -117,15 +113,15 @@
                     <h2><strong>新来访客?</strong> 注册</h2>
                     <form action="" method="post">
                         <div class="field">
-                            <input type="text" placeholder="全名" class="text-input">
+                            <input type="text" placeholder="全名" class="text-input" ng-model="reg_username"/>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="邮件" class="text-input">
+                            <input type="text" placeholder="邮件" class="text-input" ng-model="reg_email"/>
                         </div>
                         <div class="field">
-                            <input type="password" placeholder="密码" class="text-input">
+                            <input type="password" placeholder="密码" class="text-input" ng-model="reg_pwd"/>
                         </div>
-                        <button type="submit" class="mr-btn signup-btn mr-pull-right">注册Mr Water</button>
+                        <button type="submit" class="mr-btn signup-btn mr-pull-right" ng-click="register(reg_username,reg_email,reg_pwd)">注册Mr Water</button>
                     </form>
                 </div>
             </div>

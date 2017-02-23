@@ -1,4 +1,4 @@
-.mr-logo{color:rgb(27, 149, 224);}
+.mr-logo{color:rgb(27, 149, 224);line-height: 46px; font-size: 18px; font-weight: bolder;}
 /*compontent*/
 /*compontent img*/
 .mr-img-responsive {display: block;width: 100%;height:auto}

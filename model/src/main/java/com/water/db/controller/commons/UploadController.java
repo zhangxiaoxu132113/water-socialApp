@@ -53,7 +53,7 @@ public class UploadController {
         //保存文件
         try {
             file.transferTo(targetFile);
-            jsonMap.put("imgSrc","upload"+File.separator+uploadDate+File.separator+fileName);
+            jsonMap.put("imgSrc","/upload"+File.separator+uploadDate+File.separator+fileName);
             return jsonMap;
         } catch (IOException e) {
             e.printStackTrace();

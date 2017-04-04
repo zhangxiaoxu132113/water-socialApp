@@ -5,6 +5,7 @@ import com.water.db.model.Weibo;
 import com.water.db.service.interfaces.WeiboService;
 import com.water.utils.web.MWSessionUtils;
 import com.water.utils.web.WebUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,5 +36,16 @@ public class ViewDispatcher {
         modelAndView.addObject("weiboList",weiboList);
         modelAndView.setViewName("/index");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/login")
+    public ModelAndView loginView(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        String redirectAfterLogin = request.getHeader("Referer");
+        if (StringUtils.isNotBlank(redirectAfterLogin)) {
+            mav.addObject("redirect_after_login",redirectAfterLogin);
+        }
+        mav.setViewName("/login");
+        return mav;
     }
 }

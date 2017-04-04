@@ -9,6 +9,7 @@
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     String login_name = "";
     String login_pwd = "";
@@ -101,7 +102,7 @@
                             <span class="separator">.</span>
                             <a class="forgot" href="#">忘记密码</a>
                         </div>
-                        <input type="hidden" value="${redirect_after_login }" name="redirect_after_login" id="redirect_after_login">
+                        <input type="hidden" value="${requestScope.redirect_after_login}" name="redirect_after_login" id="redirect_after_login">
                         <input type="hidden" value="xxx" name="authenticity_token">
                         <input type="hidden" value="<%=login_name%>" id="jq_login_name">
                         <input type="hidden" value="<%=login_pwd%>" id="jq_login_pwd">

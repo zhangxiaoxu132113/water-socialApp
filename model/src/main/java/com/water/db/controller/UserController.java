@@ -52,12 +52,13 @@ public class UserController {
         MWLoginUtils.addCookie(login_username, login_password, request, response); //是否要添加cookie
         MWSessionUtils.addUser2Session(request, user); //将用户对象添加到Session中
         //跳转视图
-        if (redirect_after_login != null && StringUtils.isNotBlank(redirect_after_login)) {
-            resultView.createResultData().set("redirect_url", redirect_after_login).build();
-        }
-        resultView.createResultData().set("redirect_url", "/" + (String) user.getAccount() + "/home").build();
         resultView.setCode(Constants.STATUS_CODE.SUCCESS);
         resultView.setMsg("登录成功！");
+        if (redirect_after_login != null && StringUtils.isNotBlank(redirect_after_login)) {
+            resultView.createResultData().set("redirect_url", redirect_after_login).build();
+        } else {
+            resultView.createResultData().set("redirect_url", "/" + (String) user.getAccount() + "/home").build();
+        }
         WebUtils.sendResult(response, resultView);
     }
 

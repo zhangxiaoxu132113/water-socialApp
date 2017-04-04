@@ -272,7 +272,7 @@
 
                                         </div>
                                         <div class="Grid-cell u-lg-size1of3" style="width: 32%!important;">
-                                            <div style="margin-top: 10px">
+                                            <div style="margin-top: 10px" class="learm-task-list">
                                                 <h3><i class="iconfont"></i>任务列表</h3>
                                                 <ul>
                                                     <li>学习es</li>

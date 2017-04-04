@@ -551,3 +551,12 @@ body {
     height: 26px;
     cursor: pointer;
 }
+
+.learm-task-list {
+    margin-top: 10px;
+    margin-left: 0.5em;
+    background: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    border: 1px solid #e1e8ed;
+}

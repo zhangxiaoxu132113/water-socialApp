@@ -29,6 +29,23 @@
             width: 250px;
             outline: 0;
         }
+        .search-btn-a {
+            top: 16px;
+            right: 10px;
+            position: absolute;
+            line-height: 0;
+            width: 16px;
+            height: 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .search-btn-icon {
+            font-weight: bold;
+            font-size: 16px;
+
+            line-height: 0;
+            color: darkgrey;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +67,15 @@
                     <ul  style="color: #666">
                         <c:choose>
                             <c:when test="${global_user != null}">
-                                <li><input style="display: block;" class="search-input index-search-frame" placeholder="搜索内容"/></li>
+                                <li>
+                                    <form action="/article/search" class="search-form" method="get" style="position: relative">
+                                        <input type="text" style="display: block;" name="keyword" class="search-input index-search-frame" placeholder="搜索内容"/>
+                                        <%--<input type="submit" style="position: absolute" value="search"/>--%>
+                                        <label>
+                                            <a class="search-btn-a"><i class="iconfont search-btn-icon"  style="font-weight: bold;">&#xe620;</i></a>
+                                        </label>
+                                    </form>
+                                </li>
                                 <li class="user-info-news">
                                     <span>
                                         <a style="position: relative">
@@ -66,7 +91,6 @@
                                 <li class="user-info-name">
                                     <span>
                                         <a style="position: relative">
-
                                             <img src="<%=path%>/asset/content/be3489c6jw8fd6m9eofq2j20ku0kuta9.jpg" class="user-header"/>
                                             <ul style="position: absolute;display: none">
                                                 <li><a href="/${global_user.id}/home"><span class="nickname">${global_user.nickname}</span></a></li>
@@ -128,7 +152,7 @@
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
-                                <c:forEach items="${requestScope.articleList}" begin="10" end="13" var="article">
+                                <c:forEach items="${requestScope.greeArticleList}" begin="10" end="13" var="article">
                                     <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
                                 </c:forEach>
                             </ul>
@@ -136,7 +160,7 @@
                     </div>
                     <div id="view-info-list">
                         <ul>
-                            <c:forEach items="${requestScope.articleList}" begin="0" end="9" var="article">
+                            <c:forEach items="${requestScope.greeArticleList}" begin="0" end="9" var="article">
                                 <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
                             </c:forEach>
                             <span style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</span>

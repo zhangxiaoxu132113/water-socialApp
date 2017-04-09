@@ -7,6 +7,7 @@
     <!-- Servlet Filters ================================================ -->
 
     <!-- Filter mappings ================================================ -->
+    <!-- Filter -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

@@ -82,9 +82,16 @@
         <div class="about-article" style="width: 900px;margin: 0 auto;">
             <h4>相关文章推荐</h4>
             <ul>
-                <li>GDC 2017 争霸赛，微软发布 Windows10 MR 头显开发者套件</li>
-                <li>nunuStudio：一款支持 3D 及 VR 应用的 JS IDE</li>
-                <li>【CSDN AI 周刊】第11期 | 周志华提出深度森林 引发持续热议</li>
+                <c:choose>
+                    <c:when test="${requestScope.article.relatedArticles != null}">
+                        <c:forEach items="${requestScope.article.relatedArticles}" var="article">
+                            <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li>暂无内容</li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
         <div id="footer">

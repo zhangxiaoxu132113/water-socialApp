@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+ul li {
+    list-style: none
+}
+
+.header {
+    height: 55px;
+    line-height: 55px;
+    padding: 0 1em;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.39);
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10001;
+    background:#fff;
+}
+.userinfo {
+    margin-right: 2em;
+    font-size: 14px;
+}
+.userinfo ul li {
+    float: left;
+    margin-right: 0.85em
+}
+
+.search-nav {
+    height: 38px;
+    background: #f8f8f8;
+    margin-top:56px;
+}
+
+.search-nav .search-nav-inner {
+    width: 1080px;
+    line-height: 38px;
+    margin: 0 auto;
+}
+
+.main-content {
+    width: 1088px;
+    margin: 0 auto;
+}
+
+.search-content {
+    width: 65%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.search-nav {
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.39);
+}
+
+.search-nav ul li {
+    float: left;
+    margin-right: 1em;
+    padding: 0 1em;
+    font-size: 14px;
+    color: #666;
+}
+
+.search-nav ul li.active {
+    border-bottom: 2px solid #3385ff;
+    color: #000;
+    font-weight: bold;
+}
+
+.search-btn {
+    background: #3385ff;
+    color: #fff;
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding: 0 2em;
+    line-height: 34px;
+    border: 1px solid #2d78f4;
+    cursor: pointer;
+}
+
+.search-input-text {
+    width: 540px;
+    height: 34px;
+    float: left;
+    border: 1px solid #b6b6b6;
+    border-right: 0;
+    outline: none;
+    padding-left: 0.5em;
+    font-size: 16px;
+}
+
+.logo-img {
+    margin-top: 10px;
+    width: 80px;
+    height: 31.8px;
+    margin-right: 1em;
+}
+
+.search-frame {
+    margin-top: 10px;
+    float: left;
+}
+
+.search-total {
+    font-size: 12px;
+    color: #999;
+    margin: 1em 0;
+}
+
+.article-title {
+    padding: 0 0 0.5em 0;
+    color:#00c;
+    text-decoration: underline;
+}
+.article-content {
+    line-height: 1.5em;
+    font-size: 14px;
+}
+.search-item {
+    margin-bottom: 1em;
+}
+
+.bailianmeng {
+    display: inline-block;
+    width: 34%;
+    vertical-align: top;
+}
+.page {
+    margin:1em 0;
+}
+.page span {
+    width: 36px;
+    height: 36px;
+    display: block;
+    text-align: center;
+    /* vertical-align: middle; */
+    line-height: 36px;
+    border: 1px solid #e0e0e0;
+    float: left;
+    margin-right: 1em;
+}
+.page span:last-child {
+    width: auto;
+    padding:0 0.5em;
+}
+.footer {
+    height: 43px;
+    line-height: 43px;
+    background: #f9f9f9;
+    margin-top: 1em;
+}
+.footer-inner {
+    width: 1088px;
+    margin: 0 auto;
+    font-size: 14px;
+}

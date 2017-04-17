@@ -81,6 +81,8 @@ ul li {
     line-height: 34px;
     border: 1px solid #2d78f4;
     cursor: pointer;
+    font-size: 14px;
+    outline:none;
 }
 
 .search-input-text {
@@ -142,10 +144,11 @@ ul li {
     line-height: 36px;
     border: 1px solid #e0e0e0;
     float: left;
-    margin-right: 1em;
+    margin-right: 0.5em;
+    font-size: 14px;
 }
-.page span:last-child {
-    width: auto;
+.last-page, .next-page{
+    width: auto!important;
     padding:0 0.5em;
 }
 .footer {

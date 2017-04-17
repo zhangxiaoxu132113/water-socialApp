@@ -5,6 +5,7 @@ import com.water.db.model.User;
 import com.water.db.model.dto.ITArticleDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ITArticleService {
     List<ITArticle> getGreeArticle();
@@ -19,5 +20,5 @@ public interface ITArticleService {
 
     List<ITArticle> getExcellentArticle();
 
-    List<ITArticle> searchArticleByKeyword(String kw, int begin, int pageSize);
+    Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize);
 }

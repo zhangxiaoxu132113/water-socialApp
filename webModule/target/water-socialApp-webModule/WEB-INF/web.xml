@@ -7,6 +7,7 @@
     <!-- Servlet Filters ================================================ -->
 
     <!-- Filter mappings ================================================ -->
+    <!-- Filter -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -75,7 +76,7 @@
 
     <!-- 访问首页 -->
     <welcome-file-list>
-        <welcome-file>/WEB-INF/page/articleIndex.jsp</welcome-file>
+        <welcome-file>/</welcome-file>
     </welcome-file-list>
 </web-app>
         

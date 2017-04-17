@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 
+import com.water.es.entry.ESDocument;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -57,7 +58,8 @@ public class ITArticleServiceImpl implements ITArticleService {
         if (article == null) {
             throw  new RuntimeException("对象不能为空！");
         }
-        List<com.water.es.entry.ITArticle> esArticleList = esArticleService.searchArticleByMatch("content", article.getTitle(),0,5);
+        ESDocument document = esArticleService.searchArticleByMatch("content", article.getTitle(),0,5);
+        List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         for (com.water.es.entry.ITArticle esArticle : esArticleList) {
             ITArticle originArticle = new ITArticle();
             BeanUtils.copyProperties(esArticle, originArticle);
@@ -90,11 +92,16 @@ public class ITArticleServiceImpl implements ITArticleService {
         return null;
     }
 
-    public List<ITArticle> searchArticleByKeyword(String kw, int begin, int pageSize) {
+    public Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         List<ITArticle> articleList = new ArrayList<ITArticle>();
-        List<com.water.es.entry.ITArticle> esArticleList = esArticleService.searchArticleByMatch("content", kw, begin, pageSize);
+        ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content","title"}, kw, begin, pageSize);
+        List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         copyITArticleList(articleList, esArticleList);
-        return articleList;
+        resultMap.put("data",articleList);
+        resultMap.put("took",document.getTook());
+        resultMap.put("totalHits",document.getTotalHits());
+        return resultMap;
     }
 
     private void copyITArticleList(List<ITArticle> articleList, List<com.water.es.entry.ITArticle> esArticleList) {

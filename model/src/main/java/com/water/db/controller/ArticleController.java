@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mrwater on 2017/4/2.
@@ -34,35 +36,6 @@ public class ArticleController {
     @Resource
     private ITArticleService articleService;
 
-    @RequestMapping(value = "/blog", method = RequestMethod.GET)
-    public ModelAndView articleIndex(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        User user = MWSessionUtils.getUser2Session(request);
-        List<ITTagDto> tagList = tagService.getAllTags();
-        mav.addObject("tagList", tagList);
-
-        List<ITArticle> articleList = articleService.getGreeArticle();
-        mav.addObject("greeArticleList", articleList);  //头条文章
-
-        List<ITArticle> softwareInformations = articleService.getSoftwareInformations();
-        mav.addObject("softwareInformations", softwareInformations);    //软件资讯
-
-        List<ITArticle> recentlyReadArticles = null;
-        if (user != null) {
-            recentlyReadArticles = articleService.getRecentlyReadedArticlesByUser(user);
-        }
-        mav.addObject("recentlyReadArticles", recentlyReadArticles);    //用户最近阅读的文章
-
-        List<ITArticle> newItArticleList = articleService.getNewArticles();
-        mav.addObject("newItArticleList", newItArticleList);    //最新文章
-
-        List<ITArticle> excellentItArticleList = articleService.getExcellentArticle();
-        mav.addObject("excellentItArticleList", excellentItArticleList);    //最新文章
-
-        mav.setViewName("/articleIndex");
-        return mav;
-    }
-
     @RequestMapping(value = "/article/detail/{articleId}")
     public ModelAndView getArticleDetail(@PathVariable String articleId) {
         ModelAndView mav = new ModelAndView();
@@ -74,12 +47,24 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/search", method = RequestMethod.GET)
     public ModelAndView searchArticle(@RequestParam(defaultValue = "") String keyword,
-                                      @RequestParam(defaultValue = "0") int begin,
-                                      @RequestParam(defaultValue = "10") int pageSize) {
+                                      @RequestParam(defaultValue = "1") int currentPage,
+                                      @RequestParam(defaultValue = "10") int pageSize) throws UnsupportedEncodingException {
+        keyword = new String(keyword.getBytes("iso8859-1"),"UTF-8");
         ModelAndView mav = new ModelAndView();
-        List<ITArticle> articleList = articleService.searchArticleByKeyword(keyword, begin, pageSize);
+        int begin = (currentPage - 1) * pageSize;
+        Map<String, Object> resultMap = articleService.searchArticleByKeyword(keyword, begin, pageSize);
+        List<ITArticle> articleList = (List<ITArticle>) resultMap.get("data");
+        Long took = (Long) resultMap.get("took");
+        Long totalHits = (Long) resultMap.get("totalHits");
+
+        mav.addObject("currentPage", currentPage);
+        mav.addObject("took", took);
+        mav.addObject("totalHits", totalHits);
         mav.addObject("articleList", articleList);
+        mav.addObject("keyword", keyword);
         mav.setViewName("/searchPage");
+
+
         return mav;
     }
 }

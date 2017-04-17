@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: mrwater
   Date: 2017/4/9
@@ -28,7 +28,7 @@
                 </div>
                 <div class="search-frame">
                     <form action="/article/search" method="get">
-                        <input type="text" class="search-input-text" name="keyword">
+                        <input type="text" class="search-input-text" name="keyword" value="${requestScope.keyword}">
                         <input class="search-btn" value="搜索" type="submit">
                         <%--<a class="search-btn">搜索</a>--%>
                     </form>
@@ -55,10 +55,13 @@
         <div class="main-content">
             <div class="main-content-inner">
                 <div class="search-content">
-                    <div class="search-total">为你找到相关搜索:<span>3400</span>个</div>
+                    <div class="search-total">
+                        为你找到相关搜索:<span>${requestScope.totalHits}</span>篇文章，耗时<span>${requestScope.took}</span>毫秒
+                    </div>
                     <c:forEach items="${requestScope.articleList}" var="article">
                         <div class="search-item">
-                            <div class="article-title">${article.title}</div>
+                            <div class="article-title"><a
+                                    href="<%=path%>/article/detail/${article.id}">${article.title}</a></div>
                             <div class="article-content">
                                     ${article.description}
                             </div>
@@ -69,14 +72,41 @@
                     <img src="./img/baidulianmeng.png" alt="" width="100%">
                 </div>
             </div>
+            <%
+                String kw = (String) request.getAttribute("keyword");
+                long total = (Long) request.getAttribute("totalHits");
+                int currentPage = (Integer) request.getAttribute("currentPage");
+                String pageLink = path + "/article/search?keyword=%s&currentPage=%s";
+                int pageSize = 10;
+                int firstPage = 1;
+                long pageTotal = total / pageSize;
+//                long lastPage = pageSize > pageTotal ? pageTotal : pageSize;
+                long lastPage = pageSize;
+                if (currentPage - 7 >= 0) {
+                    firstPage = (currentPage - 7) + 2;
+                    lastPage = (currentPage - 6) + lastPage;
+                    if (lastPage > pageTotal) lastPage = pageTotal;
+                }
+            %>
             <div class="page">
-                <span>&lt;&lt;上一页</span>
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-                <span>下一页&gt;&gt;</span>
+                <%
+                    if (currentPage > 1) {
+                %>
+                <a href="<%String.format(pageLink,kw,currentPage-1);%>"><span class="last-page">&lt;&lt;上一页</span></a>
+                <%
+                    }
+                    PrintWriter writer = response.getWriter();
+                    for (int i = firstPage; i <= lastPage; i++) {
+                        %>
+                            <a href="<%=path%>/article/search?keyword=<%=kw%>&currentPage=<%=i%>"><span><%=i%></span></a>
+                        <%
+                    }
+                    if (lastPage < pageTotal) {
+                %>
+                <a href="<%String.format(pageLink,kw,currentPage+1);%>"><span class="next-page">下一页&gt;&gt;</span></a>
+                <%
+                    }
+                %>
             </div>
             <div style="clear: both"></div>
         </div>

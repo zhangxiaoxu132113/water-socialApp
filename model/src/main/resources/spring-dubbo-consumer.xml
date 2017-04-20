@@ -8,7 +8,7 @@
     <dubbo:application name="mw-es-customer" owner="mwes" organization="mwes"/>
 
     <!-- 测试 -->
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false"/>
+    <dubbo:registry protocol="zookeeper" address="119.23.71.245:2181" check="false"/>
 
-    <dubbo:reference id="esArticleService" timeout="60000" url="dubbo://127.0.0.1:20880" interface="com.water.es.api.Service.IArticleService" protocol="dubbo"/>
+    <dubbo:reference id="esArticleService" timeout="60000" url="dubbo://119.23.71.245:20880" interface="com.water.es.api.Service.IArticleService" protocol="dubbo"/>
 </beans>

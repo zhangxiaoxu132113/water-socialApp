@@ -15,7 +15,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>${requestScope.article.title}</title>
     <link rel="stylesheet" href="<%=path%>/asset/css/article.css">
     <style>
         .title {
@@ -36,6 +36,7 @@
             font-size: 14px;
         }
     </style>
+    <script src="<%=path%>/asset/js/jquery.js"></script>
 </head>
 <body>
 <div id="container">
@@ -79,6 +80,20 @@
                 ${article.content}
             </div>
         </div>
+        <div class="bdsharebuttonbox">
+            <style>
+                .bdsharebuttonbox a:link {
+                    text-decoration: none;
+                }
+            </style>
+            <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+        </div>
+
         <div class="about-article" style="width: 900px;margin: 0 auto;">
             <h4>相关文章推荐</h4>
             <ul>
@@ -99,5 +114,41 @@
         </div>
     </div>
 </div>
+<script>
+    //全局变量，动态的文章ID
+    var ShareId = "";
+    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
+    $(function () {
+        $(".bdsharebuttonbox a").mouseover(function () {
+            ShareId = $(this).attr("data-id");
+        });
+    });
+
+    /*
+     * 设置分享的url连接地址
+     */
+    function SetShareUrl(cmd, config) {
+        config.bdUrl  = document.URL;
+        config.bdText = $('title').text();
+        config.bdDesc = "用户将网站内容分享到第三方网站，第三方网站的用户点击专有的分享链接，从第三方网站带来社会化流量";
+        config.bdPic  = "";
+
+        console.log(config.bdUrl);
+        console.log(config.bdText);
+        console.log(config.bdDesc);
+        return config;
+    }
+
+    window._bd_share_config = {
+        "common": {
+            onBeforeClick:SetShareUrl,"bdSnsKey": {}, "bdMini": "2", "bdMiniList": false, "bdStyle": "1", "bdSize": "16"
+        },
+        "share": {"bdSize": 16},
+        "image": {"viewList": ["qzone", "tsina",  "weixin","tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
+        "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "weixin", "tqq", "renren"]}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
 </body>
 </html>

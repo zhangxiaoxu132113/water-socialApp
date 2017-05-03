@@ -13,17 +13,18 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--<spring.version>4.0.2.RELEASE</spring.version>-->
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <jackson-core.version>2.5.4</jackson-core.version>
         <mybatis.version>3.2.7</mybatis.version>
         <mybatis.spring>1.1.1</mybatis.spring>
         <druid.versoin>1.0.9</druid.versoin>
-        <quartz.version>1.8.6</quartz.version>
-        <mysql.version>5.1.38</mysql.version>
         <common.lang3>3.3.2</common.lang3>
         <aspectj.version>1.5.4</aspectj.version>
-        <aspectjweaver.version>1.8.2</aspectjweaver.version>
+        <quartz.version>1.8.6</quartz.version>
+        <mysql.version>5.1.38</mysql.version>
         <fastjson.version>1.1.43</fastjson.version>
+        <aspectjweaver.version>1.8.2</aspectjweaver.version>
+        <protostuff.version>1.0.12</protostuff.version>
+        <jackson-core.version>2.5.4</jackson-core.version>
+        <spring.version>4.0.2.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -235,11 +236,22 @@
             <artifactId>transport</artifactId>
             <version>5.1.1</version>
         </dependency>
+
         <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>${protostuff.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>${protostuff.version}</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>net.sf.json-lib</groupId>-->
+            <!--<artifactId>json-lib</artifactId>-->
+            <!--<version>2.4</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.water</groupId>
             <artifactId>mw-es-api</artifactId>

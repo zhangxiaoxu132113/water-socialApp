@@ -1,5 +1,16 @@
 package com.water.utils.common;
 
+import com.water.utils.web.vo.Category;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import javax.xml.parsers.SAXParser;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mrwater on 2017/1/23.
  */

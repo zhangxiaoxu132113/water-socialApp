@@ -7,8 +7,11 @@ import com.water.db.model.dto.ITTagDto;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
 import com.water.db.service.interfaces.WeiboService;
+import com.water.utils.cache.CacheManager;
+import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.MWSessionUtils;
 import com.water.utils.web.WebUtils;
+import com.water.utils.web.vo.Category;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,10 +40,20 @@ public class ViewDispatcher {
     @Resource
     private WeiboService weiboService;
 
+    @Resource
+    private CacheManager cacheManager;
+
+    @Resource
+    private CategoryHelper categoryHelper;
+
     @RequestMapping(value = "/")
     public ModelAndView index(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         User user = MWSessionUtils.getUser2Session(request);
+        cacheManager.get("uubook");
+        List<Category> categoryList = categoryHelper.getAllCategories();
+        mav.addObject("categoryList", categoryList);
+
         List<ITTagDto> tagList = tagService.getAllTags();
         mav.addObject("tagList", tagList);
 

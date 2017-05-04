@@ -132,8 +132,8 @@
                             </ul>
                         </div>
                     </li>
-                    <c:forEach items="${requestScope.tagList}" var="tag">
-                        <li>${tag.name}</li>
+                    <c:forEach items="${requestScope.categoryList}" var="category">
+                        <li>${category.name}</li>
                     </c:forEach>
                 </ul>
             </div>

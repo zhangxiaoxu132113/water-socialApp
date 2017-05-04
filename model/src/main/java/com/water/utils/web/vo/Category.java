@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * Created by zhangmiaojie on 2017/5/3.
  */
-public class Category {
+public class Category implements java.io.Serializable {
     private int id;
-    private String name;
     private int sort;
+    private String name;
     private List<Category> categories;
 
     public int getId() {

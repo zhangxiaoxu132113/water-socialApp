@@ -32,6 +32,7 @@ public class UserController {
     public ModelAndView emotion() {
         return new ModelAndView("/emotionRecord");
     }
+
     /**
      * @Description 用户登录授权
      * @time 2016-06-04

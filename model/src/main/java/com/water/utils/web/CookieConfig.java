@@ -8,8 +8,8 @@ import java.util.Map;
  */
 public class CookieConfig {
     private Map<String, String> cookirMap;
-    private String domain;
     private Date expiryDate;
+    private String domain;
 
     public Map<String, String> getCookirMap() {
         return cookirMap;

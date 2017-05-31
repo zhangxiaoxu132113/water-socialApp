@@ -3,6 +3,8 @@ package com.water.utils.web;
 import com.water.utils.SerializeHelper;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.web.vo.Category;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -30,6 +32,8 @@ public class CategoryHelper {
     private static String FILE_PATH = "menu.xml";
     private static String REDIS_KEY = "index_page_menu";
 
+    private Log LOG = LogFactory.getLog(CategoryHelper.class);
+
     @Resource
     private CacheManager cacheManager;
 
@@ -43,14 +47,13 @@ public class CategoryHelper {
                 data = SerializeHelper.serializer(category);
                 cacheManager.lpush(REDIS_KEY, data);
             }
-            System.out.println("初始化！");
+            LOG.info("初始化首页菜单选项！");
         } else {
             List<byte[]> datas = cacheManager.lrange(REDIS_KEY.getBytes(), 0 , len);
             for (byte[] data1 : datas) {
                 Category category = SerializeHelper.deserializer(data1, Category.class);
                 categoryList.add(category);
             }
-            System.out.println("redis");
         }
         return sort(categoryList);
     }

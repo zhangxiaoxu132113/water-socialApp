@@ -1,9 +1,12 @@
 package com.water.db.controller;
 
+import com.water.db.model.CourseSubject;
 import com.water.db.model.ITArticle;
 import com.water.db.model.User;
 import com.water.db.model.Weibo;
+import com.water.db.model.dto.CourseSubjectDto;
 import com.water.db.model.dto.ITTagDto;
+import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
 import com.water.db.service.interfaces.WeiboService;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -38,6 +42,9 @@ public class ViewDispatcher {
     private ITArticleService articleService;
 
     @Resource
+    private CourseSubjectService courseSubjectService;
+
+    @Resource
     private WeiboService weiboService;
 
     @Resource
@@ -47,10 +54,10 @@ public class ViewDispatcher {
     private CategoryHelper categoryHelper;
 
     @RequestMapping(value = "/")
-    public ModelAndView index(HttpServletRequest request) {
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
         User user = MWSessionUtils.getUser2Session(request);
-        cacheManager.get("uubook");
+
         List<Category> categoryList = categoryHelper.getAllCategories();
         mav.addObject("categoryList", categoryList);
 
@@ -76,6 +83,16 @@ public class ViewDispatcher {
         mav.addObject("excellentItArticleList", excellentItArticleList);    //最新文章
 
         mav.setViewName("/articleIndex");
+        return mav;
+    }
+
+    @RequestMapping(value = "/course")
+    public ModelAndView course(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mav = new ModelAndView();
+        List<CourseSubjectDto> courseSubjectList = courseSubjectService.findAllCourseSubject();
+
+        mav.addObject("courseSubjects", courseSubjectList);
+        mav.setViewName("/courseSubject");
         return mav;
     }
 

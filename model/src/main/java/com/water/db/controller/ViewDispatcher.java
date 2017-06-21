@@ -26,6 +26,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by mrwater on 16/6/4.
@@ -54,7 +55,7 @@ public class ViewDispatcher {
     private CategoryHelper categoryHelper;
 
     @RequestMapping(value = "/")
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
         User user = MWSessionUtils.getUser2Session(request);
 
@@ -82,7 +83,7 @@ public class ViewDispatcher {
         List<ITArticle> excellentItArticleList = articleService.getExcellentArticle();
         mav.addObject("excellentItArticleList", excellentItArticleList);    //最新文章
 
-        mav.setViewName("/articleIndex");
+        mav.setViewName("/index");
         return mav;
     }
 
@@ -92,7 +93,7 @@ public class ViewDispatcher {
         List<CourseSubjectDto> courseSubjectList = courseSubjectService.findAllCourseSubject();
 
         mav.addObject("courseSubjects", courseSubjectList);
-        mav.setViewName("/courseSubject");
+        mav.setViewName("/course/courseIndex");
         return mav;
     }
 
@@ -106,7 +107,7 @@ public class ViewDispatcher {
         User user = MWSessionUtils.getUser2Session(request);
         List<Weibo> weiboList = weiboService.getWeiboByUserid(String.valueOf(user.getId()));
         modelAndView.addObject("weiboList", weiboList);
-        modelAndView.setViewName("/index");
+        modelAndView.setViewName("/personal/personalHome");
         return modelAndView;
     }
 

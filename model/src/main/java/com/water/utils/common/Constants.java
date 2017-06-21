@@ -28,4 +28,9 @@ public class Constants {
         public static String ACCESS_TOKEN = "2.00aZaxTDeP3GRE67b30c1dac2omDLE";
         public static String UID = "3191114182";
     }
+
+    public static class CacheKey {
+        public final static String GreeArticle = "GreeArticle";
+        public final static String NEWS = "NEWS";
+    }
 }

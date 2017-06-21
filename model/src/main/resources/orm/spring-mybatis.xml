@@ -13,8 +13,6 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-        <!-- 注册数据库的链接信息 -->
-        <context:property-placeholder location="classpath:config.properties"/>
         <!-- 配置业务001的dataSource数据源 -->
         <bean id="businessDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
             <!-- 数据库基本信息配置 -->

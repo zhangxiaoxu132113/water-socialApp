@@ -1,298 +1,318 @@
 <%--
   Created by IntelliJ IDEA.
   User: mrwater
-  Date: 16/5/31
-  Time: 下午2:35
+  Date: 2017/4/2
+  Time: 下午9:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Miaojie Zhang">
-    <title>MrWater 主页</title>
-    <jsp:include page="common.jsp"/>
-    <link rel="stylesheet" type="text/css" href="/asset/css/mrwater.css">
-    <link rel="stylesheet" type="text/css" href="/asset/css/font/iconfont/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="/asset/css/index.css">
+    <title>Title</title>
+    <link rel="stylesheet" href="<%=path%>/asset/css/articleList.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
+    <style>
+        .user-header {
+            width: 37px;height: auto;
+            vertical-align: middle;border-radius: 4px;
+        }
+        .index-search-frame {
+            display: block;
+            margin-top: 15px;
+            width: 250px;
+            outline: 0;
+        }
+        .search-btn-a {
+            top: 16px;
+            right: 10px;
+            position: absolute;
+            line-height: 0;
+            width: 16px;
+            height: 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .search-btn-icon {
+            font-weight: bold;
+            font-size: 16px;
+
+            line-height: 0;
+            color: darkgrey;
+        }
+    </style>
 </head>
 <body>
-<div class="doc">
-    <!-- topbar -->
-    <div class="topbar">
-        <div class="global_nav">
-            <div class="global_nav_inner">
-                <div class="container">
-                    <div class="nav">
-                        <ul id="global_actions">
-                            <li>
-                                <a>
-                                    <!-- web logo -->
-                                    <span class="text"><i class="iconfont" style="margin-right: 0.25em;">&#xe6ca;</i>主页</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span><i class="iconfont" style="margin-right: 0.25em;">&#xe639;</i>通知</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span>关于</span>
-                                </a>
-                            </li>
+<div id="container">
+    <jsp:include page="common/header-v1.jsp"/>
+    <jsp:include page="common/category-nav.jsp"/>
+    <div id="main-content">
+        <div id="main-content-inner">
+            <div id="main-content-left">
+                <div id="view-info">
+                    <div id="view-info-detail" style="display: inline-block;width: 59%">
+                        <img src="<%=path%>/asset/content/123.png">
+                        <div id="view-info-detail-title"><a>图数据库：大数据时代的高铁</a></div>
+                        <div id="view-info-detail-description">
+                            如果把关系型数据库比做火车，那么大数据时代，图数据库可比做高铁。它已成为NoSQL中关注度最高，发展趋势最明显的技术
+                        </div>
+                        <div id="view-info-detail-content">
+                            <ul>
+                                <c:forEach items="${requestScope.greeArticleList}" begin="10" end="13" var="article">
+                                    <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="view-info-list">
+                        <ul>
+                            <c:forEach items="${requestScope.greeArticleList}" begin="0" end="9" var="article">
+                                <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
+                            </c:forEach>
+                            <span style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</span>
                         </ul>
                     </div>
-                    <span class="Icon mr-logo" style="position: absolute;right:50%;width: 74px;margin-right: -37px">MrWater</span>
-                    <ul style="float: right;line-height: 46px">
+                </div>
+                <div>
+                    <img src="<%=path%>/asset/content/banner.jpg">
+                </div>
+                <div id="view-tab">
+                    <div id="tab">
+                        <ul>
+                            <li class="tab-active">最近阅读</li>
+                            <li>最新文章</li>
+                            <li>精彩文章</li>
+                        </ul>
+                    </div>
+                    <div class="article-list">
+                        <div class="article-title-inner">
+                            <div class="article-list-item-inner">
+                                <section class="article-list-item">
+                                    <div class="qa-rank">
+                                        <div class="bb">
+                                            12
+                                            <small style="display: block;font-size: 12px;">笔记</small>
+                                        </div>
+                                        <div class="aa">
+                                            0
+                                            <small style="display: block;font-size: 12px">浏览</small>
+                                        </div>
 
-                        <li style="float: right;">
-                            <button style="height: 32px!important;" class="sendBtn mr-primary-btn mr-btn">发文<i
-                                    class="iconfont"
-                                    style="margin-left: 0.25em;">&#xe6b0;</i>
-                            </button>
-                        </li>
-                        <li style="float: right;margin-right: 1em">
-                            <span><img class="litle-header-img" src="/asset/content/User_header.jpg"/></span>
-                        </li>
-                        <li style="float: right;position:relative;margin-right: 1em">
-                            <span id="search">
-                                <form style="width: 221px">
-                                    <input class="search-input" placeholder="搜索内容"/>
-                                    <span class="search-btn"><button class="iconfont">&#xe620;</button></span>
-                                </form>
+                                    </div>
+                                    <div class="summary">
+                                        <ul class="category-tab">
+                                            <li>
+                                                <a>陈信宏</a> <span>12/09</span>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title"><a>使用 InfoSphere MDM 工作流执行主数据治理</a></h2>
+                                        <ul></ul>
+                                    </div>
+                                </section>
+                                <section class="article-list-item">
+                                    <div class="qa-rank">
+                                        <div class="bb">
+                                            12
+                                            <small style="display: block;font-size: 12px;">笔记</small>
+                                        </div>
+                                        <div class="aa">
+                                            0
+                                            <small style="display: block;font-size: 12px">浏览</small>
+                                        </div>
+
+                                    </div>
+                                    <div class="summary">
+                                        <ul class="category-tab">
+                                            <li>
+                                                <a>陈信宏</a> <span>12/09</span>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title"><a>使用 IBM DB2 Recovery Expert 工具高效完成数据库恢复之对象恢复篇</a></h2>
+                                        <ul></ul>
+                                    </div>
+                                </section>
+                                <section class="article-list-item">
+                                    <div class="qa-rank">
+                                        <div class="bb">
+                                            12
+                                            <small style="display: block;font-size: 12px;">笔记</small>
+                                        </div>
+                                        <div class="aa">
+                                            0
+                                            <small style="display: block;font-size: 12px">浏览</small>
+                                        </div>
+
+                                    </div>
+                                    <div class="summary">
+                                        <ul class="category-tab">
+                                            <li>
+                                                <a>陈信宏</a> <span>12/09</span>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title"><a>使用 InfoSphere CDC 实现 DB2 数据库的 DDL 复制</a></h2>
+                                        <ul></ul>
+                                    </div>
+                                </section>
+                                <section class="article-list-item">
+                                    <div class="qa-rank">
+                                        <div class="bb">
+                                            12
+                                            <small style="display: block;font-size: 12px;">笔记</small>
+                                        </div>
+                                        <div class="aa">
+                                            0
+                                            <small style="display: block;font-size: 12px">浏览</small>
+                                        </div>
+
+                                    </div>
+                                    <div class="summary">
+                                        <ul class="category-tab">
+                                            <li>
+                                                <a>陈信宏</a> <span>12/09</span>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title"><a>通过 Informix 系统表监控和优化数据库</a></h2>
+                                        <ul></ul>
+                                    </div>
+                                </section>
+                                <section class="article-list-item">
+                                    <div class="qa-rank">
+                                        <div class="bb">
+                                            12
+                                            <small style="display: block;font-size: 12px;">笔记</small>
+                                        </div>
+                                        <div class="aa">
+                                            0
+                                            <small style="display: block;font-size: 12px">浏览</small>
+                                        </div>
+
+                                    </div>
+                                    <div class="summary">
+                                        <ul class="category-tab">
+                                            <li>
+                                                <a>陈信宏</a> <span>12/09</span>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title"><a>分区数据库环境下 DB2 LOAD 性能调优</a></h2>
+                                        <ul></ul>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-content-right">
+                <div id="new-software-info">
+                    <h2>软件更新资讯</h2>
+                    <ul>
+                        <li>
+                            <div class="new-software-item" style="position: relative">
+                                <a class="new-info-title-active">
+                                    Kotlin 1.1 正式版来了，基于 JVM 的编程语言<br>
+                                </a>
+                            </div>
+                            <span>
+                                开发团队宣布，Kotlin 1.1 正式发布。 这是一个很大的进步，使 Kotlin 能在许多新的场景中使用。 Kotlin...
                             </span>
+
                         </li>
+                        <c:forEach items="${requestScope.softwareInformations}" var="article">
+                            <li>
+                                <div class="new-software-item">
+                                    <span class="new-info-title-active">
+                                        <a href="<%=path%>/article/detail/${article.id}">${article.title}</a>
+                                        <span class="new-info-date">01/12</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </c:forEach>
+                        <a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>
+                    </ul>
+                </div>
+                <div id="knowdega-info">
+                    <h2>知识库</h2>
+                    <ul>
+                        <li>
+                            <!--<img src="img/javase.jpg">Java<span>233篇</span>-->
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/javase-top.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/javase.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">Java SE</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/regong-bg.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/regong.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">人工智能</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/python.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">python</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/react.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">React active</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/python.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">python</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img-top" style="position: relative">
+                                <img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">
+                                <img src="<%=path%>/asset/content/react.jpg" class="language-icon">
+                            </div>
+                            <div class="language-info">
+                                <div class="language-name">React active</div>
+                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            </div>
+                        </li>
+
+                        <a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>
+
                     </ul>
                 </div>
             </div>
         </div>
+        <%--页脚--%>
+        <jsp:include page="common/header-v1.jsp"/>
     </div>
-    <!-- main body -->
-    <div id="page-outer">
-        <div id="page-container" class="AppContent">
-            <div class="profile-canopy profile-canopy-widthNav">
-                <div class="profile-canopy-inner">
-                    <!-- profile-canopy-header -->
-                    <div class="profile-canopy-header" style="margin-top: 0">
-                        <div class="profile-canopy-headerBg">
-                            <img class="profile-bg-img" src="/asset/content/user_bg.jpeg" style="transform: none">
-                        </div>
-                        <!-- 用户头像 -->
-                        <div class="AppContainer">
-                            <div class="ProfileCanopy-avatar">
-                                <div class="ProfileAvatar">
-                                    <a style="outline: 0">
-                                        <img src="/asset/content/User_header.jpg" class="ProfileAvatar-img">
-                                    </a>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-                    <!-- profile-canopy-header end ! -->
-                    <!-- profile-canopy-navber -->
-                    <div class="profile-canopy-navBar">
-                        <div class="AppContainer">
-                            <div class="Grid Grid-withGutter">
-                                <div class="Grid-cell u-size1of4">
-                                    <div class="profile-canopy-card">
-                                        <div class="profile-card-mini">
-                                            <a class="profile-card-mini-avatar">
-                                                <img src="/asset/content/User_header.jpg"
-                                                     class="profile-card-mini-avatar-img">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="Grid-cell u-size3of4">
-                                    <div class="profileCanopy-nav">
-                                        <div class="profileNav" role="navigation">
-                                            <ul class="profileNav-list">
-                                                <li class="profileNav-item ">
-                                                    <a class="profileNav-start is-Active">
-                                                        <span class="profileNav-label">最新动态</span>
-                                                        <span class="profileNav-value">1</span>
-                                                    </a>
-                                                </li>
-                                                <li class="profileNav-item">
-                                                    <a class="profileNav-start" href="/user/emotionRecord">
-                                                        <span class="profileNav-label">心情</span>
-                                                        <span class="profileNav-value">34</span>
-                                                    </a>
-                                                </li>
-                                                <li class="profileNav-item">
-                                                    <a class="profileNav-start">
-                                                        <span class="profileNav-label">日志</span>
-                                                        <span class="profileNav-value">13</span>
-                                                    </a>
-                                                </li>
-                                                <li class="profileNav-item">
-                                                    <a class="profileNav-start">
-                                                        <span class="profileNav-label">相册</span>
-                                                        <span class="profileNav-value">19</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- profile-canopy-navbar end ! -->
-                </div>
-            </div>
-            <div class="AppContainer-bg"
-                 style="margin:0;padding:0;background: rgb(245,248,250);height:auto;width: 100%">
-                <div class="AppContainer">
-                    <div class="main-Content">
-                        <div class="Grid Grid--withGutter">
-                            <!-- 左边的内容 -->
-                            <div class="Grid-cell u-size1of4">
-                                <div class="Grid Grid-withGutter">
-                                    <div class="Grid-cell">
-                                        <div class="profile-SiderBar">
-                                            <!-- 跟人的详细信息 -->
-                                            <div class="profile-headerCard">
-                                                <h1 class="profile-headerCard-name">
-                                                    <a href="#" class="profile-headerCard-nameLink">MrWater</a>
-                                                </h1>
-                                                <h2 class="profile-headerCard-screenName">
-                                                    <a>@<span>136218949Mr</span></a></h2>
-                                                <ul>
-                                                    <li class="profile-headerCard-bio">等风来!</li>
-                                                    <li style="color: #8899a6;"><i class="iconfont"
-                                                                                   style="margin-right:0.25em;">
-                                                        &#xe768;</i>广东 广州
-                                                    </li>
-                                                    <li style="color: #8899a6;"><i class="iconfont"
-                                                                                   style="margin-right:0.25em;">
-                                                        &#xe74f;</i>出生于 1993年12月01日
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="profile-photo"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 右边的内容 -->
-                            <div class="Grid-cell u-size3of4">
-                                <div class="Grid Grid-withGutter">
-                                    <div class="Grid-cell">
-                                        <div class="Grid-cell u-lg-size2of3">
-                                            <!-- profile Heading -->
-                                            <div class="profileHeading">
-                                                <div class="profileHeading-spacer"></div>
-                                                <div class="profileHeading-content">
-                                                    <h2 id="content-main-heading"
-                                                        class="profileheading-title u-hiddenVisually">最新动态</h2>
-                                                    <ul class="profileheading-toggle">
-                                                        <li class="ProfileHeading-toggleItem is-Active">最新动态</li>
-                                                        <li class="ProfileHeading-toggleItem u-textUserColor"><a
-                                                                href="/user/emotionRecord">心情</a></li>
-                                                        <li class="ProfileHeading-toggleItem u-textUserColor"><a>日志</a>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>
-                                                <!-- profile Heading end -->
-                                                <!-- timeline  -->
-                                                <div id="timeline" class="ProfileTimeline">
-                                                    <div class="stream-container">
-                                                        <div class="stream">
-                                                            <ol class="stream-items" id="stream-items-id">
-                                                                <c:forEach items="${requestScope.weiboList}" var="weibo"
-                                                                           varStatus="status">
-                                                                    <li class="stream-item before-append">
-                                                                        <div class="tweet">
-                                                                            <div class="user-header-info">
-                                                                                <img src="/asset/content/User_header.jpg" style="width: 48px;height: 48px;border-radius: 5px;">
-                                                                            </div>
-                                                                            <div class="content">
-                                                                                <div class="stream-item-header">
-                                                                                    <a>MrWater @136218949Mr.</a>
-                                                                                    <small><a><span>5月6日</span></a>
-                                                                                    </small>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <p class="Tweet-TextSize--26">
-                                                                                            ${weibo.text}
-                                                                                    </p>
-
-                                                                                </div>
-                                                                                <div class="AdaptiveMedia">
-                                                                                    <div>
-                                                                                        <div class="AdaptiveMedia-singlePhoto">
-                                                                                            <div class="AdaptiveMedia-photoContainer">
-                                                                                                <img src="/asset/content/test-content.jpg"
-                                                                                                     style="width: 100%;top:-0px">
-
-                                                                                            </div>
-
-                                                                                        </div>
-
-                                                                                    </div>
-
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="tweet-bottom">
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <i class="iconfont">
-                                                                                        &#xe6a5;</i>转发<span>${weibo.reposts_count}</span>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i class="iconfont">
-                                                                                        &#xe6ad;</i>评论<span>${weibo.comments_count}</span>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i class="iconfont">
-                                                                                        &#xe794;</i>点赞<span>${weibo.attitudes_count}</span>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </li>
-                                                                </c:forEach>
-                                                            </ol>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                                <!-- timeline end -->
-                                            </div>
-
-                                        </div>
-                                        <div class="Grid-cell u-lg-size1of3" style="width: 32%!important;">
-                                            <div style="margin-top: 10px" class="learm-task-list">
-                                                <h3><i class="iconfont"></i>任务列表</h3>
-                                                <ul>
-                                                    <li>学习es</li>
-                                                    <li>学习mysql</li>
-                                                    <li>设计方案</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<!-- 发表个人心情的模钛窗口-->
-<jsp:include page="sendFrame.jsp"/>
-<script src="/asset/js/mw/index.js"></script>
+<script src="<%=path%>/asset/js/jquery.js"></script>
+<script src="<%=path%>/asset/js/articleList.js"></script>
 </body>
 </html>

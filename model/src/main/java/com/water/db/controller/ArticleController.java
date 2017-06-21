@@ -25,8 +25,10 @@ import java.util.Map;
 
 /**
  * Created by mrwater on 2017/4/2.
+ * 技术博文
  */
 @Controller
+@RequestMapping(value = "/article")
 public class ArticleController {
     private Log logger = LogFactory.getLog(ArticleController.class);
 
@@ -36,16 +38,20 @@ public class ArticleController {
     @Resource
     private ITArticleService articleService;
 
-    @RequestMapping(value = "/article/detail/{articleId}")
+    @RequestMapping(value = "/detail/{articleId}.html")
     public ModelAndView getArticleDetail(@PathVariable String articleId) {
         ModelAndView mav = new ModelAndView();
         ITArticleDto article = articleService.getArticleDetailById(articleId);
+        if (article != null) {
+            List<ITArticle> articleList = articleService.getRelatedArticles(article);
+            article.setRelatedArticles(articleList);
+        }
         mav.addObject("article", article);
         mav.setViewName("/articleDetail");
         return mav;
     }
 
-    @RequestMapping(value = "/article/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchArticle(@RequestParam(defaultValue = "") String keyword,
                                       @RequestParam(defaultValue = "1") int currentPage,
                                       @RequestParam(defaultValue = "10") int pageSize) throws UnsupportedEncodingException {

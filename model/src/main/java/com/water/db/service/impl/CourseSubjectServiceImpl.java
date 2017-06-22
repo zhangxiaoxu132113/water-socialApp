@@ -2,11 +2,13 @@ package com.water.db.service.impl;
 
 import com.water.db.dao.CourseSubjectMapper;
 import com.water.db.model.CourseSubject;
+import com.water.db.model.CourseSubjectCriteria;
 import com.water.db.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.utils.SerializeHelper;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.web.vo.Category;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -57,7 +59,6 @@ public class CourseSubjectServiceImpl implements CourseSubjectService {
     private List<CourseSubjectDto> getTreeList() {
         List<CourseSubjectDto> courseSubjects = courseSubjectMapper.getAllCourseSubject();
         List<CourseSubjectDto> nodeList = new ArrayList<>();
-
         if (courseSubjects != null && courseSubjects.size() > 0) {
             for (CourseSubjectDto node1 : courseSubjects) {
                 boolean mark = false;
@@ -77,5 +78,31 @@ public class CourseSubjectServiceImpl implements CourseSubjectService {
         }
 
         return nodeList;
+    }
+
+    @Override
+    public CourseSubjectDto getCourseSubjectListByCourseName(String courseName) {
+        CourseSubjectDto courseSubjectDto = null;
+        if (StringUtils.isNotBlank(courseName)) {
+
+        }
+        return courseSubjectDto;
+    }
+
+    @Override
+    public CourseSubject getCourseSubjectByExample(Map<String, Object> queryMap) {
+        CourseSubject courseSubject = null;
+        CourseSubjectCriteria courseSubjectCriteria = new CourseSubjectCriteria();
+        CourseSubjectCriteria.Criteria criteria = courseSubjectCriteria.createCriteria();
+        if (queryMap != null) {
+            if (queryMap.containsKey("courseName")) {
+                criteria.andNameEqualTo((String) queryMap.get("courseName"));
+            }
+        }
+        List<CourseSubject> courseSubjectList = courseSubjectMapper.selectByExample(courseSubjectCriteria);
+        if (courseSubjectList != null && !courseSubjectList.isEmpty()) {
+            courseSubject = courseSubjectList.get(0);
+        }
+        return courseSubject;
     }
 }

@@ -17,36 +17,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="<%=path%>/asset/css/articleList.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
-    <style>
-        .user-header {
-            width: 37px;height: auto;
-            vertical-align: middle;border-radius: 4px;
-        }
-        .index-search-frame {
-            display: block;
-            margin-top: 15px;
-            width: 250px;
-            outline: 0;
-        }
-        .search-btn-a {
-            top: 16px;
-            right: 10px;
-            position: absolute;
-            line-height: 0;
-            width: 16px;
-            height: 16px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .search-btn-icon {
-            font-weight: bold;
-            font-size: 16px;
-
-            line-height: 0;
-            color: darkgrey;
-        }
-    </style>
 </head>
 <body>
 <div id="container">
@@ -308,7 +282,7 @@
             </div>
         </div>
         <%--页脚--%>
-        <jsp:include page="common/header-v1.jsp"/>
+        <jsp:include page="common/footer.jsp"/>
     </div>
 
 </div>

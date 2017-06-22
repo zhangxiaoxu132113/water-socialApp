@@ -26,9 +26,10 @@
           </ul>
         </div>
       </li>
-      <c:forEach items="${requestScope.categoryList}" var="category">
-        <li><a href="<%=path%>/course">${category.name}</a></li>
-      </c:forEach>
+      <li><a href="<%=path%>/blog">技术博文</a></li>
+      <li><a href="<%=path%>/new">IT资讯</a></li>
+      <li><a href="<%=path%>/course">IT教程</a></li>
+      <li><a href="<%=path%>/base">知识库</a></li>
     </ul>
   </div>
 </div>

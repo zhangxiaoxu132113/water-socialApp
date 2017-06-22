@@ -99,18 +99,23 @@
                         <h2>
                             <span class=""><span>No.</span></span>65
                         </h2>
+
                         <p class="face-text">
                             <!--Hello!My name is Zhang Miaojie.I like drawing and ...let me think ! oh No,I don't kown what i like.-->
-                            With Herb Lubalin as editor and designer, ITC began publishing “U&lc” in 1973 to market the company’s typefaces.
+                            With Herb Lubalin as editor and designer, ITC began publishing “U&lc” in 1973 to market the
+                            company’s typefaces.
 
                         </p>
+
                         <div class="meta">
                             <ul>
                                 <li>
-                                    <span class="meta-icon"><i class="iconfont">&#xe62a;</i></span><span>陆丰市甲子镇元高管区</span>
+                                    <span class="meta-icon"><i class="iconfont">
+                                        &#xe62a;</i></span><span>陆丰市甲子镇元高管区</span>
                                 </li>
                                 <li>
-                                    <span class="meta-icon"><i class="iconfont">&#xe74f;</i></span><span style="font-family: sans-serif;">2016-06-30 : 17:10:10</span>
+                                    <span class="meta-icon"><i class="iconfont">&#xe74f;</i></span><span
+                                        style="font-family: sans-serif;">2016-06-30 : 17:10:10</span>
                                 </li>
                             </ul>
 

@@ -26,13 +26,13 @@ public class UploadController {
 
     /**
      * @description 多图片文件上传
-     * @time    2016-07-07
+     * @time 2016-07-07
      */
     @RequestMapping(value = "/imageList", method = RequestMethod.POST, produces = "application/json")
-    public Map<String,Object> uploadMultiImages(@RequestParam(value = "file", required = false)
-                                      MultipartFile file, HttpServletRequest request) {
+    public Map<String, Object> uploadMultiImages(@RequestParam(value = "file", required = false)
+                                                 MultipartFile file, HttpServletRequest request) {
         //定义返回的json格式
-        Map<String,Object> jsonMap = new HashMap<String, Object>();
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
 
         //文件上传路径
         String path = request.getSession().getServletContext().getRealPath("upload");
@@ -43,7 +43,7 @@ public class UploadController {
         //上传文件名字
         String extendsFileName = FileTools.getFileExtendsName(file.getOriginalFilename());
         String fileName = UUID.randomUUID().toString() + extendsFileName;
-        File targetFile = new File(path,fileName);
+        File targetFile = new File(path, fileName);
 
         //创建文件
         if (!targetFile.exists()) {
@@ -53,7 +53,7 @@ public class UploadController {
         //保存文件
         try {
             file.transferTo(targetFile);
-            jsonMap.put("imgSrc","/upload"+File.separator+uploadDate+File.separator+fileName);
+            jsonMap.put("imgSrc", "/upload" + File.separator + uploadDate + File.separator + fileName);
             return jsonMap;
         } catch (IOException e) {
             e.printStackTrace();

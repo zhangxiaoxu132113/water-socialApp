@@ -17,19 +17,19 @@ public class MWLoginUtils {
      */
     public static void addCookie(String login_name, String login_pwd,
                                  HttpServletRequest request, HttpServletResponse response) {
-        MWStringUtils.isBlank(login_name,login_pwd);
+        MWStringUtils.isBlank(login_name, login_pwd);
         //创建Cookie对象，并创建Cookie的父路径
         Cookie userNameCookie = new Cookie("login_name", login_name);
         Cookie pwdCookie = new Cookie("login_pwd", login_pwd);
 
-        userNameCookie.setPath(request.getContextPath()+"/");
-        pwdCookie.setPath(request.getContextPath()+"/");
+        userNameCookie.setPath(request.getContextPath() + "/");
+        pwdCookie.setPath(request.getContextPath() + "/");
         //根据numberMe的值，来判断cookie的生命周期
         String rememberMe = request.getParameter("remember_me");
-        if(rememberMe!=null && rememberMe.equals("yes")){
-            userNameCookie.setMaxAge(7*24*60*60);
-            pwdCookie.setMaxAge(7*24*60*60);
-        }else{
+        if (rememberMe != null && rememberMe.equals("yes")) {
+            userNameCookie.setMaxAge(7 * 24 * 60 * 60);
+            pwdCookie.setMaxAge(7 * 24 * 60 * 60);
+        } else {
             userNameCookie.setMaxAge(0);
             pwdCookie.setMaxAge(0);
         }

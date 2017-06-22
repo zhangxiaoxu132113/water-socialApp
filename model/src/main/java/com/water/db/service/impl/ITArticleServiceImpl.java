@@ -5,31 +5,26 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.water.db.dao.CourseMapper;
 import com.water.db.dao.ITArticleMapper;
-import com.water.db.model.Course;
 import com.water.db.model.ITArticle;
-import com.water.db.model.ITArticleCriteria;
 import com.water.db.model.User;
-import com.water.db.model.dto.CourseDto;
 import com.water.db.model.dto.ITArticleDto;
 import com.water.db.service.interfaces.ITArticleService;
+import com.water.es.entry.ESDocument;
+import com.water.utils.common.Constants;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
-import com.water.es.entry.ESDocument;
-import com.water.utils.common.Constants;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
 
 @Service("iTArticleService")
 public class ITArticleServiceImpl implements ITArticleService {
@@ -77,9 +72,9 @@ public class ITArticleServiceImpl implements ITArticleService {
         List<ITArticle> articleList = new ArrayList<ITArticle>();
 
         if (article == null) {
-            throw  new RuntimeException("对象不能为空！");
+            throw new RuntimeException("对象不能为空！");
         }
-        ESDocument document = esArticleService.searchArticleByMatch("content", article.getTitle(),0,5);
+        ESDocument document = esArticleService.searchArticleByMatch("content", article.getTitle(), 0, 5);
         List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         for (com.water.es.entry.ITArticle esArticle : esArticleList) {
             ITArticle originArticle = new ITArticle();
@@ -116,12 +111,12 @@ public class ITArticleServiceImpl implements ITArticleService {
     public Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         List<ITArticle> articleList = new ArrayList<ITArticle>();
-        ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content","title"}, kw, begin, pageSize);
+        ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content", "title"}, kw, begin, pageSize);
         List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         copyITArticleList(articleList, esArticleList);
-        resultMap.put("data",articleList);
-        resultMap.put("took",document.getTook());
-        resultMap.put("totalHits",document.getTotalHits());
+        resultMap.put("data", articleList);
+        resultMap.put("took", document.getTook());
+        resultMap.put("totalHits", document.getTotalHits());
         return resultMap;
     }
 

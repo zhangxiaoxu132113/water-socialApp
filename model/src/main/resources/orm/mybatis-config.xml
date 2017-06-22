@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="mapUnderscoreToCamelCase" value="true" /><!-- 用于支持java驼峰映射 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 用于支持java驼峰映射 -->
     </settings>
 </configuration>

@@ -1,378 +1,383 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.water.db.dao.WeiboMapper" >
-  <resultMap id="BaseResultMap" type="com.water.db.model.Weibo" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="user_id" property="user_id" jdbcType="VARCHAR" />
-    <result column="text" property="text" jdbcType="VARCHAR" />
-    <result column="reposts_count" property="reposts_count" jdbcType="INTEGER" />
-    <result column="comments_count" property="comments_count" jdbcType="INTEGER" />
-    <result column="attitudes_count" property="attitudes_count" jdbcType="INTEGER" />
-    <result column="video_id" property="video_id" jdbcType="VARCHAR" />
-    <result column="pic_ids" property="pic_ids" jdbcType="VARCHAR" />
-    <result column="src_tid" property="src_tid" jdbcType="VARCHAR" />
-    <result column="visible" property="visible" jdbcType="VARCHAR" />
-    <result column="source" property="source" jdbcType="VARCHAR" />
-    <result column="geo" property="geo" jdbcType="VARCHAR" />
-    <result column="timeline" property="timeline" jdbcType="TIMESTAMP" />
-    <result column="last_updatime" property="last_updatime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.water.db.dao.WeiboMapper">
+    <resultMap id="BaseResultMap" type="com.water.db.model.Weibo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_id" property="user_id" jdbcType="VARCHAR"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="reposts_count" property="reposts_count" jdbcType="INTEGER"/>
+        <result column="comments_count" property="comments_count" jdbcType="INTEGER"/>
+        <result column="attitudes_count" property="attitudes_count" jdbcType="INTEGER"/>
+        <result column="video_id" property="video_id" jdbcType="VARCHAR"/>
+        <result column="pic_ids" property="pic_ids" jdbcType="VARCHAR"/>
+        <result column="src_tid" property="src_tid" jdbcType="VARCHAR"/>
+        <result column="visible" property="visible" jdbcType="VARCHAR"/>
+        <result column="source" property="source" jdbcType="VARCHAR"/>
+        <result column="geo" property="geo" jdbcType="VARCHAR"/>
+        <result column="timeline" property="timeline" jdbcType="TIMESTAMP"/>
+        <result column="last_updatime" property="last_updatime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, user_id, text, reposts_count, comments_count, attitudes_count, video_id, pic_ids,
+        src_tid, visible, source, geo, timeline, last_updatime
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.water.db.model.WeiboCriteria">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, user_id, text, reposts_count, comments_count, attitudes_count, video_id, pic_ids, 
-    src_tid, visible, source, geo, timeline, last_updatime
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.water.db.model.WeiboCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from mw_weibo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from mw_weibo
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from mw_weibo
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.water.db.model.WeiboCriteria" >
-    delete from mw_weibo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.water.db.model.Weibo" >
-    insert into mw_weibo (id, user_id, text, 
-      reposts_count, comments_count, attitudes_count, 
-      video_id, pic_ids, src_tid, 
-      visible, source, geo, 
-      timeline, last_updatime)
-    values (#{id,jdbcType=VARCHAR}, #{user_id,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, 
-      #{reposts_count,jdbcType=INTEGER}, #{comments_count,jdbcType=INTEGER}, #{attitudes_count,jdbcType=INTEGER}, 
-      #{video_id,jdbcType=VARCHAR}, #{pic_ids,jdbcType=VARCHAR}, #{src_tid,jdbcType=VARCHAR}, 
-      #{visible,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{geo,jdbcType=VARCHAR}, 
-      #{timeline,jdbcType=TIMESTAMP}, #{last_updatime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.water.db.model.Weibo" >
-    insert into mw_weibo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="user_id != null" >
-        user_id,
-      </if>
-      <if test="text != null" >
-        text,
-      </if>
-      <if test="reposts_count != null" >
-        reposts_count,
-      </if>
-      <if test="comments_count != null" >
-        comments_count,
-      </if>
-      <if test="attitudes_count != null" >
-        attitudes_count,
-      </if>
-      <if test="video_id != null" >
-        video_id,
-      </if>
-      <if test="pic_ids != null" >
-        pic_ids,
-      </if>
-      <if test="src_tid != null" >
-        src_tid,
-      </if>
-      <if test="visible != null" >
-        visible,
-      </if>
-      <if test="source != null" >
-        source,
-      </if>
-      <if test="geo != null" >
-        geo,
-      </if>
-      <if test="timeline != null" >
-        timeline,
-      </if>
-      <if test="last_updatime != null" >
-        last_updatime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="user_id != null" >
-        #{user_id,jdbcType=VARCHAR},
-      </if>
-      <if test="text != null" >
-        #{text,jdbcType=VARCHAR},
-      </if>
-      <if test="reposts_count != null" >
-        #{reposts_count,jdbcType=INTEGER},
-      </if>
-      <if test="comments_count != null" >
-        #{comments_count,jdbcType=INTEGER},
-      </if>
-      <if test="attitudes_count != null" >
-        #{attitudes_count,jdbcType=INTEGER},
-      </if>
-      <if test="video_id != null" >
-        #{video_id,jdbcType=VARCHAR},
-      </if>
-      <if test="pic_ids != null" >
-        #{pic_ids,jdbcType=VARCHAR},
-      </if>
-      <if test="src_tid != null" >
-        #{src_tid,jdbcType=VARCHAR},
-      </if>
-      <if test="visible != null" >
-        #{visible,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="geo != null" >
-        #{geo,jdbcType=VARCHAR},
-      </if>
-      <if test="timeline != null" >
-        #{timeline,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_updatime != null" >
-        #{last_updatime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.water.db.model.WeiboCriteria" resultType="java.lang.Integer" >
-    select count(*) from mw_weibo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update mw_weibo
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.user_id != null" >
+        <include refid="Base_Column_List"/>
+        from mw_weibo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from mw_weibo
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from mw_weibo
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.water.db.model.WeiboCriteria">
+        delete from mw_weibo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.water.db.model.Weibo">
+        insert into mw_weibo (id, user_id, text,
+        reposts_count, comments_count, attitudes_count,
+        video_id, pic_ids, src_tid,
+        visible, source, geo,
+        timeline, last_updatime)
+        values (#{id,jdbcType=VARCHAR}, #{user_id,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR},
+        #{reposts_count,jdbcType=INTEGER}, #{comments_count,jdbcType=INTEGER}, #{attitudes_count,jdbcType=INTEGER},
+        #{video_id,jdbcType=VARCHAR}, #{pic_ids,jdbcType=VARCHAR}, #{src_tid,jdbcType=VARCHAR},
+        #{visible,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{geo,jdbcType=VARCHAR},
+        #{timeline,jdbcType=TIMESTAMP}, #{last_updatime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.water.db.model.Weibo">
+        insert into mw_weibo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="user_id != null">
+                user_id,
+            </if>
+            <if test="text != null">
+                text,
+            </if>
+            <if test="reposts_count != null">
+                reposts_count,
+            </if>
+            <if test="comments_count != null">
+                comments_count,
+            </if>
+            <if test="attitudes_count != null">
+                attitudes_count,
+            </if>
+            <if test="video_id != null">
+                video_id,
+            </if>
+            <if test="pic_ids != null">
+                pic_ids,
+            </if>
+            <if test="src_tid != null">
+                src_tid,
+            </if>
+            <if test="visible != null">
+                visible,
+            </if>
+            <if test="source != null">
+                source,
+            </if>
+            <if test="geo != null">
+                geo,
+            </if>
+            <if test="timeline != null">
+                timeline,
+            </if>
+            <if test="last_updatime != null">
+                last_updatime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="user_id != null">
+                #{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null">
+                #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="reposts_count != null">
+                #{reposts_count,jdbcType=INTEGER},
+            </if>
+            <if test="comments_count != null">
+                #{comments_count,jdbcType=INTEGER},
+            </if>
+            <if test="attitudes_count != null">
+                #{attitudes_count,jdbcType=INTEGER},
+            </if>
+            <if test="video_id != null">
+                #{video_id,jdbcType=VARCHAR},
+            </if>
+            <if test="pic_ids != null">
+                #{pic_ids,jdbcType=VARCHAR},
+            </if>
+            <if test="src_tid != null">
+                #{src_tid,jdbcType=VARCHAR},
+            </if>
+            <if test="visible != null">
+                #{visible,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="geo != null">
+                #{geo,jdbcType=VARCHAR},
+            </if>
+            <if test="timeline != null">
+                #{timeline,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_updatime != null">
+                #{last_updatime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.water.db.model.WeiboCriteria" resultType="java.lang.Integer">
+        select count(*) from mw_weibo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update mw_weibo
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.user_id != null">
+                user_id = #{record.user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.text != null">
+                text = #{record.text,jdbcType=VARCHAR},
+            </if>
+            <if test="record.reposts_count != null">
+                reposts_count = #{record.reposts_count,jdbcType=INTEGER},
+            </if>
+            <if test="record.comments_count != null">
+                comments_count = #{record.comments_count,jdbcType=INTEGER},
+            </if>
+            <if test="record.attitudes_count != null">
+                attitudes_count = #{record.attitudes_count,jdbcType=INTEGER},
+            </if>
+            <if test="record.video_id != null">
+                video_id = #{record.video_id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pic_ids != null">
+                pic_ids = #{record.pic_ids,jdbcType=VARCHAR},
+            </if>
+            <if test="record.src_tid != null">
+                src_tid = #{record.src_tid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.visible != null">
+                visible = #{record.visible,jdbcType=VARCHAR},
+            </if>
+            <if test="record.source != null">
+                source = #{record.source,jdbcType=VARCHAR},
+            </if>
+            <if test="record.geo != null">
+                geo = #{record.geo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.timeline != null">
+                timeline = #{record.timeline,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.last_updatime != null">
+                last_updatime = #{record.last_updatime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update mw_weibo
+        set id = #{record.id,jdbcType=VARCHAR},
         user_id = #{record.user_id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.text != null" >
         text = #{record.text,jdbcType=VARCHAR},
-      </if>
-      <if test="record.reposts_count != null" >
         reposts_count = #{record.reposts_count,jdbcType=INTEGER},
-      </if>
-      <if test="record.comments_count != null" >
         comments_count = #{record.comments_count,jdbcType=INTEGER},
-      </if>
-      <if test="record.attitudes_count != null" >
         attitudes_count = #{record.attitudes_count,jdbcType=INTEGER},
-      </if>
-      <if test="record.video_id != null" >
         video_id = #{record.video_id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pic_ids != null" >
         pic_ids = #{record.pic_ids,jdbcType=VARCHAR},
-      </if>
-      <if test="record.src_tid != null" >
         src_tid = #{record.src_tid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.visible != null" >
         visible = #{record.visible,jdbcType=VARCHAR},
-      </if>
-      <if test="record.source != null" >
         source = #{record.source,jdbcType=VARCHAR},
-      </if>
-      <if test="record.geo != null" >
         geo = #{record.geo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.timeline != null" >
         timeline = #{record.timeline,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.last_updatime != null" >
-        last_updatime = #{record.last_updatime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update mw_weibo
-    set id = #{record.id,jdbcType=VARCHAR},
-      user_id = #{record.user_id,jdbcType=VARCHAR},
-      text = #{record.text,jdbcType=VARCHAR},
-      reposts_count = #{record.reposts_count,jdbcType=INTEGER},
-      comments_count = #{record.comments_count,jdbcType=INTEGER},
-      attitudes_count = #{record.attitudes_count,jdbcType=INTEGER},
-      video_id = #{record.video_id,jdbcType=VARCHAR},
-      pic_ids = #{record.pic_ids,jdbcType=VARCHAR},
-      src_tid = #{record.src_tid,jdbcType=VARCHAR},
-      visible = #{record.visible,jdbcType=VARCHAR},
-      source = #{record.source,jdbcType=VARCHAR},
-      geo = #{record.geo,jdbcType=VARCHAR},
-      timeline = #{record.timeline,jdbcType=TIMESTAMP},
-      last_updatime = #{record.last_updatime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.water.db.model.Weibo" >
-    update mw_weibo
-    <set >
-      <if test="user_id != null" >
-        user_id = #{user_id,jdbcType=VARCHAR},
-      </if>
-      <if test="text != null" >
+        last_updatime = #{record.last_updatime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.water.db.model.Weibo">
+        update mw_weibo
+        <set>
+            <if test="user_id != null">
+                user_id = #{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null">
+                text = #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="reposts_count != null">
+                reposts_count = #{reposts_count,jdbcType=INTEGER},
+            </if>
+            <if test="comments_count != null">
+                comments_count = #{comments_count,jdbcType=INTEGER},
+            </if>
+            <if test="attitudes_count != null">
+                attitudes_count = #{attitudes_count,jdbcType=INTEGER},
+            </if>
+            <if test="video_id != null">
+                video_id = #{video_id,jdbcType=VARCHAR},
+            </if>
+            <if test="pic_ids != null">
+                pic_ids = #{pic_ids,jdbcType=VARCHAR},
+            </if>
+            <if test="src_tid != null">
+                src_tid = #{src_tid,jdbcType=VARCHAR},
+            </if>
+            <if test="visible != null">
+                visible = #{visible,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null">
+                source = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="geo != null">
+                geo = #{geo,jdbcType=VARCHAR},
+            </if>
+            <if test="timeline != null">
+                timeline = #{timeline,jdbcType=TIMESTAMP},
+            </if>
+            <if test="last_updatime != null">
+                last_updatime = #{last_updatime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.water.db.model.Weibo">
+        update mw_weibo
+        set user_id = #{user_id,jdbcType=VARCHAR},
         text = #{text,jdbcType=VARCHAR},
-      </if>
-      <if test="reposts_count != null" >
         reposts_count = #{reposts_count,jdbcType=INTEGER},
-      </if>
-      <if test="comments_count != null" >
         comments_count = #{comments_count,jdbcType=INTEGER},
-      </if>
-      <if test="attitudes_count != null" >
         attitudes_count = #{attitudes_count,jdbcType=INTEGER},
-      </if>
-      <if test="video_id != null" >
         video_id = #{video_id,jdbcType=VARCHAR},
-      </if>
-      <if test="pic_ids != null" >
         pic_ids = #{pic_ids,jdbcType=VARCHAR},
-      </if>
-      <if test="src_tid != null" >
         src_tid = #{src_tid,jdbcType=VARCHAR},
-      </if>
-      <if test="visible != null" >
         visible = #{visible,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
         source = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="geo != null" >
         geo = #{geo,jdbcType=VARCHAR},
-      </if>
-      <if test="timeline != null" >
         timeline = #{timeline,jdbcType=TIMESTAMP},
-      </if>
-      <if test="last_updatime != null" >
-        last_updatime = #{last_updatime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.water.db.model.Weibo" >
-    update mw_weibo
-    set user_id = #{user_id,jdbcType=VARCHAR},
-      text = #{text,jdbcType=VARCHAR},
-      reposts_count = #{reposts_count,jdbcType=INTEGER},
-      comments_count = #{comments_count,jdbcType=INTEGER},
-      attitudes_count = #{attitudes_count,jdbcType=INTEGER},
-      video_id = #{video_id,jdbcType=VARCHAR},
-      pic_ids = #{pic_ids,jdbcType=VARCHAR},
-      src_tid = #{src_tid,jdbcType=VARCHAR},
-      visible = #{visible,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      geo = #{geo,jdbcType=VARCHAR},
-      timeline = #{timeline,jdbcType=TIMESTAMP},
-      last_updatime = #{last_updatime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <select resultMap="BaseResultMap" parameterType="com.water.db.model.WeiboCriteria" id="selectByExampleWithRowbounds" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from mw_weibo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <insert id="insertBatch" >
-    insert into mw_weibo (id, user_id, text, reposts_count, comments_count, attitudes_count, video_id, pic_ids, src_tid, visible, source, geo, timeline, last_updatime) values 
-    <foreach collection="list" item="item" index="index" separator="," >
-      (#{item.id,jdbcType=VARCHAR}, #{item.user_id,jdbcType=VARCHAR}, #{item.text,jdbcType=VARCHAR}, 
-        #{item.reposts_count,jdbcType=INTEGER}, #{item.comments_count,jdbcType=INTEGER}, 
-        #{item.attitudes_count,jdbcType=INTEGER}, #{item.video_id,jdbcType=VARCHAR}, #{item.pic_ids,jdbcType=VARCHAR}, 
-        #{item.src_tid,jdbcType=VARCHAR}, #{item.visible,jdbcType=VARCHAR}, #{item.source,jdbcType=VARCHAR}, 
-        #{item.geo,jdbcType=VARCHAR}, #{item.timeline,jdbcType=TIMESTAMP}, #{item.last_updatime,jdbcType=TIMESTAMP}
-        )
-    </foreach>
-  </insert>
+        last_updatime = #{last_updatime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <select resultMap="BaseResultMap" parameterType="com.water.db.model.WeiboCriteria"
+            id="selectByExampleWithRowbounds">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from mw_weibo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <insert id="insertBatch">
+        insert into mw_weibo (id, user_id, text, reposts_count, comments_count, attitudes_count, video_id, pic_ids,
+        src_tid, visible, source, geo, timeline, last_updatime) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=VARCHAR}, #{item.user_id,jdbcType=VARCHAR}, #{item.text,jdbcType=VARCHAR},
+            #{item.reposts_count,jdbcType=INTEGER}, #{item.comments_count,jdbcType=INTEGER},
+            #{item.attitudes_count,jdbcType=INTEGER}, #{item.video_id,jdbcType=VARCHAR},
+            #{item.pic_ids,jdbcType=VARCHAR},
+            #{item.src_tid,jdbcType=VARCHAR}, #{item.visible,jdbcType=VARCHAR}, #{item.source,jdbcType=VARCHAR},
+            #{item.geo,jdbcType=VARCHAR}, #{item.timeline,jdbcType=TIMESTAMP}, #{item.last_updatime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
 </mapper>

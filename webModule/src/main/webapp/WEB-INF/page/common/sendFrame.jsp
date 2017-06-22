@@ -16,6 +16,7 @@
     <div class="mw-popup-inner">
         <a class="closeBtn"><i class="iconfont" style="font-size: 14px">&#xe659;</i></a>
         <h4>心情物语</h4>
+
         <div class="moon-content" style="outline: none" contenteditable="true"></div>
         <div class="moon-toolbar">
             <a class="addPhoto"><i class="iconfont">&#xe780;</i></a>
@@ -28,10 +29,12 @@
             <a class="addMusic"><i class="iconfont" style="font-size: 25px">&#xe624;</i></a>
             <a class="sendContBtn"><i class="iconfont">&#xe6b0;</i>发送</a>
             <span class="limitNumber">135</span>
+
             <div style="clear: both"></div>
         </div>
         <div class="add-content">
             <em></em>
+
             <div class="added-img-list">
                     <span class="addImageBtn">
                       <i class="iconfont">&#xe6ea;</i>

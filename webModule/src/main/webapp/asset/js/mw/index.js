@@ -20,7 +20,7 @@ $(document).ready(function () {
         initTop = scrollTop;
     });
 
-    $('.sendBtn').bind('click',function() {
+    $('.sendBtn').bind('click', function () {
         _background('show');
         $('.mw-popup').fadeToggle();
     });

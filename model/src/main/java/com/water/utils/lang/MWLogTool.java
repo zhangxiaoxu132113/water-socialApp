@@ -5,21 +5,22 @@ package com.water.utils.lang;
  */
 public class MWLogTool {
 
-    private MWLogTool(){}
+    private MWLogTool() {
+    }
 
     public static void info(String information) {
-        System.out.println("[info]\t"+information);
+        System.out.println("[info]\t" + information);
     }
 
     public static void success(String information) {
-        System.out.println("[success]\t"+information);
+        System.out.println("[success]\t" + information);
     }
 
     public static void error(String information) {
-        System.out.println("[error]\t"+information);
+        System.out.println("[error]\t" + information);
     }
 
     public static void warn(String information) {
-        System.out.println("[warn]\t"+information);
+        System.out.println("[warn]\t" + information);
     }
 }

@@ -153,6 +153,7 @@
                                                 <h1 class="profile-headerCard-name">
                                                     <a href="#" class="profile-headerCard-nameLink">MrWater</a>
                                                 </h1>
+
                                                 <h2 class="profile-headerCard-screenName">
                                                     <a>@<span>136218949Mr</span></a></h2>
                                                 <ul>
@@ -203,7 +204,8 @@
                                                                     <li class="stream-item before-append">
                                                                         <div class="tweet">
                                                                             <div class="user-header-info">
-                                                                                <img src="/asset/content/User_header.jpg" style="width: 48px;height: 48px;border-radius: 5px;">
+                                                                                <img src="/asset/content/User_header.jpg"
+                                                                                     style="width: 48px;height: 48px;border-radius: 5px;">
                                                                             </div>
                                                                             <div class="content">
                                                                                 <div class="stream-item-header">

@@ -41,9 +41,12 @@
 <body>
 <div id="container">
     <div id="container-inner">
-        <div id="header" style="height: 40px;background: #48525e;position: fixed;top: 0;left: 0;width: 100%;margin-bottom:40px">
+        <div id="header"
+             style="height: 40px;background: #48525e;position: fixed;top: 0;left: 0;width: 100%;margin-bottom:40px">
             <div id="header-inner">
-                <div id="logo" style="line-height: 40px;float: left;font-size: 16px;color: #ccd6dd;margin-left:20px;">知识君</div>
+                <div id="logo" style="line-height: 40px;float: left;font-size: 16px;color: #ccd6dd;margin-left:20px;">
+                    知识君
+                </div>
                 <div id="user-info" style="float: right;margin-right: 20px;line-height: 40px">
                     <ul>
                         <li><span class="username"><a href="">Mr Water</a></span></li>
@@ -56,6 +59,7 @@
             <div class="article-header-info" style="background:#32353e;height: 86px;">
                 <div class="article-header-info-inner" style="margin: 0 auto;width: 900px;position: relative">
                     <a style="padding:10px 0 5px;display: block" class="title">${requestScope.article.title}</a>
+
                     <div class="tablist">
                         <span class="tab-label">云计算</span>
                         <span class="tab-label">HBase</span>
@@ -67,8 +71,10 @@
             </div>
             <div class="summary" style="background:#eee;padding:10px 0">
                 <div class="summary-inner" style="margin: 0 auto;width: 900px;">
-                    <div class="summary-content" style="width: 60%;display: inline-block;vertical-align: top;line-height: 1.5em">
+                    <div class="summary-content"
+                         style="width: 60%;display: inline-block;vertical-align: top;line-height: 1.5em">
                         <h4 style="font-weight: 500;font-size: 22px;padding-bottom: 1em;">简介</h4>
+
                         <p>${requestScope.article.description}</p>
                     </div>
                     <!--<div style="width: 34%;display: inline-block;padding:0 15px 0;box-sizing: border-box">-->
@@ -128,10 +134,10 @@
      * 设置分享的url连接地址
      */
     function SetShareUrl(cmd, config) {
-        config.bdUrl  = document.URL;
+        config.bdUrl = document.URL;
         config.bdText = $('title').text();
         config.bdDesc = "用户将网站内容分享到第三方网站，第三方网站的用户点击专有的分享链接，从第三方网站带来社会化流量";
-        config.bdPic  = "";
+        config.bdPic = "";
 
         console.log(config.bdUrl);
         console.log(config.bdText);
@@ -141,10 +147,15 @@
 
     window._bd_share_config = {
         "common": {
-            onBeforeClick:SetShareUrl,"bdSnsKey": {}, "bdMini": "2", "bdMiniList": false, "bdStyle": "1", "bdSize": "16"
+            onBeforeClick: SetShareUrl,
+            "bdSnsKey": {},
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdStyle": "1",
+            "bdSize": "16"
         },
         "share": {"bdSize": 16},
-        "image": {"viewList": ["qzone", "tsina",  "weixin","tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
+        "image": {"viewList": ["qzone", "tsina", "weixin", "tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
         "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "weixin", "tqq", "renren"]}
     };
     with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];

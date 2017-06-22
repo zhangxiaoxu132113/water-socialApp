@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.water.db.model.Weibo;
 import com.water.db.model.weibo.AccessToken;
-import com.water.db.model.weibo.XLWeiBo;
 import com.water.utils.web.AuthToken;
 import com.water.utils.web.HttpRequestTool;
 import org.apache.http.Header;

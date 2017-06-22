@@ -12,22 +12,21 @@
 }
 
 #category-nav-inner ul li a:link {
-    color:#fff;
+    color: #fff;
     text-decoration: none;
 }
 
 #category-nav-inner ul li a:visited {
-    color:#fff;
+    color: #fff;
     text-decoration: none;
 }
-
 
 .all-category {
     position: relative;
     width: 110px;
     text-align: center;
     box-sizing: border-box;
-    margin-left:1em;
+    margin-left: 1em;
 }
 
 .all-category-inner {
@@ -47,19 +46,19 @@
 }
 
 .all-category ul li {
-    width:100%;
+    width: 100%;
     box-sizing: border-box;
     text-align: left;
     border-left: 0.2em solid #1b95e0;
 }
 
 .all-category ul li:last-child {
-    border-bottom:0.1em solid #1b95e0;
+    border-bottom: 0.1em solid #1b95e0;
 }
 
 .all-category ul li:hover {
     background: #fff;
-    color: #888!important;
+    color: #888 !important;
     cursor: pointer;
     /*border-left: 2px solid #1b95e0;*/
     box-sizing: border-box;
@@ -68,27 +67,30 @@
 .category-panel {
     display: none;
     position: absolute;
-    margin-left:110px;
+    margin-left: 110px;
     top: 0;
     background: #fff;
     width: 865px;
     height: 360px;
     z-index: 1000;
     border-right: 1px solid #ccc;
-    border-bottom:1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     text-align: left;
     padding-left: 1.5em;
-    padding-top:1em;
-    color:#888;
+    padding-top: 1em;
+    color: #888;
     box-sizing: border-box;
 }
+
 .category-panel span {
-    padding:0 0.5em;
+    padding: 0 0.5em;
 }
+
 .category-panel span a:hover {
-    color:#1b95e0;
+    color: #1b95e0;
     text-decoration: underline;
 }
+
 #category-nav ul li {
     float: left;
     height: 36px;
@@ -96,6 +98,7 @@
     line-height: 36px;
     padding: 0 1em;
 }
+
 #category-nav ul li:hover {
     text-decoration: underline;
     cursor: pointer;

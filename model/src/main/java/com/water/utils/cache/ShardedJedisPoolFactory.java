@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by zhangmiaojie on 2017/2/4.
  */
-public class ShardedJedisPoolFactory implements InitializingBean,DisposableBean,FactoryBean<ShardedJedisPool> {
+public class ShardedJedisPoolFactory implements InitializingBean, DisposableBean, FactoryBean<ShardedJedisPool> {
 
     private JedisPoolConfig poolConfig = null;
     private int timeout;
@@ -21,12 +21,13 @@ public class ShardedJedisPoolFactory implements InitializingBean,DisposableBean,
     private String hostAndPorts;
     private int dbIndex;
     private ShardedJedisPool pool;
+
     @Override
     public void afterPropertiesSet() throws Exception {
 
     }
 
-    public ShardedJedisPoolFactory(){
+    public ShardedJedisPoolFactory() {
         this.poolConfig = new JedisPoolConfig();
         this.hostAndPorts = "localhost:6379";
         this.dbIndex = 0;
@@ -36,7 +37,8 @@ public class ShardedJedisPoolFactory implements InitializingBean,DisposableBean,
 
     @Override
     public ShardedJedisPool getObject() throws Exception {
-        if ("".equals(this.hostAndPorts)) return new ShardedJedisPool(new JedisPoolConfig(), new ArrayList<JedisShardInfo>());
+        if ("".equals(this.hostAndPorts))
+            return new ShardedJedisPool(new JedisPoolConfig(), new ArrayList<JedisShardInfo>());
         List<JedisShardInfo> jedisShardInfos = new ArrayList<JedisShardInfo>();
         for (String hp : this.hostAndPorts.split(",")) {
             if ("".equals(hp)) continue;
@@ -60,9 +62,9 @@ public class ShardedJedisPoolFactory implements InitializingBean,DisposableBean,
 
     @Override
     public void destroy() throws Exception {
-        try{
+        try {
             pool.destroy();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

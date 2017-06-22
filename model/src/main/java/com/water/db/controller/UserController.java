@@ -74,7 +74,7 @@ public class UserController {
         System.out.println("register!");
         resultView.setCode(Constants.STATUS_CODE.SUCCESS);
         resultView.setMsg("注册成功！");
-        WebUtils.sendResult(response,resultView);
+        WebUtils.sendResult(response, resultView);
     }
 
 }

@@ -32,6 +32,7 @@
                 <div id="view-info">
                     <div id="view-info-detail" style="display: inline-block;width: 59%">
                         <img src="<%=path%>/asset/content/123.png">
+
                         <div id="view-info-detail-title"><a>图数据库：大数据时代的高铁</a></div>
                         <div id="view-info-detail-description">
                             如果把关系型数据库比做火车，那么大数据时代，图数据库可比做高铁。它已成为NoSQL中关注度最高，发展趋势最明显的技术

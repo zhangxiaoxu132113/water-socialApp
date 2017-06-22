@@ -1,6 +1,5 @@
 package com.water.db.controller;
 
-import com.water.db.model.CourseSubject;
 import com.water.db.model.ITArticle;
 import com.water.db.model.User;
 import com.water.db.model.Weibo;
@@ -13,7 +12,6 @@ import com.water.db.service.interfaces.WeiboService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.MWSessionUtils;
-import com.water.utils.web.WebUtils;
 import com.water.utils.web.vo.Category;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;

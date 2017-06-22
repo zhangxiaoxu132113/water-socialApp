@@ -1,13 +1,9 @@
 package com.water.db.controller;
 
 import com.water.db.model.ITArticle;
-import com.water.db.model.ITTag;
-import com.water.db.model.User;
 import com.water.db.model.dto.ITArticleDto;
-import com.water.db.model.dto.ITTagDto;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
-import com.water.utils.web.MWSessionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -18,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +50,7 @@ public class ArticleController {
     public ModelAndView searchArticle(@RequestParam(defaultValue = "") String keyword,
                                       @RequestParam(defaultValue = "1") int currentPage,
                                       @RequestParam(defaultValue = "10") int pageSize) throws UnsupportedEncodingException {
-        keyword = new String(keyword.getBytes("iso8859-1"),"UTF-8");
+        keyword = new String(keyword.getBytes("iso8859-1"), "UTF-8");
         ModelAndView mav = new ModelAndView();
         int begin = (currentPage - 1) * pageSize;
         Map<String, Object> resultMap = articleService.searchArticleByKeyword(keyword, begin, pageSize);

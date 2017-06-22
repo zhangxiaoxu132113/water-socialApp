@@ -1,4 +1,5 @@
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%--
   Created by IntelliJ IDEA.
   User: mrwater
   Date: 2017/4/9
@@ -97,9 +98,9 @@
                     }
                     PrintWriter writer = response.getWriter();
                     for (int i = firstPage; i <= lastPage; i++) {
-                        %>
-                            <a href="<%=path%>/article/search?keyword=<%=kw%>&currentPage=<%=i%>"><span><%=i%></span></a>
-                        <%
+                %>
+                <a href="<%=path%>/article/search?keyword=<%=kw%>&currentPage=<%=i%>"><span><%=i%></span></a>
+                <%
                     }
                     if (lastPage < pageTotal) {
                 %>

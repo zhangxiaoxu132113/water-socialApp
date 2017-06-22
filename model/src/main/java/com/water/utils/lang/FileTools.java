@@ -6,11 +6,11 @@ package com.water.utils.lang;
 public class FileTools {
 
     /**
-     * @description 返回文件的后缀名
      * @param originalFilename
      * @return
+     * @description 返回文件的后缀名
      */
     public static String getFileExtendsName(String originalFilename) {
-        return originalFilename.substring(originalFilename.lastIndexOf("."),originalFilename.length());
+        return originalFilename.substring(originalFilename.lastIndexOf("."), originalFilename.length());
     }
 }

@@ -4,7 +4,7 @@
     <!--扩展方法-->
     <select id="getCourseListByExample" parameterType="java.lang.String" resultType="com.water.db.model.dto.CourseDto">
         SELECT * FROM course WHERE course_subject_id IN (
-          SELECT id FROM `course_subject` WHERE name = #{courseName}
+        SELECT id FROM `course_subject` WHERE name = #{courseName}
         ) ORDER BY sort asc;
     </select>
 

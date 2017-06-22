@@ -3,9 +3,10 @@ package com.water.db.dao;
 import com.water.db.dao.extend.ITArticleMapperExtend;
 import com.water.db.model.ITArticle;
 import com.water.db.model.ITArticleCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ITArticleMapper extends ITArticleMapperExtend {
     int countByExample(ITArticleCriteria example);

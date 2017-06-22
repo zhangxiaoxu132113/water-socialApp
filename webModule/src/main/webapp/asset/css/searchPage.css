@@ -17,12 +17,14 @@ ul li {
     left: 0;
     top: 0;
     z-index: 10001;
-    background:#fff;
+    background: #fff;
 }
+
 .userinfo {
     margin-right: 2em;
     font-size: 14px;
 }
+
 .userinfo ul li {
     float: left;
     margin-right: 0.85em
@@ -31,7 +33,7 @@ ul li {
 .search-nav {
     height: 38px;
     background: #f8f8f8;
-    margin-top:56px;
+    margin-top: 56px;
 }
 
 .search-nav .search-nav-inner {
@@ -50,7 +52,6 @@ ul li {
     display: inline-block;
     vertical-align: top;
 }
-
 
 .search-nav {
     margin-bottom: 2px;
@@ -82,7 +83,7 @@ ul li {
     border: 1px solid #2d78f4;
     cursor: pointer;
     font-size: 14px;
-    outline:none;
+    outline: none;
 }
 
 .search-input-text {
@@ -116,13 +117,15 @@ ul li {
 
 .article-title {
     padding: 0 0 0.5em 0;
-    color:#00c;
+    color: #00c;
     text-decoration: underline;
 }
+
 .article-content {
     line-height: 1.5em;
     font-size: 14px;
 }
+
 .search-item {
     margin-bottom: 1em;
 }
@@ -132,9 +135,11 @@ ul li {
     width: 34%;
     vertical-align: top;
 }
+
 .page {
-    margin:1em 0;
+    margin: 1em 0;
 }
+
 .page span {
     width: 36px;
     height: 36px;
@@ -147,16 +152,19 @@ ul li {
     margin-right: 0.5em;
     font-size: 14px;
 }
-.last-page, .next-page{
-    width: auto!important;
-    padding:0 0.5em;
+
+.last-page, .next-page {
+    width: auto !important;
+    padding: 0 0.5em;
 }
+
 .footer {
     height: 43px;
     line-height: 43px;
     background: #f9f9f9;
     margin-top: 1em;
 }
+
 .footer-inner {
     width: 1088px;
     margin: 0 auto;

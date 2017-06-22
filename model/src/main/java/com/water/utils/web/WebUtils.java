@@ -79,7 +79,7 @@ public class WebUtils {
     }
 
     public static void sendJson(HttpServletResponse response) {
-       // TODO: 2017/1/25
+        // TODO: 2017/1/25
     }
 
     public static void sendResult(HttpServletResponse response, ResultView resultView) {
@@ -103,6 +103,7 @@ public class WebUtils {
 
     /**
      * 向JSON序列化对象添加过滤器
+     *
      * @param jser
      * @param filters
      */

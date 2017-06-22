@@ -7,7 +7,7 @@ public class ITTag implements Serializable {
 
     private String name;
 
-private String description;
+    private String description;
 
     private String parent;
 

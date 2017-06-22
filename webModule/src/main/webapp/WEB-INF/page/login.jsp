@@ -6,28 +6,28 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<%@page import="java.net.URLDecoder"%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="java.net.URLDecoder" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     String login_name = "";
     String login_pwd = "";
     String remember_me = "";
-    Cookie[]cookies = request.getCookies();
+    Cookie[] cookies = request.getCookies();
     //判断cookie是否为null，且长度是否小于1
-    if(cookies!=null && cookies.length>0){
-        for(int i=0;i<cookies.length;i++){
+    if (cookies != null && cookies.length > 0) {
+        for (int i = 0; i < cookies.length; i++) {
             Cookie cookie = cookies[i];
-            if("login_name".equals(cookie.getName())){
+            if ("login_name".equals(cookie.getName())) {
                 login_name = URLDecoder.decode(cookie.getValue(), "UTF-8");
                 remember_me = "checked";
             }
-            if("login_pwd".equals(cookie.getName())){
+            if ("login_pwd".equals(cookie.getName())) {
                 login_pwd = cookie.getValue();
             }
         }
-    }else{
+    } else {
         remember_me = "";
     }
 %>
@@ -73,6 +73,7 @@
             <div class="login-wrap-left">
                 <div class="login-poster">
                     <h1>欢迎!Mr Water。</h1>
+
                     <p>
                         但凡成功之人，往往都要经历一段没人支持、没人帮助的黑暗岁月，
                         而这段时光，恰恰是沉淀自我的关键阶段。犹如黎明前的黑暗，捱过去，天也就亮了。
@@ -89,20 +90,25 @@
                         <table class="fixed-table">
                             <tbody>
                             <tr>
-                                <td class="flex-table-primary"><input class="login-password" placeholder="密码" type="password" ng-model="login_pwd"></td>
-                                <td class="flex-table-secondary"><button class="mr-btn mr-primary-btn" ng-click="login(login_name,login_pwd)">登陆</button></td>
+                                <td class="flex-table-primary"><input class="login-password" placeholder="密码"
+                                                                      type="password" ng-model="login_pwd"></td>
+                                <td class="flex-table-secondary">
+                                    <button class="mr-btn mr-primary-btn" ng-click="login(login_name,login_pwd)">登陆
+                                    </button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="remember-forgot">
                             <label class="remember">
-                                <input type="checkbox" value="no" name="remember_me" id="remember_me" >
+                                <input type="checkbox" value="no" name="remember_me" id="remember_me">
                                 <span>记住我</span>
                             </label>
                             <span class="separator">.</span>
                             <a class="forgot" href="#">忘记密码</a>
                         </div>
-                        <input type="hidden" value="${requestScope.redirect_after_login}" name="redirect_after_login" id="redirect_after_login">
+                        <input type="hidden" value="${requestScope.redirect_after_login}" name="redirect_after_login"
+                               id="redirect_after_login">
                         <input type="hidden" value="xxx" name="authenticity_token">
                         <input type="hidden" value="<%=login_name%>" id="jq_login_name">
                         <input type="hidden" value="<%=login_pwd%>" id="jq_login_pwd">
@@ -112,6 +118,7 @@
                 <!-- signup -->
                 <div class="signup-frame">
                     <h2><strong>新来访客?</strong> 注册</h2>
+
                     <form action="" method="post">
                         <div class="field">
                             <input type="text" placeholder="全名" class="text-input" ng-model="reg_username"/>
@@ -122,7 +129,9 @@
                         <div class="field">
                             <input type="password" placeholder="密码" class="text-input" ng-model="reg_pwd"/>
                         </div>
-                        <button type="submit" class="mr-btn signup-btn mr-pull-right" ng-click="register(reg_username,reg_email,reg_pwd)">注册Mr Water</button>
+                        <button type="submit" class="mr-btn signup-btn mr-pull-right"
+                                ng-click="register(reg_username,reg_email,reg_pwd)">注册Mr Water
+                        </button>
                     </form>
                 </div>
             </div>

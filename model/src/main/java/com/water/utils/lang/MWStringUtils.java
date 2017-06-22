@@ -7,13 +7,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class MWStringUtils {
 
-    public static boolean isBlank(Object ... params){
+    public static boolean isBlank(Object... params) {
         if (params == null) {
             throwNullPoint();
         }
         for (Object param : params) {
             if (param instanceof String) {
-                if (StringUtils.isBlank((String)param)) {
+                if (StringUtils.isBlank((String) param)) {
                     throwContentEmpty();
                 }
             }
@@ -23,11 +23,11 @@ public class MWStringUtils {
     }
 
     /*常见的抛出错误抛出信息*/
-    public static void throwWrongfulParams(){
+    public static void throwWrongfulParams() {
         throw new RuntimeException("参数不合法!");
     }
 
-    public static void throwContentEmpty(){
+    public static void throwContentEmpty() {
         throw new RuntimeException("参数内容为空!");
     }
 
@@ -36,9 +36,9 @@ public class MWStringUtils {
     }
 
     /*Test*/
-    public static void main(String[]args) {
-        isBlank("zhangmioajie","haha");
+    public static void main(String[] args) {
+        isBlank("zhangmioajie", "haha");
 //        isBlank(null);
-        isBlank("zhangmiaojie","haha","");
+        isBlank("zhangmiaojie", "haha", "");
     }
 }

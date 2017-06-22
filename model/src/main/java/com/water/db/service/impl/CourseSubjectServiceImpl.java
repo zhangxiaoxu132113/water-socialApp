@@ -7,7 +7,6 @@ import com.water.db.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.utils.SerializeHelper;
 import com.water.utils.cache.CacheManager;
-import com.water.utils.web.vo.Category;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +44,7 @@ public class CourseSubjectServiceImpl implements CourseSubjectService {
             LOG.info("初始化首页菜单选项！");
         } else {
             courseSubjectDtoArrayList = new ArrayList<>();
-            List<byte[]> datas = cacheManager.lrange(REDIS_KEY.getBytes(), 0 , len);
+            List<byte[]> datas = cacheManager.lrange(REDIS_KEY.getBytes(), 0, len);
             for (byte[] data1 : datas) {
                 CourseSubjectDto model = SerializeHelper.deserializer(data1, CourseSubjectDto.class);
                 courseSubjectDtoArrayList.add(model);

@@ -7,14 +7,14 @@ $(document).ready(function () {
         });
 
     $('.all-category ul li').hover(
-        function(){
+        function () {
             $(this).find('div.category-panel').first().css('display', 'block');
-        }, function(){
+        }, function () {
             $(this).find('div.category-panel').first().css('display', 'none');
         }
     );
 
-    $('.search-btn-a').click(function() {
-       $('.search-form').submit();
+    $('.search-btn-a').click(function () {
+        $('.search-form').submit();
     });
 });

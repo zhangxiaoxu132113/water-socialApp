@@ -3,9 +3,10 @@ package com.water.db.dao;
 import com.water.db.dao.extend.WeiboMapperExtend;
 import com.water.db.model.Weibo;
 import com.water.db.model.WeiboCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface WeiboMapper extends WeiboMapperExtend {
     int countByExample(WeiboCriteria example);

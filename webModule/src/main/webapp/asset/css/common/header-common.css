@@ -9,7 +9,7 @@
     width: 100%;
     height: 60px;
     position: fixed;
-    background:#fff;
+    background: #fff;
     z-index: 1000;
     left: 0;
     top: 0;
@@ -45,12 +45,14 @@
     float: left;
     height: 60px;
     line-height: 60px;
-    padding:0 1em;
+    padding: 0 1em;
 }
 
 .user-header {
-    width: 37px;height: auto;
-    vertical-align: middle;border-radius: 4px;
+    width: 37px;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 4px;
 }
 
 .index-search-frame {

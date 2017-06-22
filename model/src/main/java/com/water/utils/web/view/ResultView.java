@@ -17,6 +17,7 @@ public class ResultView implements java.io.Serializable {
     private String msg;   //消息
     private Object data;  //数据
     private List<SerializeFilter> filters;
+
     public ResultView() {
 
     }
@@ -70,18 +71,23 @@ public class ResultView implements java.io.Serializable {
     public void setFilters(List<SerializeFilter> filters) {
         this.filters = filters;
     }
+
     public ResultData createResultData() {
         return new ResultData();
     }
+
     public class ResultData {
         Map<String, Object> map = new HashMap<String, Object>();
+
         public ResultData set(String key, Object obj) {
             map.put(key, obj);
             return this;
         }
+
         public Object get(String key) {
             return map.get(key);
         }
+
         public void build() {
             data = this.map;
         }

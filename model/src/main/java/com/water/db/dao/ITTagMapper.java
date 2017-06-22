@@ -3,9 +3,10 @@ package com.water.db.dao;
 import com.water.db.dao.extend.ITTagMapperExtend;
 import com.water.db.model.ITTag;
 import com.water.db.model.ITTagCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ITTagMapper extends ITTagMapperExtend {
     int countByExample(ITTagCriteria example);

@@ -4,7 +4,6 @@ import com.water.db.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * Created by mrwater on 16/6/4.

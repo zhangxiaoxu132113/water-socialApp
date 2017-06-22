@@ -1,7 +1,6 @@
 package com.water.db.service.interfaces;
 
 import com.water.db.model.dto.CourseDto;
-import com.water.db.model.dto.CourseSubjectDto;
 
 import java.util.List;
 

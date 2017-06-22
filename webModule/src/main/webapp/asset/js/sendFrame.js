@@ -29,12 +29,12 @@ $(document).ready(function () {
     /*发送按钮的事件*/
     $('.sendContBtn').bind('click', function () {
         $.ajax({
-            url:"/weibo/add",
-            method:"POST",
-            data:{
-                "text":$('.moon-content').html()
+            url: "/weibo/add",
+            method: "POST",
+            data: {
+                "text": $('.moon-content').html()
             },
-            success:function(result) {
+            success: function (result) {
                 if (result.code == 0) {
                     $('.closeBtn').click();
                     setTimeout(function () {
@@ -57,9 +57,9 @@ $(document).ready(function () {
         //显示隐藏的图片列表 添加节点
         var imgSrc = "/asset/img/commons/loading/loading_8.gif";
         $('.addImageBtn').before("<span class='img-panel-item' style='position: relative'>" +
-            "<span class='img-hover-bg'><i class='iconfont'>&#xe659;</i></span>" +
-            "<img src='/asset/img/commons/loading/loading_8.gif' />" +
-            "</span>");
+        "<span class='img-hover-bg'><i class='iconfont'>&#xe659;</i></span>" +
+        "<img src='/asset/img/commons/loading/loading_8.gif' />" +
+        "</span>");
         if ($('.add-content').is(':hidden')) {
             $('.add-content').slideToggle('fast', function () {
                 controlBtnStatus('.add-content', '.addPhoto');

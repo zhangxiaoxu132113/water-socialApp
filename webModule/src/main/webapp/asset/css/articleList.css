@@ -8,7 +8,7 @@ ul li {
 }
 
 body {
-    font:normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
+    font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
     font-size: 14px;
 }
 
@@ -30,7 +30,7 @@ body {
     display: inline-block;
     width: 60%;
     border-right: 1px #ddd solid;
-    padding-right:2em;
+    padding-right: 2em;
 }
 
 #main-content-right {
@@ -39,39 +39,51 @@ body {
     vertical-align: top;
     padding-left: 1em;
 }
+
 #view-info-detail-title a:hover {
-    color:rgb(27, 149, 224);
+    color: rgb(27, 149, 224);
     cursor: pointer;
 }
-#view-info-detail-content ul li a{
+
+#view-info-detail-content ul li a {
     line-height: 2.2em;
 }
+
 #view-info-detail-content ul li a:hover {
-    color:rgb(27, 149, 224);
+    color: rgb(27, 149, 224);
     cursor: pointer;
 }
+
 #view-info-list {
-    display: inline-block;width: 40%;
+    display: inline-block;
+    width: 40%;
 }
+
 #view-info-list ul li a:link {
-    color:#444;
+    color: #444;
     text-decoration: none;
 }
+
 #view-info-list ul li a:hover {
-    color:rgb(27, 149, 224);
+    color: rgb(27, 149, 224);
     cursor: pointer;
 }
+
 #view-info-list ul li a:visited {
-    color:#444;
+    color: #444;
     text-decoration: none;
 }
+
 #tab ul {
-    height:80px; margin-bottom: 1px;
+    height: 80px;
+    margin-bottom: 1px;
     border-bottom: 1px solid #adadad;
 }
+
 .tab-active {
     border-bottom: 3px solid rgb(27, 149, 224);
 }
+
 #tab ul li {
     float: left;
     padding: 0 1em;
@@ -81,6 +93,7 @@ body {
     font-weight: bold;
     font-size: 16px;
 }
+
 .article-list-item {
     height: 45px;
     /*text-align: left;*/
@@ -90,6 +103,7 @@ body {
     border-bottom: 1px solid #eee;
     padding: 10px 0;
 }
+
 .article-flag, .record-count, .article-title {
     /*float: left;*/
 }
@@ -103,7 +117,7 @@ body {
 }
 
 .search-input {
-    
+
     margin-left: 1em;
     box-sizing: border-box;
     width: 100%;
@@ -118,26 +132,31 @@ body {
     transition: all .2s ease-in-out;
 
 }
+
 #view-info-detail-content ul li a:link {
     text-decoration: none;
-    color:#666;
+    color: #666;
 }
+
 #view-info-detail-content ul li a:hover {
-    color:rgb(27, 149, 224);
+    color: rgb(27, 149, 224);
 }
+
 #view-info-detail-title {
-    font:normal 28px/40px "Microsoft YaHei";
-    padding-bottom:10px;
+    font: normal 28px/40px "Microsoft YaHei";
+    padding-bottom: 10px;
 }
+
 #view-info-list {
     vertical-align: top;
 }
+
 #view-info-list ul li {
-    font:normal 16px/24px "Microsoft YaHei";
+    font: normal 16px/24px "Microsoft YaHei";
     margin-top: 10px;
     padding-bottom: 10px;
     overflow: hidden;
-    border-bottom: 1px #ccc dotted ;
+    border-bottom: 1px #ccc dotted;
 }
 
 #view-info-list ul li:last-child {
@@ -146,29 +165,32 @@ body {
 
 #view-info-detail-description {
     color: #888;
-    margin-bottom:10px;
-    padding-bottom:10px;
-    border-bottom:1px #ddd solid;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px #ddd solid;
 }
 
 #new-software-info {
     vertical-align: top;
     padding-bottom: 40px;
 }
+
 #new-software-info h2 {
     color: #444;
     margin-top: 10px;
 }
+
 #new-software-info ul li:first-child {
-    font:normal 16px/24px "Microsoft YaHei";
+    font: normal 16px/24px "Microsoft YaHei";
     margin-top: 10px;
     padding-bottom: 10px;
     overflow: hidden;
-    border-bottom: 1px #ccc dotted ;
+    border-bottom: 1px #ccc dotted;
     /*padding-left: 0!important;*/
 }
-#new-software-info ul li{
-    padding : 0.25em 0;
+
+#new-software-info ul li {
+    padding: 0.25em 0;
     position: relative;
 
 }
@@ -185,28 +207,31 @@ body {
     border-radius: 50%;
     background: #CFCFCF;
 }
+
 #new-software-info ul li div {
     position: relative;
     padding-left: 1em;
 }
+
 #new-software-info ul li:first-child span {
     color: #888;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    font:normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
+    font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
     font-size: 14px;
 }
 
 .new-info-date {
     float: right;
 }
+
 .new-info-date {
     color: #888;
 }
 
 .new-info-title-active:before {
     display: block;
-    background:rgb(27, 149, 224)!important;
+    background: rgb(27, 149, 224) !important;
 }
 
 .new-info-title-active a:link {
@@ -227,7 +252,7 @@ body {
 }
 
 .col-sm-2 {
-    width:15%;
+    width: 15%;
     float: left;
     padding-left: 15px;
     padding-right: 15px;
@@ -250,9 +275,11 @@ body {
     margin-top: -20px;
     border: 2px solid #e2f2fa;
 }
+
 .language-info {
     margin-top: 20px;
 }
+
 .language-name {
     text-align: center;
 }
@@ -260,22 +287,24 @@ body {
 .language-num {
     text-align: center;
 }
-#knowdega-info ul li{
+
+#knowdega-info ul li {
     margin-bottom: 0.25em;
     border: 1px solid rgba(204, 204, 204, 0.25);
-    display: inline-block;width: 48%;vertical-align: top;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
 }
 
 .col-sm-2 dl dt {
     padding-bottom: 1em;
-    font-weight:bold;
+    font-weight: bold;
 }
+
 .col-sm-2 dd {
     color: #888;
     line-height: 1.8em;
 }
-
-
 
 .record-count small {
     display: block;
@@ -319,7 +348,7 @@ body {
     display: inline;
     margin: 0 5px 0 0;
     font-size: 16px;
-    color:#333;
+    color: #333;
 }
 
 .category-tab {
@@ -335,5 +364,5 @@ body {
 
 .copyright {
     text-align: center;
-    margin-bottom:3em;
+    margin-bottom: 3em;
 }

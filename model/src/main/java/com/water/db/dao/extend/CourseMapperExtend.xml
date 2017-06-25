@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.water.db.dao.extend.CourseMapperExtend">
     <!--扩展方法-->
-    <select id="getCourseListByExample" parameterType="java.lang.String" resultType="com.water.db.model.dto.CourseDto">
+    <select id="getCatalogByCourseName" parameterType="java.lang.String" resultType="com.water.db.model.dto.CourseDto">
         SELECT * FROM course WHERE course_subject_id IN (
         SELECT id FROM `course_subject` WHERE name = #{courseName}
         ) ORDER BY sort asc;

@@ -7,12 +7,14 @@ import com.water.db.model.dto.ITArticleDto;
 import com.water.db.service.interfaces.CourseService;
 import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.db.service.interfaces.ITArticleService;
+import com.water.utils.lang.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,10 +36,11 @@ public class CourseController {
     private CourseSubjectService courseSubjectService;
 
     @RequestMapping(value = "/{courseName}")
-    public ModelAndView getCourseSubjectListByCourseName(@PathVariable String courseName) {
+    public ModelAndView getCourseSubjectListByCourseName(@PathVariable String courseName) throws UnsupportedEncodingException {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> queryMap = new HashMap<>();
-        queryMap.put("courseName", courseName);
+        courseName = StringUtil.transform2utf8(courseName);
+        queryMap.put("courseName", StringUtil.deconde(courseName));
 
         List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
         CourseSubject courseSubject = courseSubjectService.getCourseSubjectByExample(queryMap);
@@ -50,21 +53,23 @@ public class CourseController {
 
     @RequestMapping(value = "/{courseName}/{articleId}.html")
     public ModelAndView getArticleDetail(@PathVariable String courseName,
-                                         @PathVariable String articleId) {
+                                         @PathVariable String articleId) throws UnsupportedEncodingException {
         ModelAndView mav = new ModelAndView();
+        courseName = StringUtil.transform2utf8(courseName);
+        courseName = StringUtil.deconde(courseName);
         List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
         if (catalogTitleList == null || catalogTitleList.isEmpty()) {
             //todo 返回404
         }
 
-        ITArticleDto article = articleService.getArticleDetailById(articleId);
-        if (article != null) {
-            List<ITArticle> articleList = articleService.getRelatedArticles(article);
-            article.setRelatedArticles(articleList);
-        }
-        mav.addObject("article", article);
+//        ITArticleDto article = articleService.getArticleDetailById(articleId);
+//        if (article != null) {
+//            List<ITArticle> articleList = articleService.getRelatedArticles(article);
+//            article.setRelatedArticles(articleList);
+//        }
+//        mav.addObject("article", article);
         mav.addObject("catalogTitleList", catalogTitleList);
-        mav.setViewName("/course/articleDetail");
+        mav.setViewName("/course/courseArticle");
         return mav;
     }
 }

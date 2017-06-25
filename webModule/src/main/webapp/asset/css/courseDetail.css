@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+ul li {
+    list-style: none;
+}
+
+body {
+    font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
+    font-size: 14px;
+    background-color: #f6f6f6;
+}
+
+
+.clearfix:after {
+    overflow: hidden;
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+#container {
+    /*width: 1140px;*/
+    height: 100%;
+    margin: 0 auto;
+}
+
+#main-content {
+    padding-top: 36px;
+}
+
+#main-content-inner {
+    padding-top: 36px;
+}

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont2/iconfont.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
 </head>
 <body>
 <div id="container">

@@ -16,7 +16,7 @@
     <style>
         #header{
             height: 28px;
-            background: rgb(27, 149, 224);
+            background: rgb(23, 132, 199);
         }
 
         .header-nav-inner ul li {
@@ -56,6 +56,37 @@
             padding: 10px 0 5px;
             zoom: 1;
         }
+        .search h3 {
+            float: left;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            font-size: 22px;
+            color: #1b95e0;
+        }
+        .search-input {
+            margin-left:145px;
+            width: 470px;
+            height: 34px;
+            text-align: center;
+            margin-right: -3px;
+            cursor: text;
+        }
+        .search-input input[type=text]{
+
+        }
+        .clearfix:after {
+            overflow: hidden;
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+
+        #header-middle-inner{
+            background-color:#f0f3f5;
+        }
     </style>
 </head>
 <body>
@@ -86,7 +117,7 @@
     </div>
     <div id="header-middle">
         <div id="header-middle-inner">
-            <div class="search">
+            <div class="search clearfix">
                 <h3>教程搜索</h3>
                 <div class="search-input">
                     <input type="text">

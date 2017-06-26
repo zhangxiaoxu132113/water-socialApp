@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" href="<%=path%>/asset/css/mrwater.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">
+    <%--<link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">--%>
     <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont2/iconfont.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/courseDetail.css">
@@ -43,13 +43,11 @@
         }
         #header-middle {
             width: 100%;
-            min-width: 950px;
             overflow: hidden;
             zoom: 1;
             margin-bottom: 48px;
         }
-        #header-middle-inner .search {
-            width: 950px;
+        #header-middle-inner {
             margin: 0 auto;
             overflow: visible !important;
             position: relative;
@@ -64,15 +62,31 @@
             color: #1b95e0;
         }
         .search-input {
-            margin-left:145px;
             width: 470px;
             height: 34px;
             text-align: center;
             margin-right: -3px;
             cursor: text;
+            background: url(/asset/content/nav_bg.png) no-repeat 0 6px;
         }
         .search-input input[type=text]{
-
+            border:none;
+            background: #fff;
+            width: 96%;
+            margin: 0;
+            text-align: left;
+            height: 30px;
+            padding-left: 10px;
+            height: 28px\9;
+            line-height: 28px\9;
+            outline: none;
+        }
+        .search {
+            border-bottom:1px solid #e5ebe4;
+        }
+        .search-inner {
+            width: 950px;
+            margin:0 auto;
         }
         .clearfix:after {
             overflow: hidden;
@@ -84,8 +98,23 @@
             height: 0;
         }
 
-        #header-middle-inner{
+        #header-middle{
             background-color:#f0f3f5;
+        }
+        .hot-course-command {
+            width: 950px;
+            margin:0 auto;
+        }
+        .hot-course-command ul li {
+            float: left;
+            margin-right: 1em;
+            height: 39px;
+            line-height:39px;
+        }
+        .hot-course-command ul li a:link {
+            color:#37a;
+            font-size: 13px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -117,18 +146,20 @@
     </div>
     <div id="header-middle">
         <div id="header-middle-inner">
-            <div class="search clearfix">
-                <h3>教程搜索</h3>
-                <div class="search-input">
-                    <input type="text">
+            <div class="search">
+                <div class="search-inner clearfix">
+                    <h3>教程搜索</h3>
+                    <div class="search-input">
+                        <input type="text">
+                    </div>
                 </div>
             </div>
             <div class="hot-course-command">
-                <ul>
+                <ul class="clearfix">
                     <li>精品教程</li>
-                    <li>java教程</li>
-                    <li>mysql教程</li>
-                    <li>elasticsearch教程</li>
+                    <li><a href="">java教程</a></li>
+                    <li><a href="">mysql教程</a></li>
+                    <li><a href="">elasticsearch教程</a></li>
                 </ul>
             </div>
         </div>

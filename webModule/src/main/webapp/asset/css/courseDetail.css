@@ -10,7 +10,6 @@ ul li {
 body {
     font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
     font-size: 14px;
-    background-color: #f6f6f6;
 }
 
 
@@ -28,12 +27,4 @@ body {
     /*width: 1140px;*/
     height: 100%;
     margin: 0 auto;
-}
-
-#main-content {
-    padding-top: 36px;
-}
-
-#main-content-inner {
-    padding-top: 36px;
 }

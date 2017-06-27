@@ -43,10 +43,13 @@ public class CourseController {
         queryMap.put("courseName", StringUtil.deconde(courseName));
 
         List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
+        List<ITArticle> articleList = articleService.getRelatedArticles(courseName, 10);
         CourseSubject courseSubject = courseSubjectService.getCourseSubjectByExample(queryMap);
 
         mav.addObject("courseDtoList", courseDtoList);
         mav.addObject("courseSubject", courseSubject);
+        mav.addObject("articleList", articleList);
+
         mav.setViewName("/course/courseDetail");
         return mav;
     }

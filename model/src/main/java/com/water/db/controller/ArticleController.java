@@ -38,7 +38,7 @@ public class ArticleController {
         ModelAndView mav = new ModelAndView();
         ITArticleDto article = articleService.getArticleDetailById(articleId);
         if (article != null) {
-            List<ITArticle> articleList = articleService.getRelatedArticles(article);
+            List<ITArticle> articleList = articleService.getRelatedArticles(article.getTitle(), 5);
             article.setRelatedArticles(articleList);
         }
         mav.addObject("article", article);

@@ -21,5 +21,6 @@ public class Constants {
     public static class CacheKey {
         public final static String GreeArticle = "GreeArticle";
         public final static String NEWS = "NEWS";
+        public final static String ALL_COURSE_SUBJECT = "ALL_COURSE_SUBJECT";
     }
 }

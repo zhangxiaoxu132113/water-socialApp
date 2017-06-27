@@ -1,25 +1,37 @@
 package com.water.db.service.impl;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.water.db.dao.CourseSubjectMapper;
 import com.water.db.model.CourseSubject;
 import com.water.db.model.CourseSubjectCriteria;
+import com.water.db.model.ITArticle;
 import com.water.db.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.utils.SerializeHelper;
 import com.water.utils.cache.CacheManager;
+import com.water.utils.common.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service("courseSubjectService")
 public class CourseSubjectServiceImpl implements CourseSubjectService {
     private static String REDIS_KEY = "ub_course_subject";
+
+    private LoadingCache<String, Object> cacheLocal;
+
+    private Map<String, CourseSubject> courseSubjectMap;
 
     @Resource
     private CourseSubjectMapper courseSubjectMapper;
@@ -103,4 +115,44 @@ public class CourseSubjectServiceImpl implements CourseSubjectService {
         }
         return courseSubject;
     }
+
+    private CourseSubject findCourseSubjectByIdWithLocalCache(String id) {
+        CourseSubject courseSubject = null;
+        if (StringUtils.isNotBlank(id)) {
+            courseSubject = courseSubjectMap.get(id);
+        }
+        return courseSubject;
+    }
+
+    private CourseSubject findParentCourseSubByIdWithLocalCache(String id) {
+        CourseSubject courseSubject = null;
+        courseSubject = findCourseSubjectByIdWithLocalCache(id);
+        if (courseSubject != null ) {
+            courseSubject = findCourseSubjectByIdWithLocalCache(courseSubject.getPartentId());
+        }
+        return courseSubject;
+    }
+
+
+    @PostConstruct
+    public void init() {
+        cacheLocal = CacheBuilder.newBuilder().refreshAfterWrite(1, TimeUnit.DAYS).build(
+                new CacheLoader<String, Object>() {
+                    @Override
+                    public List<CourseSubject> load(String key) {
+                        switch (key) {
+                            case Constants.CacheKey.ALL_COURSE_SUBJECT:
+                                List<CourseSubject> courseSubjectList = courseSubjectMapper.selectByExample(null);
+                                courseSubjectMap = new HashMap<>();
+                                for (CourseSubject courseSubject : courseSubjectList) {
+                                    courseSubjectMap.put(courseSubject.getId(), courseSubject);
+                                }
+                                return courseSubjectList;
+                        }
+                        return null;
+                    }
+                }
+        );
+    }
+
 }

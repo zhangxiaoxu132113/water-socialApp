@@ -21,7 +21,7 @@ public interface ITArticleService {
 
     List<ITArticle> getExcellentArticle();
 
-    List<ITArticle> getRelatedArticles(ITArticle article);
+    List<ITArticle> getRelatedArticles(String queryContent, int pageSize);
 
     Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize);
 

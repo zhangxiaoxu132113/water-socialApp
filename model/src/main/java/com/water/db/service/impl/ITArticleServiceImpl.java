@@ -68,19 +68,18 @@ public class ITArticleServiceImpl implements ITArticleService {
         return articleDto;
     }
 
-    public List<ITArticle> getRelatedArticles(ITArticle article) {
+    public List<ITArticle> getRelatedArticles(String queryContent, int pageSize) {
         List<ITArticle> articleList = new ArrayList<ITArticle>();
+        if (StringUtils.isNotBlank(queryContent)) {
+            ESDocument document = esArticleService.searchArticleByMatch("content", queryContent, 0, pageSize);
+            List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
+            for (com.water.es.entry.ITArticle esArticle : esArticleList) {
+                ITArticle originArticle = new ITArticle();
+                BeanUtils.copyProperties(esArticle, originArticle);
+                articleList.add(originArticle);
+            }
+        }
 
-        if (article == null) {
-            throw new RuntimeException("对象不能为空！");
-        }
-        ESDocument document = esArticleService.searchArticleByMatch("content", article.getTitle(), 0, 5);
-        List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
-        for (com.water.es.entry.ITArticle esArticle : esArticleList) {
-            ITArticle originArticle = new ITArticle();
-            BeanUtils.copyProperties(esArticle, originArticle);
-            articleList.add(originArticle);
-        }
         return articleList;
     }
 

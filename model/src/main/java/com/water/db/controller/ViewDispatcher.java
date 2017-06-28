@@ -86,7 +86,7 @@ public class ViewDispatcher {
     }
 
     @RequestMapping(value = "/course")
-    public ModelAndView course(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView course(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
         List<CourseSubjectDto> courseSubjectList = courseSubjectService.findAllCourseSubject();
 

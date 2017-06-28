@@ -73,20 +73,20 @@
             <div class="Grid-cell u-size3of4">
                 <div class="main-left-inner">
                     <div class="current-location">
-                        <span><i class="iconfont">&#xf0295;</i>当前位置:</span> <a href="">IT教程</a> > <a href="">Java教程</a> > <a href="">数据挖掘</a>
+                        <span><i class="iconfont">&#xf0295;</i>当前位置:</span> <a href="">IT教程</a> > <a href="">${requestScope.courseSubjectDto.partentCourseSubject.name}</a> > <a href="">${requestScope.courseSubjectDto.name}</a>
                     </div>
                     <%--<div class="ad-1">--%>
                         <%--<img src="/asset/content/tmp/TB10kZnQVXXXXagXXXXXXXXXXXX-800-50.jpg" alt="" width="100%" height="auto"/>--%>
                     <%--</div>--%>
                     <div class="course-main-body">
                         <div class="course-name">
-                            ${requestScope.courseSubject.name}<span class="course-score">(评分：<span class="allStart allStart45"></span>8分)</span>
+                            ${requestScope.courseSubjectDto.name}<span class="course-score">(评分：<span class="allStart allStart45"></span>8分)</span>
                             <span style="float: right" class="sc-btn"><i class="iconfont">&#xf00b1;</i>收藏</span>
                         </div>
-                        <div class="course-description">${courseSubject.description}</div>
+                        <div class="course-description">${courseSubjectDto.description}</div>
                         <ul class="catalog-list">
                             <c:forEach items="${requestScope.courseDtoList}" var="course" varStatus="status">
-                                <li><a href="/course/${requestScope.courseSubject.name}/${course.id}.html">${status.index + 1},${course.title}</a></li>
+                                <li><a href="/course/${requestScope.courseSubjectDto.name}/${course.id}.html">${status.index + 1},${course.title}</a></li>
                             </c:forEach>
                         </ul>
 
@@ -139,22 +139,20 @@
                     <div class="jili">
                         <p><i class="iconfont" style="color: #438ae4;font-size: 22px">&#xf00f5;</i>人生是场穷游，偶尔也需要一场暴走</p>
                     </div>
-                    <div class="about-course clearfix">
-                        <div class="about-course-title">
-                            <h3><em class="iconfont" style="margin-right: 0.5em">&#xf00b1;</em>相关教程</h3>
+                    <c:if test="${requestScope.courseSubjectDto.partentCourseSubject.sonCourseSubjectList != null}">
+                        <div class="about-course clearfix">
+                            <div class="about-course-title">
+                                <h3><em class="iconfont" style="margin-right: 0.5em">&#xf00b1;</em>相关教程</h3>
+                            </div>
+                            <ul>
+                                <c:forEach items="${requestScope.courseSubjectDto.partentCourseSubject.sonCourseSubjectList}" var="courseSub" begin="0" end="7">
+                                    <li><a href=""><em class="iconfont">.</em>${courseSub.name}</a></li>
+                                </c:forEach>
+                            </ul>
+                            <span style="float: right;padding:1em 0 0"><a href="">查看更多</a></span>
                         </div>
-                        <ul>
-                            <li><a href=""><em class="iconfont">.</em>JavaEE教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>Java并发编程教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>JavaFX教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>MyBatis教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>JDBC教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>Jenkins教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>Selenium教程</a></li>
-                            <li><a href=""><em class="iconfont">.</em>Java面向对象设计</a></li>
-                        </ul>
-                        <span style="float: right;padding:1em 0 0"><a href="">查看更多</a></span>
-                    </div>
+                    </c:if>
+
                     <div class="ad-3">
                         <img src="/asset/content/tmp/ad-3.png" alt="" width="100%" height="auto"/>
                     </div>

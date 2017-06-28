@@ -1,9 +1,8 @@
 package com.water.db.controller;
 
-import com.water.db.model.CourseSubject;
 import com.water.db.model.ITArticle;
 import com.water.db.model.dto.CourseDto;
-import com.water.db.model.dto.ITArticleDto;
+import com.water.db.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.CourseService;
 import com.water.db.service.interfaces.CourseSubjectService;
 import com.water.db.service.interfaces.ITArticleService;
@@ -18,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by zhangmiaojie on 2017/6/21.
@@ -36,20 +36,20 @@ public class CourseController {
     private CourseSubjectService courseSubjectService;
 
     @RequestMapping(value = "/{courseName}")
-    public ModelAndView getCourseSubjectListByCourseName(@PathVariable String courseName) throws UnsupportedEncodingException {
-        ModelAndView mav = new ModelAndView();
+    public ModelAndView getCourseSubjectListByCourseName(@PathVariable String courseName) throws UnsupportedEncodingException, ExecutionException {
         Map<String, Object> queryMap = new HashMap<>();
         courseName = StringUtil.transform2utf8(courseName);
-        queryMap.put("courseName", StringUtil.deconde(courseName));
+        courseName = StringUtil.deconde(courseName);
+        queryMap.put("courseName", courseName);
 
-        List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
+        CourseSubjectDto courseSubjectDto = courseSubjectService.getCourseSubjectByExample(queryMap);
         List<ITArticle> articleList = articleService.getRelatedArticles(courseName, 10);
-        CourseSubject courseSubject = courseSubjectService.getCourseSubjectByExample(queryMap);
+        List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
 
-        mav.addObject("courseDtoList", courseDtoList);
-        mav.addObject("courseSubject", courseSubject);
+        ModelAndView mav = new ModelAndView();
         mav.addObject("articleList", articleList);
-
+        mav.addObject("courseDtoList", courseDtoList);
+        mav.addObject("courseSubjectDto", courseSubjectDto);
         mav.setViewName("/course/courseDetail");
         return mav;
     }

@@ -108,9 +108,9 @@ public class ITArticleServiceImpl implements ITArticleService {
     }
 
     public Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        List<ITArticle> articleList = new ArrayList<ITArticle>();
-        ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content", "title"}, kw, begin, pageSize);
+        Map<String, Object> resultMap = new HashMap<>();
+        List<ITArticle> articleList = new ArrayList<>();
+        ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content"}, kw, begin, pageSize);
         List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         copyITArticleList(articleList, esArticleList);
         resultMap.put("data", articleList);

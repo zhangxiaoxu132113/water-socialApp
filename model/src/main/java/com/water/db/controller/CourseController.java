@@ -58,12 +58,12 @@ public class CourseController {
     public ModelAndView getArticleDetail(@PathVariable String courseName,
                                          @PathVariable String articleId) throws UnsupportedEncodingException {
         ModelAndView mav = new ModelAndView();
-        courseName = StringUtil.transform2utf8(courseName);
-        courseName = StringUtil.deconde(courseName);
-        List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
-        if (catalogTitleList == null || catalogTitleList.isEmpty()) {
-            //todo 返回404
-        }
+//        courseName = StringUtil.transform2utf8(courseName);
+//        courseName = StringUtil.deconde(courseName);
+//        List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
+//        if (catalogTitleList == null || catalogTitleList.isEmpty()) {
+//            //todo 返回404
+//        }
 
 //        ITArticleDto article = articleService.getArticleDetailById(articleId);
 //        if (article != null) {
@@ -71,7 +71,7 @@ public class CourseController {
 //            article.setRelatedArticles(articleList);
 //        }
 //        mav.addObject("article", article);
-        mav.addObject("catalogTitleList", catalogTitleList);
+//        mav.addObject("catalogTitleList", catalogTitleList);
         mav.setViewName("/course/courseArticle");
         return mav;
     }

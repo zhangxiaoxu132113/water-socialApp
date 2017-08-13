@@ -49,7 +49,6 @@
                         <c:forEach items="${requestScope.courseSubjects}" var="item">
                             <div class="list-item">
                                 <h4><i class="iconfont" style="margin-right: 0.5em">&#xf0025;</i>${item.name}</h4>
-
                                 <div class="list-item-content">
                                     <ul>
                                         <c:forEach items="${item.sonCourseSubjectList}" var="sonItem">

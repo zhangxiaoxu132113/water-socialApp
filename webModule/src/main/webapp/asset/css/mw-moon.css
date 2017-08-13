@@ -1,6 +1,5 @@
 /*.logo a sup{font-family: Yellowtail!important;font-size: 38px}*/
 * {
-    font-family: Sana;
     margin: 0;
     padding: 0
 }
@@ -23,26 +22,26 @@ a {
 }
 
 /*.header .header-inner {position: relative}*/
-@media only screen and (min-width: 768px) {
+/*@media only screen and (min-width: 768px) {*/
 
-    .header .header-inner h1 {
-        padding-bottom: 57px
-    }
-}
+    /*.header .header-inner h1 {*/
+        /*padding-bottom: 57px*/
+    /*}*/
+/*}*/
 
 #doc {
     position: relative
 }
 
-.header .header-inner h1 {
-    font-family: "Playfair Display", Georgia, serif;
-    font-weight: 800;
-    font-size: 2.2em;
-    line-height: 2.65em;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px 2.75% 0;
-}
+/*.header .header-inner h1 {*/
+    /*font-family: "Playfair Display", Georgia, serif;*/
+    /*font-weight: 800;*/
+    /*font-size: 2.2em;*/
+    /*line-height: 2.65em;*/
+    /*max-width: 960px;*/
+    /*margin: 0 auto;*/
+    /*padding: 20px 2.75% 0;*/
+/*}*/
 
 .header .header-inner h1 a {
     font-family: "Playfair Display", Georgia, serif;
@@ -206,7 +205,7 @@ a.message-btn:hover, a.write-btn:hover, a.directory-btn:hover {
 
 /*slider bar left*/
 .slider-bar-left {
-    position: absolute;
+    position: fixed;
     display: none;
     left: -385px;
     height: 100%;

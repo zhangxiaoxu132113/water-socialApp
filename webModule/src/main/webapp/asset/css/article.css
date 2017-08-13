@@ -2,3 +2,354 @@
     margin: 0;
     padding: 0
 }
+
+li {
+    list-style: none;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+    color: #333;
+}
+
+.clearfix:after {
+    overflow: hidden;
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+#container {
+    /*width: 1140px;*/
+    height: 100%;
+    margin: 0 auto;
+}
+
+/*头部信息*/
+#header {
+    height: 28px;
+    background: rgb(249, 250, 252);
+    box-shadow: 0 1px 0px rgba(72, 71, 71, 0.1);
+}
+.header-nav-inner ul li:first-child {
+}
+.header-nav-inner ul li {
+    float: left;
+    margin-left: 1em;
+    font-size: 14px;
+    color: #69696b;
+    line-height: 28px;
+}
+
+.header-user ul li {
+    float: right;
+    margin-right: 2em;
+    font-size: 12px;
+    color: #f9f9f9;
+    line-height: 28px;
+
+}
+
+.header-user ul li a:link {
+    color: #69696b;
+    text-decoration: none;
+}
+
+.header-user ul li a:visited {
+    color: #69696b;
+    text-decoration: none;
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+    word-wrap: break-word;
+    margin-bottom:0.5em;
+    padding-left: 0.5em;
+}
+
+.tag {
+    padding: 4px 7px;
+    background: #fff;
+    border-radius: 4px;
+    color: #ccc;
+    margin-left: 0.5em;
+    margin-top: 1em;
+}
+
+.relase {
+    padding-left: 0.5em;
+}
+
+.tab-label {
+    display: inline-block;
+    background-color: #545e66;
+    font: 1em/1 'microsoft yahei';
+    margin: 5px;
+    padding: 4px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #f5f6f8;
+    font-size: 14px;
+}
+
+/*中部*/
+#middle {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.middel-inner {
+    width: 1170px;
+    margin: 0 auto;
+    height: 75px;
+    line-height: 75px;
+}
+
+/*logo*/
+.logo {
+    height: 70px;
+    line-height: 70px;
+    float: left;
+    padding-left: 2em;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    margin-top: 15px;
+}
+
+.search {
+    float: right;
+    padding-right: 1em;
+}
+.search-inner h4, .search-input, .search-btn {
+    display: inline-block;
+}
+.search-btn {
+    left: -1px;
+    width: 37px;  height: 34px;
+    zoom: 1;
+    overflow: hidden;
+    padding-top: 0.5em;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+.search-input input[type=text]{
+    border:none;
+    background: #fff;
+    width: 96%;
+    margin: 0;
+    text-align: left;
+    height: 30px;
+    height: 28px\9;
+    line-height: 28px\9;
+    outline: none;
+}
+
+.search-btn input[type=submit] {
+    background: url(/asset/content/nav_bg.png) no-repeat 0 -40px;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    padding: 35px 0 0 0;
+    overflow: hidden;
+    color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.search-input {
+    width: 340px;
+    height: 30px;
+    /* padding-top: 9px; */
+    text-align: center;
+    margin-right: -3px;
+    cursor: text;
+    border: 1px solid #cccccc;
+    margin-left: 2em;
+}
+
+
+#nav {
+    background: #333;
+}
+#nav #nav-inner {
+    width: 1170px;
+    margin:0 auto;
+    background: #333;
+    line-height: 30px;
+    color: #fff;
+}
+#nav #nav-inner ul li {
+    float: left;
+    margin-left: 1em;
+    color: #ccc;
+    height: 30px;
+}
+
+#nav #nav-inner ul {
+    height: 30px;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+#nav #nav-inner ul li a {
+    color: #ccc;
+}
+
+#nav #nav-inner ul li:first-child {
+    background: rgb(255,108,31);
+    padding: 0 15px;
+}
+
+.breader {
+    color: #ccc;
+    padding-left:0.5em;
+}
+.relase {
+    color: #c8c8c8;
+}
+#top-header {
+    padding:10px 0 30px;
+    background: #eee;
+}
+#top-header-inner {
+    width: 1170px;
+    margin:0 auto;
+}
+#main-body {
+    background: #f9fafc;
+}
+#main-body #main-body-inner {
+    width: 1170px;
+    margin:0 auto;
+}
+#main-body-inner .main-body-left {
+    display: inline-block;
+    vertical-align: top;
+    width: 73%;
+}
+.main-body-left .content {
+    padding: 40px 89px;
+    box-sizing: border-box;
+    background: #fff;
+}
+#main-body-inner .main-body-right {
+    display: inline-block;
+    vertical-align: top;
+    width: 26%;
+    margin-left: 0.5%;
+}
+
+.main-body-right  .about-base, .main-body-right .about-course {
+    background: #fff;
+    padding: 20px;
+    margin-top:10px;
+}
+
+.main-body-right  .about-base h3, .main-body-right .about-course  h3 {
+    border-bottom: 2px solid #cbcbcb;
+    color: #333;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-bottom: 7px;
+    position: relative;
+}
+.main-body-right .about-course ul li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 1em;
+}
+.main-body-right .about-course ul li a {
+    text-decoration: none;
+    color: #888888;
+}
+
+.main-body-left .content {
+    overflow-x: hidden;
+}
+
+.about-base .base-img {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 0.5em;
+}
+
+.about-base .base-img img {
+    height: 70px; width: 70px;
+}
+
+.about-base .base-desc {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.about-base .base-desc .base-name {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.about-base ul li {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(203, 203, 203, 0.4);
+}
+
+.about-course  ul li {
+    margin:10px 0;
+}
+
+.dot {
+    border: 2px solid #ccc;
+    height: 0;
+    left: 0.1em;
+    position: absolute;
+    top: 0.5em;
+    transform-origin: 25% center 0;
+    width: 0;
+}
+
+.about-articles {
+    padding: 20px 20px 30px 20px;
+    background: #fff;
+    margin-top: 20px;
+    position: relative;
+}
+
+.about-articles ul li {
+    display: flex;
+    height: 34px;
+    line-height: 34px;
+    width: 50%;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.about-articles ul li a {
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #888888;
+}
+
+.about-articles h3 {
+    border-bottom: 2px solid #cbcbcb;
+    color: #333;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-bottom: 15px;
+    position: relative;
+    margin-bottom: 10px;
+}

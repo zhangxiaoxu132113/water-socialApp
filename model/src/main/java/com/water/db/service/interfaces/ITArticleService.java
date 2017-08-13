@@ -1,29 +1,33 @@
 package com.water.db.service.interfaces;
 
-import com.water.db.model.ITArticle;
-import com.water.db.model.User;
-import com.water.db.model.dto.ITArticleDto;
+import com.water.uubook.model.Article;
+import com.water.uubook.model.User;
+import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.ITArticleDto;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public interface ITArticleService {
-    List<ITArticle> getGreeArticle() throws ExecutionException;
+    List<ArticleDto> getGreeArticle() throws ExecutionException;
 
-    ITArticleDto getArticleDetailById(String articleId);
+    ArticleDto getArticleDetailById(Integer articleId);
 
-    List<ITArticle> getSoftwareInformations();
+    List<ArticleDto> getSoftwareInformations();
 
-    List<ITArticle> getRecentlyReadedArticlesByUser(User user);
+    List<Article> getRecentlyReadedArticlesByUser(User user);
 
-    List<ITArticle> getNewArticles();
+    List<Article> getNewArticles();
 
-    List<ITArticle> getExcellentArticle();
+    List<Article> getExcellentArticle();
 
-    List<ITArticle> getRelatedArticles(String queryContent, int pageSize);
+    List<Article> getRelatedArticles(String queryContent, int pageSize);
 
     Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize);
 
 
+    Map<String, Object> findArticlesByPage(int pageSize, int currentPage);
+
+    Map<String,Object> searchArticleByKeywordV2(String kw, int currentPage, int pageSize);
 }

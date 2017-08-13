@@ -1,6 +1,6 @@
 package com.water.utils.web;
 
-import com.water.db.model.User;
+import com.water.uubook.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

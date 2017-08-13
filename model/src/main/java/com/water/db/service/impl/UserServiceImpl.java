@@ -1,8 +1,8 @@
 package com.water.db.service.impl;
 
-import com.water.db.dao.UserMapper;
-import com.water.db.model.User;
-import com.water.db.model.UserCriteria;
+import com.water.uubook.dao.UserMapper;
+import com.water.uubook.model.User;
+import com.water.uubook.model.UserCriteria;
 import com.water.db.service.interfaces.UserService;
 import com.water.utils.web.vo.UserDto;
 import org.apache.commons.lang3.StringUtils;

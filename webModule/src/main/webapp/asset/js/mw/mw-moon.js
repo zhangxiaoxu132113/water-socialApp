@@ -1,18 +1,20 @@
 $(document).ready(function () {
-    var sliderBarW = 385;
-    var sliderDurationT = 600;
+    var sliderBarW = 300;
+    var sliderDurationT = 300;
     var zeroW = 0;
     //展示左边的工具栏
     $('.directory-btn').bind('click', function () {
         $('#doc').css('right', 'auto');
         $('footer').css('right', 'auto');
         if ($('.slider-bar-left').is(":hidden")) {
+            $('.controller-page').css('display','none');
             //左边的slider bar显示出来
             $('#doc').animate({'left': sliderBarW + 'px'}, sliderDurationT);
             $('footer').animate({'left': sliderBarW + 'px'}, sliderDurationT);
             $('.slider-bar-left').css('display', 'block');
             $('.slider-bar-left').animate({'left': 0 + 'px'}, sliderDurationT);
         } else {
+            $('.controller-page').css('display','block');
             //左边的slider bar隐藏掉
             $('footer').animate({'left': zeroW + 'px'}, sliderDurationT);
             $('.slider-bar-left').animate({'left': -sliderBarW + 'px'}, sliderDurationT);

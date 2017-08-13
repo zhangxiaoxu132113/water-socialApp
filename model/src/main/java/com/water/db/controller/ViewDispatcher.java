@@ -1,18 +1,18 @@
 package com.water.db.controller;
 
-import com.water.db.model.ITArticle;
-import com.water.db.model.User;
-import com.water.db.model.Weibo;
-import com.water.db.model.dto.CourseSubjectDto;
-import com.water.db.model.dto.ITTagDto;
-import com.water.db.service.interfaces.CourseSubjectService;
+import com.water.db.service.interfaces.IBlogService;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
-import com.water.db.service.interfaces.WeiboService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.MWSessionUtils;
 import com.water.utils.web.vo.Category;
+import com.water.uubook.model.Article;
+import com.water.uubook.model.User;
+import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.CourseSubjectDto;
+import com.water.uubook.model.dto.ITTagDto;
+import com.water.uubook.service.CourseSubjectService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,7 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -34,20 +36,21 @@ import java.util.concurrent.ExecutionException;
 public class ViewDispatcher {
     private Log logger = LogFactory.getLog(ViewDispatcher.class);
 
-    @Resource
+    @Resource(name = "iTTagService")
     private ITTagService tagService;
 
-    @Resource
+    @Resource(name = "iTArticleService")
     private ITArticleService articleService;
 
     @Resource
     private CourseSubjectService courseSubjectService;
 
-    @Resource
-    private WeiboService weiboService;
 
     @Resource
     private CacheManager cacheManager;
+
+    @Resource
+    private IBlogService blogService;
 
     @Resource
     private CategoryHelper categoryHelper;
@@ -63,22 +66,22 @@ public class ViewDispatcher {
         List<ITTagDto> tagList = tagService.getAllTags();
         mav.addObject("tagList", tagList);
 
-        List<ITArticle> articleList = articleService.getGreeArticle();
+        List<ArticleDto> articleList = articleService.getGreeArticle();
         mav.addObject("greeArticleList", articleList);  //头条文章
 
-        List<ITArticle> softwareInformations = articleService.getSoftwareInformations();
+        List<ArticleDto> softwareInformations = articleService.getSoftwareInformations();
         mav.addObject("softwareInformations", softwareInformations);    //软件资讯
 
-        List<ITArticle> recentlyReadArticles = null;
+        List<Article> recentlyReadArticles = null;
         if (user != null) {
             recentlyReadArticles = articleService.getRecentlyReadedArticlesByUser(user);
         }
         mav.addObject("recentlyReadArticles", recentlyReadArticles);    //用户最近阅读的文章
 
-        List<ITArticle> newItArticleList = articleService.getNewArticles();
+        List<Article> newItArticleList = articleService.getNewArticles();
         mav.addObject("newItArticleList", newItArticleList);    //最新文章
 
-        List<ITArticle> excellentItArticleList = articleService.getExcellentArticle();
+        List<Article> excellentItArticleList = articleService.getExcellentArticle();
         mav.addObject("excellentItArticleList", excellentItArticleList);    //最新文章
 
         mav.setViewName("/index");
@@ -103,8 +106,6 @@ public class ViewDispatcher {
     public ModelAndView redirect2homePage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         User user = MWSessionUtils.getUser2Session(request);
-        List<Weibo> weiboList = weiboService.getWeiboByUserid(String.valueOf(user.getId()));
-        modelAndView.addObject("weiboList", weiboList);
         modelAndView.setViewName("/personal/personalHome");
         return modelAndView;
     }
@@ -117,6 +118,20 @@ public class ViewDispatcher {
             mav.addObject("redirect_after_login", redirectAfterLogin);
         }
         mav.setViewName("/login");
+        return mav;
+    }
+
+    @RequestMapping(value = "/blog")
+    public ModelAndView blog() {
+        ModelAndView mav = new ModelAndView();
+        List<ArticleDto> latestArticleList = blogService.getLatestArticleList();
+        List<ArticleDto> hotArticleList = blogService.getHotArticleList();
+        List<Map<String, Object>> blogCategory = blogService.getArticleByAllCategoryWithCache();
+
+        mav.addObject("latestArticleList", latestArticleList != null ? latestArticleList : new ArrayList<>());
+        mav.addObject("hotArticleList", hotArticleList != null ? hotArticleList : new ArrayList<>());
+        mav.addObject("blogCategory", blogCategory != null ? blogCategory : new ArrayList<>());
+        mav.setViewName("/article/index");
         return mav;
     }
 }

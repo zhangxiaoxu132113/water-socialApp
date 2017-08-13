@@ -1,6 +1,6 @@
 package com.water.db.controller;
 
-import com.water.db.model.User;
+import com.water.uubook.model.User;
 import com.water.db.service.interfaces.UserService;
 import com.water.utils.common.Constants;
 import com.water.utils.web.MWLoginUtils;

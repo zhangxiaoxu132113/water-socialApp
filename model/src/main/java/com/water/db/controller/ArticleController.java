@@ -1,10 +1,16 @@
 package com.water.db.controller;
 
-import com.water.db.model.ITArticle;
-import com.water.db.model.dto.ITArticleDto;
+import com.water.uubook.model.Article;
+import com.water.uubook.model.CourseSubject;
+import com.water.uubook.model.ITArticle;
+import com.water.uubook.model.Tag;
+import com.water.uubook.model.dto.*;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
 import com.water.utils.lang.StringUtil;
+import com.water.uubook.service.CategoryService;
+import com.water.uubook.service.CourseService;
+import com.water.uubook.service.CourseSubjectService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -16,8 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by mrwater on 2017/4/2.
@@ -28,22 +36,46 @@ import java.util.Map;
 public class ArticleController {
     private Log logger = LogFactory.getLog(ArticleController.class);
 
-    @Resource
+    @Resource(name = "iTTagService")
     private ITTagService tagService;
 
-    @Resource
+    @Resource(name = "iTArticleService")
     private ITArticleService articleService;
 
+    @Resource
+    private CategoryService categoryService;
+
+    @Resource
+    private CourseSubjectService courseSubjectService;
+
     @RequestMapping(value = "/detail/{articleId}.html")
-    public ModelAndView getArticleDetail(@PathVariable String articleId) {
+    public ModelAndView getArticleDetail(@PathVariable int articleId) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
-        ITArticleDto article = articleService.getArticleDetailById(articleId);
+        List<Article> articleList = new ArrayList<>();
+        ArticleDto article = articleService.getArticleDetailById(articleId);
         if (article != null) {
-            List<ITArticle> articleList = articleService.getRelatedArticles(article.getTitle(), 5);
+            articleList = articleService.getRelatedArticles(article.getTitle(), 10);
             article.setRelatedArticles(articleList);
         }
+        CategoryDto categoryDto = categoryService.getCategoryById(article.getCategory());
+        List<CategoryDto> categoryDtos = categoryService.getHotCategories();
+
+        List<CourseSubjectDto> recommendCourses = new ArrayList<>();
+        String[] tagArray = new String[5];
+        List<Tag> tags = article.getTagList();
+        if (tags != null && tags.size() > 0) {
+            for (int i=0; i<tags.size(); i++) {
+                tagArray[i] = tags.get(i).getName();
+            }
+        }
+        recommendCourses = courseSubjectService.getRecommendCourseSubjectByTags(tagArray);
+
         mav.addObject("article", article);
-        mav.setViewName("/articleDetail");
+        mav.addObject("category", categoryDto);
+        mav.addObject("categoryDtos", categoryDtos);
+        mav.addObject("relatedArticles", articleList);
+        mav.addObject("recommendCourses", recommendCourses);
+        mav.setViewName("/article/articleDetail");
         return mav;
     }
 

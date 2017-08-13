@@ -27,8 +27,8 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="<%=path%>/blog">技术博文</a></li>
-            <li><a href="<%=path%>/new">IT资讯</a></li>
+            <li><a href="<%=path%>/blog">文档库</a></li>
+            <li><a href="<%=path%>/new">资讯</a></li>
             <li><a href="<%=path%>/course">IT教程</a></li>
             <li><a href="<%=path%>/base">知识库</a></li>
         </ul>

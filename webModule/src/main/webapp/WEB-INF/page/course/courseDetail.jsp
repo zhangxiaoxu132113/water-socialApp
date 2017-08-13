@@ -86,7 +86,7 @@
                         <div class="course-description">${courseSubjectDto.description}</div>
                         <ul class="catalog-list">
                             <c:forEach items="${requestScope.courseDtoList}" var="course" varStatus="status">
-                                <li><a href="/course/${requestScope.courseSubjectDto.name}/${course.id}.html">${status.index + 1},${course.title}</a></li>
+                                <li><a href="/course/${requestScope.courseSubjectDto.name}/${course.articleId}.html">${status.index + 1},${course.title}</a></li>
                             </c:forEach>
                         </ul>
 

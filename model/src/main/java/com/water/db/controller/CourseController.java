@@ -1,12 +1,13 @@
 package com.water.db.controller;
 
-import com.water.db.model.ITArticle;
-import com.water.db.model.dto.CourseDto;
-import com.water.db.model.dto.CourseSubjectDto;
-import com.water.db.service.interfaces.CourseService;
-import com.water.db.service.interfaces.CourseSubjectService;
+import com.water.uubook.model.Article;
+import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.CourseDto;
+import com.water.uubook.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.utils.lang.StringUtil;
+import com.water.uubook.service.CourseService;
+import com.water.uubook.service.CourseSubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 @Controller
 @RequestMapping(value = "/course")
 public class CourseController {
-    @Resource
+    @Resource(name = "iTArticleService")
     private ITArticleService articleService;
 
     @Resource
@@ -43,7 +44,7 @@ public class CourseController {
         queryMap.put("courseName", courseName);
 
         CourseSubjectDto courseSubjectDto = courseSubjectService.getCourseSubjectByExample(queryMap);
-        List<ITArticle> articleList = articleService.getRelatedArticles(courseName, 10);
+        List<Article> articleList = articleService.getRelatedArticles(courseName, 10);
         List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
 
         ModelAndView mav = new ModelAndView();
@@ -56,22 +57,23 @@ public class CourseController {
 
     @RequestMapping(value = "/{courseName}/{articleId}.html")
     public ModelAndView getArticleDetail(@PathVariable String courseName,
-                                         @PathVariable String articleId) throws UnsupportedEncodingException {
+                                         @PathVariable Integer articleId) throws UnsupportedEncodingException {
         ModelAndView mav = new ModelAndView();
-//        courseName = StringUtil.transform2utf8(courseName);
-//        courseName = StringUtil.deconde(courseName);
-//        List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
-//        if (catalogTitleList == null || catalogTitleList.isEmpty()) {
-//            //todo 返回404
-//        }
+        courseName = StringUtil.transform2utf8(courseName);
+        courseName = StringUtil.deconde(courseName);
+        List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
+        if (catalogTitleList == null || catalogTitleList.isEmpty()) {
+            //todo 返回404
+        }
 
-//        ITArticleDto article = articleService.getArticleDetailById(articleId);
+        ArticleDto article = articleService.getArticleDetailById(articleId);
 //        if (article != null) {
-//            List<ITArticle> articleList = articleService.getRelatedArticles(article);
+//            List<Article> articleList = articleService.getRelatedArticles(article);
 //            article.setRelatedArticles(articleList);
 //        }
-//        mav.addObject("article", article);
-//        mav.addObject("catalogTitleList", catalogTitleList);
+        mav.addObject("courseName", courseName);
+        mav.addObject("article", article);
+        mav.addObject("catalogTitleList", catalogTitleList);
         mav.setViewName("/course/courseArticle");
         return mav;
     }

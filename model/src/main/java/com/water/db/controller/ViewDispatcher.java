@@ -134,4 +134,11 @@ public class ViewDispatcher {
         mav.setViewName("/article/index");
         return mav;
     }
+
+    @RequestMapping(value = "/new")
+    public ModelAndView newModule() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/news/newsIndex");
+        return mav;
+    }
 }

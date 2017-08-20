@@ -118,13 +118,9 @@
                                 <ul class="clearfix">
                                     <li><a href="">最热</a></li>
                                     <li><a href="">最新</a></li>
-                                    <li><a href="">程序人生</a></li>
-                                    <li><a href="">大数据</a></li>
-                                    <li><a href="">人工智能</a></li>
-                                    <li><a href="">物联网</a></li>
-                                    <li><a href="">物联网</a></li>
-                                    <li><a href="">物联网</a></li>
-                                    <li><a href="">物联网</a></li>
+                                    <c:forEach items="${requestScope.categoryDtos}" var="category">
+                                        <li><a href="<%=path%>/blog/${category.name}">${category.name}</a></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                             <div class="topic-articles">

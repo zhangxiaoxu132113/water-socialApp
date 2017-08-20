@@ -13,7 +13,7 @@ body {
 }
 
 #container {
-    width: 1140px;
+    width: 1080px;
     height: 100%;
     margin: 0 auto;
 }
@@ -28,14 +28,14 @@ body {
 
 #main-content-left {
     display: inline-block;
-    width: 60%;
+    width: 65%;
     border-right: 1px #ddd solid;
     padding-right: 2em;
 }
 
 #main-content-right {
     display: inline-block;
-    width: 35%;
+    width: 30%;
     vertical-align: top;
     padding-left: 1em;
 }
@@ -116,6 +116,11 @@ body {
     position: relative;
 }
 
+#view-info {
+    border-bottom: 1px #ccc dotted;
+    margin-bottom: 1em;
+}
+
 #view-info-detail-content ul li a:link {
     text-decoration: none;
     color: #666;
@@ -140,6 +145,10 @@ body {
     padding-bottom: 10px;
     overflow: hidden;
     border-bottom: 1px #ccc dotted;
+}
+
+#view-info-list ul li:last-child {
+    border-bottom: none;
 }
 
 #view-info-list ul li:last-child {
@@ -194,6 +203,7 @@ body {
 #new-software-info ul li div {
     position: relative;
     padding-left: 1em;
+    width: 320px;
 }
 
 #new-software-info ul li:first-child span {
@@ -241,10 +251,33 @@ body {
     padding-right: 15px;
 }
 
-#knowdega-info h2 {
-    color: #444;
-    margin-top: 10px;
+.h2-header-info{
+    color: #333;
+    font: normal 18px/30px "Microsoft YaHei";
+    border-bottom: 2px #333 solid;
+    margin-bottom: 15px;
+}
+
+#course-info ul li {
+    margin-bottom: 10px;
     padding-bottom: 10px;
+    border-bottom: 1px #ccc dotted;
+}
+
+#course-info ul li img {
+    float: left;
+    width: 90px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+#course-info ul li h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#course-info ul li p {
+    color: #888;
 }
 
 .language-icon {
@@ -271,12 +304,36 @@ body {
     text-align: center;
 }
 
-#knowdega-info ul li {
-    margin-bottom: 0.25em;
-    border: 1px solid rgba(204, 204, 204, 0.25);
+.base-desc {
     display: inline-block;
-    width: 48%;
     vertical-align: top;
+}
+
+.base-name {
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+
+#knowdega-info ul li {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(203, 203, 203, 0.4);
+    margin-bottom: 0.25em;
+    /*border: 1px solid rgba(204, 204, 204, 0.25);*/
+    /*display: inline-block;*/
+    /*width: 48%;*/
+    /*vertical-align: top;*/
+}
+
+.base-img {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 0.5em;
+}
+
+.base-img img {
+    width: 60px;
+    height: 60px;
 }
 
 .col-sm-2 dl dt {
@@ -343,4 +400,67 @@ body {
     display: inline-block;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+#article-list .left {
+    width: 240px;
+    float: left;
+    margin-right: 30px;
+}
+
+#article-list .right {
+    width: 379px;
+    float: left;
+}
+
+#subject-list ul li {
+    overflow: hidden;
+    margin-bottom: 20px;
+    font: normal 16px/22px "Microsoft YaHei";
+}
+
+#subject-list ul li a{
+    color: #333;
+    text-decoration: none;
+}
+
+#subject-list ul li em {
+    font-size: 22px;
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+    border-right: 2px solid #333;
+}
+
+#recently-article-list ul li {
+    padding-bottom: 13px;
+    margin-bottom: 2px;
+    border-bottom: 1px #ddd dotted;
+    display: block;
+}
+
+#recently-article-list ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#recently-article-list ul li a h3 {
+    font: normal 18px/28px "Microsoft YaHei";
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#recently-article-list ul li img {
+    display: block;
+    float: none;
+    width: 389px;
+    height: 195px;
+    margin: 0 auto;
+}
+
+#new-software-info ul li div a  {
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
 }

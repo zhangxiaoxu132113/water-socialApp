@@ -3,6 +3,7 @@ package com.water.db.controller;
 import com.water.db.service.interfaces.IBlogService;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
+import com.water.db.service.interfaces.NewsService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.MWSessionUtils;
@@ -10,14 +11,17 @@ import com.water.utils.web.vo.Category;
 import com.water.uubook.model.Article;
 import com.water.uubook.model.User;
 import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.CategoryDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
 import com.water.uubook.model.dto.ITTagDto;
+import com.water.uubook.service.CategoryService;
 import com.water.uubook.service.CourseSubjectService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -35,16 +39,14 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class ViewDispatcher {
     private Log logger = LogFactory.getLog(ViewDispatcher.class);
-
-    @Resource(name = "iTTagService")
-    private ITTagService tagService;
+    @Resource
+    private CategoryService categoryService;
 
     @Resource(name = "iTArticleService")
     private ITArticleService articleService;
 
     @Resource
     private CourseSubjectService courseSubjectService;
-
 
     @Resource
     private CacheManager cacheManager;
@@ -55,6 +57,9 @@ public class ViewDispatcher {
     @Resource
     private CategoryHelper categoryHelper;
 
+    @Resource
+    private NewsService newsService;
+
     @RequestMapping(value = "/")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
@@ -63,7 +68,7 @@ public class ViewDispatcher {
         List<Category> categoryList = categoryHelper.getAllCategories();
         mav.addObject("categoryList", categoryList);
 
-        List<ITTagDto> tagList = tagService.getAllTags();
+        List<CategoryDto> tagList = categoryService.getAllParentCategories();
         mav.addObject("tagList", tagList);
 
         List<ArticleDto> articleList = articleService.getGreeArticle();
@@ -71,6 +76,9 @@ public class ViewDispatcher {
 
         List<ArticleDto> softwareInformations = articleService.getSoftwareInformations();
         mav.addObject("softwareInformations", softwareInformations);    //软件资讯
+
+        List<CourseSubjectDto> courseSubjectDtos = courseSubjectService.getHotCourseSubjectWithSize(4);
+        mav.addObject("courseSubjectDtos", courseSubjectDtos); //热门教程
 
         List<Article> recentlyReadArticles = null;
         if (user != null) {
@@ -136,8 +144,18 @@ public class ViewDispatcher {
     }
 
     @RequestMapping(value = "/new")
-    public ModelAndView newModule() {
+    public ModelAndView newModule(@RequestParam(defaultValue = "1") Integer type, @RequestParam(defaultValue = "1") Integer currentPage) {
+        int pageSize = 15;
         ModelAndView mav = new ModelAndView();
+        List<ArticleDto> articleDtoList = newsService.getNewsByPage(currentPage, pageSize, type);
+        Integer totalHits = newsService.countNewsTotal(type);
+        List<ArticleDto> hotArticleList = newsService.getHotNews();
+
+        mav.addObject("type", type);
+        mav.addObject("totalHits", totalHits);
+        mav.addObject("currentPage", currentPage);
+        mav.addObject("articleDtoList", articleDtoList);
+        mav.addObject("hotArticleList", hotArticleList);
         mav.setViewName("/news/newsIndex");
         return mav;
     }

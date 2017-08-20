@@ -52,7 +52,7 @@ public class ITArticleServiceImpl implements ITArticleService {
             Map<String, Object> queryParam = new HashMap<String, Object>();
             Article article = new Article();
             article.setModule(0);
-            int pageSize = 13;
+            int pageSize = 11;
             int begin = 0;
             queryParam.put("pageSize", pageSize);
             queryParam.put("begin", begin);
@@ -197,7 +197,7 @@ public class ITArticleServiceImpl implements ITArticleService {
                                 queryParam = new HashMap<String, Object>();
                                 article = new Article();
                                 article.setModule(0);
-                                pageSize = 13;
+                                pageSize = 11;
                                 begin = 0;
                                 queryParam.put("pageSize", pageSize);
                                 queryParam.put("begin", begin);

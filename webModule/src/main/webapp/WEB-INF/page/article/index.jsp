@@ -25,12 +25,11 @@
             <div class="header-nav">
                 <div class="header-nav-inner">
                     <ul>
-                        <li>首页</li>
-                        <li>文档库</li>
-                        <li>资讯</li>
-                        <li>IT教程</li>
-                        <li>知识库</li>
-                        <li>知识库</li>
+                        <li><a href="<%=path%>/">首页</a></li>
+                        <li><a href="<%=path%>/blog">文档库</a></li>
+                        <li><a href="<%=path%>/new">资讯</a></li>
+                        <li><a href="<%=path%>/course">IT教程</a></li>
+                        <li><a href="<%=path%>/base">知识库</a></li>
                     </ul>
                 </div>
             </div>

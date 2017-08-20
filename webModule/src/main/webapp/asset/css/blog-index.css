@@ -46,6 +46,10 @@ body {
     line-height: 28px;
 }
 
+.header-nav-inner ul li a {
+    color:#69696b;
+}
+
 .header-user ul li {
     float: right;
     margin-right: 2em;

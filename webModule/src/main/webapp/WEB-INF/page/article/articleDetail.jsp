@@ -31,11 +31,11 @@
                 <div class="header-nav">
                     <div class="header-nav-inner">
                         <ul>
-                            <li>首页</li>
-                            <li>文档库</li>
-                            <li>资讯</li>
-                            <li>IT教程</li>
-                            <li>知识库</li>
+                            <li><a href="<%=path%>/">首页</a></li>
+                            <li><a href="<%=path%>/blog">文档库</a></li>
+                            <li><a href="<%=path%>/new">资讯</a></li>
+                            <li><a href="<%=path%>/course">IT教程</a></li>
+                            <li><a>知识库</a></li>
                             <li>经验</li>
                             <li>兴趣&生活</li>
                         </ul>
@@ -103,19 +103,19 @@
                 <div class="main-body-left">
                     <div class="content">
                         ${requestScope.article.content}
+                        <style>
+                            .bdsharebuttonbox {
+                                background: #fff;
+                                margin-top: 10px;
+                                padding: 10px;
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+                            .bdsharebuttonbox a:link {
+                                text-decoration: none;
+                            }
+                        </style>
                         <div class="bdsharebuttonbox">
-                            <style>
-                                .bdsharebuttonbox {
-                                    background: #fff;
-                                    margin-top: 10px;
-                                    padding: 10px;
-                                    width: 100%;
-                                    box-sizing: border-box;
-                                }
-                                .bdsharebuttonbox a:link {
-                                    text-decoration: none;
-                                }
-                            </style>
                             <a href="#" class="bds_more" data-cmd="more">分享到：</a>
                             <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
                             <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
@@ -134,16 +134,9 @@
                         <a href="" style="position: absolute;right: 20px;top: 25px">查看更多</a>
                         <h3>相关文章</h3>
                         <ul class="clearfix">
-                            <li><span class="dot"></span><a href="">Facelets 非常适合 JSF </a></li>
-                            <li><span class="dot"></span><a href="">从 XUL Planet 网站上了解更多关于 XMLHttpRequest API </a></li>
-                            <li><span class="dot"></span><a href="">ava 下一代: 克服同义词干扰</a></li>
-                            <li><span class="dot"></span><a href="">深入探索 Java 热部署</a></li>
-                            <li><span class="dot"></span><a href="">利用 Eclipse 进行单元测试</a></li>
-                            <li><span class="dot"></span><a href="">使用 Ruby 实现业务驱动的 Web 应用程序测试</a></li>
-                            <li><span class="dot"></span><a href="">权威支持: 切实了解您的 Web 应用程序正在进行的操作</a></li>
-                            <li><span class="dot"></span><a href="">Java 开发 2.0: NoSQL</a></li>
-                            <li><span class="dot"></span><a href="">Spring3.2 中 Bean 定义之基于 XML 配置方式的源码解析</a></li>
-                            <li><span class="dot"></span><a href="">实战 Groovy: 构建和解析 XML</a></li>
+                            <c:forEach items="${requestScope.relatedArticles}" var="article">
+                                <li><span class="dot"></span><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>

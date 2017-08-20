@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.water.utils.common.Constants" %><%--
   Created by IntelliJ IDEA.
   User: zhangmiaojie
   Date: 2017/6/21
@@ -51,8 +51,41 @@
         .zuixin {
             margin-top: 20px;
         }
+        .crumb {
+            margin-bottom: 0.5em;
+            margin-top: -1em;
+            color:#989898;
+        }
+        .crumb a {
+            text-decoration: none;
+            font-size: 15px;
+            color:#989898;
+        }
+        .remen {
+            margin-top: 1em;
+        }
+        .art-info {
+            height: 34px;
+            text-align: center;
+            color: #989898;
+        }
+        .content-info {
+            margin-bottom: 24px;
+            
+        }
+        .content-info span {
+            margin-right: 0.5em;
+        }
+        .num-active {
+            color: #ff8800!important;
+        }
+        .qrcode {
+            margin-top: 1em;
+        }
     </style>
     <link rel="stylesheet" href="<%=path%>/asset/css/new-index.css">
+    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
+    <script src="<%=path%>/asset/js/jquery.js"></script>
 </head>
 
 <body>
@@ -63,12 +96,12 @@
                 <div class="header-nav">
                     <div class="header-nav-inner">
                         <ul>
-                            <li>首页</li>
-                            <li>文档库</li>
-                            <li>资讯</li>
-                            <li>IT教程</li>
+                            <li><a href="<%=path%>/">首页</a></li>
+                            <li><a href="<%=path%>/blog">文档库</a></li>
+                            <li><a href="<%=path%>/new">资讯</a></li>
+                            <li><a href="<%=path%>/course">IT教程</a></li>
                             <li>知识库</li>
-                            <li>知识库</li>
+                            <li>经验</li>
                         </ul>
                     </div>
                 </div>
@@ -89,10 +122,13 @@
                 </div>
                 <div id="jnav">
                     <ul class="nav-inner">
-                        <li><a href="">最新资讯</a></li>
-                        <li><a href="">业界资讯</a></li>
-                        <li><a href="">业界资讯</a></li>
-                        <li><a href="">业界资讯</a></li>
+                        <li><a href="<%=path%>/new">最新资讯</a></li>
+                        <li><a href="<%=path%>/new?type=<%=Constants.ARTICLE_MODULE.TOU_TIAO.getIndex()%>">头条</a></li>
+                        <li>
+                            <a href="<%=path%>/new?type=<%=Constants.ARTICLE_MODULE.RUANJIAN_GENGXIN.getIndex()%>">软件更新</a>
+                        </li>
+                        <li><a href="<%=path%>/new?type=<%=Constants.ARTICLE_MODULE.IT_HANGYE.getIndex()%>">IT行业</a>
+                        </li>
                         <li><a href="">业界资讯</a></li>
                         <li><a href="">业界资讯</a></li>
                     </ul>
@@ -102,15 +138,54 @@
         <div id="main-content"  class="clearfix">
             <div id="main-content-inner">
                 <div class="left-body">
+                    <div class="crumb">
+                        <a href="">首页</a> >
+                        <a href="">头条资讯</a> >
+                        <a href="">${requestScope.article.title}</a>
+                    </div>
                     <div class="art">
-                        <h3 class="title">外媒：无人驾驶客机可能在2025年就会出现</h3>
-                        <p></p>
-                        <div class="content">
-                            <div class="editor-viewer text clear">
-                                <p>EMQ R2.3-beta.2 版本正式发布！该版本新增HTTP管理API，支持集群粒度的连接与会话管理，集群节点的性能指标监控，并支持节点、插件配置通过命令行热更新。</p><p>支持配置热更新的插件包括:</p><ul class=" list-paddingleft-2"><li><p>emq-stomp</p></li><li><p>emq-coap</p></li><li><p>emq-sn</p></li><li><p>emq-lwm2m</p></li><li><p>emq-dashboard</p></li><li><p>emq-retainer</p></li><li><p>emq-recon</p></li><li><p>emq-web-hook</p></li><li><p>emq-auth-jwt</p></li><li><p>emq-auth-http</p></li><li><p>emq-auth-mongo</p></li><li><p>emq-auth-mysql</p></li><li><p>emq-auth-pgsql</p></li><li><p>emq-auth-redis</p></li></ul><h4>功能与改进</h4><ol class=" list-paddingleft-2"><li><p>新增集群粒度的HTTP管理API</p></li><li><p>HTTP Publish接口支持ClientId参数</p></li><li><p>支持配置Keepalive超时检测周期</p></li><li><p>删除连接、会话的默认fullsweep_after参数，以降低在高消息吞吐下的CPU使用率</p></li><li><p>支持通过ClientId认证HTTP Publish请求</p></li></ol><h4>emq-sn 插件 (emq-sn#49)</h4><ol class=" list-paddingleft-2"><li><p>Support CONNECT message in connected/wait_for_will_topic/wait_for_will_msg states.</p></li><li><p>Clean registered topic for a restarted client.</p></li><li><p>Bug fix of not clearing buffered PUBLISH messages received during asleep state as those messages are sent to client when client wakes up.</p></li></ol><h4>emq-auth-ldap Plugin (emq-auth-ldap#21)</h4><p>Improve the design LDAP authentication.</p><h4>emq-coap Plugin (emq-coap#51)</h4><p>Support CoAP PubSub Specification (<a data-cke-saved-href="https://www.ietf.org/id/draft-ietf-core-coap-pubsub-02.txt" href="https://www.ietf.org/id/draft-ietf-core-coap-pubsub-02.txt">https://www.ietf.org/id/draft-ietf-core-coap-pubsub-02.txt</a>)</p>
-
-
+                        <h3 class="title">${requestScope.article.title}</h3>
+                        <div class="art-info">
+                            <div class="content-info">
+                                <span class="public_time">2017-08-12 09:34</span>
+                                <span><i class="iconfont">&#xe739;</i></span>
+                                <span class="view_count"><i class="iconfont">&#xe65e;</i> 54</span>
                             </div>
+                        </div>
+                        <div class="content">
+                            <div class="editor-viewer text clear">${requestScope.article.content}</div>
+                            首先是Android SVP Hiroshi Lockheimer的推文，他在7月份发贴了一张Orangina菜单照片，并且附带“#nocomment”的字样。
+
+                            另外，The Verge今天早些时候收到了Best Buy的内部客户培训系统截图，其中也有Android 8.0 Orangina的字样，也许百思买知道我们不知道的东西，而Android O真的是Android Orangina。
+
+                            尽管如此，它可能不会被称为Orangina。首先，Orangina，而一个美味可口的橙色饮料，不是一个甜点食物，这将粉碎Android命名方案。最后，Orangina是Pepper Snapple集团拥有的专有饮料，如果Google愿意与公司实体取得授权使用名称，类似于Android KitKat，那么逻辑上它会采用Oreo奥立奥，它是人们广泛认认可和喜爱的甜点食物。
+
+                            Android O可能命名为Orangina 8月底发布
+
+                            Android O可能命名为Orangina 8月底发布
+
+
+                        </div>
+                        <style>
+                            .bdsharebuttonbox {
+                                background: rgba(246, 246, 246, 0.68);
+                                margin: 20px auto 0;
+                                padding: 10px;
+                                width: 100%;
+                                box-sizing: border-box;
+                                width: 690px;
+                            }
+                            .bdsharebuttonbox a:link {
+                                text-decoration: none;
+                            }
+                        </style>
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
                         </div>
                     </div>
                     <div class="art-list">
@@ -134,7 +209,7 @@
                                 </dl>
                             </li>
                             <li>
-                                <i class="lpic"><a href=""><img width="200" height="150" src="http://img.ads.csdn.net/2017/201707261739016778.jpg" alt=""></a></i>
+                                <i class="lpic"><a href=""><img width="200" height="150" src="http://images.csdn.net/20170804/默认标题_自定义px_2017.08.04.jpg" alt=""></a></i>
                                 <dl>
                                     <dt><a href="">外媒：无人驾驶客机可能在2025年就会出现</a></dt>
                                     <dd>
@@ -179,6 +254,10 @@
                     </div>
                 </div>
                 <div class="right-body">
+                    <div class="box qrcode clearfix">
+                        <img src="http://image.39.net/wap/ask/images/wx_rk_13.jpg" width="60" height="60"  alt="" style="float: left;margin-right: 1em">
+                        <span style="font-size: 16px;padding-top:1em;color:#0b90dc">查看更多资讯内容<br/>请关注uubook微信公众号</span>
+                    </div>
                     <div class="box remen">
                         <div class="hd">
                             <i></i>
@@ -186,14 +265,12 @@
                         </div>
                         <div class="bd">
                             <ol>
-                                <li><a href=""><em>1</em><span>不知妻美刘强东！章泽天罕见晒照 深V上装依旧显清纯</span></a></li>
-                                <li><a href=""><em>2</em><span>亚马逊改良语音助手Alexa：或带来全新体验</span></a></li>
-                                <li><a href=""><em>3</em><span>AMD 16核旗舰CPU上市！其散热装置亮瞎眼！</span></a></li>
-                                <li><a href=""><em>4</em><span>索尼PS4 Pro主机性能再次升级：显卡给力！</span></a></li>
-                                <li><a href=""><em>5</em><span>特斯拉成功发行18亿美元债券：超募约4.5倍</span></a></li>
-                                <li><a href=""><em>6</em><span>技术宅打造动漫美少女头像创建工具 AI帮你画萌妹子</span></a></li>
-                                <li><a href=""><em>7</em><span>Moto Mods手柄进行开售：售价不到80美元！</span></a></li>
-                                <li><a href=""><em>8</em><span>奶茶妹妹晒高难度美体健身操：腰腹力量柔韧性惊人</span></a></li>
+                                <li class="clearfix">
+                                    <img src="http://images.csdn.net/20170817/567.jpg" width="120" height="90" alt="" style="float: left;margin-right: 1em"><em class="num-active">1</em><a href="">${requestScope.hotArticleList[0].title}</a>
+                                </li>
+                                <c:forEach items="${requestScope.hotArticleList}" begin="1" var="article" varStatus="status">
+                                    <li><a href="<%=path%>/new/detail/${article.id}.html"><em <c:if test="${status.index == 1 || status.index == 2}">class="num-active"</c:if>>${status.index + 1}</em><span>${article.title}</span></a></li>
+                                </c:forEach>
                             </ol>
                         </div>
                     </div>
@@ -204,14 +281,9 @@
                         </div>
                         <div class="bd">
                             <ol>
-                                <li><a href=""><em>1</em><span>不知妻美刘强东！章泽天罕见晒照 深V上装依旧显清纯</span></a></li>
-                                <li><a href=""><em>2</em><span>亚马逊改良语音助手Alexa：或带来全新体验</span></a></li>
-                                <li><a href=""><em>3</em><span>AMD 16核旗舰CPU上市！其散热装置亮瞎眼！</span></a></li>
-                                <li><a href=""><em>4</em><span>索尼PS4 Pro主机性能再次升级：显卡给力！</span></a></li>
-                                <li><a href=""><em>5</em><span>特斯拉成功发行18亿美元债券：超募约4.5倍</span></a></li>
-                                <li><a href=""><em>6</em><span>技术宅打造动漫美少女头像创建工具 AI帮你画萌妹子</span></a></li>
-                                <li><a href=""><em>7</em><span>Moto Mods手柄进行开售：售价不到80美元！</span></a></li>
-                                <li><a href=""><em>8</em><span>奶茶妹妹晒高难度美体健身操：腰腹力量柔韧性惊人</span></a></li>
+                                <c:forEach items="${requestScope.newestArticleList}" var="article" varStatus="status">
+                                    <li><a href="<%=path%>/new/detail/${article.id}.html"><em <c:if test="${status.index == 0 || status.index == 1 || status.index == 2}">class="num-active"</c:if>>${status.index + 1}</em><span>${article.title}</span></a></li>
+                                </c:forEach>
                             </ol>
                         </div>
                     </div>
@@ -221,4 +293,45 @@
     </div>
 </div>
 </body>
+<script>
+    //全局变量，动态的文章ID
+    var ShareId = "";
+    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
+    $(function () {
+        $(".bdsharebuttonbox a").mouseover(function () {
+            ShareId = $(this).attr("data-id");
+        });
+    });
+
+    /*
+     * 设置分享的url连接地址
+     */
+    function SetShareUrl(cmd, config) {
+        config.bdUrl = document.URL;
+        config.bdText = $('title').text();
+        config.bdDesc = "用户将网站内容分享到第三方网站，第三方网站的用户点击专有的分享链接，从第三方网站带来社会化流量";
+        config.bdPic = "";
+
+        console.log(config.bdUrl);
+        console.log(config.bdText);
+        console.log(config.bdDesc);
+        return config;
+    }
+
+    window._bd_share_config = {
+        "common": {
+            onBeforeClick: SetShareUrl,
+            "bdSnsKey": {},
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {"bdSize": 16},
+        "image": {"viewList": ["qzone", "tsina", "weixin", "tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
+        "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "weixin", "tqq", "renren"]}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
 </html>

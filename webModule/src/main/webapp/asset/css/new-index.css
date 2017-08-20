@@ -49,6 +49,11 @@ body {
     line-height: 28px;
 }
 
+.header-nav-inner ul li a {
+    color: #69696b;
+    text-decoration: none;
+}
+
 .header-user ul li {
     float: right;
     margin-right: 2em;
@@ -135,6 +140,7 @@ body {
 
 #main-content {
     background: #f6f6f6;
+    padding-bottom: 3em;
 }
 
 #main-content #main-content-inner {
@@ -269,4 +275,29 @@ body {
     height: 24px;
     overflow: hidden;
     display: inline-block;
+}
+
+.page {
+    margin:2em 0;
+    text-align: center;
+}
+.last-page {
+    width: auto!important;
+    padding: 0 1em;
+    margin-right: 1em;
+
+}
+.next-page {
+    width:auto!important;
+    padding:0 1em;
+    margin-left: 1em;
+}
+.page a {
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+    text-align: center;
+    line-height: 34px;
+    border: 1px solid #e1e2e3;
+    background: #fff;
 }

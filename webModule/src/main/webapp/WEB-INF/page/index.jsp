@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.water.uubook.model.dto.ArticleDto" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: mrwater
   Date: 2017/4/2
@@ -10,6 +11,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    List<ArticleDto> articleDtoList = (List<ArticleDto>) request.getAttribute("greeArticleList");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,22 +35,22 @@
                     <div id="view-info-detail" style="display: inline-block;width: 59%">
                         <img src="<%=path%>/asset/content/123.png">
 
-                        <div id="view-info-detail-title"><a>图数据库：大数据时代的高铁</a></div>
+                        <div id="view-info-detail-title"><a><%=articleDtoList.get(0).getTitle() %></a></div>
                         <div id="view-info-detail-description">
-                            如果把关系型数据库比做火车，那么大数据时代，图数据库可比做高铁。它已成为NoSQL中关注度最高，发展趋势最明显的技术
+                            <%=articleDtoList.get(0).getDescription() %>
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
-                                <c:forEach items="${requestScope.greeArticleList}" begin="10" end="13" var="article">
-                                    <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
+                                <c:forEach items="${requestScope.greeArticleList}" begin="9" end="11" var="article">
+                                    <li><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
                     </div>
                     <div id="view-info-list">
                         <ul>
-                            <c:forEach items="${requestScope.greeArticleList}" begin="0" end="9" var="article">
-                                <li><a href="<%=path%>/article/detail/${article.id}">${article.title}</a></li>
+                            <c:forEach items="${requestScope.greeArticleList}" begin="1" end="8" var="article">
+                                <li><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
                             <span style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</span>
                         </ul>
@@ -58,126 +60,48 @@
                     <img src="<%=path%>/asset/content/banner.jpg">
                 </div>
                 <div id="view-tab">
-                    <div id="tab">
-                        <ul>
-                            <li class="tab-active">最近阅读</li>
-                            <li>最新文章</li>
-                            <li>精彩文章</li>
-                        </ul>
-                    </div>
-                    <div class="article-list">
-                        <div class="article-title-inner">
-                            <div class="article-list-item-inner">
-                                <section class="article-list-item">
-                                    <div class="qa-rank">
-                                        <div class="bb">
-                                            12
-                                            <small style="display: block;font-size: 12px;">笔记</small>
-                                        </div>
-                                        <div class="aa">
-                                            0
-                                            <small style="display: block;font-size: 12px">浏览</small>
-                                        </div>
+                    <div id="article-list">
+                        <div class="left">
+                            <div id="subject-list">
+                                <h2 class="h2-header-info">经验</h2>
+                                <ul>
+                                    <li><em>1</em><a href="">（干货）：Spark性能优化</a></li>
+                                    <li><em>2</em><a href="">ssm框架系列（1）-环境搭建</a></li>
+                                    <li><em>3</em><a href="">Java集合类操作优化经验总结</a></li>
+                                    <li><em>4</em><a href="">Linux下搭建MySQL集群</a></li>
+                                    <li><em>5</em><a href="">Java进阶书籍推荐</a></li>
+                                    <li><em>6</em><a href="">【教你轻松修改React Native端口】如何同时运行</a></li>
+                                    <li><em>7</em><a href="">引领大数据新未来 斐讯北京数据中心正式开业</a></li>
+                                    <li><em>8</em><a href="">深入理解Ribbon之源码解析</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div id="recently-article-list">
+                                <h2 class="h2-header-info">最新热门</h2>
+                                <ul>
+                                    <li>
+                                        <a href=""><h3>遍地喧嚣的智能音箱战场，究竟谁能做出中国的 Echo？</h3></a>
+                                        <img src="http://img.bss.csdn.net/201705091704076904.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <a href=""><h3>知道了Youtube的算法原理，会不会成为下一个视频网红呢？</h3></a>
+                                        <img src="http://images.csdn.net/20170818/p.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <a href=""><h3>Apache Flink 技术解读之分布式运行时环境</h3></a>
+                                        <p>
+                                            在实际的分布式计算环境中，Flink 会将多个运算子任务链接到分布式计算任务中。每个线程执行一个计算任务。将运算符链接到计算任务中对于系统性能的提升有很大的帮助：它降低了线程间切换与缓冲的开销，并且在降低延时的...
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <a href=""><h3>Apache Flink 技术解读之分布式运行时环境</h3></a>
+                                        <p>
+                                            在实际的分布式计算环境中，Flink 会将多个运算子任务链接到分布式计算任务中。每个线程执行一个计算任务。将运算符链接到计算任务中对于系统性能的提升有很大的帮助：它降低了线程间切换与缓冲的开销，并且在降低延时的...
+                                        </p>
+                                    </li>
 
-                                    </div>
-                                    <div class="summary">
-                                        <ul class="category-tab">
-                                            <li>
-                                                <a>陈信宏</a> <span>12/09</span>
-                                            </li>
-                                        </ul>
-                                        <h2 class="title"><a>使用 InfoSphere MDM 工作流执行主数据治理</a></h2>
-                                        <ul></ul>
-                                    </div>
-                                </section>
-                                <section class="article-list-item">
-                                    <div class="qa-rank">
-                                        <div class="bb">
-                                            12
-                                            <small style="display: block;font-size: 12px;">笔记</small>
-                                        </div>
-                                        <div class="aa">
-                                            0
-                                            <small style="display: block;font-size: 12px">浏览</small>
-                                        </div>
-
-                                    </div>
-                                    <div class="summary">
-                                        <ul class="category-tab">
-                                            <li>
-                                                <a>陈信宏</a> <span>12/09</span>
-                                            </li>
-                                        </ul>
-                                        <h2 class="title"><a>使用 IBM DB2 Recovery Expert 工具高效完成数据库恢复之对象恢复篇</a></h2>
-                                        <ul></ul>
-                                    </div>
-                                </section>
-                                <section class="article-list-item">
-                                    <div class="qa-rank">
-                                        <div class="bb">
-                                            12
-                                            <small style="display: block;font-size: 12px;">笔记</small>
-                                        </div>
-                                        <div class="aa">
-                                            0
-                                            <small style="display: block;font-size: 12px">浏览</small>
-                                        </div>
-
-                                    </div>
-                                    <div class="summary">
-                                        <ul class="category-tab">
-                                            <li>
-                                                <a>陈信宏</a> <span>12/09</span>
-                                            </li>
-                                        </ul>
-                                        <h2 class="title"><a>使用 InfoSphere CDC 实现 DB2 数据库的 DDL 复制</a></h2>
-                                        <ul></ul>
-                                    </div>
-                                </section>
-                                <section class="article-list-item">
-                                    <div class="qa-rank">
-                                        <div class="bb">
-                                            12
-                                            <small style="display: block;font-size: 12px;">笔记</small>
-                                        </div>
-                                        <div class="aa">
-                                            0
-                                            <small style="display: block;font-size: 12px">浏览</small>
-                                        </div>
-
-                                    </div>
-                                    <div class="summary">
-                                        <ul class="category-tab">
-                                            <li>
-                                                <a>陈信宏</a> <span>12/09</span>
-                                            </li>
-                                        </ul>
-                                        <h2 class="title"><a>通过 Informix 系统表监控和优化数据库</a></h2>
-                                        <ul></ul>
-                                    </div>
-                                </section>
-                                <section class="article-list-item">
-                                    <div class="qa-rank">
-                                        <div class="bb">
-                                            12
-                                            <small style="display: block;font-size: 12px;">笔记</small>
-                                        </div>
-                                        <div class="aa">
-                                            0
-                                            <small style="display: block;font-size: 12px">浏览</small>
-                                        </div>
-
-                                    </div>
-                                    <div class="summary">
-                                        <ul class="category-tab">
-                                            <li>
-                                                <a>陈信宏</a> <span>12/09</span>
-                                            </li>
-                                        </ul>
-                                        <h2 class="title"><a>分区数据库环境下 DB2 LOAD 性能调优</a></h2>
-                                        <ul></ul>
-                                    </div>
-                                </section>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -203,7 +127,6 @@
                                 <div class="new-software-item">
                                     <span class="new-info-title-active">
                                         <a href="<%=path%>/article/detail/${article.id}">${article.title}</a>
-                                        <span class="new-info-date">01/12</span>
                                     </span>
                                 </div>
                             </li>
@@ -211,76 +134,146 @@
                         <a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>
                     </ul>
                 </div>
+                <div id="course-info">
+                    <h2 class="h2-header-info">热门教程</h2>
+                    <ul>
+                        <c:forEach items="${requestScope.courseSubjectDtos}" var="courseSubject">
+                            <li>
+                                <img src="http://img.bss.csdn.net/201704250917048986.png" alt="" style="float: left;width: 90px;height: 60px;margin-right: 10px">
+                                <h4>${courseSubject.name}</h4>
+                                <p>${courseSubject.description}</p>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
                 <div id="knowdega-info">
-                    <h2>知识库</h2>
+                    <h2 class="h2-header-info">知识库</h2>
+                    <%--<ul>--%>
+                        <%--<li>--%>
+                            <%--<!--<img src="img/javase.jpg">Java<span>233篇</span>-->--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/javase-top.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/javase.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">Java SE</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/regong-bg.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/regong.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">人工智能</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/python.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">python</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/react.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">React active</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/python.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">python</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<div class="img-top" style="position: relative">--%>
+                                <%--<img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">--%>
+                                <%--<img src="<%=path%>/asset/content/react.jpg" class="language-icon">--%>
+                            <%--</div>--%>
+                            <%--<div class="language-info">--%>
+                                <%--<div class="language-name">React active</div>--%>
+                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+
+                        <%--<a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>--%>
+
+                    <%--</ul>--%>
                     <ul>
                         <li>
-                            <!--<img src="img/javase.jpg">Java<span>233篇</span>-->
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/javase-top.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/javase.jpg" class="language-icon">
+                            <div class="base-img">
+                                <a href=""><img src="<%=path%>/asset/content/javase.jpg" alt=""></a>
                             </div>
-                            <div class="language-info">
-                                <div class="language-name">Java SE</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/regong-bg.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/regong.jpg" class="language-icon">
-                            </div>
-                            <div class="language-info">
-                                <div class="language-name">人工智能</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            <div class="base-desc">
+                                <div class="base-name">Java EE 知识库</div>
+                                <div class="base-attendtion">
+                                    <span>2323</span> 关注 | <span>1234</span> 收录
+                                </div>
                             </div>
                         </li>
                         <li>
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/python.jpg" class="language-icon">
+                            <div class="base-img">
+                                <a href=""><img src="<%=path%>/asset/content/regong.jpg" alt=""></a>
                             </div>
-                            <div class="language-info">
-                                <div class="language-name">python</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/react.jpg" class="language-icon">
-                            </div>
-                            <div class="language-info">
-                                <div class="language-name">React active</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            <div class="base-desc">
+                                <div class="base-name">人工智能</div>
+                                <div class="base-attendtion">
+                                    <span>2323</span> 关注 | <span>1234</span> 收录
+                                </div>
                             </div>
                         </li>
                         <li>
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/python.jpg" class="language-icon">
+                            <div class="base-img">
+                                <a href=""><img src="<%=path%>/asset/content/python.jpg" alt=""></a>
                             </div>
-                            <div class="language-info">
-                                <div class="language-name">python</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            <div class="base-desc">
+                                <div class="base-name">Python</div>
+                                <div class="base-attendtion">
+                                    <span>2323</span> 关注 | <span>1234</span> 收录
+                                </div>
                             </div>
                         </li>
                         <li>
-                            <div class="img-top" style="position: relative">
-                                <img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">
-                                <img src="<%=path%>/asset/content/react.jpg" class="language-icon">
+                            <div class="base-img">
+                                <a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a>
                             </div>
-                            <div class="language-info">
-                                <div class="language-name">React active</div>
-                                <div class="language-num">532 收录资源 | 343 关注</div>
+                            <div class="base-desc">
+                                <div class="base-name">React 教程</div>
+                                <div class="base-attendtion">
+                                    <span>2323</span> 关注 | <span>1234</span> 收录
+                                </div>
                             </div>
                         </li>
-
-                        <a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>
-
+                        <li>
+                            <div class="base-img">
+                                <a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a>
+                            </div>
+                            <div class="base-desc">
+                                <div class="base-name">React 教程</div>
+                                <div class="base-attendtion">
+                                    <span>2323</span> 关注 | <span>1234</span> 收录
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
         <%--页脚--%>
         <jsp:include page="common/footer.jsp"/>

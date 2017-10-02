@@ -353,3 +353,28 @@ body {
     position: relative;
     margin-bottom: 10px;
 }
+
+.voted {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.voted .voted_up, .voted .voted_down {
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    background: #ff7900;
+    color: #fff;
+}
+.voted .voted_up {margin-right: 0.25em}
+.voted .voted_up:hover, .voted .voted_down:hover {cursor: pointer;}
+.voted .voted_up span:nth-child(1), .voted .voted_down span:nth-child(1) {
+    display: block;
+    padding-top: 10px;
+}
+.voted .voted_up span:nth-child(2), .voted .voted_down span:nth-child(2) {
+    font-size: 16px;
+}

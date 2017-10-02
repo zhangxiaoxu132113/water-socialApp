@@ -5,6 +5,8 @@ import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
 
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -63,5 +65,19 @@ public class SerializeHelper {
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
+    }
+
+
+    public static Object unserialize(byte[] bytes) {
+        ByteArrayInputStream bais = null;
+        try {
+            //反序列化
+            bais = new ByteArrayInputStream(bytes);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return ois.readObject();
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 }

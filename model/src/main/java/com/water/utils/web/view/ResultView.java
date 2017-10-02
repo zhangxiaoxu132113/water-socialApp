@@ -18,6 +18,16 @@ public class ResultView implements java.io.Serializable {
     private Object data;  //数据
     private List<SerializeFilter> filters;
 
+    public static final Integer FAIL_CODE = -1;
+    public static final Integer SUCCESS_CODE = 0;
+    public static final Integer NOT_FOUND = 4;
+
+    public static final String FAIL_MSG = "操作异常";
+    public static final String SUCCESS_MSG = "操作成功";
+    public static final String NOT_FOUND_MSG = "访问资源不存在";
+
+
+
     public ResultView() {
 
     }

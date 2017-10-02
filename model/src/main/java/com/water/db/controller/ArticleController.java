@@ -1,5 +1,7 @@
 package com.water.db.controller;
 
+import com.water.utils.web.WebUtils;
+import com.water.utils.web.view.ResultView;
 import com.water.uubook.model.Article;
 import com.water.uubook.model.CourseSubject;
 import com.water.uubook.model.ITArticle;
@@ -14,13 +16,11 @@ import com.water.uubook.service.CourseSubjectService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +48,12 @@ public class ArticleController {
     @Resource
     private CourseSubjectService courseSubjectService;
 
+    /**
+     * 根据id获取文章详情
+     * @param articleId
+     * @return
+     * @throws ExecutionException
+     */
     @RequestMapping(value = "/detail/{articleId}.html")
     public ModelAndView getArticleDetail(@PathVariable int articleId) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
@@ -64,7 +70,7 @@ public class ArticleController {
         String[] tagArray = new String[5];
         List<Tag> tags = article.getTagList();
         if (tags != null && tags.size() > 0) {
-            for (int i=0; i<tags.size(); i++) {
+            for (int i = 0; i < tags.size(); i++) {
                 tagArray[i] = tags.get(i).getName();
             }
         }
@@ -79,6 +85,14 @@ public class ArticleController {
         return mav;
     }
 
+    /**
+     * 根据关键信息搜索相关文章
+     * @param keyword
+     * @param currentPage
+     * @param pageSize
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchArticle(@RequestParam(defaultValue = "") String keyword,
                                       @RequestParam(defaultValue = "1") int currentPage,
@@ -101,5 +115,19 @@ public class ArticleController {
 
 
         return mav;
+    }
+
+    /**
+     * 文章投票
+     * @param request
+     * @param articleId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/voted", method = RequestMethod.POST)
+    public ResultView voted(HttpServletRequest request, int articleId,
+                            @RequestParam(defaultValue = "1") int attitude) {
+        String ip = WebUtils.getRemortIP(request);
+        return articleService.articleVote(ip, articleId, attitude);
     }
 }

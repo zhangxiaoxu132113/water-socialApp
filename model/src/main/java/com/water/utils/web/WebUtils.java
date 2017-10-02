@@ -10,6 +10,7 @@ import org.dom4j.DocumentHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,6 +29,18 @@ public class WebUtils {
 
     private WebUtils() {
 
+    }
+
+    /**
+     * 获取客户端的真实ip地址
+     * @param request
+     * @return
+     */
+    public static String getRemortIP(HttpServletRequest request) {
+        if (request.getHeader("x-forwarded-for") == null) {
+            return request.getRemoteAddr();
+        }
+        return request.getHeader("x-forwarded-for");
     }
 
     /**

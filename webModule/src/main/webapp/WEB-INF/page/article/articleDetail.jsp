@@ -103,33 +103,25 @@
                 <div class="main-body-left">
                     <div class="content">
                         ${requestScope.article.content}
-                        <style>
-                            .bdsharebuttonbox {
-                                background: #fff;
-                                margin-top: 10px;
-                                padding: 10px;
-                                width: 100%;
-                                box-sizing: border-box;
-                            }
-                            .bdsharebuttonbox a:link {
-                                text-decoration: none;
-                            }
-                        </style>
-                        <div class="bdsharebuttonbox">
-                            <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-                        </div>
+                        <jsp:include page="../common/shareToolBar.jsp"/>
                         <div class="tags">
                             <span>标签：</span>
                             <c:forEach items="${requestScope.article.tagList}" var="tag">
                                 <span>${tag.name}</span>
                             </c:forEach>
                         </div>
+                        <div class="voted">
+                            <div class="voted_up">
+                                <span>顶</span>
+                                <span class="voted_up_value">0</span>
+                            </div>
+                            <div class="voted_down">
+                                <span>踩</span>
+                                <span class="voted_down_value">0</span>
+                            </div>
+                        </div>
                     </div>
+                    <%--相关文章--%>
                     <div class="about-articles">
                         <a href="" style="position: absolute;right: 20px;top: 25px">查看更多</a>
                         <h3>相关文章</h3>
@@ -142,11 +134,9 @@
                 </div>
                 <div class="main-body-right">
                     <div class="bdsharebuttonbox">
-                        <%--<a href="#" class="bds_more" data-cmd="more">分享到：</a>--%>
                         <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
                         <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
                         <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-                        <%--<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>--%>
                         <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
                     </div>
 
@@ -285,47 +275,10 @@
             <p>北京创新乐知信息技术有限公司 版权所有</p>
         </div>
     </div>
+    <input type="hidden" id="article_id" name="" value="${requestScope.article.id}">
 </div>
-<script>
-    //全局变量，动态的文章ID
-    var ShareId = "";
-    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
-    $(function () {
-        $(".bdsharebuttonbox a").mouseover(function () {
-            ShareId = $(this).attr("data-id");
-        });
-    });
 
-    /*
-     * 设置分享的url连接地址
-     */
-    function SetShareUrl(cmd, config) {
-        config.bdUrl = document.URL;
-        config.bdText = $('title').text();
-        config.bdDesc = "用户将网站内容分享到第三方网站，第三方网站的用户点击专有的分享链接，从第三方网站带来社会化流量";
-        config.bdPic = "";
-
-        console.log(config.bdUrl);
-        console.log(config.bdText);
-        console.log(config.bdDesc);
-        return config;
-    }
-
-    window._bd_share_config = {
-        "common": {
-            onBeforeClick: SetShareUrl,
-            "bdSnsKey": {},
-            "bdMini": "2",
-            "bdMiniList": false,
-            "bdStyle": "1",
-            "bdSize": "16"
-        },
-        "share": {"bdSize": 16},
-        "image": {"viewList": ["qzone", "tsina", "weixin", "tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
-        "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "weixin", "tqq", "renren"]}
-    };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
+<script src="<%=path%>/asset/js/article/articleDetail.js"></script>
 
 </body>
 </html>

@@ -24,6 +24,10 @@ public class Constants {
         public final static String ALL_COURSE_SUBJECT = "ALL_COURSE_SUBJECT";
         public final static String ALL_ROOT_COURSE_SUBJECT = "ALL_ROOT_COURSE_SUBJECT";
         public final static String ALL_TAGS = "ALL_TAGS";
+
+        //文章投票
+        public final static String VOTED = "voted:%s";
+        public final static String ARTICLE_RELASE_TIME = "article_relase_time:";
     }
 
     public static enum ARTICLE_MODULE {

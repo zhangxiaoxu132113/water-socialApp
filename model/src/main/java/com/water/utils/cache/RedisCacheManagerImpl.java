@@ -4,6 +4,7 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhangmiaojie on 2017/2/4.
@@ -152,11 +153,128 @@ public class RedisCacheManagerImpl implements CacheManager {
     }
 
     @Override
+    public double zscore(String key, String member) {
+        ShardedJedis jedis = this.pool.getResource();
+        double result = 0;
+        try {
+            result = jedis.zscore(key, member);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public double zincrby(String key, double value, String member) {
+        ShardedJedis jedis = this.pool.getResource();
+        double result = 0;
+        try {
+            result = jedis.zincrby(key, value, member);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public long hincrBy(String key, String field, long value) {
+        ShardedJedis jedis = this.pool.getResource();
+        Long result = 0L;
+        try {
+            result = jedis.hincrBy(key, field, value);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public long expire(String key, int second) {
+        ShardedJedis jedis = this.pool.getResource();
+        Long result = 0L;
+        try {
+            result = jedis.expire(key, second);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public String hmset(String key, Map<String, String> param) {
+        ShardedJedis jedis = this.pool.getResource();
+        String result = "";
+        try {
+            result = jedis.hmset(key, param);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public long srem(String key, String... member) {
+        ShardedJedis jedis = this.pool.getResource();
+        long result = 0l;
+        try {
+            result = jedis.srem(key, member);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
     public List<byte[]> lrange(byte[] key, long start, long end) {
         ShardedJedis jedis = this.pool.getResource();
         List<byte[]> result = null;
         try {
             result = jedis.lrange(key, start, end);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public long zadd(String key, String member, double score) {
+        ShardedJedis jedis = this.pool.getResource();
+        Long result = null;
+        try {
+            result = jedis.zadd(key, score, member);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean exists(String key) {
+        ShardedJedis jedis = this.pool.getResource();
+        boolean result = false;
+        try {
+            result = jedis.exists(key);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean sismember(String key, String member) {
+        ShardedJedis jedis = this.pool.getResource();
+        boolean result = false;
+        try {
+            result = jedis.sismember(key, member);
             this.pool.returnResource(jedis);
         } catch (Exception e) {
             this.pool.returnBrokenResource(jedis);

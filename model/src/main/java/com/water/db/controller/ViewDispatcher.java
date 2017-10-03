@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,13 +81,13 @@ public class ViewDispatcher {
         List<CourseSubjectDto> courseSubjectDtos = courseSubjectService.getHotCourseSubjectWithSize(4);
         mav.addObject("courseSubjectDtos", courseSubjectDtos); //热门教程
 
-        List<Article> recentlyReadArticles = null;
+        List<ArticleDto> recentlyReadArticles = null;
         if (user != null) {
             recentlyReadArticles = articleService.getRecentlyReadedArticlesByUser(user);
         }
         mav.addObject("recentlyReadArticles", recentlyReadArticles);    //用户最近阅读的文章
 
-        List<Article> newItArticleList = articleService.getNewArticles();
+        List<ArticleDto> newItArticleList = articleService.getNewArticles();
         mav.addObject("newItArticleList", newItArticleList);    //最新文章
 
         List<Article> excellentItArticleList = articleService.getExcellentArticle();

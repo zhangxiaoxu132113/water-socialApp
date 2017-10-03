@@ -53,12 +53,13 @@ public class ITArticleServiceImpl implements ITArticleService {
     public List<ArticleDto> getGreeArticle() throws ExecutionException {
         List<ArticleDto> articleList = null;
         articleList = getCacheModuleArticle(0);
-        if (articleList == null) {
+        int begin = 0;
+        int pageSize = 11;
+        if (articleList == null || articleList.size() < pageSize) {
             Map<String, Object> queryParam = new HashMap<String, Object>();
             Article article = new Article();
             article.setModule(0);
-            int pageSize = 11;
-            int begin = 0;
+
             queryParam.put("pageSize", pageSize);
             queryParam.put("begin", begin);
             queryParam.put("model", article);
@@ -108,12 +109,20 @@ public class ITArticleServiceImpl implements ITArticleService {
         return iTArticleMapper.findArticleListByCondition(queryParam);
     }
 
-    public List<Article> getRecentlyReadedArticlesByUser(User user) {
+    public List<ArticleDto> getRecentlyReadedArticlesByUser(User user) {
         return null;
     }
 
-    public List<Article> getNewArticles() {
-        return null;
+    public List<ArticleDto> getNewArticles() {
+        Map<String, Object> queryParam = new HashMap<String, Object>();
+        Article article = new Article();
+        article.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
+        int begin = 0;
+        int pageSize = 10;
+        queryParam.put("pageSize", pageSize);
+        queryParam.put("begin", begin);
+        queryParam.put("model", article);
+        return iTArticleMapper.findArticleListByCondition(queryParam);
     }
 
     public List<Article> getExcellentArticle() {
@@ -289,7 +298,7 @@ public class ITArticleServiceImpl implements ITArticleService {
                     @Override
                     public List<ArticleDto> load(String key) {
                         switch (key) {
-                            case Constants.CacheKey.GreeArticle:
+                            case "static_index_module_" + 0:
                                 queryParam = new HashMap<String, Object>();
                                 article = new Article();
                                 article.setModule(0);

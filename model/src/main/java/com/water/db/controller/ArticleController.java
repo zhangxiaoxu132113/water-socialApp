@@ -60,7 +60,7 @@ public class ArticleController {
         List<Article> articleList = new ArrayList<>();
         ArticleDto article = articleService.getArticleDetailById(articleId);
         if (article != null) {
-            articleList = articleService.getRelatedArticles(article.getTitle(), 10);
+            articleList = articleService.getRelatedArticles(article.getTitle(), 12);
             article.setRelatedArticles(articleList);
         }
         CategoryDto categoryDto = categoryService.getCategoryById(article.getCategory());
@@ -86,7 +86,7 @@ public class ArticleController {
     }
 
     /**
-     * 根据关键信息搜索相关文章
+     * 根据关键词搜索相关文章
      * @param keyword
      * @param currentPage
      * @param pageSize
@@ -127,7 +127,6 @@ public class ArticleController {
     @RequestMapping(value = "/voted", method = RequestMethod.POST)
     public ResultView voted(HttpServletRequest request, int articleId,
                             @RequestParam(defaultValue = "1") int attitude) {
-        String ip = WebUtils.getRemortIP(request);
-        return articleService.articleVote(ip, articleId, attitude);
+        return articleService.articleVote(WebUtils.getRemortIP(request), articleId, attitude);
     }
 }

@@ -37,5 +37,15 @@
         <name>知识库</name>
         <sort>4</sort>
     </category>
+    <category>
+        <id>5</id>
+        <name>经验</name>
+        <sort>5</sort>
+    </category>
+    <category>
+        <id>6</id>
+        <name>下载资源</name>
+        <sort>6</sort>
+    </category>
 
 </categories>

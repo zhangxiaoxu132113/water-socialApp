@@ -13,13 +13,13 @@ body {
 }
 
 #container {
-    width: 1080px;
+    width: 980px;
     height: 100%;
     margin: 0 auto;
 }
 
 #main-content {
-    padding: 1em;
+    padding: 1em 0;
 }
 
 #main-content-inner {
@@ -28,9 +28,9 @@ body {
 
 #main-content-left {
     display: inline-block;
-    width: 65%;
+    width: 69%;
     border-right: 1px #ddd solid;
-    padding-right: 2em;
+    padding-right: 1em;
 }
 
 #main-content-right {
@@ -47,6 +47,10 @@ body {
 
 #view-info-detail-content ul li a {
     line-height: 2.2em;
+    font: normal 15px/24px "Microsoft YaHei";
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: #444444;
 }
 
 #view-info-detail-content ul li a:hover {
@@ -405,7 +409,7 @@ body {
 #article-list .left {
     width: 240px;
     float: left;
-    margin-right: 30px;
+    margin-right: 15px;
 }
 
 #article-list .right {

@@ -50,12 +50,16 @@ $(document).ready(function() {
         vote(0);
     });
 
+    /**
+     * 文章投票
+     * @param attitude 0-反对票 | 1-肯定票
+     */
     var vote = function(attitude) {
         var article_id = $('#article_id').val();
         $.ajax({
             url:'/article/voted',
             type:'POST', //GET
-            async:true,    //或false,是否异步
+            async:true,  //或false,是否异步
             data:{
                 articleId:article_id,
                 attitude:attitude

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
+    <link rel="stylesheet" href="<%=path%>/plugs/slider/slider.css">
 </head>
 <body>
 <div id="container">
@@ -32,8 +33,8 @@
         <div id="main-content-inner">
             <div id="main-content-left">
                 <div id="view-info">
-                    <div id="view-info-detail" style="display: inline-block;width: 59%">
-                        <img src="<%=path%>/asset/content/123.png">
+                    <div id="view-info-detail" style="display: inline-block;width: 59%; padding-right: 1em">
+                        <img src="<%=path%>/asset/content/123.png" width="370" height="248">
 
                         <div id="view-info-detail-title"><a><%=articleDtoList.get(0).getTitle() %></a></div>
                         <div id="view-info-detail-description">
@@ -80,27 +81,19 @@
                             <div id="recently-article-list">
                                 <h2 class="h2-header-info">最新热门</h2>
                                 <ul>
-                                    <li>
-                                        <a href=""><h3>遍地喧嚣的智能音箱战场，究竟谁能做出中国的 Echo？</h3></a>
-                                        <img src="http://img.bss.csdn.net/201705091704076904.jpg" alt="">
-                                    </li>
-                                    <li>
-                                        <a href=""><h3>知道了Youtube的算法原理，会不会成为下一个视频网红呢？</h3></a>
-                                        <img src="http://images.csdn.net/20170818/p.jpg" alt="">
-                                    </li>
-                                    <li>
-                                        <a href=""><h3>Apache Flink 技术解读之分布式运行时环境</h3></a>
-                                        <p>
-                                            在实际的分布式计算环境中，Flink 会将多个运算子任务链接到分布式计算任务中。每个线程执行一个计算任务。将运算符链接到计算任务中对于系统性能的提升有很大的帮助：它降低了线程间切换与缓冲的开销，并且在降低延时的...
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <a href=""><h3>Apache Flink 技术解读之分布式运行时环境</h3></a>
-                                        <p>
-                                            在实际的分布式计算环境中，Flink 会将多个运算子任务链接到分布式计算任务中。每个线程执行一个计算任务。将运算符链接到计算任务中对于系统性能的提升有很大的帮助：它降低了线程间切换与缓冲的开销，并且在降低延时的...
-                                        </p>
-                                    </li>
-
+                                    <c:forEach items="${requestScope.newItArticleList}" var="article">
+                                        <li>
+                                            <a href="<%=path%>/article/detail/${article.id}.html"><h3>${article.title}</h3></a>
+                                            <c:choose>
+                                                <c:when test="${not empty article.picUrl}">
+                                                    <img src="${article.picUrl}" alt="" width="390" height="200">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <p>${article.description}</p>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -108,27 +101,32 @@
                 </div>
             </div>
             <div id="main-content-right">
+                <div id="test">
+                    <section class="sample slider--animated" data-slidizle data-slidizle-timeout="2000" data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
+                        <ul class="slider-content" data-slidizle-content>
+                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-26%2023-56-34/2fd9ecf2-6b77-4075-8843-0ed5c58b320b.jpg')"></li>
+                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2010-24-57/34498587-d70e-4924-938b-a96b2760199f.jpg')"></li>
+                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2017-37-42/df3357c3-dad8-4507-8e8e-27004cb871bd.jpg')"></li>
+                        </ul>
+                        <ul class="slider-navigation" data-slidizle-navigation></ul>
+                    </section>
+                </div>
                 <div id="new-software-info">
-                    <h2>软件更新资讯</h2>
+                    <h2 class="h2-header-info">软件更新资讯</h2>
                     <ul>
-                        <li>
-                            <div class="new-software-item" style="position: relative">
-                                <a class="new-info-title-active">
-                                    Kotlin 1.1 正式版来了，基于 JVM 的编程语言<br>
-                                </a>
-                            </div>
-                            <span>
-                                开发团队宣布，Kotlin 1.1 正式发布。 这是一个很大的进步，使 Kotlin 能在许多新的场景中使用。 Kotlin...
-                            </span>
-
-                        </li>
-                        <c:forEach items="${requestScope.softwareInformations}" var="article">
+                        <c:forEach items="${requestScope.softwareInformations}" var="article" varStatus="status">
                             <li>
                                 <div class="new-software-item">
                                     <span class="new-info-title-active">
-                                        <a href="<%=path%>/article/detail/${article.id}">${article.title}</a>
+                                        <a <c:if test="${status.index == 0}">class="new-info-title-active"</c:if>  href="<%=path%>/new/detail/${article.id}">${article.title}</a>
                                     </span>
                                 </div>
+                                <c:if test="${status.index == 0}">
+                                    <span>
+                                        ${article.description}
+                                        开发团队宣布，Kotlin 1.1 正式发布。 这是一个很大的进步，使 Kotlin 能在许多新的场景中使用。 Kotlin...
+                                    </span>
+                                </c:if>
                             </li>
                         </c:forEach>
                         <a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>
@@ -148,72 +146,6 @@
                 </div>
                 <div id="knowdega-info">
                     <h2 class="h2-header-info">知识库</h2>
-                    <%--<ul>--%>
-                        <%--<li>--%>
-                            <%--<!--<img src="img/javase.jpg">Java<span>233篇</span>-->--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/javase-top.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/javase.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">Java SE</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/regong-bg.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/regong.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">人工智能</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/python.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">python</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/react.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">React active</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/python-bg.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/python.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">python</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<div class="img-top" style="position: relative">--%>
-                                <%--<img src="<%=path%>/asset/content/react-bg.jpg" style="width: 100%;height: auto">--%>
-                                <%--<img src="<%=path%>/asset/content/react.jpg" class="language-icon">--%>
-                            <%--</div>--%>
-                            <%--<div class="language-info">--%>
-                                <%--<div class="language-name">React active</div>--%>
-                                <%--<div class="language-num">532 收录资源 | 343 关注</div>--%>
-                            <%--</div>--%>
-                        <%--</li>--%>
-
-                        <%--<a style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</a>--%>
-
-                    <%--</ul>--%>
                     <ul>
                         <li>
                             <div class="base-img">
@@ -275,12 +207,31 @@
             </div>
 
         </div>
+        <a href="https://baidurank.aizhan.com/" target="_blank"><img src="https://baidurank.aizhan.com/api/br?domain=uubook.net&style=images" /></a>
         <%--页脚--%>
         <jsp:include page="common/footer.jsp"/>
     </div>
 
 </div>
-<script src="<%=path%>/asset/js/jquery.js"></script>
+<%--<script src="<%=path%>/asset/js/jquery.js"></script>--%>
+<script src="<%=path%>/plugs/slider/jquery-2.1.1.min.js"></script>
+<script src="<%=path%>/plugs/slider/jquery.slidizle.js"></script>
 <script src="<%=path%>/asset/js/articleList.js"></script>
+<script>
+    jQuery(function($) {
+
+        // setup slidizle
+        $('[data-slidizle]').slidizle({
+            beforeChange : function(api) {
+                console.log('previous', api.getPreviousSlide().index());
+                console.log('current', api.getCurrentSlide().index());
+                console.log('next', api.getNextSlide().index());
+                console.log('previous active', api.getPreviousActiveSlide().index());
+            }
+        });
+
+    });
+
+</script>
 </body>
 </html>

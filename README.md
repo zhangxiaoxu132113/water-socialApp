@@ -43,3 +43,12 @@ voted:12345
         cacheManager.zincrby(CacheKey.ARTICLE_VOTED_SCORE, VOTE_SCORE, articleKey);
         cacheManager.hincrBy(articleKey, "voted", 1);
         
+
+
+
+
+原贴地址：http://book.51cto.com/art/201205/338756.htm
+
+
+
+版权声明：本文内容由互联网用户自发贡献，本社区不拥有所有权，也不承担相关法律责任。如果您发现本社区中有涉嫌抄袭的内容，欢迎发送邮件至：yqgroup@service.aliyun.com 进行举报，并提供相关证据，一经查实，本社区将立刻删除涉嫌侵权内容。

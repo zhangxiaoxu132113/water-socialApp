@@ -31,6 +31,8 @@
             <li><a href="<%=path%>/new">资讯</a></li>
             <li><a href="<%=path%>/course">IT教程</a></li>
             <li><a href="<%=path%>/base">知识库</a></li>
+            <li><a href="<%=path%>/xxx">经验</a></li>
+            <li><a href="<%=path%>/yyyy">资源下载</a></li>
         </ul>
     </div>
 </div>

@@ -131,7 +131,23 @@
                             </c:forEach>
                         </ul>
                     </div>
+                    <%--猜你喜欢--%>
+                    <div class="guess-like">
+                        <h3 href="">猜你喜欢</h3>
+                        <ul class="clearfix">
+                            <li><img src="http://askimg.39.net/jingyan/20151025/61787.jpg" alt="" width="166" height="110"><span>感冒了怎么般</span></li>
+                            <li><img src="http://images.csdn.net/20170930/1.png" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
+                            <li><img src="http://images.csdn.net/20170930/20170924143839-17da39c6-me_副本.jpg" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
+                            <li><img src="http://images.csdn.net/20170330/11.png" alt="" width="166" height="110"><span>随机决策树基本方法和理论探讨</span></li>
+                            <li><img src="http://img.ads.csdn.net/2017/201709201440397079.jpg" alt="" width="166" height="110"><span>随机决策树基本方法和理论探讨</span></li>
+                            <li><img src="http://images.csdn.net/20170704/1.png" alt="" width="166" height="110"><span>Hbase 设计与开发实战</span></li>
+                            <li><img src="http://images.csdn.net/20171002/timg.png" alt="" width="166" height="110"><span>Hbase 设计与开发实战</span></li>
+                            <li><img src="http://img.ads.csdn.net/2017/201709181754041012.png" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
+                        </ul>
+                    </div>
                 </div>
+
+                <%--文章主体右边内容--%>
                 <div class="main-body-right">
                     <div class="bdsharebuttonbox">
                         <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
@@ -212,58 +228,6 @@
 
 
         </div>
-        <%--<div id="main-body">--%>
-            <%--<div class="article-header-info" style="background:#32353e;height: 86px;">--%>
-                <%--<div class="article-header-info-inner" style="margin: 0 auto;width: 900px;position: relative">--%>
-                    <%--<a style="padding:10px 0 5px;display: block" class="title">${requestScope.article.title}</a>--%>
-
-                    <%--<div class="tablist">--%>
-                        <%--<span class="tab-label">云计算</span>--%>
-                        <%--<span class="tab-label">HBase</span>--%>
-                    <%--</div>--%>
-                    <%--<div class="pviews" style="color:#8a99a4;font-size:14px;position: absolute;right: 0;bottom: 0;">--%>
-                        <%--阅读量<span>1433</span></div>--%>
-                <%--</div>--%>
-
-            <%--</div>--%>
-            <%--<div class="summary" style="background:#eee;padding:10px 0">--%>
-                <%--<div class="summary-inner" style="margin: 0 auto;width: 900px;">--%>
-                    <%--<div class="summary-content"--%>
-                         <%--style="width: 60%;display: inline-block;vertical-align: top;line-height: 1.5em">--%>
-                        <%--<h4 style="font-weight: 500;font-size: 22px;padding-bottom: 1em;">简介</h4>--%>
-
-                        <%--<p>${requestScope.article.description}</p>--%>
-                    <%--</div>--%>
-                    <%--<!--<div style="width: 34%;display: inline-block;padding:0 15px 0;box-sizing: border-box">-->--%>
-                    <%--<!--<img src="img/baidulianmeng.png" alt="" style="width: 100%">-->--%>
-                    <%--<!--</div>-->--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="content" style="margin: 0 auto;width: 900px;padding-top: 15px;">--%>
-                <%--${article.content}--%>
-            <%--</div>--%>
-        <%--</div>--%>
-
-        <%--<div class="about-article" style="width: 900px;margin: 0 auto;">--%>
-            <%--<h4>相关文章推荐</h4>--%>
-        <style>
-            #footer {
-                padding-top: 3em;
-                background: #f9fafc;
-            }
-            #footer p {
-                padding-top: 0.5em;
-                text-align: center;
-            }
-            #footer p a {
-                padding-right: 10px;
-                padding-left: 10px;
-                border-right: 1px solid #9c9693;
-            }
-            #footer p a:last-child {
-                border-right: 0;
-            }
-        </style>
         <div id="footer">
             <p>
                 <a href="">广告服务</a>
@@ -279,6 +243,24 @@
 </div>
 
 <script src="<%=path%>/asset/js/article/articleDetail.js"></script>
-
+<style>
+    .guess-like {
+        padding: 20px 20px 30px 20px;
+        margin-top: 20px;
+        background: #fff;
+    }
+    .guess-like ul li {
+        float: left;
+        padding-bottom: 10px;
+        margin-right: 8px;
+        width: 24%;
+    }
+    .guess-like ul li img {
+        width: 173px;
+        height: 122px;
+        display: block;
+        margin-bottom: 5px;
+    }
+</style>
 </body>
 </html>

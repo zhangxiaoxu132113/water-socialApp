@@ -17,9 +17,9 @@ public interface ITArticleService {
 
     List<ArticleDto> getSoftwareInformations();
 
-    List<Article> getRecentlyReadedArticlesByUser(User user);
+    List<ArticleDto> getRecentlyReadedArticlesByUser(User user);
 
-    List<Article> getNewArticles();
+    List<ArticleDto> getNewArticles();
 
     List<Article> getExcellentArticle();
 

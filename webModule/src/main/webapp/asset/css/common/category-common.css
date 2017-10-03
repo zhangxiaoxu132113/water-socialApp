@@ -7,8 +7,11 @@
 }
 
 #category-nav #category-nav-inner {
-    width: 1140px;
+    width: 980px;
     margin: 0 auto;
+}
+#category-nav-inner ul {
+    font-size: 14px;
 }
 
 #category-nav-inner ul li a:link {
@@ -26,7 +29,6 @@
     width: 110px;
     text-align: center;
     box-sizing: border-box;
-    margin-left: 1em;
 }
 
 .all-category-inner {

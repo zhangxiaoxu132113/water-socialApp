@@ -16,7 +16,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-index.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/mw-moon.css">
-
+    <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
 </head>
 <body>
 <div id="container">
@@ -75,7 +75,8 @@
                                 <%--显示10条--%>
                                 <c:forEach items="${requestScope.latestArticleList}" var="article">
                                     <div class="col-md-6 item">
-                                        <span class="dot"></span><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                        <span class="dot" style="top: 0.85rem"></span>
+                                        <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
                                     </div>
                                 </c:forEach>
                             </div>
@@ -117,11 +118,22 @@
                     </div>
                     <ul>
                         <c:forEach items="${requestScope.hotArticleList}" var="article">
-                            <li><span class="dot"></span>&nbsp;&nbsp;&nbsp;<a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                            <li><span class="dot"></span><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
                         </c:forEach>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+    <%--页脚--%>
+    <div id="footer">
+        <div id="footer-inner">
+            <p>
+                Copyright © 2017-now uubook.net 当前呈现版本 1.0.0
+            </p>
+            <p>
+                浙ICP备 15005796号-2   浙公网安备 33010602002000号
+            </p>
         </div>
     </div>
 </div>

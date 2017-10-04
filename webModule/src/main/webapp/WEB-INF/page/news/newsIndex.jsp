@@ -97,7 +97,6 @@
                         int type = (Integer) request.getAttribute("type");
                         int total = (Integer) request.getAttribute("totalHits");
                         int currentPage = (Integer) request.getAttribute("currentPage");
-                        String pageLink = path + "/new?type=%s&currentPage=%s";
                         int pageSize = 10;
                         int firstPage = 1;
                         long pageTotal = total / pageSize;
@@ -111,9 +110,10 @@
                     <div class="page">
                         <%
                             if (currentPage > 1) {
+                                int lastPageNum = currentPage - 1;
                         %>
-                        <a href="<%String.format(pageLink,type,currentPage-1);%>" class="last-page"><span
-                                >&lt;&lt;上一页</span></a>
+                        <a href="<%=path%>/new?type=<%=type%>&currentPage=<%=lastPageNum%>" class="last-page"><span
+                        >&lt;&lt;上一页</span></a>
                         <%
                             }
                             PrintWriter writer = response.getWriter();
@@ -123,9 +123,10 @@
                         <%
                             }
                             if (lastPage < pageTotal) {
+                                int nextPageNum = currentPage + 1;
                         %>
-                        <a href="<%String.format(pageLink,type,currentPage+1);%>" class="next-page"><span
-                                >下一页&gt;&gt;</span></a>
+                        <a href="<%=path%>/new?type=<%=type%>&currentPage=<%=nextPageNum%>" class="next-page"><span
+                        >下一页&gt;&gt;</span></a>
                         <%
                             }
                         %>

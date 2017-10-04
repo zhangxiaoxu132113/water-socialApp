@@ -55,7 +55,18 @@
                             </li>
                         </c:when>
                         <c:otherwise>
-                            <li>你还未登录！<a href="<%=path%>/login">登录</a></li>
+                            <%--<li>你还未登录！<a href="<%=path%>/login">登录</a></li>--%>
+                            <li>
+                                <form action="/article/search" class="search-form" method="get"
+                                      style="position: relative">
+                                    <input type="text" style="display: block;" name="keyword"
+                                           class="search-input index-search-frame" placeholder="搜索内容"/>
+                                    <label>
+                                        <a class="search-btn-a"><i class="iconfont search-btn-icon"
+                                                                   style="font-weight: bold;">&#xe620;</i></a>
+                                    </label>
+                                </form>
+                            </li>
                         </c:otherwise>
                     </c:choose>
                 </ul>

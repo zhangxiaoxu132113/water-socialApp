@@ -9,7 +9,7 @@ ul li {
 
 body {
     font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
-    font-size: 14px;
+    font-size: 14px!important;
 }
 
 #container {
@@ -31,6 +31,7 @@ body {
     width: 69%;
     border-right: 1px #ddd solid;
     padding-right: 1em;
+    padding-bottom: 2em;
 }
 
 #main-content-right {
@@ -467,4 +468,8 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
+}
+
+#recently-article-list ul li p {
+    color: #959595;
 }

@@ -164,20 +164,33 @@ body {
 /*}*/
 
 #header {
-    height: 40px;
-    line-height: 40px;
+    height: 28px;
+    line-height: 28px;
     background: #48525e;
     box-shadow: 0 1px 0px rgba(72, 71, 71, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    font-size: 13px;
 }
 
 #header #header-inner {
     padding: 0 20px;
 }
 
+#header #header-inner .nav-menu {
+    float: left;
+}
+
+#header #header-inner .nav-menu ul li {
+    float: left;
+    margin-right: 1em;
+}
+#header #header-inner .nav-menu ul li a {
+    text-decoration: none;
+    color: #ccc;
+}
 #header #header-inner #logo {
     font-size: 18px;
     color: #f1f1f1;
@@ -198,14 +211,14 @@ body {
 }
 
 #main-body {
-    background: #f9fafc;
+    /*background: #f9fafc;*/
+    background: #e8eff1;
 
 }
 
 #main-body #main-body-inner {
     width: 1170px;
     margin: 0 auto;
-    padding-top: 40px;
 }
 
 #main-body #main-body-inner #left-body {
@@ -215,10 +228,11 @@ body {
     margin-right: 1%;
     background: #fff;
     position: fixed;
+    top: 23px;
 }
 
 #left-body .inner {
-    padding: 60px 40px;
+    padding: 30px 40px;
     box-sizing: border-box;
     height: 100%;
 }
@@ -235,31 +249,32 @@ body {
     padding: 30px 50px;
     box-sizing: border-box;
 }
-#left-body .intro-base-header-img {
+.intro-base-header-img {
     float: left;
     margin-right: 1em;
 }
 
 
-#left-body .intro-base-header-img img {
-    width: 60px;
-    height: 60px;
+.intro-base-header-img img {
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.65);
 }
 
-#left-body .intro-base-desc {
+.intro-base-desc {
     float: left;
 }
 
-#left-body .intro-base-desc span:first-child {
+.intro-base-desc span:first-child {
     font-weight: 500;
     font-size: 16px;
     word-wrap: break-word;
 }
-#left-body .intro-base-desc span {
+.intro-base-desc span {
     display: block;
-    margin-top: 4px;
-    color: #545e66;
+    margin-top: 9px;
+    color: #ffffff;
 }
 
 .intro-num {
@@ -283,13 +298,9 @@ body {
     padding:3px 0;
 }
 
-.all-topics {
-    margin-top: 1.2em;
-}
-
 .all-topics dl {
     position: relative;
-    margin: 30px 0;
+    margin: 15px 0;
     height: 40px;
 }
 
@@ -347,8 +358,9 @@ body {
     display: inline-block;
     width: 20px;
     text-align: center;
-    padding: 0 15px;
-    margin-right: 10px;
+    padding: 0 15px 0;
+    margin: 0.5em 10px 0.5em 0;
+    border-right: 1px solid #e1e8ec;
 }
 
 .topic-articles .views i {

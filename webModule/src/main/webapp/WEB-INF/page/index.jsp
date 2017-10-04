@@ -102,7 +102,7 @@
             </div>
             <div id="main-content-right">
                 <div id="test">
-                    <section class="sample slider--animated" data-slidizle data-slidizle-timeout="2000" data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
+                    <section class="sample slider--animated" data-slidizle data-slidizle-timeout="4000" data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
                         <ul class="slider-content" data-slidizle-content>
                             <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-26%2023-56-34/2fd9ecf2-6b77-4075-8843-0ed5c58b320b.jpg')"></li>
                             <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2010-24-57/34498587-d70e-4924-938b-a96b2760199f.jpg')"></li>
@@ -191,23 +191,11 @@
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="base-img">
-                                <a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a>
-                            </div>
-                            <div class="base-desc">
-                                <div class="base-name">React 教程</div>
-                                <div class="base-attendtion">
-                                    <span>2323</span> 关注 | <span>1234</span> 收录
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
 
         </div>
-        <a href="https://baidurank.aizhan.com/" target="_blank"><img src="https://baidurank.aizhan.com/api/br?domain=uubook.net&style=images" /></a>
         <%--页脚--%>
         <jsp:include page="common/footer.jsp"/>
     </div>
@@ -223,10 +211,10 @@
         // setup slidizle
         $('[data-slidizle]').slidizle({
             beforeChange : function(api) {
-                console.log('previous', api.getPreviousSlide().index());
-                console.log('current', api.getCurrentSlide().index());
-                console.log('next', api.getNextSlide().index());
-                console.log('previous active', api.getPreviousActiveSlide().index());
+//                console.log('previous', api.getPreviousSlide().index());
+//                console.log('current', api.getCurrentSlide().index());
+//                console.log('next', api.getNextSlide().index());
+//                console.log('previous active', api.getPreviousActiveSlide().index());
             }
         });
 

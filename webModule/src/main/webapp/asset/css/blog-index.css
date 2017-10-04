@@ -120,6 +120,7 @@ body {
 .hot-article ul li {
     margin: 10px 0;
     position: relative;
+    padding-left: 1em;
 }
 
 .hot-article ul li a {
@@ -129,9 +130,9 @@ body {
 .dot {
     border: 2px solid #ccc;
     height: 0;
-    left: 0.3rem;
+    left: 0rem;
     position: absolute;
-    top: 0.9rem;
+    top: 0.5rem;
     transform-origin: 25% center 0;
     width: 0;
 }
@@ -357,3 +358,12 @@ body {
     color: #88889c;
 }
 
+#footer {
+    padding: 3em 0 2em;
+    background: #f9fafc;
+    border-top: 1px solid #cccccc;
+}
+
+#footer #footer-inner {
+    text-align: center;
+}

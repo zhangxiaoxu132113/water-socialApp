@@ -15,8 +15,76 @@
 <head>
     <title>Title</title>
     <style>
+        #header {
+            z-index: 10001;
+        }
         .bread {
             padding:1em 0;
+        }
+        .profile-canopy-headerBg {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            overflow: hidden
+        }
+
+        .profile-canopy-headerBg img.profile-bg-img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -9999px;
+            bottom: -9999px;
+            margin: auto 0;
+            width: 100%;
+        }
+        #middle {
+
+        }
+        #middle #middle-inner {
+            padding-top: 28px;
+            position: relative;
+            height: 110px;
+        }
+        .topic-intro {
+            padding-top: 3em;
+            position: absolute;
+            left: 46%;
+            width: 180px;
+        }
+        .about-topic-info {
+            font-size: 1.2em;
+            padding: 0.25em 0 0.25em 0;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 2px solid #ccc;
+        }
+        .topic-articles .item:hover {
+            background: #f9fafc;
+        }
+        #left-body .inner .search-input {
+            margin: 2em 0 3.2em 0;
+        }
+        #left-body .inner .search-input input[type=text] {
+            display: inline-block;
+            width: 185px;
+            height: 35px;
+            vertical-align: middle;
+            border: none;
+            background: #f5f6f8;
+            font-size: 14px;
+            color: #8a99a4;
+            padding-left: 10px;
+            outline: none;
+            float: left;
+        }
+        #left-body .inner .search-input .search_btn {
+            width: 35px;
+            height: 35px;
+            background: #4b98c8;
+            float: left;
         }
     </style>
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-category.css">
@@ -27,8 +95,17 @@
         <div id="container-inner">
             <div id="header">
                 <div id="header-inner">
-                    <div id="logo">
-                        文档库
+                    <%--<div id="logo">--%>
+                        <%--Java - 文档库--%>
+                    <%--</div>--%>
+                    <div class="nav-menu">
+                        <ul>
+                            <li><a href="<%=path%>/">首页</a></li>
+                            <li><a href="<%=path%>/blog">文档库</a></li>
+                            <li><a href="<%=path%>/new">资讯</a></li>
+                            <li><a href="<%=path%>/course">IT教程</a></li>
+                            <li><a href="<%=path%>/base">知识库</a></li>
+                        </ul>
                     </div>
 
                     <div id="user-info">
@@ -44,57 +121,61 @@
                     </div>
                 </div>
             </div>
+            <div id="middle">
+                <div id="middle-inner">
+                    <div class="profile-canopy-headerBg">
+                        <img class="profile-bg-img" src="/asset/content/user_bg.jpeg" style="transform: none">
+                        <div class="topic-intro">
+                            <div class="intro-base clearfix">
+                                <span class="intro-base-header-img"><img src="<%=path%>/asset/content/regong.jpg" style="border-radius: 50%" alt=""></span>
+                                    <span class="intro-base-desc">
+                                        <span class="name">人工智能</span>
+                                        <span class="name">文章收录 : 23</span>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="main-body">
                 <div id="main-body-inner">
 
                     <div id="left-body">
                         <div class="inner">
-                            <div class="topic-intro">
-                                <div class="intro-base clearfix">
-                                    <span class="intro-base-header-img"><img src="<%=path%>/asset/content/regong.jpg" style="border-radius: 50%" alt=""></span>
-                                    <span class="intro-base-desc">
-                                        <span class="name">人工智能</span>
-                                        <span class="name">贡献值 : 23</span>
-                                        <span class="name">等级 : 11</span>
-                                    </span>
-                                </div>
-                                <div class="intro-num">
-                                    <div class="intro-num-1">
-                                        <span>0</span>
-                                        <span>发布</span>
-                                    </div>
-                                    <div class="intro-num-1">
-                                        <span>34</span>
-                                        <span>评论</span>
-                                    </div>
-                                    <div class="intro-num-1">
-                                        <span>0</span>
-                                        <span>顶</span>
-                                    </div>
-                                </div>
+                            <div class="search-input clearfix">
+                                <input type="text" placeholder="搜索" >
+                                <span class="search_btn"></span>
                             </div>
+                            <%--相关主题--%>
                             <ul class="all-topics">
                                 <li>
-                                    <span style="font-size: 1.2em">相关主题</span>
+                                    <span class="about-topic-info">相关主题</span>
                                     <dl>
-                                        <dt><a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a></dt>
+                                        <dt><a href=""><img src="http://www.uubook.net:8080/asset/content/python.jpg" alt=""></a></dt>
                                         <dd>
-                                            <h4>云计算</h4>
-                                            <p>34343, 3230493</p>
+                                            <h4>Python</h4>
+                                            <p>文章收录 : 2334</p>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt><a href=""><img src="http://www.uubook.net:8080/asset/content/javase.jpg" alt=""></a></dt>
+                                        <dd>
+                                            <h4>java</h4>
+                                            <p>文章收录 : 1923</p>
                                         </dd>
                                     </dl>
                                     <dl>
                                         <dt><a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a></dt>
                                         <dd>
-                                            <h4>云计算</h4>
-                                            <p>34343, 3230493</p>
+                                            <h4>react</h4>
+                                            <p>文章收录 : 23</p>
                                         </dd>
                                     </dl>
                                     <dl>
-                                        <dt><a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a></dt>
+                                        <dt><a href=""><img src="http://img.bss.csdn.net/201704250917048986.png" alt=""></a></dt>
                                         <dd>
                                             <h4>云计算</h4>
-                                            <p>34343, 3230493</p>
+                                            <p>文章收录 : 983</p>
                                         </dd>
                                     </dl>
                                 </li>

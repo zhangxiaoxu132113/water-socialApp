@@ -1,11 +1,9 @@
 package com.water.db.controller;
 
-import com.water.uubook.model.Category;
 import com.water.uubook.model.dto.ArticleDto;
 import com.water.uubook.model.dto.CategoryDto;
 import com.water.uubook.service.ArticleService;
 import com.water.uubook.service.CategoryService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
+ * 博客板块
  * Created by mrwater on 2017/7/18.
  */
 @Controller
@@ -28,12 +27,18 @@ public class BlogController {
     @Resource
     private ArticleService articleService;
 
+    /**
+     * 标签分类专题页
+     * @param categoryStr
+     * @return
+     * @throws ExecutionException
+     */
     @RequestMapping(value = "/{categoryStr}")
     public ModelAndView category(@PathVariable String categoryStr) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
-        Category category = categoryService.getCategoryByName(categoryStr);
+        CategoryDto category = categoryService.getCategoryByNameWithCache(categoryStr);
         if (category == null && category.getParentId() == 0) {
-            //return 404
+//            return 404
             return null;
         }
         List<CategoryDto> categoryDtos = categoryService.getHotCategories();
@@ -41,11 +46,25 @@ public class BlogController {
         int currentPage = 1;
         ArticleDto articleDto = new ArticleDto();
         articleDto.setCategory(category.getId());
-        List<ArticleDto> articleDtoList = articleService.findArticleListByCondition(articleDto, new String[]{"id", "title", "view_hits", "tags", "create_on"}, currentPage, pageSize);
+        String[] queryField = {"id", "title", "view_hits", "tags", "create_on"};
+        List<ArticleDto> articleDtoList = articleService.findArticleListByCondition(articleDto, queryField, currentPage, pageSize);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("categoryDtos", categoryDtos);
         mav.addObject("articleDtoList", articleDtoList);
         mav.setViewName("/article/category");
+        return mav;
+    }
+
+    /**
+     * 文档库模块
+     * @param category
+     * @return
+     */
+    @RequestMapping(value = "/category/{category}")
+    public ModelAndView blogCategory(@PathVariable String category) {
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("/article/categoryModule");
         return mav;
     }
 }

@@ -243,24 +243,5 @@
 </div>
 
 <script src="<%=path%>/asset/js/article/articleDetail.js"></script>
-<style>
-    .guess-like {
-        padding: 20px 20px 30px 20px;
-        margin-top: 20px;
-        background: #fff;
-    }
-    .guess-like ul li {
-        float: left;
-        padding-bottom: 10px;
-        margin-right: 8px;
-        width: 24%;
-    }
-    .guess-like ul li img {
-        width: 173px;
-        height: 122px;
-        display: block;
-        margin-bottom: 5px;
-    }
-</style>
 </body>
 </html>

@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: mrwater
-  Date: 2017/7/18
-  Time: 下午10:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -14,79 +7,6 @@
 <html>
 <head>
     <title>Title</title>
-    <style>
-        #header {
-            z-index: 10001;
-        }
-        .bread {
-            padding:1em 0;
-        }
-        .profile-canopy-headerBg {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
-            overflow: hidden
-        }
-
-        .profile-canopy-headerBg img.profile-bg-img {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: -9999px;
-            bottom: -9999px;
-            margin: auto 0;
-            width: 100%;
-        }
-        #middle {
-
-        }
-        #middle #middle-inner {
-            padding-top: 28px;
-            position: relative;
-            height: 110px;
-        }
-        .topic-intro {
-            padding-top: 3em;
-            position: absolute;
-            left: 46%;
-            width: 180px;
-        }
-        .about-topic-info {
-            font-size: 1.2em;
-            padding: 0.25em 0 0.25em 0;
-            display: block;
-            font-size: 1.2em;
-            border-bottom: 2px solid #ccc;
-        }
-        .topic-articles .item:hover {
-            background: #f9fafc;
-        }
-        #left-body .inner .search-input {
-            margin: 2em 0 3.2em 0;
-        }
-        #left-body .inner .search-input input[type=text] {
-            display: inline-block;
-            width: 185px;
-            height: 35px;
-            vertical-align: middle;
-            border: none;
-            background: #f5f6f8;
-            font-size: 14px;
-            color: #8a99a4;
-            padding-left: 10px;
-            outline: none;
-            float: left;
-        }
-        #left-body .inner .search-input .search_btn {
-            width: 35px;
-            height: 35px;
-            background: #4b98c8;
-            float: left;
-        }
-    </style>
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-category.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
 </head>

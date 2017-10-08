@@ -57,7 +57,7 @@ public class ITArticleServiceImpl implements ITArticleService {
         int pageSize = 11;
         if (articleList == null || articleList.size() < pageSize) {
             Map<String, Object> queryParam = new HashMap<String, Object>();
-            Article article = new Article();
+            ArticleDto article = new ArticleDto();
             article.setModule(0);
 
             queryParam.put("pageSize", pageSize);
@@ -99,7 +99,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     public List<ArticleDto> getSoftwareInformations() {
         Map<String, Object> queryParam = new HashMap<String, Object>();
-        Article article = new Article();
+        ArticleDto article = new ArticleDto();
         article.setModule(1);
         int begin = 0;
         int pageSize = 10;
@@ -115,7 +115,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     public List<ArticleDto> getNewArticles() {
         Map<String, Object> queryParam = new HashMap<String, Object>();
-        Article article = new Article();
+        ArticleDto article = new ArticleDto();
         article.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
         int begin = 0;
         int pageSize = 10;

@@ -9,45 +9,23 @@
     <title>Title</title>
     <link rel="stylesheet" href="<%=path%>/asset/css/categoryModule.css">
     <style>
-        #middle-content {
-            position: relative;
-            height: 80px;
-            background: rgba(211, 241, 251, 0.15);
+        .load-more {
+            text-align: center;
+            margin-top: 2em;
         }
-        #middle-content #middle-inner {
-            position: relative;
+        .load-more .load-more-btn {
+            width: 100px;
+            height: 36px;
+            margin: 0 auto;
+            line-height: 36px;
+            background-color: #999;
+            color: #fff;
         }
-        .profile-canopy-headerBg {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
-            overflow: hidden
+        .load-more .load-more-btn:hover {
+            cursor: pointer;
         }
-
-        .profile-canopy-headerBg img.profile-bg-img {
-            position: absolute;
-            left: 0;
-            right: 0;
-            opacity: 0.35;
-            top: -9999px;
-            bottom: -9999px;
-            margin: auto 0;
-            width: 100%;
-        }
-
-        #middle-inner .category-module-intro {
-            position: absolute;
-            left:0;
-            font-size: 20px;
-        }
-        #middle-inner .search {
-            position: absolute;
-            right:0;
-            z-index: 1001;
-        }
+        .load-more-info {  display: none;  }
+        .load-more-img {width: 25px;height: 25px;vertical-align: middle}
     </style>
 </head>
 <body>
@@ -73,22 +51,27 @@
                 </div>
             </div>
         </div>
+
         <div id="middle-content">
             <div class="profile-canopy-headerBg">
                 <img class="profile-bg-img" src="<%=path%>/asset/content/blog-index-bg.jpeg" style="transform: none">
             </div>
             <div id="middle-inner">
                 <div class="category-module-intro">
-                    <h3>文档库 - 编程语言</h3>
+                    <h3>文档库 - ${categoryDto.name}</h3>
                 </div>
                 <div class="search">
                     <div class="search-inner clearfix">
-                        <div class="search-input">
-                            <input type="text" placeholder="Java 教程, Mysql 教程">
-                        </div>
-                        <div class="search-btn">
-                            <input type="submit"/>
-                        </div>
+                        <form action="/article/search" class="search-form" method="get"
+                              style="position: relative">
+                            <div class="search-input">
+                                <input type="text" placeholder="Java 教程, Mysql 教程" name="keyword">
+                            </div>
+                            <div class="search-btn">
+                                <input type="submit"/>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -103,15 +86,18 @@
                             <h3>推荐阅读</h3>
                             <ul class="clearfix">
                                 <li>
-                                    <img src="https://static.oschina.net/uploads/img/201704/01163516_oNF6.png" width="260" height="150" alt="">
+                                    <img src="https://static.oschina.net/uploads/img/201704/01163516_oNF6.png"
+                                         width="260" height="150" alt="">
                                     <h3><a href="">大数据存储与分析 - IBM DB2 与 Graphite</a></h3>
                                 </li>
                                 <li>
-                                    <img src="https://static.oschina.net/uploads/space/2017/0921/194320_Rxrd_2663968.jpg" width="260" height="150" alt="">
+                                    <img src="https://static.oschina.net/uploads/space/2017/0921/194320_Rxrd_2663968.jpg"
+                                         width="260" height="150" alt="">
                                     <h3><a href="">使用 Java、Weka 和 dashDB 服务构建一个数据挖掘应用程序</a></h3>
                                 </li>
                                 <li>
-                                    <img src="https://static.oschina.net/uploads/img/201704/01163228_NmPR.png" width="260" height="150" alt="">
+                                    <img src="https://static.oschina.net/uploads/img/201704/01163228_NmPR.png"
+                                         width="260" height="150" alt="">
                                     <h3><a href="">Informix 物联网应用示例</a></h3>
                                 </li>
                             </ul>
@@ -130,126 +116,66 @@
                                 </div>
                                 <div class="tabCon">
                                     <div class="tabBox">
-                                        <div class="tabList">
+                                        <div class="selected_div">
                                             <ul>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">快速了解人工智能结晶之语音转换文字</a></h3>
-                                                        <p>
-                                                            随着深度学习的快速发展以及技术的开源，越来越多的人开始接触和了解深度学习，
-                                                            也出现了越来越多的开源的深度学习项目。其中不乏一些非常有意思的项目，在帮助用户了解深度学习原理的同时，
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
+                                                <c:forEach items="${requestScope.hotArticleList}" var="article">
+                                                    <li>
+                                                        <div class="topic-img">
+                                                            <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
+                                                                 alt="">
                                                         </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">这个六足机器人想成为你的朋友和舞伴</a></h3>
-                                                        <p>
-                                                            “20年前我们做网站开发，后来是手机应用，科技创新的下一个阶段会发生在机器人平台上”
-                                                            身为Vincross首席运营官的徐凯强说道。Vincross是一家北京的机器人创业公司，三年前刚刚成立。
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
+                                                        <div class="topic-info">
+                                                            <h3>
+                                                                <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                            </h3>
+                                                            <p>${article.description}</p>
+                                                            <div class="detail">
+                                                                <span>发布于：${article.createOnStr}</span>
+                                                                <span>阅读量：${article.viewHits}</span>
+                                                                <span>点赞:34</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">这个六足机器人想成为你的朋友和舞伴</a></h3>
-                                                        <p>
-                                                            “20年前我们做网站开发，后来是手机应用，科技创新的下一个阶段会发生在机器人平台上”
-                                                            身为Vincross首席运营官的徐凯强说道。Vincross是一家北京的机器人创业公司，三年前刚刚成立。
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">这个六足机器人想成为你的朋友和舞伴</a></h3>
-                                                        <p>
-                                                            “20年前我们做网站开发，后来是手机应用，科技创新的下一个阶段会发生在机器人平台上”
-                                                            身为Vincross首席运营官的徐凯强说道。Vincross是一家北京的机器人创业公司，三年前刚刚成立。
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">这个六足机器人想成为你的朋友和舞伴</a></h3>
-                                                        <p>
-                                                            “20年前我们做网站开发，后来是手机应用，科技创新的下一个阶段会发生在机器人平台上”
-                                                            身为Vincross首席运营官的徐凯强说道。Vincross是一家北京的机器人创业公司，三年前刚刚成立。
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3><a href="">这个六足机器人想成为你的朋友和舞伴</a></h3>
-                                                        <p>
-                                                            “20年前我们做网站开发，后来是手机应用，科技创新的下一个阶段会发生在机器人平台上”
-                                                            身为Vincross首席运营官的徐凯强说道。Vincross是一家北京的机器人创业公司，三年前刚刚成立。
-                                                        </p>
-                                                        <div class="detail">
-                                                            <span>发布于：2017-08-09</span>
-                                                            <span>阅读量：923</span>
-                                                            <span>点赞:34</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
+                                                </c:forEach>
                                             </ul>
+                                            <div class="load-more">
+                                                <div class="load-more-btn">
+                                                    加载更多
+                                                </div>
+                                                <div class="load-more-info">
+                                                    <img class="load-more-img" src="<%=path%>/asset/content/loadding.gif" alt="">
+                                                    正在加载更多。。。
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
-                                            00000
-                                        </div>
-                                        <div>
-                                            1111
+                                            <ul>
+                                                <c:forEach items="${requestScope.newestArticleList}" var="article">
+                                                    <li>
+                                                        <div class="topic-img">
+                                                            <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
+                                                                 alt="">
+                                                        </div>
+                                                        <div class="topic-info">
+                                                            <h3>
+                                                                <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                            </h3>
+                                                            <p>${article.description}</p>
+                                                            <div class="detail">
+                                                                <span>发布于：${article.createOnStr}</span>
+                                                                <span>阅读量：${article.viewHits}</span>
+                                                                <span>点赞:34</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
                                         </div>
                                         <div>
                                             dfdf
                                         </div>
                                         <div>
                                             3333
-                                        </div>
-                                        <div>
-                                            vvvv
                                         </div>
                                     </div>
                                 </div>
@@ -264,14 +190,12 @@
                         <div class="all-category">
                             <ul>
                                 <li><a href="">全部</a></li>
-                                <li class="active"><a href="">开发语言</a></li>
-                                <li><a href="">前端开发</a></li>
-                                <li><a href="">数据库</a></li>
-                                <li><a href="">移动开发</a></li>
-                                <li><a href="">服务器</a></li>
-                                <li><a href="">云计算</a></li>
-                                <li><a href="">开发工具</a></li>
-                                <li><a href="">软件开发</a></li>
+                                <c:forEach items="${requestScope.categoryParentList}" var="category">
+                                    <li
+                                            <c:if test="${category.id == requestScope.categoryDto.id}">class="active"</c:if> >
+                                        <a href="<%=path%>/blog/category/${category.id}">${category.name}</a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                         <%--广告投放位置--%>
@@ -293,17 +217,83 @@
             <p>© 2003-2017 ITeye.com. [ 京ICP证070598号 京公网安备11010502027441 ]</p>
             <p>北京创新乐知信息技术有限公司 版权所有</p>
         </div>
-
     </div>
 </div>
 <script src="<%=path%>/plugs/slider/jquery-2.1.1.min.js"></script>
 <script>
-    $(function(){
-        $("ul.tabClick li").click(function(){
+    $(function () {
+        var pageSize = 10;
+        var currentPage = 1;
+        var bot = 150;
+
+        $("ul.tabClick li").click(function () {
             $(this).addClass("active").siblings().removeClass("active"); //切换选中的按钮高亮状态
-            var index=$(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+            var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
             $('.lineDiv').css('margin-left', (index * 140) + 'px');
-            $(".tabBox > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+            $(".tabBox > div").eq(index).addClass("selected_div").show().siblings().hide().removeClass("selected_div"); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+        });
+
+
+        var bindScroll = function () {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > $('#middle-content').height() + $('.all-category').height() + 20) {
+                    if ($(document).scrollTop() > $(document).height() - 300) {
+                        $('.ad-info').removeClass("fixed-position");
+                    } else {
+                        $('.ad-info').addClass("fixed-position");
+                    }
+                } else {
+                    $('.ad-info').removeClass("fixed-position");
+                }
+            });
+        };
+
+        bindScroll(); //绑定滚动事件
+        /**
+         * 搜索内容
+         */
+        $('.search_btn').click(function () {
+            $('.search-form').submit();
+        });
+
+        /**
+         * 字符格式化
+         * @param str
+         * @returns {XML|string|{state, paramExpr}|*|void}
+         */
+        function mytrim(str) {
+            return str.replace(/(^\s*)|(\s*$)/g, '');
+        }
+
+        /**
+         * 点击加载更多按钮
+         */
+        $('.load-more-btn').click(function(){
+            currentPage++;
+            $('.load-more-info').show();
+            $('.load-more-btn').hide();
+            $.ajax({//请求数据
+                url: '/blog/category/getCategoryArticleListWithAjax?category=1&sort=viewHits&currentPage='+currentPage+'&pageSize=' + pageSize,
+                type: 'GET',
+                async: true,
+                success: function (data) {
+                    data = mytrim(data);
+                    console.log("data = " +data);
+                    $('.load-more-btn').show();
+                    $('.load-more-info').hide();
+                    if (data == undefined || data == '') {
+                        //已经没有数据
+                    } else {
+                        $('.selected_div > ul').append(data);
+                        bindScroll();
+                    }
+
+                },
+                error: function (xhr, textStatus) {
+                    alert("服务器请求异常！");
+                    $('.loading').hide();
+                }
+            });
         });
     });
 </script>

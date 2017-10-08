@@ -68,7 +68,7 @@
                     <div class="tatest-article-inner">
                         <div class="tatest-article-header">
                             <h4>最新文章</h4>
-                            <a href="<%=path%>/blog/java">查看更多</a>
+                            <%--<a href="<%=path%>/blog/java">查看更多</a>--%>
                         </div>
                         <div class="tatest-article-items">
                             <div class="clearfix">
@@ -89,7 +89,7 @@
                         <div class="item">
                             <div class="header">
                                 <h4>${item.category.name}</h4>
-                                <a href="<%=path%>/blog/${item.category.name}">查看更多</a>
+                                <a href="<%=path%>/blog/category/${item.category.id}">查看更多</a>
                             </div>
                             <section class="content">
                                 <c:forEach items="${item.articles}" var="article">

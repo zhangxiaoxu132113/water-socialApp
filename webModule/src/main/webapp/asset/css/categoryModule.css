@@ -10,7 +10,7 @@ body {
 }
 .search-inner h4, .search-input, .search-btn {
     display: inline-block;
-    width: 200px;
+    width: 230px;
 }
 
 .search-btn {
@@ -47,7 +47,14 @@ body {
 }
 
 .clearfix:after {  overflow: hidden;  visibility: hidden;  display: block;  font-size: 0;  content: " ";  clear: both;  height: 0;  }
-#header {  height: 28px;  }
+#header {
+    position: fixed;
+    width: 100%;
+    height: 28px;
+    z-index: 10002;
+    left: 0;
+    right: 0;
+}
 #header #header-inner {  background: #48525e;  height:inherit;  line-height: 28px;  font-size: 13px;  }
 #header #header-inner .nav-menu {  float: left;  margin-left: 1em;  }
 #header #header-inner .nav-menu ul li {  float: left;  margin-right: 1em;  }
@@ -209,4 +216,55 @@ body {
     font-weight: 400;
     margin-bottom: 8px;
     color: #333;
+}
+
+#middle-content {
+    position: relative;
+    height: 80px;
+    padding-top: 28px;
+    background: rgba(211, 241, 251, 0.15);
+}
+
+#middle-content #middle-inner {
+    position: relative;
+}
+
+.profile-canopy-headerBg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden
+}
+
+.fixed-position {
+    top: 20px;
+    position: fixed;
+    left: 0;
+    margin-left: 920px;
+}
+
+.profile-canopy-headerBg img.profile-bg-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.35;
+    top: -9999px;
+    bottom: -9999px;
+    margin: auto 0;
+    width: 100%;
+}
+
+#middle-inner .category-module-intro {
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+}
+
+#middle-inner .search {
+    position: absolute;
+    right: 0;
+    z-index: 1001;
 }

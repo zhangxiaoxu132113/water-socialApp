@@ -44,7 +44,7 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public List<ArticleDto> getLatestArticleList() {
-        Map<String, Object> param = this.getParamMap(new Article(), new String[] {"id", "title"}, null, 20, 1);
+        Map<String, Object> param = this.getParamMap(new ArticleDto(), new String[] {"id", "title"}, null, 20, 1);
         return articleMapper.findArticleListByCondition(param);
     }
 
@@ -53,7 +53,7 @@ public class BlogServiceImpl implements IBlogService {
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("crate_on", "DESC");
         sortMap.put("view_hits", "ASC");
-        Map<String, Object> param = this.getParamMap(new Article(), new String[] {"id", "title", "view_hits", "create_on"}, sortMap, 11, 1);
+        Map<String, Object> param = this.getParamMap(new ArticleDto(), new String[] {"id", "title", "view_hits", "create_on"}, sortMap, 11, 1);
         return articleMapper.findArticleListByCondition(param);
     }
 
@@ -78,7 +78,7 @@ public class BlogServiceImpl implements IBlogService {
         }
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("createOn", "DESC");
-        Article model = new Article();
+        ArticleDto model = new ArticleDto();
         for (CategoryDto categoryDto : categoryDtos) {
             model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
             Map<String, Object> param = this.getParamMap(model, new String[] {"id", "title"}, null, 5, 1);

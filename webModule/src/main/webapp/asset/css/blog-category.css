@@ -219,6 +219,7 @@ body {
 #main-body #main-body-inner {
     width: 1170px;
     margin: 0 auto;
+    position: relative;
 }
 
 #main-body #main-body-inner #left-body {
@@ -232,7 +233,7 @@ body {
 }
 
 #left-body .inner {
-    padding: 30px 40px;
+    padding: 30px 30px;
     box-sizing: border-box;
     height: 100%;
 }
@@ -298,6 +299,10 @@ body {
     padding:3px 0;
 }
 
+.all-topics {
+    margin-bottom: 2em;
+}
+
 .all-topics dl {
     position: relative;
     margin: 15px 0;
@@ -319,8 +324,8 @@ body {
 }
 
 .all-topics dl dt img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 }
 
 .about-topics {
@@ -337,7 +342,7 @@ body {
 .about-topics ul li a {
     text-decoration: none;
     color: #545e66;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 28px;
 }
 
@@ -351,7 +356,8 @@ body {
 }
 
 .topic-articles .item {
-    margin: 15px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #e8eff1;
 }
 
 .topic-articles .views {
@@ -383,7 +389,7 @@ h3.article-title {
 h3.article-title a:link {
     color: #494d58;
     line-height: 2em;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 18px;
     text-decoration: none;
 }
@@ -424,8 +430,8 @@ h3.article-title a:link {
 .topic-intro {
     padding-top: 3em;
     position: absolute;
-    left: 46%;
-    width: 180px;
+    left: 45%;
+    width: 100%;
 }
 .about-topic-info {
     font-size: 1.2em;
@@ -434,8 +440,17 @@ h3.article-title a:link {
     font-size: 1.2em;
     border-bottom: 2px solid #ccc;
 }
+.all-topics li dl dd h4 a{
+    text-decoration: none;
+    color: #555e67;
+}
 .topic-articles .item:hover {
     background: #f9fafc;
+}
+
+.ad-img {
+    width: 100%;
+    height: auto;
 }
 #left-body .inner .search-input {
     margin: 2em 0 3.2em 0;
@@ -445,6 +460,7 @@ h3.article-title a:link {
     width: 185px;
     height: 35px;
     vertical-align: middle;
+    border-bottom: 1px solid #e8eff1;
     border: none;
     background: #f5f6f8;
     font-size: 14px;
@@ -456,6 +472,29 @@ h3.article-title a:link {
 #left-body .inner .search-input .search_btn {
     width: 35px;
     height: 35px;
-    background: #4b98c8;
     float: left;
+    background: #4b98c8;
+    line-height: 35px;
+    text-align: center;
+}
+
+#left-body .inner .search-input .search_btn i{
+    font-size: 18px;
+    font-weight: bolder;
+    color: #fff;
+}
+
+.loading {
+    text-align: center;
+    margin: 1em;
+    background: #e8eff1;
+    height: 46px;
+    line-height: 46px;
+}
+
+.loading img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 0.5em;
 }

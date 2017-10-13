@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +99,9 @@ public class BlogController {
      * @return
      */
     @RequestMapping(value = "/category/{category}")
-    public ModelAndView blogCategory(@PathVariable String category) throws ExecutionException {
+    public ModelAndView blogCategory(@PathVariable String category,
+                                     HttpServletRequest request) throws ExecutionException {
+
         ModelAndView mav = new ModelAndView("/article/categoryModule");
         int categoryId = Integer.parseInt(category);
 

@@ -1,16 +1,10 @@
 <%@ page import="com.water.uubook.model.dto.ArticleDto" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: mrwater
-  Date: 2017/4/2
-  Time: 下午9:49
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
     List<ArticleDto> articleDtoList = (List<ArticleDto>) request.getAttribute("greeArticleList");
 %>
 <!DOCTYPE html>
@@ -18,12 +12,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="<%=path%>/asset/css/articleList.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
-    <link rel="stylesheet" href="<%=path%>/plugs/slider/slider.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/articleList.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/common/header-common.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
+    <link rel="stylesheet" href="<%=basePath%>/plugs/slider/slider.css">
+    <style>
+        #category_bar {
+            margin-bottom: 20px;
+        }
+        .tabClick{
+            overflow: hidden;
+            border: 1px solid #DFDFDF;
+            border-top: 3px solid #c00;
+        }
+        .tabClick li{
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            width: auto;
+            float: left;
+            text-align: center;
+            font-weight: 400;
+            margin: 0;
+            color: #888;
+            padding: 0 10px;
+        }
+        .tabClick li:hover {cursor: pointer}
+        .tabClick li.active{ color: #099; transition: 0.1s;}
+        .tabCon{ overflow: hidden}
+        .tabBox{ position: relative}
+        .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #099; background: #f3f3f3}
+        .lineDiv{ background: #099; height: 2px; width:140px;}
+        .tabCon {display: block!important;}
+        .tabBox > div {display: none}
+        .tabBox > div:first-child {display: block}
+    </style>
 </head>
 <body>
 <div id="container">
@@ -57,14 +82,90 @@
                         </ul>
                     </div>
                 </div>
-                <div>
+                <div class="ad">
                     <img src="<%=path%>/asset/content/banner.jpg">
                 </div>
                 <div id="view-tab">
+                    <div id="category_bar">
+                        <div class="wrap" id="wrap">
+                            <ul class="tabClick">
+                                <li class="active">综合</li>
+                                <li>云计算</li>
+                                <li>web开发</li>
+                                <li>系统</li>
+                                <li>网络</li>
+                                <li>博客</li>
+                                <li>大数据</li>
+                            </ul>
+                            <div class="tabCon">
+                                <div class="tabBox">
+                                    <div class="selected_div">
+                                        <ul>
+                                            <c:forEach items="${requestScope.hotArticleList}" var="article">
+                                                <li>
+                                                    <div class="topic-img">
+                                                        <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="topic-info">
+                                                        <h3>
+                                                            <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                        </h3>
+                                                        <p>${article.description}</p>
+                                                        <div class="detail">
+                                                            <span>发布于：${article.createOnStr}</span>
+                                                            <span>阅读量：${article.viewHits}</span>
+                                                            <span>点赞:34</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                        <div class="load-more">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <c:forEach items="${requestScope.newestArticleList}" var="article">
+                                                <li>
+                                                    <div class="topic-img">
+                                                        <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="topic-info">
+                                                        <h3>
+                                                            <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                        </h3>
+                                                        <p>${article.description}</p>
+                                                        <div class="detail">
+                                                            <span>发布于：${article.createOnStr}</span>
+                                                            <span>阅读量：${article.viewHits}</span>
+                                                            <span>点赞:34</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        dfdf
+                                    </div>
+                                    <div>
+                                        3333
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div id="article-list">
                         <div class="left">
                             <div id="subject-list">
-                                <h2 class="h2-header-info">经验</h2>
+                                <div class="header-info">
+                                    <h2 class="h2-header-info">经验</h2>
+                                    <div class="red_bottom"></div>
+                                </div>
                                 <ul>
                                     <li><em>1</em><a href="">（干货）：Spark性能优化</a></li>
                                     <li><em>2</em><a href="">ssm框架系列（1）-环境搭建</a></li>
@@ -79,7 +180,10 @@
                         </div>
                         <div class="right">
                             <div id="recently-article-list">
-                                <h2 class="h2-header-info">最新热门</h2>
+                                <div class="header-info">
+                                    <h2 class="h2-header-info">最新热门</h2>
+                                    <div class="red_bottom"></div>
+                                </div>
                                 <ul>
                                     <c:forEach items="${requestScope.newItArticleList}" var="article">
                                         <li>
@@ -112,7 +216,10 @@
                     </section>
                 </div>
                 <div id="new-software-info">
-                    <h2 class="h2-header-info">软件更新资讯</h2>
+                    <div class="header-info">
+                        <h2 class="h2-header-info">软件更新资讯</h2>
+                        <div class="red_bottom"></div>
+                    </div>
                     <ul>
                         <c:forEach items="${requestScope.softwareInformations}" var="article" varStatus="status">
                             <li>
@@ -133,7 +240,10 @@
                     </ul>
                 </div>
                 <div id="course-info">
-                    <h2 class="h2-header-info">热门教程</h2>
+                    <div class="header-info">
+                        <h2 class="h2-header-info">热门教程</h2>
+                        <div class="red_bottom"></div>
+                    </div>
                     <ul>
                         <c:forEach items="${requestScope.courseSubjectDtos}" var="courseSubject">
                             <li>
@@ -145,7 +255,10 @@
                     </ul>
                 </div>
                 <div id="knowdega-info">
-                    <h2 class="h2-header-info">知识库</h2>
+                    <div class="header-info">
+                        <h2 class="h2-header-info">知识库</h2>
+                        <div class="red_bottom"></div>
+                    </div>
                     <ul>
                         <li>
                             <div class="base-img">

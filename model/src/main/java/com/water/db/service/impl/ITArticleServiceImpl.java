@@ -216,7 +216,7 @@ public class ITArticleServiceImpl implements ITArticleService {
             cacheManager.zincrby(CacheKey.ARTICLE_VOTED_SCORE, -VOTE_SCORE, articleKey);
             cacheManager.hincrBy(articleKey, "vote_no", 1);
 
-        } else if (attitude == 1){// 肯定票
+        } else if (attitude == 1) {// 肯定票
             if (cacheManager.sismember(String.format(CacheKey.VOTED_NO, articleId), ip)) {// 查看用户是否投了反对票
                 cacheManager.hincrBy(articleKey, "vote_no", -1);
                 cacheManager.srem(String.format(CacheKey.VOTED_NO, articleId), ip);
@@ -277,9 +277,11 @@ public class ITArticleServiceImpl implements ITArticleService {
 
         List<ArticleDto> articleDtoList = new ArrayList<>();
         List<byte[]> byteValues = cacheManager.lrange(redis_key.getBytes(), 0, -1);
-        for (byte[] byteValue : byteValues) {
-            ArticleDto articleDto = (ArticleDto) SerializeHelper.unserialize(byteValue);
-            articleDtoList.add(articleDto);
+        if (byteValues != null && byteValues.size() > 0) {
+            for (byte[] byteValue : byteValues) {
+                ArticleDto articleDto = (ArticleDto) SerializeHelper.unserialize(byteValue);
+                articleDtoList.add(articleDto);
+            }
         }
 
         return articleDtoList;

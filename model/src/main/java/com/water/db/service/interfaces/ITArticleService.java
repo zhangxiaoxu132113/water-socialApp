@@ -27,12 +27,6 @@ public interface ITArticleService {
 
     List<ArticleDto> getSoftwareInformations();
 
-    List<ArticleDto> getRecentlyReadedArticlesByUser(User user);
-
-    List<ArticleDto> getNewArticles();
-
-    List<Article> getExcellentArticle();
-
     List<Article> getRelatedArticles(String queryContent, int pageSize);
 
     Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize);

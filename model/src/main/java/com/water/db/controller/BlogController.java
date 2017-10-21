@@ -1,7 +1,6 @@
 package com.water.db.controller;
 
-import com.water.utils.web.view.ResultView;
-import com.water.uubook.model.Category;
+import com.water.db.service.interfaces.IBlogService;
 import com.water.uubook.model.dto.ArticleDto;
 import com.water.uubook.model.dto.CategoryDto;
 import com.water.uubook.service.ArticleService;
@@ -16,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +37,23 @@ public class BlogController {
 
     @Resource
     private TagService tagService;
+
+    @Resource
+    private IBlogService blogService;
+
+    @RequestMapping(value = "")
+    public ModelAndView blog() {
+        ModelAndView mav = new ModelAndView();
+        List<ArticleDto> latestArticleList = blogService.getLatestArticleList();
+        List<ArticleDto> hotArticleList = blogService.getHotArticleList(null, 10);
+        List<Map<String, Object>> blogCategory = blogService.getArticleByAllCategoryWithCache();
+
+        mav.addObject("latestArticleList", latestArticleList != null ? latestArticleList : new ArrayList<>());
+        mav.addObject("hotArticleList", hotArticleList != null ? hotArticleList : new ArrayList<>());
+        mav.addObject("blogCategory", blogCategory != null ? blogCategory : new ArrayList<>());
+        mav.setViewName("/article/index");
+        return mav;
+    }
 
     /**
      * 标签分类专题页

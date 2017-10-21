@@ -21,7 +21,7 @@ public interface IBlogService {
      * 获取热门文章
      * @return
      */
-    List<ArticleDto> getHotArticleList();
+    List<ArticleDto> getHotArticleList(Integer cateogry, Integer pageSize);
 
 
     List<Map<String,Object>> getArticleByAllCategoryWithCache();

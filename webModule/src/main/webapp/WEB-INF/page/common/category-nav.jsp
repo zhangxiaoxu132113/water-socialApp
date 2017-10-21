@@ -11,14 +11,14 @@
                 全部分类
                 <div class="all-category-inner">
                     <ul>
-                        <c:forEach items="${requestScope.tagList}" var="tag">
+                        <c:forEach items="${requestScope.categoryList}" var="category">
                             <li>
-                                <span>${tag.name}</span>
+                                <span>${category.name}</span>
 
                                 <div style="margin-left: -1.2em">
                                     <div class="category-panel">
-                                        <c:forEach items="${tag.children}" var="tagChildren">
-                                            <span><a>${tagChildren.name}</a></span>
+                                        <c:forEach items="${category.children}" var="categoryChildren">
+                                            <span><a>${categoryChildren.name}</a></span>
                                         </c:forEach>
                                     </div>
                                 </div>

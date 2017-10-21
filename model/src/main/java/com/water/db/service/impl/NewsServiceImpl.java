@@ -2,6 +2,7 @@ package com.water.db.service.impl;
 
 import com.water.db.service.interfaces.NewsService;
 import com.water.utils.common.Constants;
+import com.water.utils.db.DBUtil;
 import com.water.uubook.dao.ArticleMapper;
 import com.water.uubook.model.Article;
 import com.water.uubook.model.dto.ArticleDto;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 资讯业务类
  * Created by mrwater on 2017/8/17.
  */
 @Service
@@ -22,21 +24,16 @@ public class NewsServiceImpl implements NewsService {
     private ArticleMapper articleMapper;
 
     @Override
-    public List<ArticleDto> getHotNews() {
-        Map<String, Object> queryMap = new HashMap<>();
-        int begin = 0;
-        int pageSize = 10;
+    public List<ArticleDto> getHotNewsWithType(int pageSize, int newType) {
+        if (pageSize <= 0) {
+            pageSize = 10;
+        }
         ArticleDto model = new ArticleDto();
-        model.setModule(Constants.ARTICLE_MODULE.ZI_XUN.getIndex());
+        model.setModule(newType);
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("crate_on", "DESC");
         sortMap.put("view_hits", "ASC");
-
-        queryMap.put("model", model);
-        queryMap.put("begin", begin);
-        queryMap.put("sortMap", sortMap);
-        queryMap.put("pageSize", pageSize);
-        queryMap.put("cols", new String[]{"id", "title"});
+        Map<String, Object> queryMap = DBUtil.getParamMap(model, new String[]{"id", "title", "description"}, sortMap, pageSize, 1);
         List<ArticleDto> articleDtoList = articleMapper.findArticleListByCondition(queryMap);
         return articleDtoList;
     }

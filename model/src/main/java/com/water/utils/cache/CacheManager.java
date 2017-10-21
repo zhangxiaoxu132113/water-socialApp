@@ -54,4 +54,9 @@ public interface CacheManager {
 
     boolean sismember(String key, String member);
 
+    List getList(String key, Class classType);
+
+    void setList(String key, List list, int seconds, Class classType);
+
+    void set(String key, byte[] data, int seconds);
 }

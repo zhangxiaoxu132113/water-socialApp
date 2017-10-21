@@ -140,6 +140,12 @@ body {
     padding-bottom: 10px;
 }
 
+#view-info-detail-title a {
+    font: normal 28px/40px "Microsoft YaHei";
+    text-decoration: none;
+    color: #333;
+}
+
 #view-info-list {
     vertical-align: top;
 }
@@ -181,9 +187,7 @@ body {
     font: normal 16px/24px "Microsoft YaHei";
     margin-top: 10px;
     padding-bottom: 10px;
-    overflow: hidden;
     border-bottom: 1px #ccc dotted;
-    /*padding-left: 0!important;*/
 }
 
 #new-software-info ul li {
@@ -472,7 +476,6 @@ body {
 #recently-article-list ul li a h3 {
     font: normal 18px/28px "Microsoft YaHei";
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
 #recently-article-list ul li img {
@@ -489,8 +492,18 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
+    display: block;
 }
 
 #recently-article-list ul li p {
     color: #959595;
+}
+
+#course-info ul li h4 a {
+    text-decoration: none;
+    color: #666;
+}
+
+.ad img {
+    width:100%;
 }

@@ -77,4 +77,26 @@ public class UserController {
         WebUtils.sendResult(response, resultView);
     }
 
+    /**
+     * @description 跳转到用户的首页
+     * @time 2016-06-04
+     */
+    @RequestMapping(value = "/{account}/home")
+    public ModelAndView redirect2homePage(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = MWSessionUtils.getUser2Session(request);
+        modelAndView.setViewName("/personal/personalHome");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/login")
+    public ModelAndView loginView(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        String redirectAfterLogin = request.getHeader("Referer");
+        if (StringUtils.isNotBlank(redirectAfterLogin)) {
+            mav.addObject("redirect_after_login", redirectAfterLogin);
+        }
+        mav.setViewName("/login");
+        return mav;
+    }
 }

@@ -5,7 +5,9 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.water.db.service.interfaces.IBlogService;
 import com.water.db.service.interfaces.ITTagService;
+import com.water.utils.cache.CacheManager;
 import com.water.utils.common.Constants;
+import com.water.utils.db.DBUtil;
 import com.water.uubook.dao.ArticleMapper;
 import com.water.uubook.model.Article;
 import com.water.uubook.model.dto.ArticleDto;
@@ -32,6 +34,9 @@ public class BlogServiceImpl implements IBlogService {
     @Resource
     private ArticleMapper articleMapper;
 
+    @Resource
+    private CacheManager cacheManager;
+
     @Resource(name = "iTTagService")
     private ITTagService tagService;
 
@@ -44,17 +49,44 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public List<ArticleDto> getLatestArticleList() {
-        Map<String, Object> param = this.getParamMap(new ArticleDto(), new String[] {"id", "title"}, null, 20, 1);
+        Map<String, Object> param = DBUtil.getParamMap(new ArticleDto(), new String[]{"id", "title"}, null, 20, 1);
         return articleMapper.findArticleListByCondition(param);
     }
 
     @Override
-    public List<ArticleDto> getHotArticleList() {
+    public List<ArticleDto> getHotArticleList(Integer category, Integer pageSize) {
+        List<ArticleDto> articleDtoList = cacheManager.getList(Constants.CacheKey.HOT_BLOG_ARTICLE + category,
+                ArticleDto.class);
+        if (articleDtoList == null) {
+            articleDtoList = this.getHotArticleListWithDB(category, pageSize);
+        }
+        return articleDtoList;
+    }
+
+    /**
+     * 根据分类获取热门文章
+     *
+     * @param category
+     * @param pageSize
+     * @return
+     */
+    private List<ArticleDto> getHotArticleListWithDB(Integer category, Integer pageSize) {
+        ArticleDto model = new ArticleDto();
+        if (category != null) {
+            if (categoryService.findpParentCategoryById(category) == null) {
+                model.setCategory(category);
+            } else {
+                model.setParentCategory(category);
+            }
+        }
         Map<String, String> sortMap = new HashMap<>();
-        sortMap.put("crate_on", "DESC");
-        sortMap.put("view_hits", "ASC");
-        Map<String, Object> param = this.getParamMap(new ArticleDto(), new String[] {"id", "title", "view_hits", "create_on"}, sortMap, 11, 1);
-        return articleMapper.findArticleListByCondition(param);
+        sortMap.put("createOn", "DESC");
+        sortMap.put("viewHits", "DESC");
+        String[] cols = new String[]{"id", "title", "view_hits",  "description", "create_on"};
+        Map<String, Object> param = DBUtil.getParamMap(model, cols, sortMap, pageSize, 1);
+        List<ArticleDto> articleDtoList = articleMapper.findArticleListByCondition(param);
+        cacheManager.setList(Constants.CacheKey.HOT_BLOG_ARTICLE + category, articleDtoList, 12 * 60 * 60, ArticleDto.class);
+        return articleDtoList;
     }
 
     @Override
@@ -81,9 +113,9 @@ public class BlogServiceImpl implements IBlogService {
         ArticleDto model = new ArticleDto();
         for (CategoryDto categoryDto : categoryDtos) {
             model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
-            Map<String, Object> param = this.getParamMap(model, new String[] {"id", "title"}, null, 5, 1);
+            Map<String, Object> param = DBUtil.getParamMap(model, new String[]{"id", "title"}, null, 5, 1);
             List<Integer> categoryIds = new ArrayList<>();
-            if (categoryDto.getChildren() != null &&  categoryDto.getChildren().size() > 0) {
+            if (categoryDto.getChildren() != null && categoryDto.getChildren().size() > 0) {
                 for (CategoryDto arg : categoryDto.getChildren()) {
                     categoryIds.add(arg.getId());
                 }
@@ -100,33 +132,6 @@ public class BlogServiceImpl implements IBlogService {
         }
 
         return list;
-    }
-
-    private Map<String, Object> getParamMap(Article model, String[] cols, Map<String, String> sortMap, Integer size, Integer currentPage) {
-        Map<String, Object> param = new HashMap<>();
-        int begin = 0;
-        int pageSize = 10;
-        if (size != null && currentPage != null) {
-            pageSize = size;
-            begin = (currentPage -1) * pageSize;
-        }
-        if (sortMap != null && sortMap.size() > 0) {
-            param.put("sortMap", sortMap);
-        }
-
-        if (model != null) {
-            model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
-            param.put("model", model);
-        }
-
-        if (cols != null) {
-            param.put("cols", cols);
-
-        }
-
-        param.put("begin", begin);
-        param.put("pageSize", pageSize);
-        return param;
     }
 
     @PostConstruct

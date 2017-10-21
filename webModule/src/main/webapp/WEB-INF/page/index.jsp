@@ -2,10 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
-    List<ArticleDto> articleDtoList = (List<ArticleDto>) request.getAttribute("greeArticleList");
+    List<ArticleDto> topArticleList = (List<ArticleDto>) request.getAttribute("topArticleList");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +23,14 @@
         #category_bar {
             margin-bottom: 20px;
         }
-        .tabClick{
+
+        .tabClick {
             overflow: hidden;
             border: 1px solid #DFDFDF;
             border-top: 3px solid #3B639F;
         }
-        .tabClick li{
+
+        .tabClick li {
             height: 40px;
             line-height: 40px;
             font-size: 18px;
@@ -39,15 +42,100 @@
             color: #888;
             padding: 0 10px;
         }
-        .tabClick li:hover {cursor: pointer}
-        .tabClick li.active{ color: #3B639F; transition: 0.1s;}
-        .tabCon{ overflow: hidden}
-        .tabBox{ position: relative}
-        .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #3B639F; background: #f3f3f3}
-        .lineDiv{ background: #3B639F; height: 2px; width:140px;}
-        .tabCon {display: block!important;}
-        .tabBox > div {display: none}
-        .tabBox > div:first-child {display: block}
+
+        .tabClick li:hover {
+            cursor: pointer
+        }
+
+        .tabClick li.active {
+            color: #3B639F;
+            transition: 0.1s;
+            border-bottom: 2px solid #3c649f;
+        }
+
+        .tabCon {
+            overflow: hidden;
+        }
+
+        .tabBox {
+            position: relative;
+        }
+
+        .lineBorder {
+            height: 2px;
+            overflow: hidden;
+            border-bottom: 1px solid #3B639F;
+            background: #f3f3f3
+        }
+
+        .lineDiv {
+            background: #3B639F;
+            height: 2px;
+            width: 140px;
+        }
+        #article-list {
+            padding-top: 2em;
+        }
+
+        .tabCon {
+            display: block !important;
+        }
+
+        .tabBox > div {
+            display: none
+        }
+
+        .tabBox > div:first-child {
+            display: block
+        }
+
+        .category-hot-article ul li {
+            padding: 15px 0;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .category-hot-article ul li:hover {
+            background: #f9f9f9;
+        }
+
+        .category-hot-article ul li .topic-img {
+            display: inline-block;
+            width: 173px;
+            vertical-align: top;
+        }
+
+        .category-hot-article ul li .topic-img img {
+            width: 100%;
+            height: 112px;
+        }
+
+        .category-hot-article ul li .topic-info {
+            display: inline-block;
+            width: 430px;
+            vertical-align: top;
+            padding-left: 15px;
+        }
+
+        .category-hot-article ul li .topic-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .category-hot-article ul li .topic-info h3 a {
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 1em;
+            color: #333;
+        }
+
+        .category-hot-article ul li .topic-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .category-hot-article ul li .topic-info .detail{
+            font-size: 12px;
+            color: #666;
+        }
+
     </style>
 </head>
 <body>
@@ -60,24 +148,28 @@
                 <div id="view-info">
                     <div id="view-info-detail" style="display: inline-block;width: 59%; padding-right: 1em">
                         <img src="<%=basePath%>/asset/content/123.png" width="370" height="248">
-                        <div id="view-info-detail-title"><a href="<%=basePath%>/article/detail/${article.id}.html"><%=articleDtoList.get(0).getTitle() %></a></div>
+                        <div id="view-info-detail-title"><a
+                                href="<%=basePath%>/article/detail/<%=topArticleList.get(0).getId()%>.html"><%=topArticleList.get(0).getTitle() %>
+                        </a></div>
                         <div id="view-info-detail-description">
-                            <%=articleDtoList.get(0).getDescription() %>
+                            <%=topArticleList.get(0).getDescription() %>
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
-                                <c:forEach items="${requestScope.greeArticleList}" begin="9" end="11" var="article">
-                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
+                                <c:forEach items="${requestScope.topArticleList}" begin="9" end="11" var="article">
+                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
                     </div>
                     <div id="view-info-list">
                         <ul>
-                            <c:forEach items="${requestScope.greeArticleList}" begin="1" end="8" var="article">
+                            <c:forEach items="${requestScope.topArticleList}" begin="1" end="8" var="article">
                                 <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
-                            <span style="float: right;padding: 0.5em 0;text-decoration: underline;"><a href="<%=basePath%>/blog">更多</a></span>
+                            <span style="float: right;padding: 0.5em 0;text-decoration: underline;"><a
+                                    href="<%=basePath%>/blog">更多</a></span>
                         </ul>
                     </div>
                 </div>
@@ -89,110 +181,85 @@
                         <div class="wrap" id="wrap">
                             <ul class="tabClick">
                                 <li class="active">综合</li>
-                                <c:forEach items="${requestScope.tagList}" var="tag" begin="0" end="5">
-                                    <li>${tag.name}</li>
+                                <c:forEach items="${requestScope.categoryList}" var="category" begin="0" end="5">
+                                    <li>${category.name}</li>
                                 </c:forEach>
                             </ul>
                             <div class="tabCon">
                                 <div class="tabBox">
                                     <div class="selected_div">
-                                        <ul>
-                                            <c:forEach items="${requestScope.hotArticleList}" var="article">
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
-                                                             alt="">
+                                        <div id="article-list">
+                                            <div class="left">
+                                                <div id="subject-list">
+                                                    <div class="header-info">
+                                                        <h2 class="h2-header-info">经验</h2>
+                                                        <div class="red_bottom"></div>
                                                     </div>
-                                                    <div class="topic-info">
-                                                        <h3>
-                                                            <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
-                                                        </h3>
-                                                        <p>${article.description}</p>
-                                                        <div class="detail">
-                                                            <span>发布于：${article.createOnStr}</span>
-                                                            <span>阅读量：${article.viewHits}</span>
-                                                            <span>点赞:34</span>
-                                                        </div>
+                                                    <ul>
+                                                        <li><em>1</em><a href="">（干货）：Spark性能优化</a></li>
+                                                        <li><em>2</em><a href="">ssm框架系列（1）-环境搭建</a></li>
+                                                        <li><em>3</em><a href="">Java集合类操作优化经验总结</a></li>
+                                                        <li><em>4</em><a href="">Linux下搭建MySQL集群</a></li>
+                                                        <li><em>5</em><a href="">Java进阶书籍推荐</a></li>
+                                                        <li><em>6</em><a href="">【教你轻松修改React Native端口】如何同时运行</a></li>
+                                                        <li><em>7</em><a href="">引领大数据新未来 斐讯北京数据中心正式开业</a></li>
+                                                        <li><em>8</em><a href="">深入理解Ribbon之源码解析</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div id="recently-article-list">
+                                                    <div class="header-info">
+                                                        <h2 class="h2-header-info">最新热门</h2>
+                                                        <div class="red_bottom"></div>
                                                     </div>
-                                                </li>
-                                            </c:forEach>
-                                        </ul>
-                                        <div class="load-more">
+                                                    <ul>
+                                                        <c:forEach items="${requestScope.hotBlogArticle}" var="article">
+                                                            <li>
+                                                                <a href="<%=basePath%>/article/detail/${article.id}.html">
+                                                                    <h3>${article.title}</h3></a>
+                                                                <c:choose>
+                                                                    <c:when test="${not empty article.picUrl}">
+                                                                        <img src="${article.picUrl}" alt="" width="390"
+                                                                             height="200">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <p>${article.description}</p>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <ul>
-                                            <c:forEach items="${requestScope.newestArticleList}" var="article">
-                                                <li>
-                                                    <div class="topic-img">
-                                                        <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
-                                                             alt="">
-                                                    </div>
-                                                    <div class="topic-info">
-                                                        <h3>
-                                                            <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
-                                                        </h3>
-                                                        <p>${article.description}</p>
-                                                        <div class="detail">
-                                                            <span>发布于：${article.createOnStr}</span>
-                                                            <span>阅读量：${article.viewHits}</span>
-                                                            <span>点赞:34</span>
+                                    <c:forEach items="${requestScope.categoryList}" var="category">
+                                        <div class="category-hot-article">
+                                            <ul>
+                                                <c:forEach items="${category.hotArticles}" var="article">
+                                                    <li>
+                                                        <div class="topic-img">
+                                                            <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
+                                                                 alt="">
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </c:forEach>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        dfdf
-                                    </div>
-                                    <div>
-                                        3333
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="article-list">
-                        <div class="left">
-                            <div id="subject-list">
-                                <div class="header-info">
-                                    <h2 class="h2-header-info">经验</h2>
-                                    <div class="red_bottom"></div>
-                                </div>
-                                <ul>
-                                    <li><em>1</em><a href="">（干货）：Spark性能优化</a></li>
-                                    <li><em>2</em><a href="">ssm框架系列（1）-环境搭建</a></li>
-                                    <li><em>3</em><a href="">Java集合类操作优化经验总结</a></li>
-                                    <li><em>4</em><a href="">Linux下搭建MySQL集群</a></li>
-                                    <li><em>5</em><a href="">Java进阶书籍推荐</a></li>
-                                    <li><em>6</em><a href="">【教你轻松修改React Native端口】如何同时运行</a></li>
-                                    <li><em>7</em><a href="">引领大数据新未来 斐讯北京数据中心正式开业</a></li>
-                                    <li><em>8</em><a href="">深入理解Ribbon之源码解析</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div id="recently-article-list">
-                                <div class="header-info">
-                                    <h2 class="h2-header-info">最新热门</h2>
-                                    <div class="red_bottom"></div>
-                                </div>
-                                <ul>
-                                    <c:forEach items="${requestScope.newItArticleList}" var="article">
-                                        <li>
-                                            <a href="<%=basePath%>/article/detail/${article.id}.html"><h3>${article.title}</h3></a>
-                                            <c:choose>
-                                                <c:when test="${not empty article.picUrl}">
-                                                    <img src="${article.picUrl}" alt="" width="390" height="200">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <p>${article.description}</p>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </li>
+                                                        <div class="topic-info">
+                                                            <h3>
+                                                                <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
+                                                            </h3>
+                                                            <p>${fn:substring(article.description, 0, 100)}</p>
+                                                            <div class="detail">
+                                                                <span>发布于：${article.createOnStr}</span>
+                                                                <span>阅读量：${article.viewHits}</span>
+                                                                <span>点赞:34</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
                                     </c:forEach>
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -200,11 +267,15 @@
             </div>
             <div id="main-content-right">
                 <div id="test">
-                    <section class="sample slider--animated" data-slidizle data-slidizle-timeout="4000" data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
+                    <section class="sample slider--animated" data-slidizle data-slidizle-timeout="4000"
+                             data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
                         <ul class="slider-content" data-slidizle-content>
-                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-26%2023-56-34/2fd9ecf2-6b77-4075-8843-0ed5c58b320b.jpg')"></li>
-                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2010-24-57/34498587-d70e-4924-938b-a96b2760199f.jpg')"></li>
-                            <li class="slider-item" style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2017-37-42/df3357c3-dad8-4507-8e8e-27004cb871bd.jpg')"></li>
+                            <li class="slider-item"
+                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-26%2023-56-34/2fd9ecf2-6b77-4075-8843-0ed5c58b320b.jpg')"></li>
+                            <li class="slider-item"
+                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2010-24-57/34498587-d70e-4924-938b-a96b2760199f.jpg')"></li>
+                            <li class="slider-item"
+                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2017-37-42/df3357c3-dad8-4507-8e8e-27004cb871bd.jpg')"></li>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>
                     </section>
@@ -219,7 +290,9 @@
                             <li>
                                 <div class="new-software-item">
                                     <span class="new-info-title-active">
-                                        <a <c:if test="${status.index == 0}">class="new-info-title-active"</c:if>  href="<%=basePath%>/new/detail/${article.id}">${article.title}</a>
+                                        <a
+                                                <c:if test="${status.index == 0}">class="new-info-title-active"</c:if>
+                                                href="<%=basePath%>/new/detail/${article.id}.html">${article.title}</a>
                                     </span>
                                 </div>
                                 <c:if test="${status.index == 0}">
@@ -239,10 +312,11 @@
                         <div class="red_bottom"></div>
                     </div>
                     <ul>
-                        <c:forEach items="${requestScope.courseSubjectDtos}" var="courseSubject">
+                        <c:forEach items="${requestScope.courseSubjectList}" var="courseSubject">
                             <li>
-                                <img src="http://img.bss.csdn.net/201704250917048986.png" alt="" style="float: left;width: 90px;height: 60px;margin-right: 10px">
-                                <h4>${courseSubject.name}</h4>
+                                <img src="http://img.bss.csdn.net/201704250917048986.png" alt=""
+                                     style="float: left;width: 90px;height: 60px;margin-right: 10px">
+                                <h4><a href="<%=basePath%>/course/${courseSubject.name}">${courseSubject.name}</a></h4>
                                 <p>${courseSubject.description}</p>
                             </li>
                         </c:forEach>
@@ -311,10 +385,17 @@
 <script src="<%=basePath%>/plugs/slider/jquery.slidizle.js"></script>
 <script src="<%=basePath%>/asset/js/articleList.js"></script>
 <script>
-    jQuery(function($) {
+    jQuery(function ($) {
         $('[data-slidizle]').slidizle({
-            beforeChange : function(api) {
+            beforeChange: function (api) {
             }
+        });
+
+        $("ul.tabClick li").hover(function () {
+            $(this).addClass("active").siblings().removeClass("active"); //切换选中的按钮高亮状态
+            var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+            $('.lineDiv').css('margin-left', (index * 140) + 'px');
+            $(".tabBox > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
         });
     });
 </script>

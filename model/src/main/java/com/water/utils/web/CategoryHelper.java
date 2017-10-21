@@ -50,7 +50,7 @@ public class CategoryHelper {
             LOG.info("初始化首页菜单选项！");
         } else {
             List<byte[]> datas = cacheManager.lrange(REDIS_KEY.getBytes(), 0, len);
-            if (datas != null && datas.size() > 0) {
+            if (datas != null && datas.size()>0){
                 for (byte[] data1 : datas) {
                     Category category = SerializeHelper.deserializer(data1, Category.class);
                     categoryList.add(category);

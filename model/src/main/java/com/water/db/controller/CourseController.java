@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +37,16 @@ public class CourseController {
 
     @Resource
     private CourseSubjectService courseSubjectService;
+
+    @RequestMapping(value = "")
+    public ModelAndView course(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
+        ModelAndView mav = new ModelAndView();
+        List<CourseSubjectDto> courseSubjectList = courseSubjectService.findAllCourseSubject();
+
+        mav.addObject("courseSubjects", courseSubjectList);
+        mav.setViewName("/course/courseIndex");
+        return mav;
+    }
 
     @RequestMapping(value = "/{courseName}")
     public ModelAndView getCourseSubjectListByCourseName(@PathVariable String courseName) throws UnsupportedEncodingException, ExecutionException {

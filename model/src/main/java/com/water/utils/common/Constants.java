@@ -28,16 +28,22 @@ public class Constants {
         //文章投票
         public final static String VOTED = "voted:%s";
         public final static String ARTICLE_RELASE_TIME = "article_relase_time:";
+
+        //热门文章
+        public final static String HOT_TOP_ARTICLE = "hot_article:top";
+        public final static String HOT_BLOG_ARTICLE = "hot_blog_article:";
+
     }
 
+
     public static enum ARTICLE_MODULE {
-        BLOG(0,"技术博文"),
-        ZI_XUN(1,"资讯"),
-        TOU_TIAO(11,"头条"),
-        RUANJIAN_GENGXIN(12,"软件更新"),
-        IT_HANGYE(13,"IT行业"),
-        JIAO_CHENG(3,"教程"),
-        ZHI_SHI_KU(4,"知识库");
+        BLOG(0, "技术博文"),
+        ZI_XUN(1, "资讯"),
+        TOU_TIAO(11, "头条"),
+        RUANJIAN_GENGXIN(12, "软件更新"),
+        IT_HANGYE(13, "IT行业"),
+        JIAO_CHENG(3, "教程"),
+        ZHI_SHI_KU(4, "知识库");
 
         public static String getName(int index) {
             for (ARTICLE_MODULE item : ARTICLE_MODULE.values()) {
@@ -53,8 +59,8 @@ public class Constants {
             this.name = name;
         }
 
-        private int index;
-        private String name;
+        public int index;
+        public String name;
 
         public int getIndex() {
             return index;

@@ -46,7 +46,8 @@
     <div id="middle">
         <div class="middel-inner clearfix">
             <div class="logo">
-                <p><img src="<%=path%>/asset/content/logo.png" class="logo-icon"></p>
+                <%--<p><img src="<%=path%>/asset/content/logo.png" class="logo-icon"></p>--%>
+                <h2>编程无忧网</h2>
             </div>
             <div class="search">
                 <div class="search-inner clearfix">
@@ -132,7 +133,7 @@
                 Copyright © 2017-now uubook.net 当前呈现版本 1.0.0
             </p>
             <p>
-                浙ICP备 15005796号-2   浙公网安备 33010602002000号
+                粤ICP备17130657号
             </p>
         </div>
     </div>

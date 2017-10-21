@@ -11,8 +11,18 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public interface ITArticleService {
+    /**
+     * 获取极客头条的文章
+     * @return
+     * @throws ExecutionException
+     */
     List<ArticleDto> getGreeArticle() throws ExecutionException;
 
+    /**
+     * 根据文章id获取文章内容
+     * @param articleId
+     * @return
+     */
     ArticleDto getArticleDetailById(Integer articleId);
 
     List<ArticleDto> getSoftwareInformations();
@@ -43,4 +53,6 @@ public interface ITArticleService {
      * @param article
      */
     void postArticleAndRecordVoteInfo(Article article);
+
+
 }

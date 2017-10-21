@@ -25,7 +25,7 @@
         .tabClick{
             overflow: hidden;
             border: 1px solid #DFDFDF;
-            border-top: 3px solid #c00;
+            border-top: 3px solid #3B639F;
         }
         .tabClick li{
             height: 40px;
@@ -40,11 +40,11 @@
             padding: 0 10px;
         }
         .tabClick li:hover {cursor: pointer}
-        .tabClick li.active{ color: #099; transition: 0.1s;}
+        .tabClick li.active{ color: #3B639F; transition: 0.1s;}
         .tabCon{ overflow: hidden}
         .tabBox{ position: relative}
-        .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #099; background: #f3f3f3}
-        .lineDiv{ background: #099; height: 2px; width:140px;}
+        .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #3B639F; background: #f3f3f3}
+        .lineDiv{ background: #3B639F; height: 2px; width:140px;}
         .tabCon {display: block!important;}
         .tabBox > div {display: none}
         .tabBox > div:first-child {display: block}
@@ -59,16 +59,15 @@
             <div id="main-content-left">
                 <div id="view-info">
                     <div id="view-info-detail" style="display: inline-block;width: 59%; padding-right: 1em">
-                        <img src="<%=path%>/asset/content/123.png" width="370" height="248">
-
-                        <div id="view-info-detail-title"><a><%=articleDtoList.get(0).getTitle() %></a></div>
+                        <img src="<%=basePath%>/asset/content/123.png" width="370" height="248">
+                        <div id="view-info-detail-title"><a href="<%=basePath%>/article/detail/${article.id}.html"><%=articleDtoList.get(0).getTitle() %></a></div>
                         <div id="view-info-detail-description">
                             <%=articleDtoList.get(0).getDescription() %>
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
                                 <c:forEach items="${requestScope.greeArticleList}" begin="9" end="11" var="article">
-                                    <li><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -76,26 +75,23 @@
                     <div id="view-info-list">
                         <ul>
                             <c:forEach items="${requestScope.greeArticleList}" begin="1" end="8" var="article">
-                                <li><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                                <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
-                            <span style="float: right;padding: 0.5em 0;text-decoration: underline;">更多</span>
+                            <span style="float: right;padding: 0.5em 0;text-decoration: underline;"><a href="<%=basePath%>/blog">更多</a></span>
                         </ul>
                     </div>
                 </div>
                 <div class="ad">
-                    <img src="<%=path%>/asset/content/banner.jpg">
+                    <img src="<%=basePath%>/asset/content/banner.jpg">
                 </div>
                 <div id="view-tab">
                     <div id="category_bar">
                         <div class="wrap" id="wrap">
                             <ul class="tabClick">
                                 <li class="active">综合</li>
-                                <li>云计算</li>
-                                <li>web开发</li>
-                                <li>系统</li>
-                                <li>网络</li>
-                                <li>博客</li>
-                                <li>大数据</li>
+                                <c:forEach items="${requestScope.tagList}" var="tag" begin="0" end="5">
+                                    <li>${tag.name}</li>
+                                </c:forEach>
                             </ul>
                             <div class="tabCon">
                                 <div class="tabBox">
@@ -109,7 +105,7 @@
                                                     </div>
                                                     <div class="topic-info">
                                                         <h3>
-                                                            <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                            <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                                         </h3>
                                                         <p>${article.description}</p>
                                                         <div class="detail">
@@ -134,7 +130,7 @@
                                                     </div>
                                                     <div class="topic-info">
                                                         <h3>
-                                                            <a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                            <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                                         </h3>
                                                         <p>${article.description}</p>
                                                         <div class="detail">
@@ -157,8 +153,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div id="article-list">
                         <div class="left">
                             <div id="subject-list">
@@ -187,7 +181,7 @@
                                 <ul>
                                     <c:forEach items="${requestScope.newItArticleList}" var="article">
                                         <li>
-                                            <a href="<%=path%>/article/detail/${article.id}.html"><h3>${article.title}</h3></a>
+                                            <a href="<%=basePath%>/article/detail/${article.id}.html"><h3>${article.title}</h3></a>
                                             <c:choose>
                                                 <c:when test="${not empty article.picUrl}">
                                                     <img src="${article.picUrl}" alt="" width="390" height="200">
@@ -225,7 +219,7 @@
                             <li>
                                 <div class="new-software-item">
                                     <span class="new-info-title-active">
-                                        <a <c:if test="${status.index == 0}">class="new-info-title-active"</c:if>  href="<%=path%>/new/detail/${article.id}">${article.title}</a>
+                                        <a <c:if test="${status.index == 0}">class="new-info-title-active"</c:if>  href="<%=basePath%>/new/detail/${article.id}">${article.title}</a>
                                     </span>
                                 </div>
                                 <c:if test="${status.index == 0}">
@@ -262,7 +256,7 @@
                     <ul>
                         <li>
                             <div class="base-img">
-                                <a href=""><img src="<%=path%>/asset/content/javase.jpg" alt=""></a>
+                                <a href=""><img src="<%=basePath%>/asset/content/javase.jpg" alt=""></a>
                             </div>
                             <div class="base-desc">
                                 <div class="base-name">Java EE 知识库</div>
@@ -273,7 +267,7 @@
                         </li>
                         <li>
                             <div class="base-img">
-                                <a href=""><img src="<%=path%>/asset/content/regong.jpg" alt=""></a>
+                                <a href=""><img src="<%=basePath%>/asset/content/regong.jpg" alt=""></a>
                             </div>
                             <div class="base-desc">
                                 <div class="base-name">人工智能</div>
@@ -284,7 +278,7 @@
                         </li>
                         <li>
                             <div class="base-img">
-                                <a href=""><img src="<%=path%>/asset/content/python.jpg" alt=""></a>
+                                <a href=""><img src="<%=basePath%>/asset/content/python.jpg" alt=""></a>
                             </div>
                             <div class="base-desc">
                                 <div class="base-name">Python</div>
@@ -295,7 +289,7 @@
                         </li>
                         <li>
                             <div class="base-img">
-                                <a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a>
+                                <a href=""><img src="<%=basePath%>/asset/content/react.jpg" alt=""></a>
                             </div>
                             <div class="base-desc">
                                 <div class="base-name">React 教程</div>
@@ -312,27 +306,17 @@
         <%--页脚--%>
         <jsp:include page="common/footer.jsp"/>
     </div>
-
 </div>
-<%--<script src="<%=path%>/asset/js/jquery.js"></script>--%>
-<script src="<%=path%>/plugs/slider/jquery-2.1.1.min.js"></script>
-<script src="<%=path%>/plugs/slider/jquery.slidizle.js"></script>
-<script src="<%=path%>/asset/js/articleList.js"></script>
+<script src="<%=basePath%>/plugs/slider/jquery-2.1.1.min.js"></script>
+<script src="<%=basePath%>/plugs/slider/jquery.slidizle.js"></script>
+<script src="<%=basePath%>/asset/js/articleList.js"></script>
 <script>
     jQuery(function($) {
-
-        // setup slidizle
         $('[data-slidizle]').slidizle({
             beforeChange : function(api) {
-//                console.log('previous', api.getPreviousSlide().index());
-//                console.log('current', api.getCurrentSlide().index());
-//                console.log('next', api.getNextSlide().index());
-//                console.log('previous active', api.getPreviousActiveSlide().index());
             }
         });
-
     });
-
 </script>
 </body>
 </html>

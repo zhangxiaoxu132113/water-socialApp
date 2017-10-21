@@ -173,7 +173,7 @@ body {
 }
 
 #new-software-info h2 {
-    color: #c00;
+    color: #3B639F;
     margin-top: 10px;
 }
 
@@ -264,9 +264,9 @@ body {
     /*font: normal 18px/30px "Microsoft YaHei";*/
     /*border-bottom: 2px #333 solid;*/
     /*margin-bottom: 15px;*/
-    color: #c00;
+    color: #3B639F;
     font: normal 18px/30px "Microsoft YaHei";
-    border-bottom: 2px #c00 solid;
+    border-bottom: 2px #3B639F solid;
     margin-bottom: 15px;
     display: inline-block;
     z-index: 10000;

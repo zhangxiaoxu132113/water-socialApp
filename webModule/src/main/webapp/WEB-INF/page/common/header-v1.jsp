@@ -10,7 +10,8 @@
             <div class="header-logo">
                 <ul>
                     <li class="mw-logo">
-                        <img src="<%=path%>/asset/content/logo.png" class="logo-icon">
+                        <%--<img src="<%=path%>/asset/content/logo.png" class="logo-icon">--%>
+                        <h2>编程无忧网</h2>
                     </li>
                 </ul>
             </div>

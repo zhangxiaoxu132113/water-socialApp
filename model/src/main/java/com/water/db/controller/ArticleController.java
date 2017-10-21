@@ -75,7 +75,7 @@ public class ArticleController {
             }
         }
         recommendCourses = courseSubjectService.getRecommendCourseSubjectByTags(tagArray);
-
+        articleService.updateArticleViewHits(article);
         mav.addObject("article", article);
         mav.addObject("category", categoryDto);
         mav.addObject("categoryDtos", categoryDtos);

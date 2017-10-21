@@ -2,7 +2,7 @@
 #category-nav {
     position: absolute;
     left: 0;
-    background: rgb(27, 149, 224);
+    background: #3B639F;
     width: 100%;
 }
 
@@ -99,6 +99,7 @@
     color: #fff;
     line-height: 36px;
     padding: 0 1em;
+    font-size: 16px;
 }
 
 #category-nav ul li:hover {

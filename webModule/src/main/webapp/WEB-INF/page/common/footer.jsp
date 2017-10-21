@@ -88,8 +88,7 @@
     </div>
 
     <div class="copyright">
-        Copyright © 2011-2017 SegmentFault. 当前呈现版本 17.02.05<br>
-        <a rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
-        <a target="_blank" rel="nofollow">浙公网安备 33010602002000号</a>
+        编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
+        <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
     </div>
 </div>

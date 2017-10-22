@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.text.DateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -49,24 +50,6 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     @Resource
     private com.water.es.api.Service.IArticleService esArticleService;
-
-    public List<ArticleDto> getGreeArticle() throws ExecutionException {
-        List<ArticleDto> articleList = null;
-        articleList = getCacheModuleArticle(0);
-        int begin = 0;
-        int pageSize = 11;
-        if (articleList == null || articleList.size() < pageSize) {
-            Map<String, Object> queryParam = new HashMap<String, Object>();
-            ArticleDto article = new ArticleDto();
-            article.setModule(0);
-
-            queryParam.put("pageSize", pageSize);
-            queryParam.put("begin", begin);
-            queryParam.put("model", article);
-            articleList = iTArticleMapper.findArticleListByCondition(queryParam);
-        }
-        return articleList;
-    }
 
     public ArticleDto getArticleDetailById(Integer articleId) {
         if (articleId == null || articleId < 0) {
@@ -95,18 +78,6 @@ public class ITArticleServiceImpl implements ITArticleService {
         }
 
         return articleList;
-    }
-
-    public List<ArticleDto> getSoftwareInformations() {
-        Map<String, Object> queryParam = new HashMap<String, Object>();
-        ArticleDto article = new ArticleDto();
-        article.setModule(1);
-        int begin = 0;
-        int pageSize = 10;
-        queryParam.put("pageSize", pageSize);
-        queryParam.put("begin", begin);
-        queryParam.put("model", article);
-        return iTArticleMapper.findArticleListByCondition(queryParam);
     }
 
     public List<ArticleDto> getRecentlyReadedArticlesByUser(User user) {
@@ -183,6 +154,13 @@ public class ITArticleServiceImpl implements ITArticleService {
             return result;
         }
         return null;
+    }
+
+    @Override
+    public void formatArticleList(List<ArticleDto> articleDtoList, DateFormat dateFormat) {
+        articleDtoList.stream().forEach(p->{
+            p.setCreateOnStr(dateFormat.format(new Date(p.getCreateOn())));
+        });
     }
 
     @Override

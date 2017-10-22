@@ -4,16 +4,15 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.water.db.service.interfaces.IBlogService;
-import com.water.db.service.interfaces.ITTagService;
+import com.water.db.service.interfaces.ITArticleService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.common.Constants;
 import com.water.utils.db.DBUtil;
 import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.model.Article;
 import com.water.uubook.model.dto.ArticleDto;
 import com.water.uubook.model.dto.CategoryDto;
-import com.water.uubook.model.dto.ITTagDto;
 import com.water.uubook.service.CategoryService;
+import com.water.uubook.utils.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -37,8 +36,8 @@ public class BlogServiceImpl implements IBlogService {
     @Resource
     private CacheManager cacheManager;
 
-    @Resource(name = "iTTagService")
-    private ITTagService tagService;
+    @Resource(name = "iTArticleService")
+    private ITArticleService articleService;
 
     @Resource
     private CategoryService categoryService;
@@ -82,9 +81,10 @@ public class BlogServiceImpl implements IBlogService {
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("createOn", "DESC");
         sortMap.put("viewHits", "DESC");
-        String[] cols = new String[]{"id", "title", "view_hits",  "description", "create_on"};
+        String[] cols = new String[]{"id", "title", "viewHits",  "description", "createOn"};
         Map<String, Object> param = DBUtil.getParamMap(model, cols, sortMap, pageSize, 1);
         List<ArticleDto> articleDtoList = articleMapper.findArticleListByCondition(param);
+        articleService.formatArticleList(articleDtoList, DateUtil.DATE_FORMAT_YMD);
         cacheManager.setList(Constants.CacheKey.HOT_BLOG_ARTICLE + category, articleDtoList, 12 * 60 * 60, ArticleDto.class);
         return articleDtoList;
     }

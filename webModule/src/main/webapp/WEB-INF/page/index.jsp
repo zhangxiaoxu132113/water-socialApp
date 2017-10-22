@@ -12,131 +12,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>编程无忧网_编程更加无忧的的IT技术网站</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
+    <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/articleList.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/header-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
     <link rel="stylesheet" href="<%=basePath%>/plugs/slider/slider.css">
-    <style>
-        #category_bar {
-            margin-bottom: 20px;
-        }
-
-        .tabClick {
-            overflow: hidden;
-            border: 1px solid #DFDFDF;
-            border-top: 3px solid #3B639F;
-        }
-
-        .tabClick li {
-            height: 40px;
-            line-height: 40px;
-            font-size: 18px;
-            width: auto;
-            float: left;
-            text-align: center;
-            font-weight: 400;
-            margin: 0;
-            color: #888;
-            padding: 0 10px;
-        }
-
-        .tabClick li:hover {
-            cursor: pointer
-        }
-
-        .tabClick li.active {
-            color: #3B639F;
-            transition: 0.1s;
-            border-bottom: 2px solid #3c649f;
-        }
-
-        .tabCon {
-            overflow: hidden;
-        }
-
-        .tabBox {
-            position: relative;
-        }
-
-        .lineBorder {
-            height: 2px;
-            overflow: hidden;
-            border-bottom: 1px solid #3B639F;
-            background: #f3f3f3
-        }
-
-        .lineDiv {
-            background: #3B639F;
-            height: 2px;
-            width: 140px;
-        }
-        #article-list {
-            padding-top: 2em;
-        }
-
-        .tabCon {
-            display: block !important;
-        }
-
-        .tabBox > div {
-            display: none
-        }
-
-        .tabBox > div:first-child {
-            display: block
-        }
-
-        .category-hot-article ul li {
-            padding: 15px 0;
-            border-bottom: 1px solid #E5E5E5;
-        }
-
-        .category-hot-article ul li:hover {
-            background: #f9f9f9;
-        }
-
-        .category-hot-article ul li .topic-img {
-            display: inline-block;
-            width: 173px;
-            vertical-align: top;
-        }
-
-        .category-hot-article ul li .topic-img img {
-            width: 100%;
-            height: 112px;
-        }
-
-        .category-hot-article ul li .topic-info {
-            display: inline-block;
-            width: 430px;
-            vertical-align: top;
-            padding-left: 15px;
-        }
-
-        .category-hot-article ul li .topic-info h3 {
-            margin-bottom: 5px;
-        }
-
-        .category-hot-article ul li .topic-info h3 a {
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 1em;
-            color: #333;
-        }
-
-        .category-hot-article ul li .topic-info p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .category-hot-article ul li .topic-info .detail{
-            font-size: 12px;
-            color: #666;
-        }
-
-    </style>
+    <link rel="icon" href="<%=path%>/asset/img/bitbug_favicon.ico">
 </head>
 <body>
 <div id="container">

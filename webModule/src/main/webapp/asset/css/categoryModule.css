@@ -175,6 +175,7 @@ body {
 #footer {
     padding-top: 3em;
     background: whitesmoke;
+    text-align: center;
 }
 #footer p {
     padding-top: 0.5em;

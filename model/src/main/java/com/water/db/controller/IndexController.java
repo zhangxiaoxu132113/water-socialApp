@@ -9,6 +9,7 @@ import com.water.utils.common.Constants;
 import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.MWSessionUtils;
 import com.water.utils.web.PageConstants;
+import com.water.utils.web.vo.AdInfo;
 import com.water.utils.web.vo.Category;
 import com.water.uubook.model.Article;
 import com.water.uubook.model.User;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -75,6 +77,8 @@ public class IndexController {
         List<ArticleDto> hotBlogArticle = blogService.getHotArticleList(null, 10);
         mav.addObject(PageConstants.INDEX.HOT_BLOG_ARTICLES, hotBlogArticle);
 
+        List<AdInfo> adInfoList = this.getIndexPageAd();
+        mav.addObject(PageConstants.INDEX.AD_INFOS, adInfoList);
         mav.setViewName("/index");
         return mav;
     }
@@ -92,5 +96,19 @@ public class IndexController {
         });
     }
 
+    private List<AdInfo> getIndexPageAd() {
+        List<AdInfo> adInfoList = new ArrayList<>();
+        AdInfo adInfo = new AdInfo();
+        adInfo.setPic("/asset/ad/0.jpg");
+        adInfo.setUrl("/shop/python");
+
+        AdInfo adInfo1 = new AdInfo();
+        adInfo1.setPic("/asset/ad/1.png");
+        adInfo1.setUrl("");
+
+        adInfoList.add(adInfo);
+        adInfoList.add(adInfo1);
+        return adInfoList;
+    }
 
 }

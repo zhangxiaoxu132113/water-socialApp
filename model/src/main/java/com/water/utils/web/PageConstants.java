@@ -15,5 +15,6 @@ public final class PageConstants {
         public static String NEW_SOFT_ARTICLES = "softwareInformations";//软件资讯
         public static String COURSE_ARTICLES = "courseSubjectList";//软件资讯
         public static String HOT_BLOG_ARTICLES = "hotBlogArticle";//软件资讯
+        public static String AD_INFOS = "adInfoList";//广告
     }
 }

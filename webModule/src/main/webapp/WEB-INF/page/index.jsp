@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>编程无忧网_编程更加无忧的的IT技术网站</title>
+    <title>编程无忧网_让编程更加无忧的IT技术网站</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
     <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
@@ -23,6 +23,15 @@
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
     <link rel="stylesheet" href="<%=basePath%>/plugs/slider/slider.css">
     <link rel="icon" href="<%=path%>/asset/img/bitbug_favicon.ico">
+    <style>
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            z-index: 20999;
+            background: #fff;
+            width: 663px;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -59,7 +68,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="ad">
+                <div class="ad" id="long-ad">
                     <img src="<%=basePath%>/asset/content/banner.jpg">
                 </div>
                 <div id="view-tab">
@@ -156,12 +165,10 @@
                     <section class="sample slider--animated" data-slidizle data-slidizle-timeout="4000"
                              data-slidizle-loop="true" data-slidizle-pause-on-hover="true">
                         <ul class="slider-content" data-slidizle-content>
-                            <li class="slider-item"
-                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-26%2023-56-34/2fd9ecf2-6b77-4075-8843-0ed5c58b320b.jpg')"></li>
-                            <li class="slider-item"
-                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2010-24-57/34498587-d70e-4924-938b-a96b2760199f.jpg')"></li>
-                            <li class="slider-item"
-                                style="width: 300px; height: 200px; background-image:url('http://localhost:8080/upload/2017-08-27%2017-37-42/df3357c3-dad8-4507-8e8e-27004cb871bd.jpg')"></li>
+                            <c:forEach items="${requestScope.adInfoList}" var="adInfo">
+                                <li class="slider-item"
+                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>${adInfo.pic}')"></li>
+                            </c:forEach>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>
                     </section>
@@ -261,7 +268,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
         <%--页脚--%>
         <jsp:include page="common/footer.jsp"/>
@@ -282,6 +288,15 @@
             var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
             $('.lineDiv').css('margin-left', (index * 140) + 'px');
             $(".tabBox > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+        });
+
+        $(window).scroll(function () {
+            var height = $('#header').height() + $('#category-nav').height() + $('#view-info').height() + $('#long-ad').height() + 30;
+            if ($(window).scrollTop() >= height) {
+                $('.tabClick').addClass('nav-fixed');
+            } else {
+                $('.tabClick').removeClass("nav-fixed");
+            }
         });
     });
 </script>

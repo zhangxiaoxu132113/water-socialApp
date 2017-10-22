@@ -184,7 +184,6 @@ body {
 
 #new-software-info ul li:first-child {
     font: normal 16px/24px "Microsoft YaHei";
-    margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px #ccc dotted;
 }
@@ -621,4 +620,7 @@ body {
 .category-hot-article ul li .topic-info .detail{
     font-size: 12px;
     color: #666;
+}
+#knowdega-info {
+    margin-top: 2em;
 }

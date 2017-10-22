@@ -140,7 +140,7 @@
                                                             <img src="https://static.oschina.net/uploads/user/1491/2982602_50.jpeg?t=1477365605000" alt="">
                                                         </div>
                                                         <div class="topic-info">
-                                                            <h3><a href="">${sonItem.name}</a></h3>
+                                                            <h3><a href="<%=basePath%>course/${sonItem.name}">${sonItem.name}</a></h3>
                                                             <p>
                                                                 <%--${fn:substring(sonItem.description,0,100)}--%>
                                                                 ${sonItem.description}

@@ -175,6 +175,8 @@ public class HttpRequestTool {
                     headers.add(new BasicHeader(header.getKey(), header.getValue()));
                 }
                 get.setHeaders((Header[]) headers.toArray()); //设置请求头信息
+            } else {
+                get.setHeader(new BasicHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"));
             }
 
             CloseableHttpResponse response = client.execute(get, localContext);
@@ -217,8 +219,8 @@ public class HttpRequestTool {
      * @param requestUrl
      * @param isOutInfo
      */
-    public static void getRequest(String requestUrl, boolean isOutInfo) {
-        getRequest(requestUrl, null, null, null, isOutInfo);
+    public static Object getRequest(String requestUrl, boolean isOutInfo) {
+        return getRequest(requestUrl, null, null, null, isOutInfo);
     }
 
     /**

@@ -36,11 +36,11 @@
             <div id="header-inner">
                 <div class="nav-menu">
                     <ul class="clearfix">
-                        <li><a href="">首页</a></li>
-                        <li><a href="">文档库</a></li>
-                        <li><a href="">资讯</a></li>
-                        <li><a href="">教程</a></li>
-                        <li><a href="">知识库</a></li>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="<%=basePath%>blog/">文档库</a></li>
+                        <li><a href="<%=basePath%>new/">资讯</a></li>
+                        <li><a href="<%=basePath%>course/">教程</a></li>
+                        <li><a href="<%=basePath%>base/">知识库</a></li>
                     </ul>
                 </div>
                 <div class="user-info">
@@ -208,14 +208,10 @@
         </div>
 
         <div id="footer">
-            <p>
-                <a href="">广告服务</a>
-                <a href="">联系我们</a>
-                <a href="">友情链接</a>
-                <a href="">版权纠纷</a>
-            </p>
-            <p>© 2003-2017 ITeye.com. [ 京ICP证070598号 京公网安备11010502027441 ]</p>
-            <p>北京创新乐知信息技术有限公司 版权所有</p>
+            <div class="copyright">
+                编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
+                <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
+            </div>
         </div>
     </div>
 </div>

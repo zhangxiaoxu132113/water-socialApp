@@ -274,7 +274,6 @@
                 async: true,
                 success: function (data) {
                     data = mytrim(data);
-                    console.log("data = " +data);
                     $('.load-more-btn').show();
                     $('.load-more-info').hide();
                     if (data == undefined || data == '') {

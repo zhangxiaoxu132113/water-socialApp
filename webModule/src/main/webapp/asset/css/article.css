@@ -9,7 +9,7 @@ li {
 
 body {
     font-size: 14px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif!important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #333;
 }
 
@@ -35,8 +35,10 @@ body {
     background: rgb(249, 250, 252);
     box-shadow: 0 1px 0px rgba(72, 71, 71, 0.1);
 }
+
 .header-nav-inner ul li:first-child {
 }
+
 .header-nav-inner ul li {
     float: left;
     margin-left: 1em;
@@ -68,7 +70,7 @@ body {
     font-size: 24px;
     color: #333;
     word-wrap: break-word;
-    margin-bottom:0.5em;
+    margin-bottom: 0.5em;
     padding-left: 0.5em;
 }
 
@@ -127,9 +129,11 @@ body {
     float: right;
     padding-right: 1em;
 }
+
 .search-inner h4, .search-input, .search-btn {
     display: inline-block;
 }
+
 .search-btn {
     left: -1px;
     width: 37px;
@@ -139,15 +143,16 @@ body {
     vertical-align: middle;
     margin-bottom: 5px;
 }
-.search-input input[type=text]{
+
+.search-input input[type=text] {
     background: #fff;
     width: 96%;
     margin: 0;
     text-align: left;
     height: 29px;
     padding-left: 0.5em;
-    height: 28px\9;
-    line-height: 28px\9;
+    height: 28px \9;
+    line-height: 28px \9;
     border: 1px solid #cccccc;
     outline: none;
 }
@@ -163,6 +168,7 @@ body {
     cursor: pointer;
     border: none;
 }
+
 .search-input {
     width: 340px;
     height: 30px;
@@ -171,17 +177,18 @@ body {
     cursor: text;
 }
 
-
 #nav {
     background: #333;
 }
+
 #nav #nav-inner {
     width: 1170px;
-    margin:0 auto;
+    margin: 0 auto;
     background: #333;
     line-height: 30px;
     color: #fff;
 }
+
 #nav #nav-inner ul li {
     float: left;
     margin-left: 1em;
@@ -200,43 +207,51 @@ body {
 }
 
 #nav #nav-inner ul li:first-child {
-    background: rgb(255,108,31);
+    background: rgb(56, 169, 234);
     padding: 0 15px;
 }
 
 .breader {
     color: #ccc;
-    padding-left:0.5em;
+    padding-left: 0.5em;
 }
+
 .relase {
     color: #c8c8c8;
 }
+
 #top-header {
-    padding:10px 0 30px;
+    padding: 10px 0 30px;
     background-image: url("../img/commons/article_detail_bg.png");
     background-color: #eef0f2;
 }
+
 #top-header-inner {
     width: 1170px;
-    margin:0 auto;
+    margin: 0 auto;
 }
+
 #main-body {
     background: #f9fafc;
 }
+
 #main-body #main-body-inner {
     width: 1170px;
-    margin:0 auto;
+    margin: 0 auto;
 }
+
 #main-body-inner .main-body-left {
     display: inline-block;
     vertical-align: top;
     width: 73%;
 }
+
 .main-body-left .content {
     padding: 40px 89px;
     box-sizing: border-box;
     background: #fff;
 }
+
 #main-body-inner .main-body-right {
     display: inline-block;
     vertical-align: top;
@@ -244,13 +259,13 @@ body {
     margin-left: 0.5%;
 }
 
-.main-body-right  .about-base, .main-body-right .about-course {
+.main-body-right .about-base, .main-body-right .about-course {
     background: #fff;
     padding: 20px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
-.main-body-right  .about-base h3, .main-body-right .about-course  h3 {
+.main-body-right .about-base h3, .main-body-right .about-course h3 {
     border-bottom: 2px solid #cbcbcb;
     color: #333;
     font-size: 20px;
@@ -259,11 +274,13 @@ body {
     padding-bottom: 7px;
     position: relative;
 }
+
 .main-body-right .about-course ul li {
     margin: 10px 0;
     position: relative;
     padding-left: 1em;
 }
+
 .main-body-right .about-course ul li a {
     text-decoration: none;
     color: #888888;
@@ -280,7 +297,8 @@ body {
 }
 
 .about-base .base-img img {
-    height: 70px; width: 70px;
+    height: 70px;
+    width: 70px;
 }
 
 .about-base .base-desc {
@@ -299,8 +317,8 @@ body {
     border-bottom: 1px solid rgba(203, 203, 203, 0.4);
 }
 
-.about-course  ul li {
-    margin:10px 0;
+.about-course ul li {
+    margin: 10px 0;
 }
 
 .dot {
@@ -368,28 +386,41 @@ body {
     background: #ff7900;
     color: #fff;
 }
-.voted .voted_up {margin-right: 0.25em}
-.voted .voted_up:hover, .voted .voted_down:hover {cursor: pointer;}
+
+.voted .voted_up {
+    margin-right: 0.25em
+}
+
+.voted .voted_up:hover, .voted .voted_down:hover {
+    cursor: pointer;
+}
+
 .voted .voted_up span:nth-child(1), .voted .voted_down span:nth-child(1) {
     display: block;
     padding-top: 10px;
 }
+
 .voted .voted_up span:nth-child(2), .voted .voted_down span:nth-child(2) {
     font-size: 16px;
 }
+
 #footer {
-    padding-top: 3em;
     background: #f9fafc;
+    text-align: center;
+    padding: 3em 0 2em;
 }
+
 #footer p {
     padding-top: 0.5em;
     text-align: center;
 }
+
 #footer p a {
     padding-right: 10px;
     padding-left: 10px;
     border-right: 1px solid #9c9693;
 }
+
 #footer p a:last-child {
     border-right: 0;
 }
@@ -399,12 +430,14 @@ body {
     margin-top: 20px;
     background: #fff;
 }
+
 .guess-like ul li {
     float: left;
     padding-bottom: 10px;
     margin-right: 8px;
     width: 24%;
 }
+
 .guess-like ul li img {
     width: 173px;
     height: 122px;

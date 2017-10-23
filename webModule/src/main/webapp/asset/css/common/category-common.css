@@ -2,7 +2,7 @@
 #category-nav {
     position: absolute;
     left: 0;
-    background: #3B639F;
+    background: #1c94e0;
     width: 100%;
 }
 
@@ -10,6 +10,7 @@
     width: 980px;
     margin: 0 auto;
 }
+
 #category-nav-inner ul {
     font-size: 14px;
 }
@@ -101,6 +102,11 @@
     padding: 0 1em;
     font-size: 16px;
 }
+
+/*#category-nav > ul > li:hover {*/
+    /*background:#087ac3;*/
+
+/*}*/
 
 #category-nav ul li:hover {
     text-decoration: underline;

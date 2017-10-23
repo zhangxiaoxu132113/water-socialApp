@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mrwater
-  Date: 2017/4/3
-  Time: 下午4:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -15,13 +8,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="<%=path%>/asset/img/bitbug_favicon.ico">
     <title>${requestScope.article.title}</title>
-    <link rel="stylesheet" href="<%=path%>/asset/css/article.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/mw-moon.css">
-    <style>
-
-    </style>
-    <script src="<%=path%>/asset/js/jquery.js"></script>
+    <meta name="description" content="${requestScope.article.description}">
+    <meta name="keywords" content="<c:forEach items="${requestScope.article.tagList}" var="tag">${tag.name},</c:forEach>">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/article.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/mw-moon.css">
+    <script src="<%=basePath%>/asset/js/jquery.js"></script>
 </head>
 <body>
 <div id="container">
@@ -31,10 +24,10 @@
                 <div class="header-nav">
                     <div class="header-nav-inner">
                         <ul>
-                            <li><a href="<%=path%>/">首页</a></li>
-                            <li><a href="<%=path%>/blog">文档库</a></li>
-                            <li><a href="<%=path%>/new">资讯</a></li>
-                            <li><a href="<%=path%>/course">IT教程</a></li>
+                            <li><a href="<%=basePath%>/">首页</a></li>
+                            <li><a href="<%=basePath%>/blog">文档库</a></li>
+                            <li><a href="<%=basePath%>/new">资讯</a></li>
+                            <li><a href="<%=basePath%>/course">IT教程</a></li>
                             <li><a>知识库</a></li>
                             <li>经验</li>
                             <li>兴趣&生活</li>
@@ -54,7 +47,8 @@
         <div id="middle">
             <div class="middel-inner clearfix">
                 <div class="logo">
-                    <p><img src="<%=path%>/asset/content/logo.png" class="logo-icon"></p>
+                    <%--<p><img src="<%=basePath%>/asset/content/logo.png" class="logo-icon"></p>--%>
+                    <h2>编程无忧网</h2>
                 </div>
                 <div class="search">
                     <div class="search-inner clearfix">
@@ -74,7 +68,7 @@
                 <ul class="clearfix">
                     <li style="color:#fff">全部文库分类</li>
                     <c:forEach items="${requestScope.categoryDtos}" var="category">
-                        <li><a href="<%=path%>/blog/${category.name}">${category.name}</a></li>
+                        <li><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a></li>
                     </c:forEach>
                 </ul>
             </div>
@@ -127,7 +121,7 @@
                         <h3>相关文章</h3>
                         <ul class="clearfix">
                             <c:forEach items="${requestScope.relatedArticles}" var="article">
-                                <li><span class="dot"></span><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                                <li><span class="dot"></span><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -162,7 +156,7 @@
                             <c:choose>
                                 <c:when test="${requestScope.recommendCourses != null}">
                                     <c:forEach items="${requestScope.recommendCourses}" var="course">
-                                        <li><span class="dot"></span><a href="<%=path%>/course/${course.name}">${course.name}</a></li>
+                                        <li><span class="dot"></span><a href="<%=basePath%>/course/${course.name}">${course.name}</a></li>
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>
@@ -176,7 +170,7 @@
                         <ul>
                             <li>
                                 <div class="base-img">
-                                    <a href=""><img src="<%=path%>/asset/content/javase.jpg" alt=""></a>
+                                    <a href=""><img src="<%=basePath%>/asset/content/javase.jpg" alt=""></a>
                                 </div>
                                 <div class="base-desc">
                                     <div class="base-name">Java EE 知识库</div>
@@ -187,7 +181,7 @@
                             </li>
                             <li>
                                 <div class="base-img">
-                                    <a href=""><img src="<%=path%>/asset/content/regong.jpg" alt=""></a>
+                                    <a href=""><img src="<%=basePath%>/asset/content/regong.jpg" alt=""></a>
                                 </div>
                                 <div class="base-desc">
                                     <div class="base-name">人工智能</div>
@@ -198,7 +192,7 @@
                             </li>
                             <li>
                                 <div class="base-img">
-                                    <a href=""><img src="<%=path%>/asset/content/python.jpg" alt=""></a>
+                                    <a href=""><img src="<%=basePath%>/asset/content/python.jpg" alt=""></a>
                                 </div>
                                 <div class="base-desc">
                                     <div class="base-name">Python</div>
@@ -209,7 +203,7 @@
                             </li>
                             <li>
                                 <div class="base-img">
-                                    <a href=""><img src="<%=path%>/asset/content/react.jpg" alt=""></a>
+                                    <a href=""><img src="<%=basePath%>/asset/content/react.jpg" alt=""></a>
                                 </div>
                                 <div class="base-desc">
                                     <div class="base-name">React 教程</div>
@@ -220,28 +214,21 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="baidu_ad" style="background: red;height: 100px">
-
-                    </div>
                 </div>
             </div>
 
 
         </div>
         <div id="footer">
-            <p>
-                <a href="">广告服务</a>
-                <a href="">联系我们</a>
-                <a href="">友情链接</a>
-                <a href="">版权纠纷</a>
-            </p>
-            <p>© 2003-2017 ITeye.com. [ 京ICP证070598号 京公网安备11010502027441 ]</p>
-            <p>北京创新乐知信息技术有限公司 版权所有</p>
+            <div class="copyright">
+                编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
+                <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
+            </div>
         </div>
     </div>
     <input type="hidden" id="article_id" name="" value="${requestScope.article.id}">
 </div>
 
-<script src="<%=path%>/asset/js/article/articleDetail.js"></script>
+<script src="<%=basePath%>/asset/js/article/articleDetail.js"></script>
 </body>
 </html>

@@ -498,3 +498,39 @@ h3.article-title a:link {
     vertical-align: middle;
     margin-right: 0.5em;
 }
+
+.article div span {
+    color: #a3b2bb;
+}
+.article .tags {
+    color: #333;
+}
+.xuanfu {
+    position: fixed;
+    bottom: 1px;
+    margin-left: 1170px;
+}
+span.scroll-top {
+    display: none;
+    width: 43px;
+    height: 43px;
+    text-align: center;
+    background: #545e67;
+    margin-bottom: 5em;
+    border-radius: 3px;
+}
+span.scroll-top:hover {
+    cursor: pointer;
+}
+span.scroll-top .top-info {
+    font-size: 12px;
+    color: #fff;
+    padding-top: 5px;
+    display: none;
+}
+span.scroll-top .top-icon {
+    text-align: center;
+    line-height: 43px;
+    font-size: 22px;
+    color: #fff;
+}

@@ -8,45 +8,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="<%=path%>/asset/css/blog-category.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
-    <style>
-        .article div span {
-            color: #a3b2bb;
-        }
-        .article .tags {
-            color: #333;
-        }
-        .xuanfu {
-            position: fixed;
-            bottom: 1px;
-            margin-left: 1170px;
-        }
-        span.scroll-top {
-            display: none;
-            width: 43px;
-            height: 43px;
-            text-align: center;
-            background: #545e67;
-            margin-bottom: 5em;
-            border-radius: 3px;
-        }
-        span.scroll-top:hover {
-            cursor: pointer;
-        }
-        span.scroll-top .top-info {
-            font-size: 12px;
-            color: #fff;
-            padding-top: 5px;
-            display: none;
-        }
-        span.scroll-top .top-icon {
-            text-align: center;
-            line-height: 43px;
-            font-size: 22px;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/blog-category.css">
 </head>
 <body>
 <div id="container">
@@ -55,11 +17,11 @@
             <div id="header-inner">
                 <div class="nav-menu">
                     <ul>
-                        <li><a href="<%=path%>/">首页</a></li>
-                        <li><a href="<%=path%>/blog">文档库</a></li>
-                        <li><a href="<%=path%>/new">资讯</a></li>
-                        <li><a href="<%=path%>/course">IT教程</a></li>
-                        <li><a href="<%=path%>/base">知识库</a></li>
+                        <li><a href="<%=basePath%>/">首页</a></li>
+                        <li><a href="<%=basePath%>/blog">文档库</a></li>
+                        <li><a href="<%=basePath%>/new">资讯</a></li>
+                        <li><a href="<%=basePath%>/course">IT教程</a></li>
+                        <li><a href="<%=basePath%>/base">知识库</a></li>
                     </ul>
                 </div>
 
@@ -79,7 +41,7 @@
                     <img class="profile-bg-img" src="/asset/content/user_bg.jpeg" style="transform: none">
                     <div class="topic-intro">
                         <div class="intro-base clearfix">
-                            <span class="intro-base-header-img"><img src="<%=path%>/asset/content/regong.jpg"
+                            <span class="intro-base-header-img"><img src="<%=basePath%>/asset/content/regong.jpg"
                                                                      style="border-radius: 50%" alt=""></span>
                                 <span class="intro-base-desc">
                                     <span class="name">${category.name}</span>
@@ -110,7 +72,7 @@
                                     <dl>
                                         <dt><a href=""><img src="http://www.uubook.net:8080/asset/content/python.jpg" alt=""></a></dt>
                                         <dd>
-                                            <h4><a href="<%=path%>/blog/tag/${category.name}">${category.name}</a></h4>
+                                            <h4><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a></h4>
                                             <p>文章收录 : ${category.total}</p>
                                         </dd>
                                     </dl>
@@ -119,7 +81,7 @@
                         </ul>
                         <div class="ad">
                             <%--<div class="ad-img"></div>--%>
-                            <img class="ad-img" src="<%=path%>/asset/content/tmp/ad-3.png" alt="">
+                            <img class="ad-img" src="<%=basePath%>/asset/content/tmp/ad-3.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -127,14 +89,14 @@
                 <div id="right-body">
                     <div class="inner">
                         <div class="ad">
-                            <a href=""><img src="<%=path%>/asset/content/banner.jpg" alt=""></a>
+                            <a href=""><img src="<%=basePath%>/asset/content/banner.jpg" alt=""></a>
                         </div>
                         <div class="about-topics">
                             <ul class="clearfix">
                                 <li><a href="">最热</a></li>
                                 <li><a href="">最新</a></li>
                                 <c:forEach items="${requestScope.categoryDtos}" var="category">
-                                    <li><a href="<%=path%>/blog/${category.name}">${category.name}</a></li>
+                                    <li><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -148,14 +110,14 @@
                                     </div>
                                     <div class="article">
                                         <h3 class="article-title"><a
-                                                href="<%=path%>/article/detail/${article.id}.html">${article.title}</a>
+                                                href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                         </h3>
                                         <div>
                                             <span>${article.createOnStr}</span>
                                             <span class="tags">
                                                 &nbsp;&nbsp;
                                                 <c:forEach items="${article.tagList}" var="tag" begin="0" end="1">
-                                                    <a href="<%=path%>/blog/tag/${tag.name}"></a>${tag.name}&nbsp;&nbsp;
+                                                    <a href="<%=basePath%>/blog/tag/${tag.name}"></a>${tag.name}&nbsp;&nbsp;
                                                 </c:forEach>
                                             </span>
                                             <span>阅读数：${article.viewHits}</span>
@@ -166,7 +128,7 @@
 
                         </div>
                         <div class="loading">
-                            <img src="<%=path%>/asset/content/loadding.gif" alt="">
+                            <img src="<%=basePath%>/asset/content/loadding.gif" alt="">
                             正在努力加载。。。
                         </div>
                     </div>
@@ -182,7 +144,7 @@
         </div>
     </div>
 </div>
-<script src="<%=path%>/plugs/slider/jquery-2.1.1.min.js"></script>
+<script src="<%=basePath%>/plugs/slider/jquery-2.1.1.min.js"></script>
 <script>
     $(function () {
         var pageSize = 10;

@@ -178,7 +178,7 @@ body {
 }
 
 #new-software-info h2 {
-    color: #3B639F;
+    color: #333;
     margin-top: 10px;
 }
 
@@ -262,13 +262,9 @@ body {
     height: 32px;
 }
 .h2-header-info{
-    /*color: #333;*/
-    /*font: normal 18px/30px "Microsoft YaHei";*/
-    /*border-bottom: 2px #333 solid;*/
-    /*margin-bottom: 15px;*/
-    color: #3B639F;
+    color: #333;
     font: normal 18px/30px "Microsoft YaHei";
-    border-bottom: 2px #3B639F solid;
+    border-bottom: 2px #1c94e0 solid;
     margin-bottom: 15px;
     display: inline-block;
     z-index: 10000;
@@ -513,7 +509,7 @@ body {
 .tabClick {
     overflow: hidden;
     border: 1px solid #DFDFDF;
-    border-top: 3px solid #3B639F;
+    border-top: 3px solid #1c93e0;
 }
 
 .tabClick li {
@@ -534,9 +530,9 @@ body {
 }
 
 .tabClick li.active {
-    color: #3B639F;
+    color: #333;
     transition: 0.1s;
-    border-bottom: 2px solid #3c649f;
+    border-bottom: 2px solid #1c92e0;
 }
 
 .tabCon {

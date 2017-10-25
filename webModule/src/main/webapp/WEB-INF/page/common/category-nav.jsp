@@ -18,7 +18,7 @@
                                 <div style="margin-left: -1.2em">
                                     <div class="category-panel">
                                         <c:forEach items="${category.children}" var="categoryChildren">
-                                            <span><a>${categoryChildren.name}</a></span>
+                                            <span><a href="<%=basePath%>/blog/tag/${categoryChildren.name}">${categoryChildren.name}</a></span>
                                         </c:forEach>
                                     </div>
                                 </div>

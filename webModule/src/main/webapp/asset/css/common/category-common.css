@@ -19,6 +19,15 @@
     color: #fff;
     text-decoration: none;
 }
+.category-panel span a:link{
+    color: #666!important;
+    text-decoration: none;
+}
+
+.category-panel span a:visited{
+    color: #666!important;
+    text-decoration: none;
+}
 
 #category-nav-inner ul li a:visited {
     color: #fff;
@@ -41,7 +50,7 @@
     width: 110px;
     left: 0;
     top: 36px;
-    z-index: 999;
+    z-index: 20000;
 }
 
 .all-category ul {
@@ -74,7 +83,7 @@
     top: 0;
     background: #fff;
     width: 865px;
-    height: 360px;
+    height: 288px;
     z-index: 1000;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;

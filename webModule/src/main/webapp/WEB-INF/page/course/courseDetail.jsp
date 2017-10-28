@@ -2,21 +2,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <html>
 <head>
-    <title></title>
-    <link rel="stylesheet" href="<%=path%>/asset/css/mrwater.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
-    <%--<link rel="stylesheet" href="<%=path%>/asset/css/common/header-common.css">--%>
-    <link rel="stylesheet" href="<%=path%>/asset/css/common/category-common.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont2/iconfont.css">
-    <link rel="stylesheet" href="<%=path%>/asset/css/courseDetail.css">
-    <script src="<%=path%>/asset/js/jquery.js"></script>
-    <style>
-
-    </style>
+    <meta charset="UTF-8">
+    <title>编程无忧网_教程_${courseSubjectDto.name}</title>
+    <meta name="description" content="${courseSubjectDto.description}">
+    <meta name="keywords" content="${courseSubjectDto.name}">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/mrwater.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont2/iconfont.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/courseDetail.css">
 </head>
 <body>
 <div id="container">
@@ -25,12 +23,11 @@
             <div class="header-nav">
                 <div class="header-nav-inner">
                     <ul>
-                        <li>uubook</li>
-                        <li>博客</li>
-                        <li>软件资讯</li>
-                        <li>IT教程</li>
-                        <li>知识库</li>
-                        <li>知识库</li>
+                        <li><a href="<%=basePath%>">uubook</a></li>
+                        <li><a href="<%=basePath%>/blog/">博客</a></li>
+                        <li><a href="<%=basePath%>/new/">软件资讯</a></li>
+                        <li><a href="<%=basePath%>/course/">IT教程</a></li>
+                        <li><a href="">知识库</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,9 +72,6 @@
                     <div class="current-location">
                         <span><i class="iconfont">&#xf0295;</i>当前位置:</span> <a href="">IT教程</a> > <a href="">${requestScope.courseSubjectDto.partentCourseSubject.name}</a> > <a href="">${requestScope.courseSubjectDto.name}</a>
                     </div>
-                    <%--<div class="ad-1">--%>
-                        <%--<img src="/asset/content/tmp/TB10kZnQVXXXXagXXXXXXXXXXXX-800-50.jpg" alt="" width="100%" height="auto"/>--%>
-                    <%--</div>--%>
                     <div class="course-main-body">
                         <div class="course-name">
                             ${requestScope.courseSubjectDto.name}<span class="course-score">(评分：<span class="allStart allStart45"></span>8分)</span>
@@ -86,7 +80,9 @@
                         <div class="course-description">${courseSubjectDto.description}</div>
                         <ul class="catalog-list">
                             <c:forEach items="${requestScope.courseDtoList}" var="course" varStatus="status">
-                                <li><a href="/course/${requestScope.courseSubjectDto.name}/${course.articleId}.html">${status.index + 1},${course.title}</a></li>
+                                <c:if test="${course.id != ''}">
+                                    <li><a href="/course/${requestScope.courseSubjectDto.name}/${course.articleId}.html">${status.index + 1},${course.title}</a></li>
+                                </c:if>
                             </c:forEach>
                         </ul>
 
@@ -121,12 +117,12 @@
                             </div>
                             <ul>
                                 <c:forEach items="${requestScope.articleList}" var="article" begin="0" end="4">
-                                    <li><a href=""><em>•</em>${article.title}</a></li>
+                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html"><em>•</em>${article.title}</a></li>
                                 </c:forEach>
                             </ul>
                             <ul>
                                 <c:forEach items="${requestScope.articleList}" var="article" begin="5" end="9">
-                                    <li><a href=""><em>•</em>${article.title}？</a></li>
+                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html"><em>•</em>${article.title}</a></li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -146,7 +142,7 @@
                             </div>
                             <ul>
                                 <c:forEach items="${requestScope.courseSubjectDto.partentCourseSubject.sonCourseSubjectList}" var="courseSub" begin="0" end="7">
-                                    <li><a href=""><em class="iconfont">.</em>${courseSub.name}</a></li>
+                                    <li><a href="<%=basePath%>/course/${courseSub.name}"><em class="iconfont">.</em>${courseSub.name}</a></li>
                                 </c:forEach>
                             </ul>
                             <span style="float: right;padding:1em 0 0"><a href="">查看更多</a></span>
@@ -154,58 +150,20 @@
                     </c:if>
 
                     <div class="ad-3">
-                        <img src="/asset/content/tmp/ad-3.png" alt="" width="100%" height="auto"/>
+                        <img src="<%=basePath%>/asset/content/tmp/ad-3.png" alt="" width="100%" height="auto"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="footer" style="margin-top:2em;">
-        <div id="footer-inner">
-            <p>这是页面的底部了</p>
+    <div id="footer">
+        <div class="copyright">
+            编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
+            <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
         </div>
     </div>
 </div>
-<script>
-    //全局变量，动态的文章ID
-    var ShareId = "";
-    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
-    $(function () {
-        $(".bdsharebuttonbox a").mouseover(function () {
-            ShareId = $(this).attr("data-id");
-        });
-    });
-
-    /*
-     * 设置分享的url连接地址
-     */
-    function SetShareUrl(cmd, config) {
-        config.bdUrl = document.URL;
-        config.bdText = $('title').text();
-        config.bdDesc = "用户将网站内容分享到第三方网站，第三方网站的用户点击专有的分享链接，从第三方网站带来社会化流量";
-        config.bdPic = "";
-
-        console.log(config.bdUrl);
-        console.log(config.bdText);
-        console.log(config.bdDesc);
-        return config;
-    }
-
-    window._bd_share_config = {
-        "common": {
-            onBeforeClick: SetShareUrl,
-            "bdSnsKey": {},
-            "bdMini": "2",
-            "bdMiniList": false,
-            "bdStyle": "1",
-            "bdSize": "16"
-        },
-        "share": {"bdSize": 16},
-        "image": {"viewList": ["qzone", "tsina", "weixin", "tqq", "renren"], "viewText": "分享到：", "viewSize": "16"},
-        "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "weixin", "tqq", "renren"]}
-    };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
-
+<script src="<%=basePath%>/asset/js/jquery.js"></script>
+<script src="<%=basePath%>/asset/js/"></script>
 </body>
 </html>

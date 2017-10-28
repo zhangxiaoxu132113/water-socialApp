@@ -333,3 +333,8 @@ body {
     padding: 1em;
     /*background: rgba(242, 247, 246, 0.54);*/
 }
+.header-nav-inner ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+#footer {margin-top: 2em}

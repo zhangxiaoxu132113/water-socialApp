@@ -2,10 +2,8 @@ package com.water.db.controller;
 
 import com.water.utils.web.WebUtils;
 import com.water.utils.web.view.ResultView;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.CourseSubject;
-import com.water.uubook.model.ITArticle;
-import com.water.uubook.model.Tag;
+import com.water.uubook.dao.ArticleMapper;
+import com.water.uubook.model.*;
 import com.water.uubook.model.dto.*;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
@@ -13,6 +11,7 @@ import com.water.utils.lang.StringUtil;
 import com.water.uubook.service.CategoryService;
 import com.water.uubook.service.CourseService;
 import com.water.uubook.service.CourseSubjectService;
+import com.water.uubook.service.VideoCourseShopService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -48,8 +47,15 @@ public class ArticleController {
     @Resource
     private CourseSubjectService courseSubjectService;
 
+    @Resource
+    private ArticleMapper articleMapper;
+
+    @Resource
+    private VideoCourseShopService videoCourseShopService;
+
     /**
      * 根据id获取文章详情
+     *
      * @param articleId
      * @return
      * @throws ExecutionException
@@ -59,14 +65,14 @@ public class ArticleController {
         ModelAndView mav = new ModelAndView();
         List<Article> articleList = new ArrayList<>();
         ArticleDto article = articleService.getArticleDetailById(articleId);
-        if (article != null) {
-            articleList = articleService.getRelatedArticles(article.getTitle(), 12);
-            article.setRelatedArticles(articleList);
+        if (article == null) {
+            //抛出404
+            return null;
         }
+        article.setRelatedArticles(articleService.getRelatedArticles(article.getTitle(), 12)); //设置相关文章
         CategoryDto categoryDto = categoryService.getCategoryById(article.getCategory());
         List<CategoryDto> categoryDtos = categoryService.getHotCategories();
-
-        List<CourseSubjectDto> recommendCourses = new ArrayList<>();
+        //获取相关文章
         String[] tagArray = new String[5];
         List<Tag> tags = article.getTagList();
         if (tags != null && tags.size() > 0) {
@@ -74,18 +80,26 @@ public class ArticleController {
                 tagArray[i] = tags.get(i).getName();
             }
         }
-        recommendCourses = courseSubjectService.getRecommendCourseSubjectByTags(tagArray);
+        List<CourseSubjectDto> recommendCourses = courseSubjectService.getRecommendCourseSubjectByTags(tagArray);
+        //更新文章阅读量
+        article.setViewHits(article.getViewHits() + 1);
+        articleMapper.updateByPrimaryKeySelective(article);
+        //查询视频教程广告
+        List<VideoCourseShop> videoCourseShopList = videoCourseShopService.findVideoCourseByCategory(article.getCategory());
+
         mav.addObject("article", article);
         mav.addObject("category", categoryDto);
         mav.addObject("categoryDtos", categoryDtos);
         mav.addObject("relatedArticles", articleList);
         mav.addObject("recommendCourses", recommendCourses);
+        mav.addObject("videoCourseShopList", videoCourseShopList);
         mav.setViewName("/article/articleDetail");
         return mav;
     }
 
     /**
      * 根据关键词搜索相关文章
+     *
      * @param keyword
      * @param currentPage
      * @param pageSize
@@ -118,6 +132,7 @@ public class ArticleController {
 
     /**
      * 文章投票
+     *
      * @param request
      * @param articleId
      * @return

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -8,13 +9,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="<%=path%>/asset/img/bitbug_favicon.ico">
+    <link rel="icon" href="<%=basePath%>/asset/img/bitbug_favicon.ico">
     <title>${requestScope.article.title}</title>
     <meta name="description" content="${requestScope.article.description}">
     <meta name="keywords" content="<c:forEach items="${requestScope.article.tagList}" var="tag">${tag.name},</c:forEach>">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/article.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/mw-moon.css">
-    <script src="<%=basePath%>/asset/js/jquery.js"></script>
+    <style>
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            z-index: 20999;
+            background: #fff;
+            width: 301px;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -47,7 +56,6 @@
         <div id="middle">
             <div class="middel-inner clearfix">
                 <div class="logo">
-                    <%--<p><img src="<%=basePath%>/asset/content/logo.png" class="logo-icon"></p>--%>
                     <h2>编程无忧网</h2>
                 </div>
                 <div class="search">
@@ -80,7 +88,8 @@
                         <span>全部分类</span> > <span>${requestScope.category.parent.name}</span> > <span>${requestScope.category.name}</span>
                     </div>
                     <div class="title">${requestScope.article.title}</div>
-                    <span class="relase">2017-07-26 15:53:19 发布</span>
+                    <span class="relase">发布: ${requestScope.article.createOnStr}</span>
+                    <span class="relase">阅读量: ${requestScope.article.viewHits}</span>
                     <span class="tags">
                         <c:forEach items="${requestScope.article.tagList}" var="tag">
                             <span class="tag">${tag.name}</span>
@@ -120,7 +129,7 @@
                         <a href="" style="position: absolute;right: 20px;top: 25px">查看更多</a>
                         <h3>相关文章</h3>
                         <ul class="clearfix">
-                            <c:forEach items="${requestScope.relatedArticles}" var="article">
+                            <c:forEach items="${requestScope.article.relatedArticles}" var="article">
                                 <li><span class="dot"></span><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
                         </ul>
@@ -214,6 +223,12 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="vedio-course">
+                        <a href="<%=basePath%>ad/videoCourseDetail/${requestScope.videoCourseShopList[0].id}">
+                            <img src="${requestScope.videoCourseShopList[0].taobaoPicUrl}"
+                                 alt="${requestScope.videoCourseShopList[0].name}">
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -228,7 +243,7 @@
     </div>
     <input type="hidden" id="article_id" name="" value="${requestScope.article.id}">
 </div>
-
+<script src="<%=basePath%>/asset/js/jquery.js"></script>
 <script src="<%=basePath%>/asset/js/article/articleDetail.js"></script>
 </body>
 </html>

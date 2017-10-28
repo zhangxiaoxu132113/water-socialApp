@@ -27,16 +27,12 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.text.DateFormat;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @Service("iTArticleService")
 public class ITArticleServiceImpl implements ITArticleService {
     @Resource
     private ArticleMapper iTArticleMapper;
-
-    @Resource
-    private CourseMapper courseMapper;
 
     @Resource
     private CacheManager cacheManager;
@@ -61,12 +57,13 @@ public class ITArticleServiceImpl implements ITArticleService {
             articleDto = new ArticleDto();
             BeanUtils.copyProperties(article, articleDto);
             articleDto.setTagList(tagService.findArticleTags(articleDto.getTags()));
+            articleDto.setCreateOnStr(DateUtil.DATE_FORMAT_YMD.format(new Date(article.getCreateOn())));
         }
         return articleDto;
     }
 
     public List<Article> getRelatedArticles(String queryContent, int pageSize) {
-        List<Article> articleList = new ArrayList<Article>();
+        List<Article> articleList = new ArrayList<>();
         if (StringUtils.isNotBlank(queryContent)) {
             ESDocument document = esArticleService.searchArticleByMatch("content", queryContent, 0, pageSize);
             List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
@@ -78,26 +75,6 @@ public class ITArticleServiceImpl implements ITArticleService {
         }
 
         return articleList;
-    }
-
-    public List<ArticleDto> getRecentlyReadedArticlesByUser(User user) {
-        return null;
-    }
-
-    public List<ArticleDto> getNewArticles() {
-        Map<String, Object> queryParam = new HashMap<String, Object>();
-        ArticleDto article = new ArticleDto();
-        article.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
-        int begin = 0;
-        int pageSize = 10;
-        queryParam.put("pageSize", pageSize);
-        queryParam.put("begin", begin);
-        queryParam.put("model", article);
-        return iTArticleMapper.findArticleListByCondition(queryParam);
-    }
-
-    public List<Article> getExcellentArticle() {
-        return null;
     }
 
     public Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize) {
@@ -158,7 +135,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     @Override
     public void formatArticleList(List<ArticleDto> articleDtoList, DateFormat dateFormat) {
-        articleDtoList.stream().forEach(p->{
+        articleDtoList.stream().forEach(p -> {
             p.setCreateOnStr(dateFormat.format(new Date(p.getCreateOn())));
         });
     }

@@ -43,5 +43,4 @@ public interface ITArticleService {
      */
     void postArticleAndRecordVoteInfo(Article article);
 
-
 }

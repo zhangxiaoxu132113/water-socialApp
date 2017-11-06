@@ -10,11 +10,11 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/mrwater.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath%>/asset/css/mrwater.css">
 <!--字体图标样式 -->
-<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
-<link rel="stylesheet" type="text/css" href="<%=path%>/asset/css/font/englishFont/mw-font.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath%>/asset/css/font/englishFont/mw-font.css">
 
 
-<script src="<%=path%>/asset/js/jquery.js"></script>
-<script src="<%=path%>/asset/js/mrwater.js"></script>
+<script src="<%=basePath%>/asset/js/jquery.js"></script>
+<script src="<%=basePath%>/asset/js/mrwater.js"></script>

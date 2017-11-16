@@ -1,15 +1,19 @@
 package com.water.db.controller;
 
-import com.water.utils.web.WebUtils;
-import com.water.utils.web.view.ResultView;
-import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.model.*;
-import com.water.uubook.model.dto.*;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
 import com.water.utils.lang.StringUtil;
+import com.water.utils.web.WebUtils;
+import com.water.utils.web.view.ResultView;
+import com.water.uubook.dao.ArticleMapper;
+import com.water.uubook.model.Article;
+import com.water.uubook.model.ITArticle;
+import com.water.uubook.model.Tag;
+import com.water.uubook.model.VideoCourseShop;
+import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.CategoryDto;
+import com.water.uubook.model.dto.CourseSubjectDto;
 import com.water.uubook.service.CategoryService;
-import com.water.uubook.service.CourseService;
 import com.water.uubook.service.CourseSubjectService;
 import com.water.uubook.service.VideoCourseShopService;
 import org.apache.commons.logging.Log;

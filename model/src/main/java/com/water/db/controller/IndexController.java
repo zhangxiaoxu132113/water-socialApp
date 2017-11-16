@@ -1,18 +1,14 @@
 package com.water.db.controller;
 
-import com.alibaba.dubbo.container.page.Page;
 import com.water.db.service.interfaces.IBlogService;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITopService;
 import com.water.db.service.interfaces.NewsService;
 import com.water.utils.common.Constants;
 import com.water.utils.web.CategoryHelper;
-import com.water.utils.web.MWSessionUtils;
 import com.water.utils.web.PageConstants;
 import com.water.utils.web.vo.AdInfo;
 import com.water.utils.web.vo.Category;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.User;
 import com.water.uubook.model.dto.ArticleDto;
 import com.water.uubook.model.dto.CategoryDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
@@ -29,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by mrwater on 16/6/4.
@@ -54,7 +49,7 @@ public class IndexController {
     private IBlogService blogService;
 
     @RequestMapping(value = {"/", "/index", "/index.html"})
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
 
         List<Category> menuList = categoryHelper.getAllCategories();

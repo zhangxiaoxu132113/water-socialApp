@@ -1,6 +1,8 @@
 package com.water.db.controller.commons;
 
 import com.water.utils.exception.ResourceNotFoundExeception;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -17,10 +20,12 @@ import java.io.IOException;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
+    public static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
     @ResponseBody
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = ResourceNotFoundExeception.class)
-    public void handle404(Throwable e) {
+    public void handle404(ResourceNotFoundExeception e, HttpServletRequest request) {
     }
 
 //    @ExceptionHandler

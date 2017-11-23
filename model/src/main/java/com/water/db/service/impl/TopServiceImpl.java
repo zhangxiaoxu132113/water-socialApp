@@ -4,9 +4,9 @@ import com.water.db.service.interfaces.ITopService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.common.Constants;
 import com.water.utils.db.DBUtil;
-import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.dao.TbUbArticleMapper;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.dto.TbUbArticleDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,14 +21,14 @@ import java.util.Map;
 @Service
 public class TopServiceImpl implements ITopService {
     @Resource
-    private ArticleMapper articleMapper;
+    private TbUbArticleMapper articleMapper;
 
     @Resource
     private CacheManager cacheManager;
 
     @Override
-    public List<ArticleDto> getHotTopArticle(int pageSize) {
-        List<ArticleDto> articleDtoList = cacheManager.getList(Constants.CacheKey.HOT_TOP_ARTICLE, ArticleDto.class);
+    public List<TbUbArticleDto> getHotTopArticle(int pageSize) {
+        List<TbUbArticleDto> articleDtoList = cacheManager.getList(Constants.CacheKey.HOT_TOP_ARTICLE, TbUbArticleDto.class);
         if (articleDtoList == null) {
             articleDtoList = this.getHotTopArticleWithDB(pageSize);
         }
@@ -41,19 +41,19 @@ public class TopServiceImpl implements ITopService {
      * @param pageSize
      * @return
      */
-    private List<ArticleDto> getHotTopArticleWithDB(int pageSize) {
+    private List<TbUbArticleDto> getHotTopArticleWithDB(int pageSize) {
         if (pageSize <= 0) {
             pageSize = 10;
         }
-        ArticleDto model = new ArticleDto();
+        TbUbArticleDto model = new TbUbArticleDto();
         model.setModule(com.water.utils.common.Constants.ARTICLE_MODULE.TOU_TIAO.index);
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("crateOn", "DESC");
         sortMap.put("viewHits", "DESC");
         String[] cols = new String[]{"id", "title", "view_hits", "description", "create_on"};
         Map<String, Object> queryParam = DBUtil.getParamMap(model, cols, sortMap, pageSize, 1);
-        List<ArticleDto> articleDtoList = articleMapper.findArticleListByCondition(queryParam);
-        cacheManager.setList(Constants.CacheKey.HOT_TOP_ARTICLE, articleDtoList, 60 * 60, ArticleDto.class);
+        List<TbUbArticleDto> articleDtoList = articleMapper.findArticleListByCondition(queryParam);
+        cacheManager.setList(Constants.CacheKey.HOT_TOP_ARTICLE, articleDtoList, 60 * 60, TbUbArticleDto.class);
         return articleDtoList;
     }
 }

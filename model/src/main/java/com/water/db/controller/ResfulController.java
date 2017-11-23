@@ -1,8 +1,7 @@
 package com.water.db.controller;
 
-import com.water.uubook.model.Article;
-import com.water.uubook.model.ITArticle;
 import com.water.db.service.interfaces.ITArticleService;
+import com.water.uubook.model.TbUbArticle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by mrwater on 2017/7/21.
@@ -34,7 +31,7 @@ public class ResfulController {
     @RequestMapping(value = "/findArticleById", method = RequestMethod.GET, produces = "application/json")
     public Map<String, Object> findArticleById(Integer articleId) {
         Map<String, Object> result = new HashMap<>();
-        Article article = articleService.getArticleDetailById(articleId);
+        TbUbArticle article = articleService.getArticleDetailById(articleId);
         if (article == null) {
             result.put("code", -1);
             result.put("msg", "请求的数据不存在");

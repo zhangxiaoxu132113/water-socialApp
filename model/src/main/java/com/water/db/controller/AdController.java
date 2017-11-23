@@ -1,9 +1,8 @@
 package com.water.db.controller;
 
-import com.water.uubook.dao.VideoCourseShopMapper;
-import com.water.uubook.model.VideoCourseShop;
-import com.water.uubook.model.dto.VideoCourseShopDto;
-import com.water.uubook.service.VideoCourseShopService;
+import com.water.uubook.dao.TbUbVedioCourseShopMapper;
+import com.water.uubook.model.dto.TbUbVedioCourseShopDto;
+import com.water.uubook.service.TbUbVideoCourseShopService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +18,9 @@ import javax.annotation.Resource;
 @RequestMapping(value = "/ad")
 public class AdController {
     @Resource
-    private VideoCourseShopMapper videoCourseShopMapper;
+    private TbUbVedioCourseShopMapper videoCourseShopMapper;
     @Resource
-    private VideoCourseShopService videoCourseShopService;
+    private TbUbVideoCourseShopService videoCourseShopService;
 
     /**
      * 教程视频商店列表
@@ -42,7 +41,7 @@ public class AdController {
     @RequestMapping(value = "/videoCourseDetail/{id}", method = RequestMethod.GET)
     public ModelAndView videoCourseDetail(@PathVariable String id) {
         ModelAndView mav = new ModelAndView();
-        VideoCourseShopDto videoCourseShopDto = videoCourseShopService.getVideoCourseById(Integer.valueOf(id));
+        TbUbVedioCourseShopDto videoCourseShopDto = videoCourseShopService.getVideoCourseById(Integer.valueOf(id));
         videoCourseShopDto.setVisitedCount(videoCourseShopDto.getVisitedCount() + 1);
         videoCourseShopMapper.updateByPrimaryKeySelective(videoCourseShopDto);
         mav.addObject("videoCourse", videoCourseShopDto);

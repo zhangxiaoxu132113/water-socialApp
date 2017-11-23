@@ -1,11 +1,11 @@
 package com.water.db.controller;
 
 import com.water.db.service.interfaces.IBlogService;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.CategoryDto;
-import com.water.uubook.service.ArticleService;
-import com.water.uubook.service.CategoryService;
-import com.water.uubook.service.TagService;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.model.dto.TbUbCategoryDto;
+import com.water.uubook.service.TbUbArticleService;
+import com.water.uubook.service.TbUbCategoryService;
+import com.water.uubook.service.TbUbTagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +30,13 @@ import java.util.concurrent.ExecutionException;
 public class BlogController {
 
     @Resource
-    private CategoryService categoryService;
+    private TbUbCategoryService categoryService;
 
     @Resource
-    private ArticleService articleService;
+    private TbUbArticleService articleService;
 
     @Resource
-    private TagService tagService;
+    private TbUbTagService tagService;
 
     @Resource
     private IBlogService blogService;
@@ -44,8 +44,8 @@ public class BlogController {
     @RequestMapping(value = "")
     public ModelAndView blog() {
         ModelAndView mav = new ModelAndView();
-        List<ArticleDto> latestArticleList = blogService.getLatestArticleList();
-        List<ArticleDto> hotArticleList = blogService.getHotArticleList(null, 10);
+        List<TbUbArticleDto> latestArticleList = blogService.getLatestArticleList();
+        List<TbUbArticleDto> hotArticleList = blogService.getHotArticleList(null, 10);
         List<Map<String, Object>> blogCategory = blogService.getArticleByAllCategoryWithCache();
 
         mav.addObject("latestArticleList", latestArticleList != null ? latestArticleList : new ArrayList<>());
@@ -65,17 +65,17 @@ public class BlogController {
     @RequestMapping(value = "/tag/{tagName}")
     public ModelAndView redirect2BlogTagPage(@PathVariable String tagName) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
-        CategoryDto category = categoryService.getCategoryByNameWithCache(tagName);
+        TbUbCategoryDto category = categoryService.getCategoryByNameWithCache(tagName);
         if (category == null && category.getParentId() == 0) {
             return null;
         }
-        List<CategoryDto> categoryDtos = categoryService.getHotCategories();
+        List<TbUbCategoryDto> categoryDtos = categoryService.getHotCategories();
         int pageSize = 10;
         int currentPage = 1;
-        ArticleDto articleDto = new ArticleDto();
+        TbUbArticleDto articleDto = new TbUbArticleDto();
         articleDto.setCategory(category.getId());
         String[] queryField = {"id", "title", "viewHits", "tags", "createOn"};
-        List<ArticleDto> articleDtoList = articleService.findArticleListByCondition(articleDto, queryField, null, currentPage, pageSize);
+        List<TbUbArticleDto> articleDtoList = articleService.findArticleListByCondition(articleDto, queryField, null, currentPage, pageSize);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("category", category);
         mav.addObject("categoryDtos", categoryDtos);
@@ -98,11 +98,11 @@ public class BlogController {
         ModelAndView mav = new ModelAndView("/template/tag_articleList_tmp");
         int pageSizeInt = Integer.parseInt(pageSize);
         int currentPageInt = Integer.parseInt(currentPage);
-        ArticleDto model = new ArticleDto();
+        TbUbArticleDto model = new TbUbArticleDto();
         model.setTagName(tag);
         String[] queryField = new String[]{"id", "title", "viewHits", "tags", "createOn"};
 
-        List<ArticleDto> articleDtoList = articleService.findArticleListWithTagByCondition(model, queryField, currentPageInt, pageSizeInt);
+        List<TbUbArticleDto> articleDtoList = articleService.findArticleListWithTagByCondition(model, queryField, currentPageInt, pageSizeInt);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("articleDtoList", articleDtoList);
 
@@ -122,20 +122,20 @@ public class BlogController {
         ModelAndView mav = new ModelAndView("/article/categoryModule");
         int categoryId = Integer.parseInt(category);
 
-        ArticleDto model = new ArticleDto();
+        TbUbArticleDto model = new TbUbArticleDto();
         model.setParentCategory(categoryId);
         Map<String, String> sortMap = new HashMap<>();
         String[] queryField = new String[]{"id", "title", "viewHits", "description", "createOn"};
 
         sortMap.put("createOn", "desc");
-        List<ArticleDto> newestArticleList = articleService.findArticleListByCondition(model, queryField, sortMap, 1, 15);
+        List<TbUbArticleDto> newestArticleList = articleService.findArticleListByCondition(model, queryField, sortMap, 1, 15);
         sortMap.put("createOn", "");
 
         sortMap.put("viewHits", "desc");
-        List<ArticleDto> hotArticleList = articleService.findArticleListByCondition(model, queryField, sortMap, 1, 15);
+        List<TbUbArticleDto> hotArticleList = articleService.findArticleListByCondition(model, queryField, sortMap, 1, 15);
 
-        List<CategoryDto> categoryParentList = categoryService.getAllParentCategories();
-        CategoryDto categoryDto = categoryService.getCategoryById(categoryId);
+        List<TbUbCategoryDto> categoryParentList = categoryService.getAllParentCategories();
+        TbUbCategoryDto categoryDto = categoryService.getCategoryById(categoryId);
 
         mav.addObject("hotArticleList", hotArticleList);
         mav.addObject("categoryDto", categoryDto);
@@ -153,14 +153,14 @@ public class BlogController {
 
         int pageSizeInt = Integer.parseInt(pageSize);
         int currentPageInt = Integer.parseInt(currentPage);
-        ArticleDto model = new ArticleDto();
+        TbUbArticleDto model = new TbUbArticleDto();
         Map<String, String> sortMap = new HashMap<>();
 
         model.setParentCategory(Integer.parseInt(category));
         sortMap.put(sort, "desc");
         String[] queryField = new String[]{"id", "title", "viewHits", "description", "createOn"};
 
-        List<ArticleDto> articleDtoList = articleService.findArticleListByCondition(model, queryField, sortMap, currentPageInt, pageSizeInt);
+        List<TbUbArticleDto> articleDtoList = articleService.findArticleListByCondition(model, queryField, sortMap, currentPageInt, pageSizeInt);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("articleDtoList", articleDtoList);
 

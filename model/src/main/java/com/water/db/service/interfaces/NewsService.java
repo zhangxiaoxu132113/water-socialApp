@@ -1,6 +1,6 @@
 package com.water.db.service.interfaces;
 
-import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.TbUbArticleDto;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ public interface NewsService {
      * @param newType  资讯类型
      * @return
      */
-    List<ArticleDto> getHotNewsWithType(int pageSize, int newType);
+    List<TbUbArticleDto> getHotNewsWithType(int pageSize, int newType);
 
-    List<ArticleDto> getNewsByPage(int currentPage, int size, int module);
+    List<TbUbArticleDto> getNewsByPage(int currentPage, int size, int module);
 
     Integer countNewsTotal(Integer type);
 }

@@ -1,6 +1,6 @@
 package com.water.db.service.interfaces;
 
-import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.dto.TbUbArticleDto;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface ITopService {
      * @param size
      * @return
      */
-    List<ArticleDto> getHotTopArticle(int size);
+    List<TbUbArticleDto> getHotTopArticle(int size);
 }

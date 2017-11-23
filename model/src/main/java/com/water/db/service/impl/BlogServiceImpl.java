@@ -8,10 +8,10 @@ import com.water.db.service.interfaces.ITArticleService;
 import com.water.utils.cache.CacheManager;
 import com.water.utils.common.Constants;
 import com.water.utils.db.DBUtil;
-import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.CategoryDto;
-import com.water.uubook.service.CategoryService;
+import com.water.uubook.dao.TbUbArticleMapper;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.model.dto.TbUbCategoryDto;
+import com.water.uubook.service.TbUbCategoryService;
 import com.water.uubook.utils.DateUtil;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class BlogServiceImpl implements IBlogService {
 
     @Resource
-    private ArticleMapper articleMapper;
+    private TbUbArticleMapper articleMapper;
 
     @Resource
     private CacheManager cacheManager;
@@ -40,22 +40,22 @@ public class BlogServiceImpl implements IBlogService {
     private ITArticleService articleService;
 
     @Resource
-    private CategoryService categoryService;
+    private TbUbCategoryService categoryService;
 
     private LoadingCache<String, Object> cacheLocal;
 
     private static final String ALL_CATEGORY_BLOG = "ALL_CATEGORY_BLOG";
 
     @Override
-    public List<ArticleDto> getLatestArticleList() {
-        Map<String, Object> param = DBUtil.getParamMap(new ArticleDto(), new String[]{"id", "title"}, null, 20, 1);
+    public List<TbUbArticleDto> getLatestArticleList() {
+        Map<String, Object> param = DBUtil.getParamMap(new TbUbArticleDto(), new String[]{"id", "title"}, null, 20, 1);
         return articleMapper.findArticleListByCondition(param);
     }
 
     @Override
-    public List<ArticleDto> getHotArticleList(Integer category, Integer pageSize) {
-        List<ArticleDto> articleDtoList = cacheManager.getList(Constants.CacheKey.HOT_BLOG_ARTICLE + category,
-                ArticleDto.class);
+    public List<TbUbArticleDto> getHotArticleList(Integer category, Integer pageSize) {
+        List<TbUbArticleDto> articleDtoList = cacheManager.getList(Constants.CacheKey.HOT_BLOG_ARTICLE + category,
+                TbUbArticleDto.class);
         if (articleDtoList == null) {
             articleDtoList = this.getHotArticleListWithDB(category, pageSize);
         }
@@ -69,8 +69,8 @@ public class BlogServiceImpl implements IBlogService {
      * @param pageSize
      * @return
      */
-    private List<ArticleDto> getHotArticleListWithDB(Integer category, Integer pageSize) {
-        ArticleDto model = new ArticleDto();
+    private List<TbUbArticleDto> getHotArticleListWithDB(Integer category, Integer pageSize) {
+        TbUbArticleDto model = new TbUbArticleDto();
         if (category != null) {
             if (categoryService.findpParentCategoryById(category) == null) {
                 model.setCategory(category);
@@ -83,9 +83,9 @@ public class BlogServiceImpl implements IBlogService {
         sortMap.put("viewHits", "DESC");
         String[] cols = new String[]{"id", "title", "viewHits",  "description", "createOn"};
         Map<String, Object> param = DBUtil.getParamMap(model, cols, sortMap, pageSize, 1);
-        List<ArticleDto> articleDtoList = articleMapper.findArticleListByCondition(param);
+        List<TbUbArticleDto> articleDtoList = articleMapper.findArticleListByCondition(param);
         articleService.formatArticleList(articleDtoList, DateUtil.DATE_FORMAT_YMD);
-        cacheManager.setList(Constants.CacheKey.HOT_BLOG_ARTICLE + category, articleDtoList, 12 * 60 * 60, ArticleDto.class);
+        cacheManager.setList(Constants.CacheKey.HOT_BLOG_ARTICLE + category, articleDtoList, 12 * 60 * 60, TbUbArticleDto.class);
         return articleDtoList;
     }
 
@@ -104,24 +104,24 @@ public class BlogServiceImpl implements IBlogService {
 
     private List<Map<String, Object>> getArticleByAllCategory() {
         List<Map<String, Object>> list = new ArrayList<>();
-        List<CategoryDto> categoryDtos = categoryService.getAllParentCategories();
+        List<TbUbCategoryDto> categoryDtos = categoryService.getAllParentCategories();
         if (categoryDtos != null && categoryDtos.size() > 8) {
             categoryDtos = categoryDtos.subList(0, 8);
         }
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("createOn", "DESC");
-        ArticleDto model = new ArticleDto();
-        for (CategoryDto categoryDto : categoryDtos) {
+        TbUbArticleDto model = new TbUbArticleDto();
+        for (TbUbCategoryDto categoryDto : categoryDtos) {
             model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
             Map<String, Object> param = DBUtil.getParamMap(model, new String[]{"id", "title"}, null, 5, 1);
             List<Integer> categoryIds = new ArrayList<>();
             if (categoryDto.getChildren() != null && categoryDto.getChildren().size() > 0) {
-                for (CategoryDto arg : categoryDto.getChildren()) {
+                for (TbUbCategoryDto arg : categoryDto.getChildren()) {
                     categoryIds.add(arg.getId());
                 }
             }
             param.put("categories", categoryIds);
-            List<ArticleDto> articles = articleMapper.findArticleListInCategory(param);
+            List<TbUbArticleDto> articles = articleMapper.findArticleListInCategory(param);
             if (articles != null && articles.size() > 0) {
                 Map<String, Object> articleCategory = new HashMap<>();
                 articleCategory.put("articles", articles);

@@ -1,7 +1,7 @@
 package com.water.utils.db;
 
 import com.water.utils.common.Constants;
-import com.water.uubook.model.Article;
+import com.water.uubook.model.TbUbArticle;
 
 import java.util.HashMap;
 import java.util.Map;

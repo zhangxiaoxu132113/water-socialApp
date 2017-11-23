@@ -1,14 +1,14 @@
 package com.water.db.service.interfaces;
 
-import com.water.uubook.model.dto.ITTagDto;
+import com.water.uubook.model.dto.TbUbTagDto;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ITTagService {
-    List<ITTagDto> getAllParentTags();
+    List<TbUbTagDto> getAllParentTags();
 
-    List<ITTagDto> getAllTags();
+    List<TbUbTagDto> getAllTags();
 
-    Map<String, ITTagDto> getTagMap();
+    Map<String, TbUbTagDto> getTagMap();
 }

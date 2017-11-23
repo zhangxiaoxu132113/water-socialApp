@@ -1,15 +1,12 @@
 package com.water.db.service.interfaces;
 
 import com.water.utils.web.view.ResultView;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.User;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.ITArticleDto;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.dto.TbUbArticleDto;
 
 import java.text.DateFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public interface ITArticleService {
 
@@ -18,9 +15,9 @@ public interface ITArticleService {
      * @param articleId
      * @return
      */
-    ArticleDto getArticleDetailById(Integer articleId);
+    TbUbArticleDto getArticleDetailById(Integer articleId);
 
-    List<Article> getRelatedArticles(String queryContent, int pageSize);
+    List<TbUbArticle> getRelatedArticles(String queryContent, int pageSize);
 
     Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize);
 
@@ -28,7 +25,7 @@ public interface ITArticleService {
 
     Map<String,Object> searchArticleByKeywordV2(String kw, int currentPage, int pageSize);
 
-    void formatArticleList(List<ArticleDto> articleDtoList, DateFormat dateFormat);
+    void formatArticleList(List<TbUbArticleDto> articleDtoList, DateFormat dateFormat);
 
     /**
      * 文章投票
@@ -41,6 +38,6 @@ public interface ITArticleService {
      * 文章发布关联投票的缓存数据
      * @param article
      */
-    void postArticleAndRecordVoteInfo(Article article);
+    void postArticleAndRecordVoteInfo(TbUbArticle article);
 
 }

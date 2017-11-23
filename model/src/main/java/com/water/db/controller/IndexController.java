@@ -9,11 +9,11 @@ import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.PageConstants;
 import com.water.utils.web.vo.AdInfo;
 import com.water.utils.web.vo.Category;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.CategoryDto;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.model.dto.TbUbCategoryDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
-import com.water.uubook.service.CategoryService;
-import com.water.uubook.service.CourseSubjectService;
+import com.water.uubook.service.TbUbCategoryService;
+import com.water.uubook.service.TbUbCourseSubjectService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -34,13 +34,13 @@ import java.util.List;
 public class IndexController {
     private Log logger = LogFactory.getLog(IndexController.class);
     @Resource
-    private CategoryService categoryService;
+    private TbUbCategoryService categoryService;
     @Resource(name = "iTArticleService")
     private ITArticleService articleService;
     @Resource
     private ITopService topService;
     @Resource
-    private CourseSubjectService courseSubjectService;
+    private TbUbCourseSubjectService courseSubjectService;
     @Resource
     private NewsService newsService;
     @Resource
@@ -55,21 +55,21 @@ public class IndexController {
         List<Category> menuList = categoryHelper.getAllCategories();
         mav.addObject(PageConstants.INDEX.MENUS, menuList);//导航栏菜单
 
-        List<CategoryDto> categoryList = categoryService.getAllParentCategories();
+        List<TbUbCategoryDto> categoryList = categoryService.getAllParentCategories();
         mav.addObject(PageConstants.INDEX.CATEGORIES, categoryList);//栏目分类
         this.setHotArticleWithCategory(categoryList);//设置每一个栏目下的热门文章
 
-        List<ArticleDto> topArticleList = topService.getHotTopArticle(11);
+        List<TbUbArticleDto> topArticleList = topService.getHotTopArticle(11);
         mav.addObject(PageConstants.INDEX.HOT_TOP_ARTICLES, topArticleList);//头条文章
 
-        List<ArticleDto> softwareInformations = newsService.getHotNewsWithType(10,
+        List<TbUbArticleDto> softwareInformations = newsService.getHotNewsWithType(10,
                 Constants.ARTICLE_MODULE.RUANJIAN_GENGXIN.index);
         mav.addObject(PageConstants.INDEX.NEW_SOFT_ARTICLES, softwareInformations);//软件资讯
 
         List<CourseSubjectDto> courseSubjectList = courseSubjectService.getHotCourseSubjectWithSize(4);
         mav.addObject(PageConstants.INDEX.COURSE_ARTICLES, courseSubjectList);//热门教程
 
-        List<ArticleDto> hotBlogArticle = blogService.getHotArticleList(null, 10);
+        List<TbUbArticleDto> hotBlogArticle = blogService.getHotArticleList(null, 10);
         mav.addObject(PageConstants.INDEX.HOT_BLOG_ARTICLES, hotBlogArticle);
 
         List<AdInfo> adInfoList = this.getIndexPageAd();
@@ -82,11 +82,11 @@ public class IndexController {
      * 根据分类获取每一个分类下的热门文章
      * @param categoryList
      */
-    private void setHotArticleWithCategory(List<CategoryDto> categoryList) {
+    private void setHotArticleWithCategory(List<TbUbCategoryDto> categoryList) {
         int pageSize = 10;
         categoryList.stream().forEach(p -> {
             Integer categoryId = p.getId();
-            List<ArticleDto> articleList = blogService.getHotArticleList(categoryId, pageSize);
+            List<TbUbArticleDto> articleList = blogService.getHotArticleList(categoryId, pageSize);
             p.setHotArticles(articleList);
         });
     }

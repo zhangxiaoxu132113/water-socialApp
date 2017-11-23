@@ -176,7 +176,7 @@ public class HttpRequestTool {
                 }
                 get.setHeaders((Header[]) headers.toArray()); //设置请求头信息
             } else {
-                get.setHeader(new BasicHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"));
+                get.setHeader(new BasicHeader("TbUbUser-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"));
             }
 
             CloseableHttpResponse response = client.execute(get, localContext);

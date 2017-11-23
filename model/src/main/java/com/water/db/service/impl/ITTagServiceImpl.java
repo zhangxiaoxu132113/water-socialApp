@@ -5,15 +5,10 @@ import com.alibaba.druid.support.logging.LogFactory;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.water.utils.common.Constants;
-import com.water.uubook.dao.ITTagMapper;
-import com.water.uubook.dao.TagMapper;
-import com.water.uubook.model.ITArticle;
-import com.water.uubook.model.ITTag;
-import com.water.uubook.model.dto.CourseSubjectDto;
-import com.water.uubook.model.dto.ITTagDto;
 import com.water.db.service.interfaces.ITTagService;
-import org.apache.commons.lang3.StringUtils;
+import com.water.utils.common.Constants;
+import com.water.uubook.dao.TbUbTagMapper;
+import com.water.uubook.model.dto.TbUbTagDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -28,18 +23,18 @@ import java.util.concurrent.TimeUnit;
 @Service("iTTagService")
 public class ITTagServiceImpl implements ITTagService {
     @Resource
-    private ITTagMapper iTTagMapper;
+    private TbUbTagMapper iTTagMapper;
 
     private LoadingCache<String, Object> cacheLocal;
 
-    private static Map<String, ITTagDto> tagMap = new HashMap<>();
+    private static Map<String, TbUbTagDto> tagMap = new HashMap<>();
 
     private static Log logger = LogFactory.getLog(ITTagServiceImpl.class);
 
 
-    public Map<String, ITTagDto> getTagMap() {
+    public Map<String, TbUbTagDto> getTagMap() {
         try {
-            tagMap = (Map<String, ITTagDto>) cacheLocal.get(Constants.CacheKey.GreeArticle);
+            tagMap = (Map<String, TbUbTagDto>) cacheLocal.get(Constants.CacheKey.GreeArticle);
             if (tagMap == null) {
                 tagMap = this.getTagMap();
             }
@@ -50,23 +45,23 @@ public class ITTagServiceImpl implements ITTagService {
     }
 
     @Override
-    public List<ITTagDto> getAllParentTags() {
-        List<ITTagDto> parentList = new ArrayList<>();
-        List<ITTagDto> nodeList = this.getAllTags();
-        for (ITTagDto tagDto : nodeList) {
-            if (StringUtils.isBlank(tagDto.getParent())) {
+    public List<TbUbTagDto> getAllParentTags() {
+        List<TbUbTagDto> parentList = new ArrayList<>();
+        List<TbUbTagDto> nodeList = this.getAllTags();
+        for (TbUbTagDto tagDto : nodeList) {
+            if (tagDto.getParentId() != null) {
                 parentList.add(tagDto);
             }
         }
         return parentList;
     }
 
-    public List<ITTagDto> getAllTags() {
-        List<ITTagDto> itTagDtos = iTTagMapper.getAllTags();
-        List<ITTagDto> nodeList = new ArrayList<>();
-        if (itTagDtos != null && itTagDtos.size() > 0) {
-            for (ITTagDto node1 : itTagDtos) {
-                for (ITTagDto node2 : itTagDtos) {
+    public List<TbUbTagDto> getAllTags() {
+        List<TbUbTagDto> tbUbTagDtos = iTTagMapper.getAllTags();
+        List<TbUbTagDto> nodeList = new ArrayList<>();
+        if (tbUbTagDtos != null && tbUbTagDtos.size() > 0) {
+            for (TbUbTagDto node1 : tbUbTagDtos) {
+                for (TbUbTagDto node2 : tbUbTagDtos) {
                     if (node1.getParent() != null && node1.getParent().equals(node2.getId())) {
                         if (node2.getChildren() == null)
                             node2.setChildren(new ArrayList<>());
@@ -81,10 +76,10 @@ public class ITTagServiceImpl implements ITTagService {
         return nodeList;
     }
 
-    private Map<String, ITTagDto> initializeTagMap() {
-        Map<String, ITTagDto> tagMap = new HashMap<>();
-        List<ITTagDto> itTagDtos = this.getAllTags();
-        itTagDtos.stream().forEach(p -> {
+    private Map<Integer, TbUbTagDto> initializeTagMap() {
+        Map<Integer, TbUbTagDto> tagMap = new HashMap<>();
+        List<TbUbTagDto> tbUbTagDtos = this.getAllTags();
+        tbUbTagDtos.stream().forEach(p -> {
             tagMap.put(p.getId(), p);
         });
 

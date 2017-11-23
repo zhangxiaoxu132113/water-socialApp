@@ -10,12 +10,12 @@ import com.water.utils.cache.CacheManager;
 import com.water.utils.common.CacheKey;
 import com.water.utils.common.Constants;
 import com.water.utils.web.view.ResultView;
-import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.dao.CourseMapper;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.User;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.service.TagService;
+import com.water.uubook.dao.TbUbArticleMapper;
+import com.water.uubook.dao.TbUbCourseMapper;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.TbUbUser;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.service.TbUbTagService;
 import com.water.uubook.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -32,13 +32,13 @@ import java.util.concurrent.TimeUnit;
 @Service("iTArticleService")
 public class ITArticleServiceImpl implements ITArticleService {
     @Resource
-    private ArticleMapper iTArticleMapper;
+    private TbUbArticleMapper iTArticleMapper;
 
     @Resource
     private CacheManager cacheManager;
 
     @Resource
-    private TagService tagService;
+    private TbUbTagService tagService;
 
     private LoadingCache<String, Object> cacheLocal;
 
@@ -47,14 +47,14 @@ public class ITArticleServiceImpl implements ITArticleService {
     @Resource
     private com.water.es.api.Service.IArticleService esArticleService;
 
-    public ArticleDto getArticleDetailById(Integer articleId) {
+    public TbUbArticleDto getArticleDetailById(Integer articleId) {
         if (articleId == null || articleId < 0) {
             throw new RuntimeException("文章id不合法！");
         }
-        Article article = iTArticleMapper.selectByPrimaryKey(articleId);
-        ArticleDto articleDto = null;
+        TbUbArticle article = iTArticleMapper.selectByPrimaryKey(articleId);
+        TbUbArticleDto articleDto = null;
         if (article != null) {
-            articleDto = new ArticleDto();
+            articleDto = new TbUbArticleDto();
             BeanUtils.copyProperties(article, articleDto);
             articleDto.setTagList(tagService.findArticleTags(articleDto.getTags()));
             articleDto.setCreateOnStr(DateUtil.DATE_FORMAT_YMD.format(new Date(article.getCreateOn())));
@@ -62,13 +62,13 @@ public class ITArticleServiceImpl implements ITArticleService {
         return articleDto;
     }
 
-    public List<Article> getRelatedArticles(String queryContent, int pageSize) {
-        List<Article> articleList = new ArrayList<>();
+    public List<TbUbArticle> getRelatedArticles(String queryContent, int pageSize) {
+        List<TbUbArticle> articleList = new ArrayList<>();
         if (StringUtils.isNotBlank(queryContent)) {
             ESDocument document = esArticleService.searchArticleByMatch("content", queryContent, 0, pageSize);
             List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
             for (com.water.es.entry.ITArticle esArticle : esArticleList) {
-                Article originArticle = new Article();
+                TbUbArticle originArticle = new TbUbArticle();
                 BeanUtils.copyProperties(esArticle, originArticle);
                 articleList.add(originArticle);
             }
@@ -79,7 +79,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     public Map<String, Object> searchArticleByKeyword(String kw, int begin, int pageSize) {
         Map<String, Object> resultMap = new HashMap<>();
-        List<Article> articleList = new ArrayList<>();
+        List<TbUbArticle> articleList = new ArrayList<>();
         ESDocument document = esArticleService.searchArticleByMatchWithHighLight(new String[]{"content"}, kw, begin, pageSize);
         List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
         copyITArticleList(articleList, esArticleList);
@@ -96,7 +96,7 @@ public class ITArticleServiceImpl implements ITArticleService {
         int begin = (currentPage - 1) * currentPage;
         queryParam.put("pageSize", pageSize);
         queryParam.put("begin", begin);
-        List<ArticleDto> itArticleList = iTArticleMapper.findArticleListByCondition(queryParam);
+        List<TbUbArticleDto> itArticleList = iTArticleMapper.findArticleListByCondition(queryParam);
         int totalCount = iTArticleMapper.getTotalCount(queryParam);
         if (itArticleList == null) {
             itArticleList = new ArrayList<>();
@@ -110,7 +110,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
     @Override
     public Map<String, Object> searchArticleByKeywordV2(String kw, int currentPage, int pageSize) {
-        List<Article> articleList = new ArrayList<Article>();
+        List<TbUbArticle> articleList = new ArrayList<TbUbArticle>();
         Map<String, Object> result = new HashMap<>();
 
         if (StringUtils.isNotBlank(kw)) {
@@ -118,7 +118,7 @@ public class ITArticleServiceImpl implements ITArticleService {
             ESDocument document = esArticleService.searchArticleByMatch("content", kw, begin, pageSize);
             List<com.water.es.entry.ITArticle> esArticleList = (List<com.water.es.entry.ITArticle>) document.getResult();
             for (com.water.es.entry.ITArticle esArticle : esArticleList) {
-                Article originArticle = new Article();
+                TbUbArticle originArticle = new TbUbArticle();
                 BeanUtils.copyProperties(esArticle, originArticle);
                 articleList.add(originArticle);
             }
@@ -134,7 +134,7 @@ public class ITArticleServiceImpl implements ITArticleService {
     }
 
     @Override
-    public void formatArticleList(List<ArticleDto> articleDtoList, DateFormat dateFormat) {
+    public void formatArticleList(List<TbUbArticleDto> articleDtoList, DateFormat dateFormat) {
         articleDtoList.stream().forEach(p -> {
             p.setCreateOnStr(dateFormat.format(new Date(p.getCreateOn())));
         });
@@ -150,7 +150,7 @@ public class ITArticleServiceImpl implements ITArticleService {
 
         String articleKey = String.format(CacheKey.ARTICLE, articleId);
         if (!cacheManager.exists(articleKey)) {
-            Article article = this.getArticleDetailById(articleId);
+            TbUbArticle article = this.getArticleDetailById(articleId);
             postArticleAndRecordVoteInfo(article);
         }
         if (cacheManager.zscore(CacheKey.ARTICLE_RELASE_TIME, articleKey) < cutOff) { //不能对发布超过一年的文章进行投票
@@ -189,7 +189,7 @@ public class ITArticleServiceImpl implements ITArticleService {
         return resultView;
     }
 
-    public void postArticleAndRecordVoteInfo(Article article) {
+    public void postArticleAndRecordVoteInfo(TbUbArticle article) {
         int VOTE_SCORE = 432;
         int ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
         int now = DateUtil.getSecondTimestamp(new Date(article.getCreateOn()));
@@ -212,9 +212,9 @@ public class ITArticleServiceImpl implements ITArticleService {
         cacheManager.zadd(CacheKey.ARTICLE_RELASE_TIME, articleKey, now);
     }
 
-    private void copyITArticleList(List<Article> articleList, List<com.water.es.entry.ITArticle> esArticleList) {
+    private void copyITArticleList(List<TbUbArticle> articleList, List<com.water.es.entry.ITArticle> esArticleList) {
         for (com.water.es.entry.ITArticle esArticle : esArticleList) {
-            Article originArticle = new Article();
+            TbUbArticle originArticle = new TbUbArticle();
             BeanUtils.copyProperties(esArticle, originArticle);
             articleList.add(originArticle);
         }
@@ -226,15 +226,15 @@ public class ITArticleServiceImpl implements ITArticleService {
      * @param module
      * @return
      */
-    private List<ArticleDto> getCacheModuleArticle(int module) {
+    private List<TbUbArticleDto> getCacheModuleArticle(int module) {
         String redis_key = "static_index_module_%s";
         redis_key = String.format(redis_key, module);
 
-        List<ArticleDto> articleDtoList = new ArrayList<>();
+        List<TbUbArticleDto> articleDtoList = new ArrayList<>();
         List<byte[]> byteValues = cacheManager.lrange(redis_key.getBytes(), 0, -1);
         if (byteValues != null && byteValues.size() > 0) {
             for (byte[] byteValue : byteValues) {
-                ArticleDto articleDto = (ArticleDto) SerializeHelper.unserialize(byteValue);
+                TbUbArticleDto articleDto = (TbUbArticleDto) SerializeHelper.unserialize(byteValue);
                 articleDtoList.add(articleDto);
             }
         }
@@ -248,16 +248,16 @@ public class ITArticleServiceImpl implements ITArticleService {
                 new CacheLoader<String, Object>() {
                     int begin = 0;
                     int pageSize = 0;
-                    Article article = null;
-                    List<ArticleDto> articleList = null;
+                    TbUbArticle article = null;
+                    List<TbUbArticleDto> articleList = null;
                     Map<String, Object> queryParam = null;
 
                     @Override
-                    public List<ArticleDto> load(String key) {
+                    public List<TbUbArticleDto> load(String key) {
                         switch (key) {
                             case "static_index_module_" + 0:
                                 queryParam = new HashMap<String, Object>();
-                                article = new Article();
+                                article = new TbUbArticle();
                                 article.setModule(0);
                                 pageSize = 11;
                                 begin = 0;
@@ -268,7 +268,7 @@ public class ITArticleServiceImpl implements ITArticleService {
                                 return articleList;
                             case Constants.CacheKey.NEWS:
                                 queryParam = new HashMap<String, Object>();
-                                article = new Article();
+                                article = new TbUbArticle();
                                 article.setModule(1);
                                 begin = 0;
                                 pageSize = 10;

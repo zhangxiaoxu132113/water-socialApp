@@ -1,14 +1,10 @@
 package com.water.quartz;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.water.utils.common.Constants;
 import com.water.utils.lang.StringUtil;
-import com.water.utils.web.HttpRequestTool;
-import com.water.uubook.dao.AccessLogInfoMapper;
-import com.water.uubook.dao.IpAddressInfoMapper;
-import com.water.uubook.model.AccessLogInfo;
-import com.water.uubook.model.IpAddressInfo;
+import com.water.uubook.dao.TbUbAccessLogInfoMapper;
+import com.water.uubook.dao.TbUbIpAddressInfoMapper;
+import com.water.uubook.model.TbUbAccessLogInfo;
 import com.water.uubook.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -20,7 +16,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Created by zhangmiaojie on 2016/11/17.
@@ -29,10 +24,10 @@ public class TaskQuartz {
     private static Log LOG = LogFactory.getLog(TaskQuartz.class);
 
     @Resource
-    private AccessLogInfoMapper accessLogInfoMapper;
+    private TbUbAccessLogInfoMapper accessLogInfoMapper;
 
     @Resource
-    private IpAddressInfoMapper ipAddressInfoMapper;
+    private TbUbIpAddressInfoMapper ipAddressInfoMapper;
 
     public void disposableUrlTask() {
         System.out.println("定时任务执行！");
@@ -59,7 +54,7 @@ public class TaskQuartz {
                         new FileInputStream(logFile)));
                 int b;
                 while ((b = reader.read()) != -1) {
-                    AccessLogInfo log = new AccessLogInfo();
+                    TbUbAccessLogInfo log = new TbUbAccessLogInfo();
                     String line = reader.readLine();
                     line = line.replace("\"", "");
                     if (StringUtils.isNotBlank(line)) {
@@ -83,7 +78,7 @@ public class TaskQuartz {
 //                            JSONObject jsonObj = JSONObject.parseObject(resultJson);
 //                            if (jsonObj.getInteger("code") != 0) continue;
 //                            JSONObject dataObj = jsonObj.getJSONObject("data");
-//                            IpAddressInfo ipAddressInfo = JSON.parseObject(dataObj.toJSONString(), IpAddressInfo.class);
+//                            TbUbIpAddressInfo ipAddressInfo = JSON.parseObject(dataObj.toJSONString(), TbUbIpAddressInfo.class);
 //                            ipAddressInfo.setCreateOn(new Date());
 //                            ipAddressInfoMapper.insert(ipAddressInfo);
 //                        }

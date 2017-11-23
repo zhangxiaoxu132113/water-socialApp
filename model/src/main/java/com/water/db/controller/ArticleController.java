@@ -2,20 +2,20 @@ package com.water.db.controller;
 
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITTagService;
+import com.water.es.entry.ITArticle;
 import com.water.utils.lang.StringUtil;
 import com.water.utils.web.WebUtils;
 import com.water.utils.web.view.ResultView;
-import com.water.uubook.dao.ArticleMapper;
-import com.water.uubook.model.Article;
-import com.water.uubook.model.ITArticle;
-import com.water.uubook.model.Tag;
-import com.water.uubook.model.VideoCourseShop;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.CategoryDto;
+import com.water.uubook.dao.TbUbArticleMapper;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.TbUbTag;
+import com.water.uubook.model.TbUbVedioCourseShop;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.model.dto.TbUbCategoryDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
-import com.water.uubook.service.CategoryService;
-import com.water.uubook.service.CourseSubjectService;
-import com.water.uubook.service.VideoCourseShopService;
+import com.water.uubook.service.TbUbCategoryService;
+import com.water.uubook.service.TbUbCourseSubjectService;
+import com.water.uubook.service.TbUbVideoCourseShopService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -46,16 +46,16 @@ public class ArticleController {
     private ITArticleService articleService;
 
     @Resource
-    private CategoryService categoryService;
+    private TbUbCategoryService categoryService;
 
     @Resource
-    private CourseSubjectService courseSubjectService;
+    private TbUbCourseSubjectService courseSubjectService;
 
     @Resource
-    private ArticleMapper articleMapper;
+    private TbUbArticleMapper articleMapper;
 
     @Resource
-    private VideoCourseShopService videoCourseShopService;
+    private TbUbVideoCourseShopService videoCourseShopService;
 
     /**
      * 根据id获取文章详情
@@ -67,18 +67,18 @@ public class ArticleController {
     @RequestMapping(value = "/detail/{articleId}.html")
     public ModelAndView getArticleDetail(@PathVariable int articleId) throws ExecutionException {
         ModelAndView mav = new ModelAndView();
-        List<Article> articleList = new ArrayList<>();
-        ArticleDto article = articleService.getArticleDetailById(articleId);
+        List<TbUbArticle> articleList = new ArrayList<>();
+        TbUbArticleDto article = articleService.getArticleDetailById(articleId);
         if (article == null) {
             //抛出404
             return null;
         }
         article.setRelatedArticles(articleService.getRelatedArticles(article.getTitle(), 12)); //设置相关文章
-        CategoryDto categoryDto = categoryService.getCategoryById(article.getCategory());
-        List<CategoryDto> categoryDtos = categoryService.getHotCategories();
+        TbUbCategoryDto categoryDto = categoryService.getCategoryById(article.getCategory());
+        List<TbUbCategoryDto> categoryDtos = categoryService.getHotCategories();
         //获取相关文章
         String[] tagArray = new String[5];
-        List<Tag> tags = article.getTagList();
+        List<TbUbTag> tags = article.getTagList();
         if (tags != null && tags.size() > 0) {
             for (int i = 0; i < tags.size(); i++) {
                 tagArray[i] = tags.get(i).getName();
@@ -89,7 +89,7 @@ public class ArticleController {
         article.setViewHits(article.getViewHits() + 1);
         articleMapper.updateByPrimaryKeySelective(article);
         //查询视频教程广告
-        List<VideoCourseShop> videoCourseShopList = videoCourseShopService.findVideoCourseByCategory(article.getCategory());
+        List<TbUbVedioCourseShop> videoCourseShopList = videoCourseShopService.findVideoCourseByCategory(article.getCategory());
 
         mav.addObject("article", article);
         mav.addObject("category", categoryDto);

@@ -1,6 +1,6 @@
 package com.water.db.controller;
 
-import com.water.uubook.model.User;
+import com.water.uubook.model.TbUbUser;
 import com.water.db.service.interfaces.UserService;
 import com.water.utils.common.Constants;
 import com.water.utils.web.MWLoginUtils;
@@ -44,7 +44,7 @@ public class UserController {
         String login_password = request.getParameter("login_pwd");
         String redirect_after_login = request.getParameter("redirect_after_login");
 
-        User user = userService.findUserByNameAndPwd(login_username, login_password);
+        TbUbUser user = userService.findUserByNameAndPwd(login_username, login_password);
         if (user == null) {
             resultView.setCode(Constants.STATUS_CODE.FAILURE);
             resultView.setMsg("用户不存在!登陆失败");
@@ -84,7 +84,7 @@ public class UserController {
     @RequestMapping(value = "/{account}/home")
     public ModelAndView redirect2homePage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = MWSessionUtils.getUser2Session(request);
+        TbUbUser user = MWSessionUtils.getUser2Session(request);
         modelAndView.setViewName("/personal/personalHome");
         return modelAndView;
     }

@@ -1,13 +1,13 @@
 package com.water.db.controller;
 
-import com.water.uubook.model.Article;
-import com.water.uubook.model.dto.ArticleDto;
-import com.water.uubook.model.dto.CourseDto;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.dto.TbUbArticleDto;
+import com.water.uubook.model.dto.TbUbCourseDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
 import com.water.db.service.interfaces.ITArticleService;
 import com.water.utils.lang.StringUtil;
-import com.water.uubook.service.CourseService;
-import com.water.uubook.service.CourseSubjectService;
+import com.water.uubook.service.TbUbCourseService;
+import com.water.uubook.service.TbUbCourseSubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +33,10 @@ public class CourseController {
     private ITArticleService articleService;
 
     @Resource
-    private CourseService courseService;
+    private TbUbCourseService courseService;
 
     @Resource
-    private CourseSubjectService courseSubjectService;
+    private TbUbCourseSubjectService courseSubjectService;
 
     @RequestMapping(value = "")
     public ModelAndView course(HttpServletRequest request, HttpServletResponse response) throws ExecutionException {
@@ -56,8 +56,8 @@ public class CourseController {
         queryMap.put("courseName", courseName);
 
         CourseSubjectDto courseSubjectDto = courseSubjectService.getCourseSubjectByExample(queryMap);
-        List<Article> articleList = articleService.getRelatedArticles(courseName, 10);
-        List<CourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
+        List<TbUbArticle> articleList = articleService.getRelatedArticles(courseName, 10);
+        List<TbUbCourseDto> courseDtoList = courseService.getCatalogByCourseName(courseName);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("articleList", articleList);
@@ -73,14 +73,14 @@ public class CourseController {
         ModelAndView mav = new ModelAndView();
         courseName = StringUtil.transform2utf8(courseName);
         courseName = StringUtil.deconde(courseName);
-        List<CourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
+        List<TbUbCourseDto> catalogTitleList = courseService.getCatalogByCourseName(courseName);
         if (catalogTitleList == null || catalogTitleList.isEmpty()) {
             //todo 返回404
         }
 
-        ArticleDto article = articleService.getArticleDetailById(articleId);
+        TbUbArticleDto article = articleService.getArticleDetailById(articleId);
 //        if (article != null) {
-//            List<Article> articleList = articleService.getRelatedArticles(article);
+//            List<TbUbArticle> articleList = articleService.getRelatedArticles(article);
 //            article.setRelatedArticles(articleList);
 //        }
         mav.addObject("courseName", courseName);

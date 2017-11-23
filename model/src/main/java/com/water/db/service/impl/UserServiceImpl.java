@@ -1,8 +1,8 @@
 package com.water.db.service.impl;
 
-import com.water.uubook.dao.UserMapper;
-import com.water.uubook.model.User;
-import com.water.uubook.model.UserCriteria;
+import com.water.uubook.dao.TbUbUserMapper;
+import com.water.uubook.model.TbUbUser;
+import com.water.uubook.model.TbUbUserCriteria;
 import com.water.db.service.interfaces.UserService;
 import com.water.utils.web.vo.UserDto;
 import org.apache.commons.lang3.StringUtils;
@@ -14,17 +14,17 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Resource
-    private UserMapper userMapper;
+    private TbUbUserMapper userMapper;
 
-    public User findUserByNameAndPwd(String login_username, String login_password) {
+    public TbUbUser findUserByNameAndPwd(String login_username, String login_password) {
         if (StringUtils.isAnyBlank(login_username, login_password)) {
             throw new RuntimeException("参数不合法！");
         }
-        UserCriteria userCriteria = new UserCriteria();
-        UserCriteria.Criteria criteria = userCriteria.createCriteria();
+        TbUbUserCriteria userCriteria = new TbUbUserCriteria();
+        TbUbUserCriteria.Criteria criteria = userCriteria.createCriteria();
         criteria.andAccountEqualTo(login_username);
         criteria.andPasswordEqualTo(login_password);
-        List<User> userList = userMapper.selectByExample(userCriteria);
+        List<TbUbUser> userList = userMapper.selectByExample(userCriteria);
         if (userList != null && userList.size() > 0) {
             return userList.get(0);
         }

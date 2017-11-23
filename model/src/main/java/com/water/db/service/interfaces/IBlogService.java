@@ -1,7 +1,7 @@
 package com.water.db.service.interfaces;
 
-import com.water.uubook.model.Article;
-import com.water.uubook.model.dto.ArticleDto;
+import com.water.uubook.model.TbUbArticle;
+import com.water.uubook.model.dto.TbUbArticleDto;
 
 import java.util.List;
 import java.util.Map;
@@ -15,13 +15,13 @@ public interface IBlogService {
      * 获取最新文章
      * @return
      */
-    List<ArticleDto> getLatestArticleList();
+    List<TbUbArticleDto> getLatestArticleList();
 
     /**
      * 获取热门文章
      * @return
      */
-    List<ArticleDto> getHotArticleList(Integer cateogry, Integer pageSize);
+    List<TbUbArticleDto> getHotArticleList(Integer cateogry, Integer pageSize);
 
 
     List<Map<String,Object>> getArticleByAllCategoryWithCache();

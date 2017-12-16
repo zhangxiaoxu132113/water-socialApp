@@ -9,6 +9,8 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="<%=basePath%>/asset/css/blog-category.css">
+    <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
+
 </head>
 <body>
 <div id="container">
@@ -18,10 +20,10 @@
                 <div class="nav-menu">
                     <ul>
                         <li><a href="<%=basePath%>/">首页</a></li>
-                        <li><a href="<%=basePath%>/blog">文档库</a></li>
-                        <li><a href="<%=basePath%>/new">资讯</a></li>
-                        <li><a href="<%=basePath%>/course">IT教程</a></li>
-                        <li><a href="<%=basePath%>/base">知识库</a></li>
+                        <li><a href="<%=basePath%>/blog/">文档库</a></li>
+                        <li><a href="<%=basePath%>/new/">资讯</a></li>
+                        <li><a href="<%=basePath%>/course/">IT教程</a></li>
+                        <li><a href="<%=basePath%>/base/">知识库</a></li>
                     </ul>
                 </div>
 

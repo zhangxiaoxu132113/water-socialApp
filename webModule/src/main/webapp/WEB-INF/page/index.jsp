@@ -14,7 +14,8 @@
     <meta charset="UTF-8">
     <title>编程无忧网_让编程更加无忧的IT技术网站</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
+    <meta name="description"
+          content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
     <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/articleList.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
@@ -47,7 +48,8 @@
                                 href="<%=basePath%>/article/detail/<%=topArticleList.get(0).getId()%>.html"><%=topArticleList.get(0).getTitle() %>
                         </a></div>
                         <div id="view-info-detail-description">
-                            <%=topArticleList.get(0).getDescription() %>
+                            ${fn:substring(topArticleList.get(0).getDescription(), 0, 100)}
+                            <%--<%=topArticleList.get(0).getDescription() %>--%>
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
@@ -119,7 +121,7 @@
                                                                              height="200">
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                        <p>${article.description}</p>
+                                                                        <p>${fn:substring(article.description, 0, 120)}</p>
                                                                     </c:otherwise>
                                                                 </c:choose>
                                                             </li>
@@ -167,7 +169,8 @@
                         <ul class="slider-content" data-slidizle-content>
                             <c:forEach items="${requestScope.adInfoList}" var="adInfo">
                                 <li class="slider-item"
-                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>${adInfo.pic}')"></li>
+                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>
+                                        ${adInfo.pic}')"></li>
                             </c:forEach>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>
@@ -190,8 +193,7 @@
                                 </div>
                                 <c:if test="${status.index == 0}">
                                     <span>
-                                        ${article.description}
-                                        开发团队宣布，Kotlin 1.1 正式发布。 这是一个很大的进步，使 Kotlin 能在许多新的场景中使用。 Kotlin...
+                                            ${fn:substring(article.description, 0, 100)}
                                     </span>
                                 </c:if>
                             </li>

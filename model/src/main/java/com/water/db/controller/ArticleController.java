@@ -89,14 +89,14 @@ public class ArticleController {
         article.setViewHits(article.getViewHits() + 1);
         articleMapper.updateByPrimaryKeySelective(article);
         //查询视频教程广告
-        List<TbUbVedioCourseShop> videoCourseShopList = videoCourseShopService.findVideoCourseByCategory(article.getCategory());
+//        List<TbUbVedioCourseShop> videoCourseShopList = videoCourseShopService.findVideoCourseByCategory(article.getCategory());
 
         mav.addObject("article", article);
         mav.addObject("category", categoryDto);
         mav.addObject("categoryDtos", categoryDtos);
         mav.addObject("relatedArticles", articleList);
         mav.addObject("recommendCourses", recommendCourses);
-        mav.addObject("videoCourseShopList", videoCourseShopList);
+//        mav.addObject("videoCourseShopList", videoCourseShopList);
         mav.setViewName("/article/articleDetail");
         return mav;
     }

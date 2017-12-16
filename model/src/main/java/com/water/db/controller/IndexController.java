@@ -5,10 +5,12 @@ import com.water.db.service.interfaces.ITArticleService;
 import com.water.db.service.interfaces.ITopService;
 import com.water.db.service.interfaces.NewsService;
 import com.water.utils.common.Constants;
+import com.water.utils.db.DBUtil;
 import com.water.utils.web.CategoryHelper;
 import com.water.utils.web.PageConstants;
 import com.water.utils.web.vo.AdInfo;
 import com.water.utils.web.vo.Category;
+import com.water.uubook.dao.TbUbArticleMapper;
 import com.water.uubook.model.dto.TbUbArticleDto;
 import com.water.uubook.model.dto.TbUbCategoryDto;
 import com.water.uubook.model.dto.CourseSubjectDto;
@@ -24,7 +26,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mrwater on 16/6/4.
@@ -47,6 +51,9 @@ public class IndexController {
     private CategoryHelper categoryHelper;
     @Resource
     private IBlogService blogService;
+
+    @Resource
+    private TbUbArticleMapper articleMapper;
 
     @RequestMapping(value = {"/", "/index", "/index.html"})
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {

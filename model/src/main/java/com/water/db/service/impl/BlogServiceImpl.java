@@ -78,10 +78,11 @@ public class BlogServiceImpl implements IBlogService {
                 model.setParentCategory(category);
             }
         }
+        model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
         Map<String, String> sortMap = new HashMap<>();
         sortMap.put("createOn", "DESC");
         sortMap.put("viewHits", "DESC");
-        String[] cols = new String[]{"id", "title", "viewHits",  "description", "createOn"};
+        String[] cols = new String[]{"id", "title", "picUrl", "viewHits",  "description", "createOn"};
         Map<String, Object> param = DBUtil.getParamMap(model, cols, sortMap, pageSize, 1);
         List<TbUbArticleDto> articleDtoList = articleMapper.findArticleListByCondition(param);
         articleService.formatArticleList(articleDtoList, DateUtil.DATE_FORMAT_YMD);

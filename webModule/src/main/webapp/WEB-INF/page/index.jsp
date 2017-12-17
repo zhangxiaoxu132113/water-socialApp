@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
     <link rel="stylesheet" href="<%=basePath%>/plugs/slider/slider.css">
-    <link rel="icon" href="<%=path%>/asset/img/bitbug_favicon.ico">
+    <link rel="icon" href="<%=basePath%>/asset/img/bitbug_favicon.ico">
     <style>
         .nav-fixed {
             position: fixed;
@@ -49,12 +49,11 @@
                         </a></div>
                         <div id="view-info-detail-description">
                             ${fn:substring(topArticleList.get(0).getDescription(), 0, 100)}
-                            <%--<%=topArticleList.get(0).getDescription() %>--%>
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
-                                <c:forEach items="${requestScope.topArticleList}" begin="9" end="11" var="article">
-                                    <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
+                                <c:forEach items="${requestScope.topArticleList}" begin="9" end="12" var="article">
+                                    <li style="margin-top: 5px"><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -169,8 +168,7 @@
                         <ul class="slider-content" data-slidizle-content>
                             <c:forEach items="${requestScope.adInfoList}" var="adInfo">
                                 <li class="slider-item"
-                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>
-                                        ${adInfo.pic}')"></li>
+                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>${adInfo.pic}')"></li>
                             </c:forEach>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>

@@ -13,7 +13,10 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>编程无忧网_文档库</title>
+    <meta name="description"
+          content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
+    <meta name="keywords" content="开发语言，数据库，前端开发，数据库，服务器，云计算，大数据，开发工具，软件开发 ">
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-index.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/mw-moon.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
@@ -119,7 +122,8 @@
                     </div>
                     <ul>
                         <c:forEach items="${requestScope.hotArticleList}" var="article">
-                            <li><span class="dot"></span><a href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
+                            <li><span class="dot"></span><a
+                                    href="<%=path%>/article/detail/${article.id}.html">${article.title}</a></li>
                         </c:forEach>
                     </ul>
                 </div>

@@ -455,3 +455,11 @@ body {
     height:273px;
     margin:0 auto;
 }
+
+.content p {
+    margin-bottom: 1em;
+    word-wrap: break-word;
+    line-height: 28px;
+    font-size: 14px;
+    color: #3d464d;
+}

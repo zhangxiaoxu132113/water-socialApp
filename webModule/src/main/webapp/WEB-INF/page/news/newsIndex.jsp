@@ -1,13 +1,8 @@
 <%@ page import="com.water.utils.common.Constants" %>
-<%@ page import="java.io.PrintWriter" %><%--
-  Created by IntelliJ IDEA.
-  User: zhangmiaojie
-  Date: 2017/6/21
-  Time: 15:16
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -81,7 +76,7 @@
                                     <dl>
                                         <dt><a href="<%=path%>/new/detail/${article.id}.html">${article.title}</a></dt>
                                         <dd>
-                                            <span class="desc">据俄罗斯《生意人报》援引瑞士联合银行集团（UBS）分析师的预测报道，无人驾驶客机可能很快就会成为现实。该报称，第一批地面遥控客机可能在2025年就会出现。...</span>
+                                            <span class="desc">${fn:substring(article.description, 0, 100)}...</span>
                                             <p class="info">
                                                 <span class="channel"><a href="">数码传奇</a></span>
                                                 <span class="date">|&nbsp;&nbsp;2017-08-14 19:15</span>

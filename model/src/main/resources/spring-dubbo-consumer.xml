@@ -10,6 +10,6 @@
     <!-- 测试 -->
     <dubbo:registry protocol="zookeeper" address="@zookepper.address@" check="false"/>
 
-    <dubbo:reference id="esArticleService" timeout="60000" url="dubbo://118.31.33.195:20880"
+    <dubbo:reference id="esArticleService" timeout="60000" url="dubbo://@dubbo.address@"
                      interface="com.water.es.api.Service.IArticleService" protocol="dubbo"/>
 </beans>

@@ -1,13 +1,16 @@
+<%@ page import="java.util.Random" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+    Random random = new Random(5);
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>编程无忧网_文档库_${category.name}分类</title>
     <link rel="stylesheet" href="<%=basePath%>/asset/css/blog-category.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
 
@@ -40,10 +43,10 @@
         <div id="middle">
             <div id="middle-inner">
                 <div class="profile-canopy-headerBg">
-                    <img class="profile-bg-img" src="/asset/content/user_bg.jpeg" style="transform: none">
+                    <img class="profile-bg-img" src="/asset/content/category_${category.parentId}.jpg" style="transform: none">
                     <div class="topic-intro">
                         <div class="intro-base clearfix">
-                            <span class="intro-base-header-img"><img src="<%=basePath%>/asset/content/regong.jpg"
+                            <span class="intro-base-header-img"><img src="${category.picUrl}"
                                                                      style="border-radius: 50%" alt=""></span>
                                 <span class="intro-base-desc">
                                     <span class="name">${category.name}</span>
@@ -72,7 +75,7 @@
                                 <span class="about-topic-info">相关主题</span>
                                 <c:forEach items="${requestScope.categoryDtos}" var="category" begin="0" end="3">
                                     <dl>
-                                        <dt><a href=""><img src="http://www.uubook.net:8080/asset/content/python.jpg" alt=""></a></dt>
+                                        <dt><a href=""><img src="${category.picUrl}" alt=""></a></dt>
                                         <dd>
                                             <h4><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a></h4>
                                             <p>文章收录 : ${category.total}</p>
@@ -111,18 +114,25 @@
                                         <span><i class="iconfont">&#xe771;</i></span>
                                     </div>
                                     <div class="article">
+                                        <c:if test="${not empty article.picUrl}">
+                                            <img class="article_pic_url" src="${article.picUrl}" alt="" width="200"
+                                                 height="112">
+                                        </c:if>
                                         <h3 class="article-title"><a
                                                 href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                         </h3>
-                                        <div>
+                                        <div class="article_desc">
+                                            <p>${fn:substring(article.description, 0, 120)}</p>
+                                        </div>
+                                        <div style="font-size: 13px">
                                             <span>${article.createOnStr}</span>
+                                            <span>阅读数：${article.viewHits}</span>
                                             <span class="tags">
                                                 &nbsp;&nbsp;
-                                                <c:forEach items="${article.tagList}" var="tag" begin="0" end="1">
-                                                    <a href="<%=basePath%>/blog/tag/${tag.name}"></a>${tag.name}&nbsp;&nbsp;
+                                                <c:forEach items="${article.tagList}" var="tag" begin="0" end="<%=random.nextInt(4)%>">
+                                                    <a class="tag tag_<%=random.nextInt(4)%>" href="<%=basePath%>/blog/tag/${tag.name}">${tag.name}&nbsp;</a>
                                                 </c:forEach>
                                             </span>
-                                            <span>阅读数：${article.viewHits}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -48,7 +48,7 @@ public class NewsServiceImpl implements NewsService {
         queryMap.put("model", model);
         queryMap.put("begin", begin);
         queryMap.put("pageSize", pageSize);
-        queryMap.put("cols", new String[]{"id", "title"});
+        queryMap.put("cols", new String[]{"id", "title", "description"});
         List<TbUbArticleDto> articleDtoList = articleMapper.findArticleListByCondition(queryMap);
         return articleDtoList;
     }

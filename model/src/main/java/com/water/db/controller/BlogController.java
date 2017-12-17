@@ -74,7 +74,7 @@ public class BlogController {
         int currentPage = 1;
         TbUbArticleDto articleDto = new TbUbArticleDto();
         articleDto.setCategory(category.getId());
-        String[] queryField = {"id", "title", "viewHits", "tags", "createOn"};
+        String[] queryField = {"id", "title", "viewHits", "description", "picUrl", "tags", "createOn"};
         List<TbUbArticleDto> articleDtoList = articleService.findArticleListByCondition(articleDto, queryField, null, currentPage, pageSize);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("category", category);
@@ -100,8 +100,7 @@ public class BlogController {
         int currentPageInt = Integer.parseInt(currentPage);
         TbUbArticleDto model = new TbUbArticleDto();
         model.setTagName(tag);
-        String[] queryField = new String[]{"id", "title", "viewHits", "tags", "createOn"};
-
+        String[] queryField = new String[]{"id", "title", "viewHits", "description", "picUrl", "tags", "createOn"};
         List<TbUbArticleDto> articleDtoList = articleService.findArticleListWithTagByCondition(model, queryField, currentPageInt, pageSizeInt);
         articleDtoList = articleService.getArticleTag(articleDtoList);
         mav.addObject("articleDtoList", articleDtoList);

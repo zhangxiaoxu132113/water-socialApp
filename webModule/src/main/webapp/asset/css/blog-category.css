@@ -534,3 +534,22 @@ span.scroll-top .top-icon {
     font-size: 22px;
     color: #fff;
 }
+.article_desc p {
+    line-height: 24px;
+    margin-top: 10px;
+    min-height: 50px;
+    font-size: 13px;
+    white-space: normal;
+    color: #666;
+}
+.tag {font-size: 13px;text-decoration: none;font-family: "Lucida Grande","Microsoft YaHei",sans-serif;}
+.tag_1 {color:#fad53e}
+.tag_2 {color:#b39ddb}
+.tag_3 {color:#81c683}
+.tag_4 {color:#f06292}
+
+.article_pic_url {
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+}

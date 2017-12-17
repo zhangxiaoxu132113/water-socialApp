@@ -66,7 +66,7 @@ public class IndexController {
         mav.addObject(PageConstants.INDEX.CATEGORIES, categoryList);//栏目分类
         this.setHotArticleWithCategory(categoryList);//设置每一个栏目下的热门文章
 
-        List<TbUbArticleDto> topArticleList = topService.getHotTopArticle(11);
+        List<TbUbArticleDto> topArticleList = topService.getHotTopArticle(12);
         mav.addObject(PageConstants.INDEX.HOT_TOP_ARTICLES, topArticleList);//头条文章
 
         List<TbUbArticleDto> softwareInformations = newsService.getHotNewsWithType(10,

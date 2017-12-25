@@ -27,6 +27,7 @@
         .load-more-info {  display: none;  }
         .load-more-img {width: 25px;height: 25px;vertical-align: middle}
     </style>
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">

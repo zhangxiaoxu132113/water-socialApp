@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont2/iconfont.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/courseDetail.css">
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">

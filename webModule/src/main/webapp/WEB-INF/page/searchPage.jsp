@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="<%=path%>/asset/css/searchPage.css">
+    <jsp:include page="common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">

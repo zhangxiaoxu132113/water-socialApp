@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-index.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/mw-moon.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/common/footer-common.css">
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">

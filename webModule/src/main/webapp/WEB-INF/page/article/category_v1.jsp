@@ -19,6 +19,7 @@
         }
     </style>
     <link rel="stylesheet" href="<%=path%>/asset/css/blog-category.css">
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
     <div id="container">

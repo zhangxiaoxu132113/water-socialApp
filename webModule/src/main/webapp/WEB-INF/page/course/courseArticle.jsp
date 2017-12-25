@@ -12,9 +12,10 @@
     <title>编程无忧网_${requestScope.courseName}_${requestScope.article.title}</title>
     <meta name="description" content="${fn:substring(requestScope.article.content, 0, 125)}">
     <meta name="keywords" content="${requestScope.article.title}">
-    <jsp:include page="../common/common.jsp"/>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/asset/css/mw-moon.css">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/asset/css/courseArticle.css">
+    <jsp:include page="../common/common.jsp"/>
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <!-- slider bar  -->

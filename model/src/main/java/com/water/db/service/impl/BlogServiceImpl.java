@@ -48,7 +48,9 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public List<TbUbArticleDto> getLatestArticleList() {
-        Map<String, Object> param = DBUtil.getParamMap(new TbUbArticleDto(), new String[]{"id", "title"}, null, 20, 1);
+        TbUbArticleDto model = new TbUbArticleDto();
+        model.setModule(Constants.ARTICLE_MODULE.BLOG.getIndex());
+        Map<String, Object> param = DBUtil.getParamMap(model, new String[]{"id", "title"}, null, 20, 1);
         return articleMapper.findArticleListByCondition(param);
     }
 

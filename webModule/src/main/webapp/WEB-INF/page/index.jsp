@@ -17,6 +17,8 @@
     <meta name="description"
           content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
     <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
+    <meta name="baidu-site-verification" content="YZloLpsXpn"/>
+    <meta name="baidu_union_verify" content="b81003967cf3b5919e27af4f74d24cb7">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/articleList.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/header-common.css">
@@ -33,6 +35,7 @@
             width: 663px;
         }
     </style>
+    <jsp:include page="common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">
@@ -53,7 +56,8 @@
                         <div id="view-info-detail-content">
                             <ul>
                                 <c:forEach items="${requestScope.topArticleList}" begin="9" end="12" var="article">
-                                    <li style="margin-top: 5px"><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
+                                    <li style="margin-top: 5px"><a
+                                            href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -70,7 +74,17 @@
                     </div>
                 </div>
                 <div class="ad" id="long-ad">
-                    <img src="<%=basePath%>/asset/content/banner.jpg">
+                    <%--<script type="text/javascript">--%>
+                    <%--/*首页banner条广告-003*/--%>
+                    <%--var cpro_id = "u3171852";--%>
+                    <%--</script>--%>
+                    <%--<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>--%>
+
+                    <script type="text/javascript">
+                        /*640*60 创建于 2017/12/25*/
+                        var cpro_id = "u3171857";
+                    </script>
+                    <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                 </div>
                 <div id="view-tab">
                     <div id="category_bar">
@@ -101,6 +115,14 @@
                                                         <li><em>7</em><a href="">引领大数据新未来 斐讯北京数据中心正式开业</a></li>
                                                         <li><em>8</em><a href="">深入理解Ribbon之源码解析</a></li>
                                                     </ul>
+                                                </div>
+                                                <div class="left_bottom_ad">
+                                                    <script type="text/javascript">
+                                                        /*首页左下角广告位-002*/
+                                                        var cpro_id = "u3171836";
+                                                    </script>
+                                                    <script type="text/javascript"
+                                                            src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                                                 </div>
                                             </div>
                                             <div class="right">
@@ -168,11 +190,17 @@
                         <ul class="slider-content" data-slidizle-content>
                             <c:forEach items="${requestScope.adInfoList}" var="adInfo">
                                 <li class="slider-item"
-                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>${adInfo.pic}')"></li>
+                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>
+                                        ${adInfo.pic}')"></li>
                             </c:forEach>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>
                     </section>
+                    <script type="text/javascript">
+                        /*自适应 创建于 2017/12/25*/
+                        var cpro_id = "u3171829";
+                    </script>
+                    <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/i.js"></script>
                 </div>
                 <div id="new-software-info">
                     <div class="header-info">
@@ -266,6 +294,13 @@
                             </div>
                         </li>
                     </ul>
+                </div>
+                <div class="baidu_ad">
+                    <script type="text/javascript">
+                        /*首页右下角广告位*/
+                        var cpro_id = "u3171800";
+                    </script>
+                    <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                 </div>
             </div>
         </div>

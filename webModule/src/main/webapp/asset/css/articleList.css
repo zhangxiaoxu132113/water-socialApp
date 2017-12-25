@@ -9,7 +9,7 @@ ul li {
 
 body {
     font: normal 12px/24px Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
-    font-size: 14px!important;
+    font-size: 14px !important;
 }
 
 #container {
@@ -257,11 +257,13 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 .header-info {
     position: relative;
     height: 32px;
 }
-.h2-header-info{
+
+.h2-header-info {
     color: #333;
     font: normal 18px/30px "Microsoft YaHei";
     border-bottom: 2px #1c94e0 solid;
@@ -437,13 +439,17 @@ body {
     float: left;
 }
 
+#subject-list {
+    margin-bottom: 0.5em;
+}
+
 #subject-list ul li {
     overflow: hidden;
     margin-bottom: 20px;
     font: normal 16px/22px "Microsoft YaHei";
 }
 
-#subject-list ul li a{
+#subject-list ul li a {
     color: #333;
     text-decoration: none;
 }
@@ -480,7 +486,7 @@ body {
     margin: 0 auto;
 }
 
-#new-software-info ul li div a  {
+#new-software-info ul li div a {
     overflow: hidden;
     width: 100%;
     text-overflow: ellipsis;
@@ -499,7 +505,7 @@ body {
 }
 
 .ad img {
-    width:100%;
+    width: 100%;
 }
 
 #category_bar {
@@ -555,6 +561,7 @@ body {
     height: 2px;
     width: 140px;
 }
+
 #article-list {
     padding-top: 2em;
 }
@@ -613,10 +620,21 @@ body {
     color: #666;
     margin-bottom: 10px;
 }
-.category-hot-article ul li .topic-info .detail{
+
+.category-hot-article ul li .topic-info .detail {
     font-size: 12px;
     color: #666;
 }
+
 #knowdega-info {
     margin-top: 2em;
+}
+
+#long-ad {
+    padding-bottom: 0.8em;
+}
+
+#long-ad img {
+    width: 660px;
+    height: 95px;
 }

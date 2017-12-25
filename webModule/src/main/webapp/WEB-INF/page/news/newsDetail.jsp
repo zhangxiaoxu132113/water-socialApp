@@ -86,6 +86,7 @@
     <link rel="stylesheet" href="<%=path%>/asset/css/new-index.css">
     <link rel="stylesheet" href="<%=path%>/asset/css/font/iconfont/iconfont.css">
     <script src="<%=path%>/asset/js/jquery.js"></script>
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 
 <body>

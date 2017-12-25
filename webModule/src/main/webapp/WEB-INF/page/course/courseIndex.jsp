@@ -49,6 +49,7 @@
             position: relative;
         }
     </style>
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">

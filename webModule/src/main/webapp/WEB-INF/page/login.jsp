@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/css/mrwater.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/css/login.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/plugs/vegas/vegas.min.css">
+    <jsp:include page="common/baidu_statistics_code.jsp"/>
 </head>
 
 <body ng-controller="loginCtrl">

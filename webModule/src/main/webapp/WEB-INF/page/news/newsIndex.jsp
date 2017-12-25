@@ -10,10 +10,8 @@
 <html>
 <head>
     <title></title>
-    <style>
-
-    </style>
     <link rel="stylesheet" href="<%=path%>/asset/css/new-index.css">
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 
 <body>

@@ -13,7 +13,7 @@
     <title>编程无忧网_文档库_${category.name}分类</title>
     <link rel="stylesheet" href="<%=basePath%>/asset/css/blog-category.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
-
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">
@@ -43,7 +43,8 @@
         <div id="middle">
             <div id="middle-inner">
                 <div class="profile-canopy-headerBg">
-                    <img class="profile-bg-img" src="/asset/content/category_${category.parentId}.jpg" style="transform: none">
+                    <img class="profile-bg-img" src="/asset/content/category_${category.parentId}.jpg"
+                         style="transform: none">
                     <div class="topic-intro">
                         <div class="intro-base clearfix">
                             <span class="intro-base-header-img"><img src="${category.picUrl}"
@@ -77,7 +78,8 @@
                                     <dl>
                                         <dt><a href=""><img src="${category.picUrl}" alt=""></a></dt>
                                         <dd>
-                                            <h4><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a></h4>
+                                            <h4><a href="<%=basePath%>/blog/tag/${category.name}">${category.name}</a>
+                                            </h4>
                                             <p>文章收录 : ${category.total}</p>
                                         </dd>
                                     </dl>
@@ -85,8 +87,11 @@
                             </li>
                         </ul>
                         <div class="ad">
-                            <%--<div class="ad-img"></div>--%>
-                            <img class="ad-img" src="<%=basePath%>/asset/content/tmp/ad-3.png" alt="">
+                            <script type="text/javascript">
+                                /*标签分类列表页-左下角广告位-002*/
+                                var cpro_id = "u3171867";
+                            </script>
+                            <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                         </div>
                     </div>
                 </div>
@@ -94,7 +99,12 @@
                 <div id="right-body">
                     <div class="inner">
                         <div class="ad">
-                            <a href=""><img src="<%=basePath%>/asset/content/banner.jpg" alt=""></a>
+                            <script type="text/javascript">
+                                /*标签分类列表页-banner广告位*/
+                                var cpro_id = "u3171819";
+                            </script>
+                            <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
+
                         </div>
                         <div class="about-topics">
                             <ul class="clearfix">
@@ -129,8 +139,10 @@
                                             <span>阅读数：${article.viewHits}</span>
                                             <span class="tags">
                                                 &nbsp;&nbsp;
-                                                <c:forEach items="${article.tagList}" var="tag" begin="0" end="<%=random.nextInt(4)%>">
-                                                    <a class="tag tag_<%=random.nextInt(4)%>" href="<%=basePath%>/blog/tag/${tag.name}">${tag.name}&nbsp;</a>
+                                                <c:forEach items="${article.tagList}" var="tag" begin="0"
+                                                           end="<%=random.nextInt(4)%>">
+                                                    <a class="tag tag_<%=random.nextInt(4)%>"
+                                                       href="<%=basePath%>/blog/tag/${tag.name}">${tag.name}&nbsp;</a>
                                                 </c:forEach>
                                             </span>
                                         </div>
@@ -173,14 +185,14 @@
                 if ($(document).scrollTop() >= $(document).height() - $(window).height() - bot) {
                     currentPage++;
                     $(window).unbind('scroll');
-                      $('.loading').show();
+                    $('.loading').show();
                     $.ajax({//请求数据
-                        url: '/blog/tag/getTagArticleListWithAjax?tag=java&currentPage='+currentPage+'&pageSize=' + pageSize,
+                        url: '/blog/tag/getTagArticleListWithAjax?tag=java&currentPage=' + currentPage + '&pageSize=' + pageSize,
                         type: 'GET',
                         async: true,
                         success: function (data) {
                             data = mytrim(data);
-                            console.log("data = " +data);
+                            console.log("data = " + data);
                             $('.loading').hide();
                             if (data == undefined || data == '') {
                                 //已经没有数据
@@ -198,31 +210,31 @@
                 }
                 else if ($(document).scrollTop() >= 425) {
                     if ($('.scroll-top').is(":hidden")) {
-                        $('.scroll-top').css("display","block");
+                        $('.scroll-top').css("display", "block");
                     }
                 } else {
                     if ($('.scroll-top').is(":visible")) {
-                        $('.scroll-top').css("display","none");
+                        $('.scroll-top').css("display", "none");
                     }
                 }
             });
         };
 
-        $('.scroll-top').click(function() {
-            $('html,body').animate({scrollTop:0},'slow');
+        $('.scroll-top').click(function () {
+            $('html,body').animate({scrollTop: 0}, 'slow');
         });
 
         $('.scroll-top').hover(
-            function(){
-                $('.top-icon').hide();
-                $(this).css('background','#418ec7');
-                $('.top-info').css("display","block");
-            },
-            function() {
-                $('.top-icon').show();
-                $(this).css('background','#545e67');
-                $('.top-info').css("display","none");
-            }
+                function () {
+                    $('.top-icon').hide();
+                    $(this).css('background', '#418ec7');
+                    $('.top-info').css("display", "block");
+                },
+                function () {
+                    $('.top-icon').show();
+                    $(this).css('background', '#545e67');
+                    $('.top-info').css("display", "none");
+                }
         );
         bindScroll();
 

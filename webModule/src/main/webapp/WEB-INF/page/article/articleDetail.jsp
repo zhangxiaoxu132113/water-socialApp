@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,8 @@
     <link rel="icon" href="<%=basePath%>/asset/img/bitbug_favicon.ico">
     <title>${requestScope.article.title}</title>
     <meta name="description" content="${requestScope.article.description}">
-    <meta name="keywords" content="<c:forEach items="${requestScope.article.tagList}" var="tag">${tag.name},</c:forEach>">
+    <meta name="keywords"
+          content="<c:forEach items="${requestScope.article.tagList}" var="tag">${tag.name},</c:forEach>">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/article.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/mw-moon.css">
     <style>
@@ -24,6 +25,7 @@
             width: 301px;
         }
     </style>
+    <jsp:include page="../common/baidu_statistics_code.jsp"/>
 </head>
 <body>
 <div id="container">
@@ -85,7 +87,8 @@
             <div id="top-header-inner">
                 <div class="header-left">
                     <div class="breader">
-                        <span>全部分类</span> > <span>${requestScope.category.parent.name}</span> > <span>${requestScope.category.name}</span>
+                        <span>全部分类</span> > <span>${requestScope.category.parent.name}</span> >
+                        <span>${requestScope.category.name}</span>
                     </div>
                     <div class="title">${requestScope.article.title}</div>
                     <span class="relase">发布: ${requestScope.article.createOnStr}</span>
@@ -130,23 +133,42 @@
                         <h3>相关文章</h3>
                         <ul class="clearfix">
                             <c:forEach items="${requestScope.article.relatedArticles}" var="article">
-                                <li><span class="dot"></span><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
+                                <li><span class="dot"></span><a
+                                        href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
                     <%--猜你喜欢--%>
                     <div class="guess-like">
                         <h3 href="">猜你喜欢</h3>
-                        <ul class="clearfix">
-                            <li><img src="http://askimg.39.net/jingyan/20151025/61787.jpg" alt="" width="166" height="110"><span>感冒了怎么般</span></li>
-                            <li><img src="http://images.csdn.net/20170930/1.png" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
-                            <li><img src="http://images.csdn.net/20170930/20170924143839-17da39c6-me_副本.jpg" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
-                            <li><img src="http://images.csdn.net/20170330/11.png" alt="" width="166" height="110"><span>随机决策树基本方法和理论探讨</span></li>
-                            <li><img src="http://img.ads.csdn.net/2017/201709201440397079.jpg" alt="" width="166" height="110"><span>随机决策树基本方法和理论探讨</span></li>
-                            <li><img src="http://images.csdn.net/20170704/1.png" alt="" width="166" height="110"><span>Hbase 设计与开发实战</span></li>
-                            <li><img src="http://images.csdn.net/20171002/timg.png" alt="" width="166" height="110"><span>Hbase 设计与开发实战</span></li>
-                            <li><img src="http://img.ads.csdn.net/2017/201709181754041012.png" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>
-                        </ul>
+                        <%--<ul class="clearfix">--%>
+                            <%--<li><img src="http://askimg.39.net/jingyan/20151025/61787.jpg" alt="" width="166"--%>
+                                     <%--height="110"><span>感冒了怎么般</span></li>--%>
+                            <%--<li><img src="http://images.csdn.net/20170930/1.png" alt="" width="166" height="110"><span>IBM Application Discovery 产品介绍</span>--%>
+                            <%--</li>--%>
+                            <%--<li><img src="http://images.csdn.net/20170930/20170924143839-17da39c6-me_副本.jpg" alt=""--%>
+                                     <%--width="166" height="110"><span>IBM Application Discovery 产品介绍</span></li>--%>
+                            <%--<li><img src="http://images.csdn.net/20170330/11.png" alt="" width="166" height="110"><span>随机决策树基本方法和理论探讨</span>--%>
+                            <%--</li>--%>
+                            <%--<li><img src="http://img.ads.csdn.net/2017/201709201440397079.jpg" alt="" width="166"--%>
+                                     <%--height="110"><span>随机决策树基本方法和理论探讨</span></li>--%>
+                            <%--<li><img src="http://images.csdn.net/20170704/1.png" alt="" width="166" height="110"><span>Hbase 设计与开发实战</span>--%>
+                            <%--</li>--%>
+                            <%--<li><img src="http://images.csdn.net/20171002/timg.png" alt="" width="166"--%>
+                                     <%--height="110"><span>Hbase 设计与开发实战</span></li>--%>
+                            <%--<li><img src="http://img.ads.csdn.net/2017/201709181754041012.png" alt="" width="166"--%>
+                                     <%--height="110"><span>IBM Application Discovery 产品介绍</span></li>--%>
+                        <%--</ul>--%>
+                        <script type="text/javascript">
+                            /*文章详情页-内容底部详情页*/
+                            var cpro_id = "u3171840";
+                        </script>
+                        <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
+                        <script type="text/javascript">
+                            /*文章详情页-内容底部详情页*/
+                            var cpro_id = "u3171840";
+                        </script>
+                        <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                     </div>
                 </div>
 
@@ -165,7 +187,8 @@
                             <c:choose>
                                 <c:when test="${requestScope.recommendCourses != null}">
                                     <c:forEach items="${requestScope.recommendCourses}" var="course">
-                                        <li><span class="dot"></span><a href="<%=basePath%>/course/${course.name}">${course.name}</a></li>
+                                        <li><span class="dot"></span><a
+                                                href="<%=basePath%>/course/${course.name}">${course.name}</a></li>
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>
@@ -224,10 +247,14 @@
                         </ul>
                     </div>
                     <div class="vedio-course">
-                        <a href="<%=basePath%>ad/videoCourseDetail/${requestScope.videoCourseShopList[0].id}">
-                            <img src="${requestScope.videoCourseShopList[0].taobaoPicUrl}"
-                                 alt="${requestScope.videoCourseShopList[0].name}">
-                        </a>
+                        <%--<a href="<%=basePath%>ad/videoCourseDetail/${requestScope.videoCourseShopList[0].id}">--%>
+                        <%--<img src="${requestScope.videoCourseShopList[0].taobaoPicUrl}"--%>
+                        <%--alt="${requestScope.videoCourseShopList[0].name}">--%>
+                        <%--</a>--%>
+                        <script type="text/javascript">
+                            var cpro_id = "u3171809";
+                        </script>
+                        <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                     </div>
                 </div>
             </div>
@@ -236,7 +263,7 @@
         </div>
         <div id="footer">
             <div class="copyright">
-                编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
+                编程无忧 © 2017 uubook.net. 当前呈现版本 1.02.05<br>
                 <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
             </div>
         </div>

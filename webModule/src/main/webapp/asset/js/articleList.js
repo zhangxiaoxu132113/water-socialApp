@@ -51,7 +51,7 @@ function click_category(obj,category) {
     }
 
     $.ajax({
-        url: '<%=basePath%>/blog/category/getCategoryArticleListWithAjax?category='+category+'&sort=viewHits&currentPage='+ pageCategoryObj["category_" + category] +'&pageSize=' + pageSize,
+        url: '/blog/category/getCategoryArticleListWithAjax?category='+category+'&sort=viewHits&currentPage='+ pageCategoryObj["category_" + category] +'&pageSize=' + pageSize,
         method: "GET",
         async: true,
         success: function (result) {
@@ -68,7 +68,7 @@ function loadMore(category) {
     pageCategoryObj["category_" + category] += 1;
     var currentPage = pageCategoryObj["category_" + category];
     $.ajax({
-        url: '<%=basePath%>/blog/category/getCategoryArticleListWithAjax?category='+category+'&sort=viewHits&currentPage='+ currentPage++ +'&pageSize=' + pageSize,
+        url: '/blog/category/getCategoryArticleListWithAjax?category='+category+'&sort=viewHits&currentPage='+ currentPage++ +'&pageSize=' + pageSize,
         method: "GET",
         async: true,
         success: function (result) {

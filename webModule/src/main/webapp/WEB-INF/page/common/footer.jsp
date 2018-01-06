@@ -90,9 +90,20 @@
         <%--</div>--%>
         <%--<div style="clear: both;"></div>--%>
     </div>
+    <style>
 
+    </style>
     <div class="copyright">
-        编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
-        <a rel="nofollow">粤ICP备17130657号</a> &nbsp;&nbsp;<a target="_blank" href="<%=basePath%>/template/website.html">站点地图</a>
+
+        <div class="youlian_container">
+            <p><span class="youlian_info"><b>友情链接 : </b></span><a class="youlian" href="https://www.tbreak.top">沐雨语曦</a></p>
+        </div>
+        <p class="footer-bottom">
+            编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05
+            <a rel="nofollow">粤ICP备17130657号</a> &nbsp;&nbsp;
+            <a target="_blank" class="website" href="<%=basePath%>/template/website.html">站点地图</a>&nbsp;&nbsp;
+            <span class="zhanzhangtongji"><script src="https://s22.cnzz.com/z_stat.php?id=1272025428&web_id=1272025428" language="JavaScript"></script></span>
+        </p>
+
     </div>
 </div>

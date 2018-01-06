@@ -126,7 +126,7 @@
                                                                              height="200">
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                        <p>${fn:substring(article.description, 0, 120)}</p>
+                                                                        <p>${fn:substring(article.description, 0, 80)}...</p>
                                                                     </c:otherwise>
                                                                 </c:choose>
                                                             </li>
@@ -269,10 +269,11 @@
                 </div>
             </div>
         </div>
-        <%--页脚--%>
-        <jsp:include page="common/footer.jsp"/>
+
     </div>
 </div>
+<%--页脚--%>
+<jsp:include page="common/footer.jsp"/>
 <script src="<%=basePath%>/plugs/slider/jquery-2.1.1.min.js"></script>
 <script src="<%=basePath%>/plugs/slider/jquery.slidizle.js"></script>
 <script src="<%=basePath%>/asset/js/articleList.js"></script>

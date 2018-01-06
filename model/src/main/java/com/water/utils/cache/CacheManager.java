@@ -18,7 +18,9 @@ public interface CacheManager {
 
     void set(String key, byte[] value);
 
-    byte[] get(String key);
+    byte[] get(byte[] key);
+
+    String get(String key);
 
     Long sadd(String key, String... value);
 

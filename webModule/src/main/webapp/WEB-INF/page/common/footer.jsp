@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+%>
 <div id="footer">
     <div class="row footer-inner" style="padding: 0 1em;">
         <%--<div class="col-sm-2">--%>
@@ -89,6 +93,6 @@
 
     <div class="copyright">
         编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05<br>
-        <a rel="nofollow">粤ICP备17130657号</a> &nbsp;
+        <a rel="nofollow">粤ICP备17130657号</a> &nbsp;&nbsp;<a target="_blank" href="<%=basePath%>/template/website.html">站点地图</a>
     </div>
 </div>

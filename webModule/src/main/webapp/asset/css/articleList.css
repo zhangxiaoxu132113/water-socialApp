@@ -638,3 +638,34 @@ body {
     width: 660px;
     height: 95px;
 }
+
+.hot_add_more {
+    display: block;
+    margin: 2em auto 0;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #1c92e0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.load_more {
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    background: #c3c3c345;
+    line-height: 45px;
+    margin-top: 1em;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-fixed {
+    position: fixed;
+    top: 0;
+    z-index: 20999;
+    background: #fff;
+    width: 663px;
+}

@@ -15,13 +15,15 @@ public class Constants {
     public static String ACCESS_LOG_PATH;
     public static String FILTER_STATIC_RESOURCE;
     public static String CRALWER_PATH;
+    public static String WEB_SITE_HTML_PATH;
+
 
     static {
         Resource resource = new ClassPathResource("/config.properties");
         try {
             properties = PropertiesLoaderUtils.loadProperties(resource);
             CRALWER_PATH = (String) properties.get("crawler.path");
-//            ACCESS_LOG_PATH = (String) properties.get("access.log.path");
+            WEB_SITE_HTML_PATH = (String) properties.get("web.site.html.path");
             ACCESS_LOG_PATH = "/Users/mrwater/Documents/access";
             FILTER_STATIC_RESOURCE = "js,css,jpg,png,jpeg,gif";
 //            FILTER_STATIC_RESOURCE = (String) properties.get("filter.static.resource");

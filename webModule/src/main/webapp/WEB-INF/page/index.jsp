@@ -19,22 +19,13 @@
     <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
     <meta name="baidu-site-verification" content="YZloLpsXpn"/>
     <meta name="baidu_union_verify" content="b81003967cf3b5919e27af4f74d24cb7">
+    <link rel="icon" href="<%=basePath%>/asset/img/bitbug_favicon.ico">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/articleList.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/footer-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/header-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/common/category-common.css">
     <link rel="stylesheet" href="<%=basePath%>/asset/css/font/iconfont/iconfont.css">
     <link rel="stylesheet" href="<%=basePath%>/plugs/slider/slider.css">
-    <link rel="icon" href="<%=basePath%>/asset/img/bitbug_favicon.ico">
-    <style>
-        .nav-fixed {
-            position: fixed;
-            top: 0;
-            z-index: 20999;
-            background: #fff;
-            width: 663px;
-        }
-    </style>
     <jsp:include page="common/baidu_statistics_code.jsp"/>
 </head>
 <body>
@@ -46,7 +37,7 @@
             <div id="main-content-left">
                 <div id="view-info">
                     <div id="view-info-detail" style="display: inline-block;width: 59%; padding-right: 1em">
-                        <img src="<%=basePath%>/asset/content/123.png" width="370" height="248">
+                        <img src="http://img.uubook.net/upload/bmiddle/201801/06/12e6e69e-3dcb-4d73-a5eb-115898534383.png" alt="<%=basePath%>/article/detail/<%=topArticleList.get(0).getTitle()%>" width="370" height="248">
                         <div id="view-info-detail-title"><a
                                 href="<%=basePath%>/article/detail/<%=topArticleList.get(0).getId()%>.html"><%=topArticleList.get(0).getTitle() %>
                         </a></div>
@@ -55,7 +46,7 @@
                         </div>
                         <div id="view-info-detail-content">
                             <ul>
-                                <c:forEach items="${requestScope.topArticleList}" begin="9" end="12" var="article">
+                                <c:forEach items="${requestScope.topArticleList}" begin="10" end="12" var="article">
                                     <li style="margin-top: 5px"><a
                                             href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
                                     </li>
@@ -65,7 +56,7 @@
                     </div>
                     <div id="view-info-list">
                         <ul>
-                            <c:forEach items="${requestScope.topArticleList}" begin="1" end="8" var="article">
+                            <c:forEach items="${requestScope.topArticleList}" begin="1" end="9" var="article">
                                 <li><a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a></li>
                             </c:forEach>
                             <span style="float: right;padding: 0.5em 0;text-decoration: underline;"><a
@@ -74,14 +65,7 @@
                     </div>
                 </div>
                 <div class="ad" id="long-ad">
-                    <%--<script type="text/javascript">--%>
-                    <%--/*首页banner条广告-003*/--%>
-                    <%--var cpro_id = "u3171852";--%>
-                    <%--</script>--%>
-                    <%--<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>--%>
-
                     <script type="text/javascript">
-                        /*640*60 创建于 2017/12/25*/
                         var cpro_id = "u3171857";
                     </script>
                     <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
@@ -90,9 +74,9 @@
                     <div id="category_bar">
                         <div class="wrap" id="wrap">
                             <ul class="tabClick">
-                                <li class="active">综合</li>
+                                <li class="active" onclick="click_category(this, -1)">综合</li>
                                 <c:forEach items="${requestScope.categoryList}" var="category" begin="0" end="5">
-                                    <li>${category.name}</li>
+                                    <li onclick="click_category(this, ${category.id})">${category.name}</li>
                                 </c:forEach>
                             </ul>
                             <div class="tabCon">
@@ -106,14 +90,14 @@
                                                         <div class="red_bottom"></div>
                                                     </div>
                                                     <ul>
-                                                        <li><em>1</em><a href="">（干货）：Spark性能优化</a></li>
-                                                        <li><em>2</em><a href="">ssm框架系列（1）-环境搭建</a></li>
-                                                        <li><em>3</em><a href="">Java集合类操作优化经验总结</a></li>
-                                                        <li><em>4</em><a href="">Linux下搭建MySQL集群</a></li>
-                                                        <li><em>5</em><a href="">Java进阶书籍推荐</a></li>
-                                                        <li><em>6</em><a href="">【教你轻松修改React Native端口】如何同时运行</a></li>
-                                                        <li><em>7</em><a href="">引领大数据新未来 斐讯北京数据中心正式开业</a></li>
-                                                        <li><em>8</em><a href="">深入理解Ribbon之源码解析</a></li>
+                                                        <li><em>1</em>（干货）：Spark性能优化</li>
+                                                        <li><em>2</em>ssm框架系列（1）-环境搭建</li>
+                                                        <li><em>3</em>Java集合类操作优化经验总结</li>
+                                                        <li><em>4</em>Linux下搭建MySQL集群</li>
+                                                        <li><em>5</em>Java进阶书籍推荐</li>
+                                                        <li><em>6</em>【教你轻松修改React Native端口】如何同时运行</li>
+                                                        <li><em>7</em>引领大数据新未来 斐讯北京数据中心正式开业</li>
+                                                        <li><em>8</em>深入理解Ribbon之源码解析</li>
                                                     </ul>
                                                 </div>
                                                 <div class="left_bottom_ad">
@@ -148,33 +132,17 @@
                                                             </li>
                                                         </c:forEach>
                                                     </ul>
+                                                    <span class="hot_add_more">加载更多</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <c:forEach items="${requestScope.categoryList}" var="category">
                                         <div class="category-hot-article">
-                                            <ul>
-                                                <c:forEach items="${category.hotArticles}" var="article">
-                                                    <li>
-                                                        <div class="topic-img">
-                                                            <img src="https://static.oschina.net/uploads/user/1459/2918182_50.jpeg?t=1484105851000"
-                                                                 alt="">
-                                                        </div>
-                                                        <div class="topic-info">
-                                                            <h3>
-                                                                <a href="<%=basePath%>/article/detail/${article.id}.html">${article.title}</a>
-                                                            </h3>
-                                                            <p>${fn:substring(article.description, 0, 100)}</p>
-                                                            <div class="detail">
-                                                                <span>发布于：${article.createOnStr}</span>
-                                                                <span>阅读量：${article.viewHits}</span>
-                                                                <span>点赞:34</span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </c:forEach>
+                                            <a href="<%=basePath%>/blog/category/getCategoryArticleListWithAjax?category=${category.id}&sort=viewHits&currentPage=1&pageSize=10"></a>
+                                            <ul id="category-article-${category.id}">
                                             </ul>
+                                            <div class="load_more" onclick="loadMore(${category.id})">加载更多</div>
                                         </div>
                                     </c:forEach>
                                 </div>
@@ -190,14 +158,12 @@
                         <ul class="slider-content" data-slidizle-content>
                             <c:forEach items="${requestScope.adInfoList}" var="adInfo">
                                 <li class="slider-item"
-                                    style="width: 300px; height: 200px; background-image:url('<%=basePath%>
-                                        ${adInfo.pic}')"></li>
+                                    style="width: 300px; height: 200px; background-image:url('${adInfo.pic}')"></li>
                             </c:forEach>
                         </ul>
                         <ul class="slider-navigation" data-slidizle-navigation></ul>
                     </section>
                     <script type="text/javascript">
-                        /*自适应 创建于 2017/12/25*/
                         var cpro_id = "u3171829";
                     </script>
                     <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/i.js"></script>
@@ -297,7 +263,6 @@
                 </div>
                 <div class="baidu_ad">
                     <script type="text/javascript">
-                        /*首页右下角广告位*/
                         var cpro_id = "u3171800";
                     </script>
                     <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
@@ -311,29 +276,5 @@
 <script src="<%=basePath%>/plugs/slider/jquery-2.1.1.min.js"></script>
 <script src="<%=basePath%>/plugs/slider/jquery.slidizle.js"></script>
 <script src="<%=basePath%>/asset/js/articleList.js"></script>
-<script>
-    jQuery(function ($) {
-        $('[data-slidizle]').slidizle({
-            beforeChange: function (api) {
-            }
-        });
-
-        $("ul.tabClick li").hover(function () {
-            $(this).addClass("active").siblings().removeClass("active"); //切换选中的按钮高亮状态
-            var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-            $('.lineDiv').css('margin-left', (index * 140) + 'px');
-            $(".tabBox > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-        });
-
-        $(window).scroll(function () {
-            var height = $('#header').height() + $('#category-nav').height() + $('#view-info').height() + $('#long-ad').height() + 30;
-            if ($(window).scrollTop() >= height) {
-                $('.tabClick').addClass('nav-fixed');
-            } else {
-                $('.tabClick').removeClass("nav-fixed");
-            }
-        });
-    });
-</script>
 </body>
 </html>

@@ -6,7 +6,10 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>博文分类_${categoryDto.name}_编程无忧网</title>
+    <meta name="description"
+          content="编程无忧网(www.uubook.net)提供了优质的编程技术博文，编程实例教程，软件最新资讯，涵盖编程语言，移动开发，前端开发，数据库，服务器，云计算等各个领域，更多的优质资源尽在编程无忧网">
+    <meta name="keywords" content="编程学习,IT技术,软件开发,技术博客,编程教程,软件资讯,软件学习,java架构师教程">
     <link rel="stylesheet" href="<%=path%>/asset/css/categoryModule.css">
     <style>
         .load-more {
@@ -41,7 +44,7 @@
                         <li><a href="<%=basePath%>blog/">文档库</a></li>
                         <li><a href="<%=basePath%>new/">资讯</a></li>
                         <li><a href="<%=basePath%>course/">教程</a></li>
-                        <li><a href="<%=basePath%>base/">知识库</a></li>
+                        <li>知识库</li>
                     </ul>
                 </div>
                 <div class="user-info">
@@ -201,7 +204,11 @@
                         </div>
                         <%--广告投放位置--%>
                         <div class="ad-info">
-                            <img src="https://tpc.googlesyndication.com/simgad/17324602141506657397" alt="">
+                            <script type="text/javascript">
+                                /*博客文章分类-右下角悬浮广告位*/
+                                var cpro_id = "u3175806";
+                            </script>
+                            <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js"></script>
                         </div>
                     </div>
                 </div>

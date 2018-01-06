@@ -55,11 +55,24 @@ public class RedisCacheManagerImpl implements CacheManager {
     }
 
     @Override
-    public byte[] get(String key) {
+    public byte[] get(byte[] key) {
         ShardedJedis jedis = this.pool.getResource();
         byte[] value = null;
         try {
-            value = jedis.get(key.getBytes());
+            value = jedis.get(key);
+            this.pool.returnResource(jedis);
+        } catch (Exception e) {
+            this.pool.returnBrokenResource(jedis);
+        }
+        return value;
+    }
+
+    @Override
+    public String get(String key) {
+        ShardedJedis jedis = this.pool.getResource();
+        String value = null;
+        try {
+            value = jedis.get(key);
             this.pool.returnResource(jedis);
         } catch (Exception e) {
             this.pool.returnBrokenResource(jedis);
@@ -288,7 +301,7 @@ public class RedisCacheManagerImpl implements CacheManager {
             return null;
         }
         ListTranscoder<Class> listTranscoder = new ListTranscoder<Class>();
-        byte[] bytes = get(key);
+        byte[] bytes = get(key.getBytes());
         if (bytes == null) {
             return null;
         }

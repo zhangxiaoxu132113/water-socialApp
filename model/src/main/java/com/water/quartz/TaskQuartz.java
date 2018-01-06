@@ -1,14 +1,19 @@
 package com.water.quartz;
 
+import com.hankcs.hanlp.HanLP;
 import com.water.utils.common.Constants;
 import com.water.utils.lang.StringUtil;
 import com.water.uubook.dao.TbUbAccessLogInfoMapper;
+import com.water.uubook.dao.TbUbArticleMapper;
 import com.water.uubook.dao.TbUbIpAddressInfoMapper;
 import com.water.uubook.model.TbUbAccessLogInfo;
+import com.water.uubook.model.TbUbArticle;
 import com.water.uubook.utils.DateUtil;
+import com.water.uubook.utils.HtmlUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
 
 import javax.annotation.Resource;
 import java.io.BufferedReader;
@@ -16,6 +21,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhangmiaojie on 2016/11/17.
@@ -25,15 +33,46 @@ public class TaskQuartz {
 
     @Resource
     private TbUbAccessLogInfoMapper accessLogInfoMapper;
-
     @Resource
     private TbUbIpAddressInfoMapper ipAddressInfoMapper;
+    @Resource
+    private TbUbArticleMapper tbUbArticleMapper;
 
     public void disposableUrlTask() {
-        System.out.println("定时任务执行！");
+        Map<String, Object> queryMap = new HashMap<>();
+        Integer id = 0;
+        queryMap.put("count", 100);
+        double processValue = 0.0;
+        int allValue = tbUbArticleMapper.countByExample(null);
+        LOG.info("开始处理任务，数据总量为" + allValue);
+        System.out.println("开始处理任务，数据总量为" + allValue);
+        while (true) {
+            queryMap.put("id", id);
+            List<TbUbArticle> articleList = tbUbArticleMapper.getArticle(queryMap);
+            for (TbUbArticle article : articleList) {
+                String content = HtmlUtil.Html2Text(article.getContent());
+                StringBuilder sb = new StringBuilder();
+                List<String> sentenceList = HanLP.extractSummary(content, 7);
+                if (sentenceList != null) {
+                    for (String  sentence: sentenceList) {
+                        sb.append(sentence + ",");
+                    }
+                }
+                String description = sb.toString().substring(0, sb.length()-1);
+                if (StringUtils.isNoneBlank(description)) {// 如果description内容为空，则设置description的内容
+                    article.setDescription(description);
+                    tbUbArticleMapper.updateByPrimaryKeySelective(article);
+                }
+
+                id = article.getId();
+            }
+
+            processValue += 100.0;
+            LOG.info("已处理:" + processValue + ",当前进度=" + ((processValue / allValue) * 100) + "%");
+            System.out.println("已处理:" + processValue + ",当前进度=" + ((processValue / allValue) * 100) + "%");
+        }
 
     }
-
 
     /**
      * 每天凌晨5点处理并分析日志

@@ -30,9 +30,9 @@
             <li><a href="<%=path%>/blog">文档库</a></li>
             <li><a href="<%=path%>/new">资讯</a></li>
             <li><a href="<%=path%>/course">IT教程</a></li>
-            <li><a href="<%=path%>/base">知识库</a></li>
-            <li><a href="<%=path%>/xxx">经验</a></li>
-            <li><a href="<%=path%>/yyyy">资源下载</a></li>
+            <li>知识库</li>
+            <li>经验</li>
+            <li>资源下载</li>
         </ul>
     </div>
 </div>

@@ -50,14 +50,9 @@ public class IndexController {
     @Resource
     private IBlogService blogService;
 
-    @Resource(name = "webSiteGeneratorTask")
-    private WebSiteGeneratorTask task;
-
     @RequestMapping(value = {"/", "/index", "/index.html"})
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
-
-        task.geneatorWebSite();
 
         List<Category> menuList = categoryHelper.getAllCategories();
         mav.addObject(PageConstants.INDEX.MENUS, menuList);//导航栏菜单

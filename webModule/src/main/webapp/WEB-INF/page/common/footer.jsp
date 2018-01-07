@@ -90,14 +90,14 @@
         <%--</div>--%>
         <%--<div style="clear: both;"></div>--%>
     </div>
-    <style>
-
-    </style>
     <div class="copyright">
 
         <div class="youlian_container">
             <p><span class="youlian_info"><b>友情链接 : </b></span><a class="youlian" href="https://www.tbreak.top">沐雨语曦</a></p>
         </div>
+        <p class="mianze">
+            本站资源均收集整理于互联网，其著作权归原作者所有，如果有侵犯您权利的资源，请来信告知，我们将及时撤销相应资源
+        </p>
         <p class="footer-bottom">
             编程无忧 ©  2017 uubook.net. 当前呈现版本 1.02.05
             <a rel="nofollow">粤ICP备17130657号</a> &nbsp;&nbsp;

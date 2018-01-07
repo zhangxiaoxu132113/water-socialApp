@@ -25,7 +25,12 @@
 
 .footer-bottom {
     background: #eee;
-    padding: 1em;
+    padding: 0.5em 0 1em;
+}
+
+.mianze {
+    background: #eee;
+    padding-top: 1em;
 }
 
 .youlian_info {
